@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marco Saldarriaga Medina — Portfolio</title>
+  <meta name="description" content="Portfolio profesional de Marco Saldarriaga Medina — Project Manager, Data Scientist, Desarrollador de Apps" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #263348;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #334155;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 8rem 2rem 4rem;
+      background: radial-gradient(ellipse at 20% 50%, rgba(56,189,248,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(129,140,248,0.08) 0%, transparent 60%);
+      text-align: center;
+    }
+    .hero-inner { max-width: 720px; }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.3rem 0.9rem;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.3);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #e2e8f0 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2.5rem; }
+    .tag {
+      padding: 0.3rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #0f172a; }
+    .btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 60px; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 2.5rem; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--surface); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skill-group {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .skill-group h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      padding: 0.25rem 0.6rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: var(--text);
+    }
+
+    /* ── TIMELINE (Experience) ── */
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -2rem; top: 0.4rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.2);
+    }
+    .timeline-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .timeline-card:hover { border-color: var(--accent); }
+    .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .timeline-role { font-weight: 700; font-size: 1rem; color: var(--text); }
+    .timeline-company { font-size: 0.85rem; color: var(--accent2); font-weight: 500; }
+    .timeline-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .timeline-desc { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+    .timeline-desc ul { padding-left: 1.1rem; margin-top: 0.4rem; }
+    .timeline-desc li { margin-bottom: 0.25rem; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .project-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .project-card p { font-size: 0.83rem; color: var(--muted); flex: 1; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .project-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+    }
+    .project-tag.accent { background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.3); color: var(--accent); }
+
+    /* ── EDUCATION ── */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .edu-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .edu-card .school { font-size: 0.83rem; color: var(--accent); margin-bottom: 0.2rem; }
+    .edu-card .period { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); text-align: center; }
+    .contact-grid {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+      margin-top: 2rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-item svg { width: 18px; height: 18px; color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 3.5rem 1rem; }
+      .timeline { padding-left: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">MSM</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#education">Educación</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner fade-in">
+    <div class="hero-badge">Disponible para nuevos proyectos</div>
+    <h1>Marco Saldarriaga<br>Medina</h1>
+    <p class="hero-subtitle">
+      Project Manager · Data Scientist · Desarrollador de Apps Móviles<br>
+      +28 años liderando proyectos TI en banca, salud, educación y sector estatal.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Scrum Master</span>
+      <span class="tag">Python</span>
+      <span class="tag">Flutter</span>
+      <span class="tag">Power BI</span>
+      <span class="tag">SQL Server</span>
+      <span class="tag">Supabase</span>
+      <span class="tag">PMI / PMP</span>
+      <span class="tag">Análisis Funcional</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">Ver proyectos</a>
+      <a href="mailto:msmgxe@gmail.com" class="btn btn-outline">Contáctame</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Habilidades</div>
+    <h2>Stack técnico y metodologías</h2>
+    <div class="skills-grid fade-in">
+      <div class="skill-group">
+        <h3>Gestión de Proyectos</h3>
+        <div class="skill-chips">
+          <span class="chip">Scrum / Agile</span>
+          <span class="chip">Waterfall</span>
+          <span class="chip">Metodologías Mixtas</span>
+          <span class="chip">PMI / PMP</span>
+          <span class="chip">MS Project</span>
+          <span class="chip">Jira</span>
+          <span class="chip">Monday</span>
+          <span class="chip">CAPEX / OPEX</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Análisis y Procesos</h3>
+        <div class="skill-chips">
+          <span class="chip">Análisis Funcional</span>
+          <span class="chip">BPM / BPMN</span>
+          <span class="chip">Bizagi</span>
+          <span class="chip">Visio</span>
+          <span class="chip">UML / RUP</span>
+          <span class="chip">AS-IS / TO-BE</span>
+          <span class="chip">Casos de Uso</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Data Science</h3>
+        <div class="skill-chips">
+          <span class="chip">Python</span>
+          <span class="chip">pandas</span>
+          <span class="chip">NumPy</span>
+          <span class="chip">Matplotlib</span>
+          <span class="chip">SciPy</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">MicroStrategy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Desarrollo</h3>
+        <div class="skill-chips">
+          <span class="chip">Flutter</span>
+          <span class="chip">Dart</span>
+          <span class="chip">C# / .NET</span>
+          <span class="chip">SQL Server</span>
+          <span class="chip">Oracle</span>
+          <span class="chip">Supabase</span>
+          <span class="chip">ASP.NET</span>
+          <span class="chip">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Herramientas</h3>
+        <div class="skill-chips">
+          <span class="chip">SAP</span>
+          <span class="chip">Salesforce</span>
+          <span class="chip">Erwin</span>
+          <span class="chip">Toad / Aqua Studio</span>
+          <span class="chip">Discord</span>
+          <span class="chip">Git / GitHub</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Sectores</h3>
+        <div class="skill-chips">
+          <span class="chip">Banca</span>
+          <span class="chip">Salud</span>
+          <span class="chip">Educación</span>
+          <span class="chip">Sector Estatal</span>
+          <span class="chip">Comercial</span>
+          <span class="chip">RRHH</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experiencia</div>
+    <h2>Trayectoria profesional</h2>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Analista de Proyectos</div>
+              <div class="timeline-company">Enotria</div>
+            </div>
+            <span class="timeline-date">Nov 2025 — Actualidad</span>
+          </div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Coordinación global del proyecto — requerimientos del área de Administración.</li>
+              <li>Supervisión del análisis funcional y orgánico, implementación y desarrollo.</li>
+              <li>Resolución de problemas técnicos y garantía de calidad del software entregado.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Consultor Externo / Gestión de RRHH</div>
+              <div class="timeline-company">Formativa SAC</div>
+            </div>
+            <span class="timeline-date">Mar 2024 — Oct 2025</span>
+          </div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Gestión de RRHH para nuevas propuestas con el Estado y clientes comerciales.</li>
+              <li>Elaboración de propuestas técnicas y económicas para la cartera de clientes.</li>
+              <li>Gestión de 100 trabajadores: renovaciones, ingresos, inducciones, seguridad.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Coordinador de Servicios TI</div>
+              <div class="timeline-company">QDS Group</div>
+            </div>
+            <span class="timeline-date">Dic 2023 — Feb 2024</span>
+          </div>
+          <div class="timeline-desc">
+            Gestión de solicitudes de 100 trabajadores en distintos clientes. Renovaciones, contratos, inducciones y feedback mensual.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Project Manager / Scrum Master</div>
+              <div class="timeline-company">Universidad de Ciencias Aplicadas — IP InfoOut</div>
+            </div>
+            <span class="timeline-date">Dic 2021 — Jul 2023</span>
+          </div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Gestión de 25 requerimientos funcionales en metodología ágil (2 Sprints paralelos).</li>
+              <li>Lideré 3 proyectos PMI: WeTalk continuidad, GEMA evaluaciones, nueva arquitectura WeTalk.</li>
+              <li>Presupuesto CAPEX/OPEX de más de USD 5 MM. Coordinación de stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Analista Funcional / Product Owner</div>
+              <div class="timeline-company">Belmond Perurail — MDP Consulting</div>
+            </div>
+            <span class="timeline-date">Jun 2020 — May 2021</span>
+          </div>
+          <div class="timeline-desc">
+            AS-IS / TO-BE de requerimientos comerciales. Diseño de prototipos, casos de uso y casos de prueba.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Jefe de Proyecto — Sector Salud</div>
+              <div class="timeline-company">Oncosalud — Evol / MDP Consulting</div>
+            </div>
+            <span class="timeline-date">Nov 2018 — May 2020</span>
+          </div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Proyecto PCI-DSS / certificación Visa — seguridad, enmascaramiento y tokenización.</li>
+              <li>Gestión de presupuesto CAPEX/OPEX y reporte al comité de proyecto.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Jefe de Proyecto / Analista Funcional</div>
+              <div class="timeline-company">AFP Profuturo — MDP Consulting</div>
+            </div>
+            <span class="timeline-date">Sep 2013 — May 2014</span>
+          </div>
+          <div class="timeline-desc">
+            Business Intelligence en Oracle · reportes DW con MicroStrategy · Diagramas UML · reglas SBS y Sunat.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Analista de Procesos Técnicos — Banca</div>
+              <div class="timeline-company">Banco Citibank</div>
+            </div>
+            <span class="timeline-date">Jun 2010 — May 2011</span>
+          </div>
+          <div class="timeline-desc">
+            Proyecto Web Paylink Back End (transferencias interbancarias B2B). Diagramas UML, metodología RUP, prototipos de interfaz.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Analista Programador</div>
+              <div class="timeline-company">Lee Filter del Perú S.A.</div>
+            </div>
+            <span class="timeline-date">Jul 2006 — Dic 2008</span>
+          </div>
+          <div class="timeline-desc">
+            Desarrollo de catálogo web de productos (búsqueda por aplicaciones y equivalencias) y módulo de pedidos web con C# .NET, ASP.NET y SQL Server 2005.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Proyectos</div>
+    <h2>Desarrollos destacados</h2>
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-icon">📱</div>
+        <h3>Pep Education — App de Salud</h3>
+        <p>
+          App móvil multiplataforma (iOS / Android) para gestión de peso y salud. Panel web administrativo para profesionales de salud. Backend en Supabase con RLS y gestión de pacientes. Internacionalización en Español, Inglés y Portugués.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag accent">Flutter</span>
+          <span class="project-tag accent">Dart</span>
+          <span class="project-tag">Supabase</span>
+          <span class="project-tag">TypeScript</span>
+          <span class="project-tag">React</span>
+          <span class="project-tag">i18n</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-icon">📊</div>
+        <h3>Análisis Megaline — TripleTen Sprint 5</h3>
+        <p>
+          Análisis estadístico de datos de telecomunicaciones para determinar cuál plan de la operadora Megaline genera mayor ingreso. Pruebas de hipótesis con SciPy, visualizaciones con Matplotlib.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag accent">Python</span>
+          <span class="project-tag accent">pandas</span>
+          <span class="project-tag">SciPy</span>
+          <span class="project-tag">Matplotlib</span>
+          <span class="project-tag">Estadística</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-icon">🎮</div>
+        <h3>Análisis Videojuegos ICE — TripleTen Sprint 6</h3>
+        <p>
+          Análisis de ventas globales de videojuegos por plataforma, género y región (NA, EU, JP). Identificación de patrones de éxito, pruebas de hipótesis sobre calificaciones y ventas por consola (Xbox One vs PC, etc.).
+        </p>
+        <div class="project-tags">
+          <span class="project-tag accent">Python</span>
+          <span class="project-tag accent">pandas</span>
+          <span class="project-tag">Análisis Regional</span>
+          <span class="project-tag">Hipótesis</span>
+          <span class="project-tag">Data Viz</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-icon">🔐</div>
+        <h3>Proyecto PCI-DSS — Oncosalud</h3>
+        <p>
+          Certificación Visa / Seguridad de pagos. Implementación de enmascaramiento y tokenización de tarjetas VISA en producción. Coordinación multi-área con stakeholders externos y comité de dirección.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">PCI-DSS</span>
+          <span class="project-tag">Seguridad</span>
+          <span class="project-tag">Tokenización</span>
+          <span class="project-tag">PMI</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-icon">🎓</div>
+        <h3>WeTalk &amp; GEMA — UPC</h3>
+        <p>
+          Tres proyectos simultáneos: continuidad de negocio para la plataforma WeTalk, sistema GEMA de programación de evaluaciones y rediseño de la arquitectura de WeTalk. Presupuesto mayor a USD 5 MM.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Scrum</span>
+          <span class="project-tag">PMI</span>
+          <span class="project-tag">CAPEX/OPEX</span>
+          <span class="project-tag">Educación</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-icon">🚚</div>
+        <h3>App Comercial Ventas — Purolator</h3>
+        <p>
+          App móvil para vendedores en campo: consulta de estados de cuenta, rutas geolocalizadas con optimización TSP (≥10 puntos), catálogo de productos, pedidos y cobros. Sistema legado Android (2014–2021) actualmente en proceso de modernización con arquitectura multicapa.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag accent">Android</span>
+          <span class="project-tag accent">C# .NET</span>
+          <span class="project-tag">ASP.NET MVC</span>
+          <span class="project-tag">SQL Server</span>
+          <span class="project-tag">WCF / API REST</span>
+          <span class="project-tag">Geolocalización</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-icon">🌐</div>
+        <h3>Catálogo Web Lee Filter</h3>
+        <p>
+          Análisis, diseño e implementación de módulos de catálogo web (búsqueda por aplicaciones y equivalencias) y sistema de pedidos web intranet. Portal administrativo web con arquitectura .NET multicapa (13 proyectos en solución Visual Studio).
+        </p>
+        <div class="project-tags">
+          <span class="project-tag accent">C# .NET</span>
+          <span class="project-tag accent">ASP.NET</span>
+          <span class="project-tag">SQL Server</span>
+          <span class="project-tag">Erwin</span>
+          <span class="project-tag">Web Admin</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Educación &amp; Certificaciones</div>
+    <h2>Formación académica</h2>
+    <div class="edu-grid fade-in">
+      <div class="edu-card">
+        <h3>Data Scientist</h3>
+        <div class="school">TripleTen</div>
+        <div class="period">Agosto 2023 — En curso</div>
+      </div>
+      <div class="edu-card">
+        <h3>Ingeniería de Sistemas</h3>
+        <div class="school">Universidad Peruana de Ciencias Aplicadas — UPC</div>
+        <div class="period">Dic 2016 — Jul 2021 · Bachiller</div>
+      </div>
+      <div class="edu-card">
+        <h3>Computación e Informática</h3>
+        <div class="school">I.S.T. San Ignacio de Loyola — ISIL</div>
+        <div class="period">Mar 1999 — Feb 2002 · Titulado Técnico</div>
+      </div>
+      <div class="edu-card">
+        <h3>International Scrum Master (ISM)</h3>
+        <div class="school">International Scrum Assembly</div>
+        <div class="period">Octubre 2021</div>
+      </div>
+      <div class="edu-card">
+        <h3>Preparación Certificación PMP</h3>
+        <div class="school">CGI — Gestión e Innovación</div>
+        <div class="period">Mar 2024 — Abr 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Contacto</div>
+    <h2>Hablemos</h2>
+    <p style="color:var(--muted); max-width:480px; margin:0 auto;">
+      Disponible para proyectos de tecnología, gestión, análisis de datos y desarrollo de aplicaciones.
+    </p>
+    <div class="contact-grid fade-in">
+      <a href="mailto:msmgxe@gmail.com" class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        msmgxe@gmail.com
+      </a>
+      <a href="tel:+51984368710" class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.6 4.48 2 2 0 0 1 3.58 2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.82a16 16 0 0 0 6 6l1.92-1.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +51 984 368 710
+      </a>
+      <span class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Lima, Perú
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Marco Saldarriaga Medina · Construido con HTML puro · Alojado en Vercel / GitHub Pages</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
