@@ -277,6 +277,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <div class="tab" onclick="show('roadmap',this)">🗓 Roadmap</div>
     <div class="tab" onclick="show('kpis',this)">📈 KPIs</div>
     <div class="tab" onclick="show('toolmap',this)">🔗 Mapa de Herramientas</div>
+    <div class="tab" onclick="show('matriz',this)">📋 Matriz Requerimientos</div>
   </div>
 </div>
 
@@ -1059,6 +1060,387 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
   </div>
 </div>
 
+<!-- ══════════════════════ MATRIZ DE REQUERIMIENTOS ══════════════════════ -->
+<div class="sec" id="matriz">
+  <div class="sec-hdr">
+    <h2>📋 Matriz de Requerimientos</h2>
+    <p>Vincula cada requerimiento con los elementos del sistema y los beneficios de negocio</p>
+  </div>
+
+  <!-- QUÉ ES -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">🗂</div>
+      <div>
+        <h3>¿Qué es la Matriz de Requerimientos?</h3>
+        <p>Herramienta del Analista Funcional que conecta requerimientos → sistema → valor</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">Matriz de Requerimientos</span> = tabla que responde 3 preguntas simultáneamente:<br><br>
+<span class="fvar">¿QUÉ</span> necesita el usuario?       → <span class="feq">Requerimiento</span> (funcional o no funcional)<br>
+<span class="fvar">¿CÓMO</span> lo resuelve el sistema?  → <span class="feq">Elemento</span> (pantalla, API, base de datos, proceso)<br>
+<span class="fvar">¿POR QUÉ</span> vale la pena hacerlo? → <span class="feq">Beneficio</span> (ahorro, satisfacción, cumplimiento)
+      </div>
+
+      <!-- TRES COLUMNAS VISUALES -->
+      <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:20px">
+        <div style="background:#eff6ff;border-radius:10px;padding:18px;border-top:4px solid var(--blue)">
+          <div style="font-size:1.8rem;margin-bottom:8px">📌</div>
+          <div style="font-weight:800;color:var(--blue);margin-bottom:6px;font-size:.95rem">REQUERIMIENTO</div>
+          <div style="font-size:.8rem;color:#1e40af;margin-bottom:10px">Lo que el usuario necesita</div>
+          <ul style="list-style:none;font-size:.78rem;color:#1e40af">
+            <li style="padding:3px 0">→ Funcional: acción del sistema</li>
+            <li style="padding:3px 0">→ No funcional: cómo debe comportarse</li>
+            <li style="padding:3px 0">→ De negocio: regla o restricción</li>
+            <li style="padding:3px 0">→ De transición: proceso de cambio</li>
+          </ul>
+        </div>
+        <div style="background:#fff7ed;border-radius:10px;padding:18px;border-top:4px solid var(--orange)">
+          <div style="font-size:1.8rem;margin-bottom:8px">⚙️</div>
+          <div style="font-weight:800;color:#c2410c;margin-bottom:6px;font-size:.95rem">ELEMENTO</div>
+          <div style="font-size:.8rem;color:#c2410c;margin-bottom:10px">Parte del sistema que lo implementa</div>
+          <ul style="list-style:none;font-size:.78rem;color:#c2410c">
+            <li style="padding:3px 0">→ Pantalla / interfaz de usuario (UI)</li>
+            <li style="padding:3px 0">→ API / servicio de backend</li>
+            <li style="padding:3px 0">→ Base de datos / modelo de datos</li>
+            <li style="padding:3px 0">→ Proceso / regla de negocio</li>
+            <li style="padding:3px 0">→ Integración / sistema externo</li>
+          </ul>
+        </div>
+        <div style="background:#f0fdf4;border-radius:10px;padding:18px;border-top:4px solid var(--green)">
+          <div style="font-size:1.8rem;margin-bottom:8px">💰</div>
+          <div style="font-weight:800;color:#166534;margin-bottom:6px;font-size:.95rem">BENEFICIO</div>
+          <div style="font-size:.8rem;color:#166534;margin-bottom:10px">Valor que genera para el negocio</div>
+          <ul style="list-style:none;font-size:.78rem;color:#166534">
+            <li style="padding:3px 0">→ Reducción de costos operativos</li>
+            <li style="padding:3px 0">→ Mejora en satisfacción del cliente</li>
+            <li style="padding:3px 0">→ Cumplimiento regulatorio</li>
+            <li style="padding:3px 0">→ Reducción de tiempo de proceso</li>
+            <li style="padding:3px 0">→ Reducción de riesgo operacional</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alert alert-amber">
+        <strong>💡 Para la entrevista — cuándo usarla:</strong>
+        La Matriz de Requerimientos se elabora en la <strong>Etapa de Análisis (fase 3)</strong> y se usa durante todo el proyecto para: (1) verificar que ningún requerimiento se "pierda" entre el análisis y el desarrollo, (2) justificar ante el cliente por qué cada feature es necesaria, y (3) rastrear si el beneficio esperado se cumplió tras la entrega.
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPOS DE REQUERIMIENTOS -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#faf5ff;font-size:1.3rem">🏷</div>
+      <div>
+        <h3>Tipos de Requerimientos</h3>
+        <p>Clasificación estándar que usa todo Analista Funcional</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <div style="border-radius:10px;padding:16px;background:#eff6ff;border-left:5px solid var(--blue)">
+          <div style="font-weight:800;color:var(--blue);margin-bottom:6px;font-size:.9rem">🔵 Funcionales (RF)</div>
+          <div style="font-size:.78rem;color:#1e40af;margin-bottom:8px;font-style:italic">"Lo que el sistema HACE"</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ El sistema muestra el consumo de datos</li>
+            <li style="padding:3px 0">✦ El admin puede cambiar el plan de una línea</li>
+            <li style="padding:3px 0">✦ El portal envía alertas por email</li>
+            <li style="padding:3px 0">✦ El sistema genera reportes en PDF</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#dbeafe;padding:6px 8px;border-radius:5px;color:#1e40af">
+            <strong>Comsatel:</strong> RF-01 Ver líneas · RF-02 Cambiar plan · RF-03 Alertas consumo
+          </div>
+        </div>
+
+        <div style="border-radius:10px;padding:16px;background:#fff7ed;border-left:5px solid var(--orange)">
+          <div style="font-weight:800;color:#c2410c;margin-bottom:6px;font-size:.9rem">🟠 No Funcionales (RNF)</div>
+          <div style="font-size:.78rem;color:#c2410c;margin-bottom:8px;font-style:italic">"CÓMO debe comportarse"</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ Carga en menos de 3 segundos</li>
+            <li style="padding:3px 0">✦ Disponibilidad del 99.5% (uptime)</li>
+            <li style="padding:3px 0">✦ Compatible con Chrome, Safari, Firefox</li>
+            <li style="padding:3px 0">✦ Datos encriptados con TLS 1.3</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#ffedd5;padding:6px 8px;border-radius:5px;color:#c2410c">
+            <strong>Comsatel:</strong> RNF-01 Rendimiento · RNF-02 Seguridad · RNF-03 Disponibilidad
+          </div>
+        </div>
+
+        <div style="border-radius:10px;padding:16px;background:#faf5ff;border-left:5px solid var(--purple)">
+          <div style="font-weight:800;color:#7e22ce;margin-bottom:6px;font-size:.9rem">🟣 De Negocio (RN)</div>
+          <div style="font-size:.78rem;color:#7e22ce;margin-bottom:8px;font-style:italic">"Reglas y restricciones"</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ Solo el admin autorizado puede ver sus líneas</li>
+            <li style="padding:3px 0">✦ Un cambio de plan aplica al siguiente ciclo de facturación</li>
+            <li style="padding:3px 0">✦ Las alertas no se duplican en el mismo ciclo</li>
+            <li style="padding:3px 0">✦ El reporte usa precios del contrato vigente</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#f3e8ff;padding:6px 8px;border-radius:5px;color:#7e22ce">
+            <strong>Comsatel:</strong> RN-01 Privacidad · RN-02 Facturación · RN-03 Alertas
+          </div>
+        </div>
+
+        <div style="border-radius:10px;padding:16px;background:#f0fdf4;border-left:5px solid var(--green)">
+          <div style="font-weight:800;color:#166534;margin-bottom:6px;font-size:.9rem">🟢 De Transición (RT)</div>
+          <div style="font-size:.78rem;color:#166534;margin-bottom:8px;font-style:italic">"Cómo migramos al nuevo sistema"</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ Migrar cuentas corporativas existentes al nuevo portal</li>
+            <li style="padding:3px 0">✦ Capacitar a los admins antes del lanzamiento</li>
+            <li style="padding:3px 0">✦ Mantener el call center activo 30 días post-lanzamiento</li>
+            <li style="padding:3px 0">✦ Período de coexistencia de sistemas (30 días)</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#dcfce7;padding:6px 8px;border-radius:5px;color:#166534">
+            <strong>Comsatel:</strong> RT-01 Migración · RT-02 Capacitación · RT-03 Paralelo
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATRIZ COMPLETA -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">📊</div>
+      <div>
+        <h3>Matriz Completa — Portal Corporativo Comsatel</h3>
+        <p>Requerimiento → Elemento del sistema → Beneficio medible · Haz clic en una fila para ver el detalle</p>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <!-- FILTROS -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+        <button class="mfbtn active" onclick="filterMatrix('all',this)">Todos</button>
+        <button class="mfbtn" onclick="filterMatrix('rf',this)">🔵 Funcional</button>
+        <button class="mfbtn" onclick="filterMatrix('rnf',this)">🟠 No Funcional</button>
+        <button class="mfbtn" onclick="filterMatrix('rn',this)">🟣 Negocio</button>
+        <button class="mfbtn" onclick="filterMatrix('rt',this)">🟢 Transición</button>
+      </div>
+
+      <style>
+        .mfbtn{padding:6px 14px;border:2px solid var(--border);border-radius:20px;background:var(--white);cursor:pointer;font-size:.75rem;font-weight:600;transition:.2s;color:var(--slate)}
+        .mfbtn:hover,.mfbtn.active{background:var(--navy);color:#f8fafc;border-color:var(--navy)}
+        .mrow{transition:all .2s;cursor:pointer}
+        .mrow:hover{background:#f0f9ff!important}
+        .mrow.hidden{display:none}
+        .mrow.selected{background:#eff6ff!important;outline:2px solid var(--sky)}
+        .mdetail{background:var(--white);border:2px solid var(--sky);border-radius:10px;padding:18px;margin-top:14px;animation:slideIn .2s ease;display:none}
+        .mdetail.visible{display:block}
+        .mdetail-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:12px}
+        .mdetail-box{border-radius:8px;padding:12px}
+      </style>
+
+      <div style="overflow-x:auto">
+        <table class="tbl" id="matrix-tbl">
+          <thead>
+            <tr>
+              <th style="min-width:70px">ID</th>
+              <th style="min-width:80px">Tipo</th>
+              <th style="min-width:200px">Requerimiento</th>
+              <th style="min-width:180px">Elemento del Sistema</th>
+              <th style="min-width:180px">Beneficio</th>
+              <th style="min-width:80px">Prioridad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- RF -->
+            <tr class="mrow" data-type="rf" data-id="0" onclick="showDetail(0)">
+              <td><span class="chip chip-blue">RF-01</span></td>
+              <td><span class="chip chip-blue">Funcional</span></td>
+              <td><strong>Ver listado de líneas corporativas</strong><br><span style="font-size:.72rem;color:var(--slate)">El admin ve todas sus líneas con estado y consumo</span></td>
+              <td>🖥 Pantalla "Mis Líneas" + API GET /lines<br><span style="font-size:.72rem;color:var(--slate)">Tabla con paginación, filtros y ordenamiento</span></td>
+              <td>📉 Reducción 40% llamadas al call center<br><span style="font-size:.72rem;color:var(--slate)">Ahorro: $12/llamada × 1500 llamadas/mes</span></td>
+              <td><span class="chip chip-red">Must</span></td>
+            </tr>
+            <tr class="mrow" data-type="rf" data-id="1" onclick="showDetail(1)">
+              <td><span class="chip chip-blue">RF-02</span></td>
+              <td><span class="chip chip-blue">Funcional</span></td>
+              <td><strong>Cambiar plan de una línea móvil</strong><br><span style="font-size:.72rem;color:var(--slate)">Seleccionar nuevo plan y confirmar el cambio</span></td>
+              <td>🖥 Pantalla "Cambiar Plan" + API PUT /lines/{id}/plan<br><span style="font-size:.72rem;color:var(--slate)">Flujo: selección → resumen → confirmación → email</span></td>
+              <td>⏱ 15 min por teléfono → 2 min en portal<br><span style="font-size:.72rem;color:var(--slate)">Satisfacción cliente: NPS +15 puntos estimado</span></td>
+              <td><span class="chip chip-yellow">Should</span></td>
+            </tr>
+            <tr class="mrow" data-type="rf" data-id="2" onclick="showDetail(2)">
+              <td><span class="chip chip-blue">RF-03</span></td>
+              <td><span class="chip chip-blue">Funcional</span></td>
+              <td><strong>Alertas automáticas de consumo</strong><br><span style="font-size:.72rem;color:var(--slate)">Email al 80% y 100% de consumo de datos</span></td>
+              <td>⚙️ Servicio de monitoreo (cron cada 15 min)<br><span style="font-size:.72rem;color:var(--slate)">Integración con sistema de alertas + SMTP</span></td>
+              <td>💰 Evitar cargos por exceso de consumo<br><span style="font-size:.72rem;color:var(--slate)">Reclamos por sobrecargo: reducción estimada 60%</span></td>
+              <td><span class="chip chip-yellow">Should</span></td>
+            </tr>
+            <tr class="mrow" data-type="rf" data-id="3" onclick="showDetail(3)">
+              <td><span class="chip chip-blue">RF-04</span></td>
+              <td><span class="chip chip-blue">Funcional</span></td>
+              <td><strong>Generar reporte PDF de consumo</strong><br><span style="font-size:.72rem;color:var(--slate)">Reporte mensual agrupado por área/departamento</span></td>
+              <td>📄 Motor PDF (Puppeteer) + API GET /reports/pdf<br><span style="font-size:.72rem;color:var(--slate)">Incluye: portada, tabla por área, totales</span></td>
+              <td>📊 Autoservicio de auditoría para finanzas<br><span style="font-size:.72rem;color:var(--slate)">Elimina 8 horas/mes de trabajo manual del analista</span></td>
+              <td><span class="chip chip-green">Could</span></td>
+            </tr>
+            <tr class="mrow" data-type="rf" data-id="4" onclick="showDetail(4)">
+              <td><span class="chip chip-blue">RF-05</span></td>
+              <td><span class="chip chip-blue">Funcional</span></td>
+              <td><strong>Suspender / reactivar línea</strong><br><span style="font-size:.72rem;color:var(--slate)">El admin suspende una línea perdida o robada</span></td>
+              <td>🖥 Botón en detalle de línea + API PATCH /lines/{id}/status<br><span style="font-size:.72rem;color:var(--slate)">Confirmación con 2 pasos para evitar errores</span></td>
+              <td>🔒 Control de seguridad corporativa<br><span style="font-size:.72rem;color:var(--slate)">Previene uso no autorizado de líneas perdidas</span></td>
+              <td><span class="chip chip-yellow">Should</span></td>
+            </tr>
+            <!-- RNF -->
+            <tr class="mrow" data-type="rnf" data-id="5" onclick="showDetail(5)">
+              <td><span class="chip chip-yellow">RNF-01</span></td>
+              <td><span class="chip chip-yellow">No Funcional</span></td>
+              <td><strong>Rendimiento: carga en menos de 3 segundos</strong><br><span style="font-size:.72rem;color:var(--slate)">Con hasta 500 líneas en pantalla</span></td>
+              <td>⚡ Paginación + Lazy loading + Caché Redis<br><span style="font-size:.72rem;color:var(--slate)">CDN para assets estáticos + índices en BD</span></td>
+              <td>✅ Adopción del portal (usuarios no abandonan por lentitud)<br><span style="font-size:.72rem;color:var(--slate)">Estudios: 53% abandona si carga >3 seg</span></td>
+              <td><span class="chip chip-red">Must</span></td>
+            </tr>
+            <tr class="mrow" data-type="rnf" data-id="6" onclick="showDetail(6)">
+              <td><span class="chip chip-yellow">RNF-02</span></td>
+              <td><span class="chip chip-yellow">No Funcional</span></td>
+              <td><strong>Seguridad: autenticación con 2 factores</strong><br><span style="font-size:.72rem;color:var(--slate)">Login + OTP por email o SMS</span></td>
+              <td>🔐 Auth Service + OTP Generator + Sesión JWT<br><span style="font-size:.72rem;color:var(--slate)">Tokens con expiración 8h + revocación</span></td>
+              <td>🛡 Cumplimiento de políticas de seguridad<br><span style="font-size:.72rem;color:var(--slate)">Previene acceso no autorizado a datos corporativos</span></td>
+              <td><span class="chip chip-red">Must</span></td>
+            </tr>
+            <tr class="mrow" data-type="rnf" data-id="7" onclick="showDetail(7)">
+              <td><span class="chip chip-yellow">RNF-03</span></td>
+              <td><span class="chip chip-yellow">No Funcional</span></td>
+              <td><strong>Disponibilidad: 99.5% uptime mensual</strong><br><span style="font-size:.72rem;color:var(--slate)">Máximo 3.6 horas de caída al mes</span></td>
+              <td>☁️ Deploy en cloud con balanceo de carga<br><span style="font-size:.72rem;color:var(--slate)">Monitoreo 24/7 + alertas automáticas al equipo</span></td>
+              <td>💼 Confiabilidad para clientes enterprise<br><span style="font-size:.72rem;color:var(--slate)">SLA contractual con penalidades si baja del 99%</span></td>
+              <td><span class="chip chip-red">Must</span></td>
+            </tr>
+            <!-- RN -->
+            <tr class="mrow" data-type="rn" data-id="8" onclick="showDetail(8)">
+              <td><span class="chip chip-purple">RN-01</span></td>
+              <td><span class="chip chip-purple">Negocio</span></td>
+              <td><strong>Aislamiento de datos por empresa</strong><br><span style="font-size:.72rem;color:var(--slate)">Un admin solo ve sus propias líneas</span></td>
+              <td>🔒 Middleware de autorización por tenant<br><span style="font-size:.72rem;color:var(--slate)">Filtro por company_id en TODAS las consultas de BD</span></td>
+              <td>⚖️ Cumplimiento legal y confianza del cliente<br><span style="font-size:.72rem;color:var(--slate)">Ley de protección de datos · Sin fugas de info corporativa</span></td>
+              <td><span class="chip chip-red">Must</span></td>
+            </tr>
+            <tr class="mrow" data-type="rn" data-id="9" onclick="showDetail(9)">
+              <td><span class="chip chip-purple">RN-02</span></td>
+              <td><span class="chip chip-purple">Negocio</span></td>
+              <td><strong>Cambio de plan aplica al siguiente ciclo</strong><br><span style="font-size:.72rem;color:var(--slate)">No tiene efecto inmediato en la factura actual</span></td>
+              <td>📅 Scheduler de cambios + Lógica de ciclo de facturación<br><span style="font-size:.72rem;color:var(--slate)">Tabla de cambios programados + notificación de confirmación</span></td>
+              <td>💰 Evita disputas de facturación y reclamos<br><span style="font-size:.72rem;color:var(--slate)">Alinea portal con proceso de facturación existente</span></td>
+              <td><span class="chip chip-red">Must</span></td>
+            </tr>
+            <!-- RT -->
+            <tr class="mrow" data-type="rt" data-id="10" onclick="showDetail(10)">
+              <td><span class="chip chip-green">RT-01</span></td>
+              <td><span class="chip chip-green">Transición</span></td>
+              <td><strong>Migrar cuentas corporativas existentes</strong><br><span style="font-size:.72rem;color:var(--slate)">Todos los clientes actuales deben tener acceso al portal</span></td>
+              <td>🔄 Script de migración de datos + Envío masivo de credenciales<br><span style="font-size:.72rem;color:var(--slate)">Email de bienvenida con contraseña temporal</span></td>
+              <td>🚀 Adopción inmediata desde el día 1<br><span style="font-size:.72rem;color:var(--slate)">Sin fricción de "no tengo cuenta" para clientes existentes</span></td>
+              <td><span class="chip chip-red">Must</span></td>
+            </tr>
+            <tr class="mrow" data-type="rt" data-id="11" onclick="showDetail(11)">
+              <td><span class="chip chip-green">RT-02</span></td>
+              <td><span class="chip chip-green">Transición</span></td>
+              <td><strong>Capacitación a administradores corporativos</strong><br><span style="font-size:.72rem;color:var(--slate)">Sesión online de 45 min + guía rápida PDF</span></td>
+              <td>📚 Webinar de onboarding + Guía de usuario PDF<br><span style="font-size:.72rem;color:var(--slate)">Video tutorial en el portal + chatbot de ayuda básico</span></td>
+              <td>📈 Reduce errores de usuario y llamadas de soporte<br><span style="font-size:.72rem;color:var(--slate)">Meta: 80% de admins completan 1 acción en la primera semana</span></td>
+              <td><span class="chip chip-yellow">Should</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DETALLE DINÁMICO -->
+      <div class="mdetail" id="mdetail"></div>
+    </div>
+  </div>
+
+  <!-- MAPA VISUAL DE TRAZABILIDAD -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#faf5ff;font-size:1.3rem">🔍</div>
+      <div>
+        <h3>Trazabilidad: Del Requerimiento al Beneficio</h3>
+        <p>Cómo fluye cada requerimiento a través del sistema hasta generar valor real</p>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <!-- FLUJO RF-01 como ejemplo -->
+      <div style="font-weight:700;color:var(--navy);margin-bottom:14px;font-size:.9rem">Ejemplo de trazabilidad completa — RF-01: Ver listado de líneas</div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:0;align-items:center;margin-bottom:24px;overflow-x:auto">
+        <div style="min-width:120px;background:#eff6ff;border:2px solid var(--blue);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">👤</div>
+          <div style="font-size:.7rem;font-weight:700;color:var(--blue);margin-top:4px">NECESIDAD</div>
+          <div style="font-size:.72rem;color:#1e40af;margin-top:4px">"Quiero ver el consumo de mis líneas sin llamar"</div>
+        </div>
+        <div style="padding:0 8px;color:var(--slate);font-size:1.2rem">→</div>
+        <div style="min-width:120px;background:#fff7ed;border:2px solid var(--orange);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">📋</div>
+          <div style="font-size:.7rem;font-weight:700;color:#c2410c;margin-top:4px">REQUERIMIENTO</div>
+          <div style="font-size:.72rem;color:#c2410c;margin-top:4px">RF-01: Ver listado de líneas con consumo y estado</div>
+        </div>
+        <div style="padding:0 8px;color:var(--slate);font-size:1.2rem">→</div>
+        <div style="min-width:120px;background:#faf5ff;border:2px solid var(--purple);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">🖥</div>
+          <div style="font-size:.7rem;font-weight:700;color:#7e22ce;margin-top:4px">ELEMENTO</div>
+          <div style="font-size:.72rem;color:#7e22ce;margin-top:4px">Pantalla "Mis Líneas" + API GET /lines + Tabla paginada</div>
+        </div>
+        <div style="padding:0 8px;color:var(--slate);font-size:1.2rem">→</div>
+        <div style="min-width:120px;background:#f0fdf4;border:2px solid var(--green);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">📝</div>
+          <div style="font-size:.7rem;font-weight:700;color:#166534;margin-top:4px">USER STORY</div>
+          <div style="font-size:.72rem;color:#166534;margin-top:4px">H-001 con criterios Given/When/Then</div>
+        </div>
+        <div style="padding:0 8px;color:var(--slate);font-size:1.2rem">→</div>
+        <div style="min-width:120px;background:#f0fdf4;border:2px solid var(--teal);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">💰</div>
+          <div style="font-size:.7rem;font-weight:700;color:#0f766e;margin-top:4px">BENEFICIO</div>
+          <div style="font-size:.72rem;color:#0f766e;margin-top:4px">-40% llamadas al call center · Ahorro $18K/mes</div>
+        </div>
+        <div style="padding:0 8px;color:var(--slate);font-size:1.2rem">→</div>
+        <div style="min-width:120px;background:#f8f7f4;border:2px solid var(--slate);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">📈</div>
+          <div style="font-size:.7rem;font-weight:700;color:var(--slate);margin-top:4px">KPI</div>
+          <div style="font-size:.72rem;color:var(--slate);margin-top:4px">% reducción llamadas · NPS portal ≥ 60</div>
+        </div>
+      </div>
+
+      <!-- RESUMEN TABLA BENEFICIOS -->
+      <div style="font-weight:700;color:var(--navy);margin-bottom:14px;font-size:.9rem">Resumen de Beneficios por Tipo de Requerimiento</div>
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div style="background:#eff6ff;border-radius:8px;padding:14px;border:1px solid #bfdbfe">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:8px;font-size:.85rem">🔵 RF — Funcionales</div>
+          <div style="font-size:.78rem;color:#374151">Generan valor directo al usuario: ahorro de tiempo, autoservicio, autonomía operativa. Son los que el cliente "ve y usa".</div>
+          <div style="margin-top:8px;font-size:.72rem;font-weight:700;color:var(--blue)">Beneficio tipo: Reducción de tiempo de proceso</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:8px;padding:14px;border:1px solid #fed7aa">
+          <div style="font-weight:700;color:#c2410c;margin-bottom:8px;font-size:.85rem">🟠 RNF — No Funcionales</div>
+          <div style="font-size:.78rem;color:#374151">Son la base invisible que hace que los RF funcionen bien. Sin ellos, el producto existe pero no es confiable ni usable.</div>
+          <div style="margin-top:8px;font-size:.72rem;font-weight:700;color:#c2410c">Beneficio tipo: Confianza y adopción del sistema</div>
+        </div>
+        <div style="background:#faf5ff;border-radius:8px;padding:14px;border:1px solid #d8b4fe">
+          <div style="font-weight:700;color:#7e22ce;margin-bottom:8px;font-size:.85rem">🟣 RN — Negocio</div>
+          <div style="font-size:.78rem;color:#374151">Protegen a la empresa y al cliente de errores, conflictos legales y disputas. Suelen ser requisitos de compliance.</div>
+          <div style="margin-top:8px;font-size:.72rem;font-weight:700;color:#7e22ce">Beneficio tipo: Cumplimiento regulatorio y legal</div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:14px;border:1px solid #86efac">
+          <div style="font-weight:700;color:#166534;margin-bottom:8px;font-size:.85rem">🟢 RT — Transición</div>
+          <div style="font-size:.78rem;color:#374151">Garantizan que el cambio de sistema sea fluido. Sin ellos, el portal puede estar listo pero los usuarios no migran.</div>
+          <div style="margin-top:8px;font-size:.72rem;font-weight:700;color:#166534">Beneficio tipo: Adopción y continuidad operacional</div>
+        </div>
+      </div>
+
+      <div class="alert alert-blue" style="margin-top:20px">
+        <strong>💡 Para la entrevista — frase clave:</strong>
+        "La Matriz de Requerimientos me sirve para dos cosas: primero, para asegurarme de que cada requerimiento tiene un elemento del sistema que lo implementa y un beneficio medible que lo justifica. Si un requerimiento no tiene beneficio claro, lo cuestiono. Segundo, me sirve para la trazabilidad — si en la Sprint Review el producto no cumple el beneficio esperado, puedo rastrear exactamente qué requerimiento o elemento falló."
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /MATRIZ -->
+
 </div><!-- /wrap -->
 
 <!-- FOOTER -->
@@ -1174,6 +1556,154 @@ function renderDetail(i) {
 
 // init
 renderDetail(0);
+
+// ── MATRIZ DE REQUERIMIENTOS ──
+const matrixData = [
+  { id:'RF-01', type:'rf', color:'#1d4ed8', bg:'#eff6ff',
+    req:'Ver listado de líneas corporativas',
+    desc:'El administrador corporativo ve todas sus líneas activas con estado y consumo en tiempo real.',
+    elem:'🖥 Pantalla "Mis Líneas" + API REST GET /api/lines\n⚙️ Paginación server-side + Filtros por área + Ordenamiento\n🗄 Query optimizada a BD con índice por company_id',
+    benefit:'📉 -40% llamadas al call center (1.500 llamadas/mes)\n💰 Ahorro estimado: $18,000/mes en operación del call center\n⏱ Tiempo de consulta: 15 min por teléfono → 30 seg en portal',
+    priority:'Must Have', kpi:'% reducción llamadas · Tiempo promedio por consulta',
+    story:'Como administrador corporativo, quiero ver el listado de mis líneas con consumo, para gestionar mi flota sin llamar al call center.' },
+  { id:'RF-02', type:'rf', color:'#1d4ed8', bg:'#eff6ff',
+    req:'Cambiar plan de una línea móvil',
+    desc:'El admin selecciona una línea, elige el nuevo plan y confirma el cambio. Aplica al siguiente ciclo de facturación.',
+    elem:'🖥 Pantalla "Cambiar Plan" + Flujo: selección → resumen → confirmación\n⚙️ API PUT /api/lines/{id}/plan con validación de elegibilidad\n📧 Notificación por email al admin y confirmación del cambio',
+    benefit:'⏱ Proceso de 15 min → 2 min desde el portal\n📈 NPS estimado +15 puntos por autoservicio\n📞 Reduce presión operativa del call center en un 20%',
+    priority:'Should Have', kpi:'Tasa de cambios via portal vs call center · Tiempo de proceso',
+    story:'Como administrador, quiero cambiar el plan de una línea desde el portal, para no depender del agente telefónico.' },
+  { id:'RF-03', type:'rf', color:'#1d4ed8', bg:'#eff6ff',
+    req:'Alertas automáticas de consumo',
+    desc:'El sistema detecta cuando una línea supera el 80% y el 100% de su plan y envía email automático al administrador.',
+    elem:'⚙️ Servicio de monitoreo con cron job cada 15 minutos\n📧 Integración SMTP para envío de alertas personalizadas\n🗄 Tabla de alertas enviadas (evita duplicados en el mismo ciclo)',
+    benefit:'💰 Prevención de cargos por exceso de consumo\n📉 -60% en reclamos por sobrecargo en factura\n😊 Mayor satisfacción del cliente corporativo (NPS)',
+    priority:'Should Have', kpi:'% reclamos por sobrecargo · Tiempo de detección de exceso',
+    story:'Como administrador, quiero recibir una alerta cuando una línea supere el 80% de su plan, para evitar cargos adicionales.' },
+  { id:'RF-04', type:'rf', color:'#1d4ed8', bg:'#eff6ff',
+    req:'Generar reporte PDF de consumo mensual',
+    desc:'El admin descarga un reporte PDF con el consumo de todas sus líneas agrupado por área o departamento.',
+    elem:'📄 Motor de PDF (Puppeteer/WeasyPrint) + API GET /api/reports/pdf\n🖥 Pantalla de configuración: rango de fechas, filtros por área\n📊 Reporte incluye: portada, tabla detallada, totales y gráfico',
+    benefit:'📊 Autoservicio de auditoría interna para el área de finanzas\n⏱ Elimina 8 horas/mes de trabajo manual del analista\n🗂 Centraliza información antes dispersa en llamadas/emails',
+    priority:'Could Have', kpi:'Descargas de PDF por mes · Tiempo de generación del reporte',
+    story:'Como analista de costos, quiero exportar el consumo mensual en PDF, para incluirlo en el reporte de gastos corporativos.' },
+  { id:'RF-05', type:'rf', color:'#1d4ed8', bg:'#eff6ff',
+    req:'Suspender / reactivar línea móvil',
+    desc:'El admin puede suspender inmediatamente una línea perdida o robada, y reactivarla cuando se recupere el equipo.',
+    elem:'🖥 Botón "Suspender" en el detalle de línea con confirmación 2-pasos\n⚙️ API PATCH /api/lines/{id}/status con lógica de reversibilidad\n📧 Email de confirmación al admin con número de referencia',
+    benefit:'🔒 Control de seguridad corporativa ante pérdida/robo\n💰 Previene uso no autorizado (fraude) de líneas corporativas\n⚡ Acción inmediata sin esperar al call center (antes: 30 min)',
+    priority:'Should Have', kpi:'Tiempo de suspensión (objetivo: <1 min) · Incidentes de fraude',
+    story:'Como administrador, quiero suspender una línea desde el portal ante pérdida o robo, para evitar uso no autorizado.' },
+  { id:'RNF-01', type:'rnf', color:'#f97316', bg:'#fff7ed',
+    req:'Rendimiento: carga en menos de 3 segundos',
+    desc:'La pantalla principal con hasta 500 líneas debe cargar completamente en menos de 3 segundos en conexión 4G.',
+    elem:'⚡ Paginación server-side (50 líneas por página)\n🗃 Caché Redis para datos de consumo (TTL 15 min)\n🌐 CDN para assets estáticos + Compresión gzip\n🗄 Índices en BD sobre company_id y status',
+    benefit:'✅ Adopción sostenida del portal (usuarios no abandonan por lentitud)\n📊 Estudios Nielsen: 53% de usuarios abandona si la carga supera 3 seg\n💹 Cada segundo de mejora = +7% en tasa de conversión/uso',
+    priority:'Must Have', kpi:'Tiempo de carga P95 · Tasa de abandono de sesión',
+    story:'Como administrador, quiero que el portal cargue rápido, para poder consultarlo desde mi celular entre reuniones.' },
+  { id:'RNF-02', type:'rnf', color:'#f97316', bg:'#fff7ed',
+    req:'Seguridad: autenticación con 2 factores (2FA)',
+    desc:'El acceso al portal requiere usuario/contraseña más un código OTP enviado por email o SMS.',
+    elem:'🔐 Módulo de autenticación con OTP (TOTP o email)\n🔑 Tokens JWT con expiración de 8 horas y revocación\n📝 Log de accesos (quién, cuándo, desde qué IP)\n🛡 HTTPS/TLS 1.3 obligatorio en todas las rutas',
+    benefit:'🛡 Cumplimiento de políticas de seguridad corporativa\n⚖️ Alineación con normativas de protección de datos (GDPR/Perú)\n🔒 Previene acceso no autorizado a información corporativa sensible',
+    priority:'Must Have', kpi:'Intentos de acceso no autorizado · Tiempo de respuesta del login',
+    story:'Como administrador, quiero acceder con usuario, contraseña y código OTP, para proteger la información de mi empresa.' },
+  { id:'RNF-03', type:'rnf', color:'#f97316', bg:'#fff7ed',
+    req:'Disponibilidad: 99.5% de uptime mensual',
+    desc:'El portal debe estar disponible el 99.5% del tiempo, lo que equivale a un máximo de 3.6 horas de caída al mes.',
+    elem:'☁️ Deploy en cloud con balanceo de carga (AWS/GCP/Azure)\n📡 Monitoreo 24/7 con alertas automáticas al equipo técnico\n🔄 Failover automático ante falla de nodo\n📅 Mantenimiento programado en horario de bajo tráfico',
+    benefit:'💼 Confiabilidad garantizada para clientes enterprise\n📜 SLA contractual cumplido (penalidades si baja del 99%)\n🤝 Incrementa confianza del cliente en Comsatel como proveedor',
+    priority:'Must Have', kpi:'Uptime mensual (%) · MTTR (tiempo medio de recuperación)',
+    story:'Como gerente de TI, quiero que el portal esté disponible las 24 horas, para que mi equipo lo use en cualquier momento.' },
+  { id:'RN-01', type:'rn', color:'#a855f7', bg:'#faf5ff',
+    req:'Aislamiento de datos por empresa (multi-tenant)',
+    desc:'Cada administrador solo puede ver y gestionar las líneas de su propia empresa, sin posibilidad de acceder a datos de otros clientes.',
+    elem:'🔒 Middleware de autorización que filtra TODA consulta por company_id\n🗄 Diseño multi-tenant en BD (tenant_id en cada tabla)\n🔍 Auditoría de queries para detectar accesos cruzados\n🚫 Validación doble: JWT + company_id en cada endpoint',
+    benefit:'⚖️ Cumplimiento legal y regulatorio (Ley 29733 Perú)\n🤝 Confianza del cliente: sus datos están 100% aislados\n🛡 Previene filtraciones de información corporativa confidencial',
+    priority:'Must Have', kpi:'Incidentes de acceso cruzado (objetivo: 0) · Auditorías pasadas',
+    story:'Como cliente corporativo, quiero que solo mi administrador pueda ver mis líneas, para garantizar la confidencialidad.' },
+  { id:'RN-02', type:'rn', color:'#a855f7', bg:'#faf5ff',
+    req:'Cambio de plan aplica al siguiente ciclo de facturación',
+    desc:'Un cambio de plan solicitado hoy no afecta la factura del mes en curso; entra en vigor al inicio del siguiente período.',
+    elem:'📅 Scheduler de cambios programados + Tabla changes_queue\n⚙️ Lógica de ciclo de facturación (fecha de corte por cliente)\n📧 Email de confirmación con fecha exacta de efectividad\n🔄 API de consulta de cambios pendientes',
+    benefit:'💰 Elimina disputas de facturación por cambios a mitad de mes\n🤝 Alinea el portal exactamente con el proceso de facturación existente\n📉 Reduce reclamos de factura en al menos un 30%',
+    priority:'Must Have', kpi:'Disputas de facturación por cambios de plan · Reclamos por error',
+    story:'Como administrador, quiero que el cambio de plan sea claro sobre cuándo aplica, para evitar sorpresas en la factura.' },
+  { id:'RT-01', type:'rt', color:'#22c55e', bg:'#f0fdf4',
+    req:'Migrar cuentas corporativas existentes al portal',
+    desc:'Todos los clientes corporativos actuales deben tener sus credenciales creadas y recibir acceso al portal desde el día del lanzamiento.',
+    elem:'🔄 Script de migración masiva de datos de clientes\n📧 Envío automatizado de emails de bienvenida con contraseña temporal\n✅ Proceso de activación de cuenta (primer login + cambio de clave)\n📊 Dashboard de estado de migración para el equipo de Comsatel',
+    benefit:'🚀 Adopción inmediata desde el día 1 sin fricción de registro\n📈 Meta: 60% de clientes activos en el portal en los primeros 30 días\n📞 Evita el escenario "no tengo cuenta" que generaría llamadas al call center',
+    priority:'Must Have', kpi:'% de clientes migrados · % activos en semana 1 · Llamadas de soporte por login',
+    story:'Como cliente existente de Comsatel, quiero recibir mis credenciales del portal por email, para poder usarlo desde el primer día.' },
+  { id:'RT-02', type:'rt', color:'#22c55e', bg:'#f0fdf4',
+    req:'Capacitación a administradores corporativos',
+    desc:'Antes del lanzamiento, cada administrador corporativo recibirá una sesión de onboarding de 45 minutos y acceso a materiales de soporte.',
+    elem:'📹 Webinar de onboarding en vivo (45 min) + grabación disponible\n📄 Guía de usuario PDF con los 5 flujos principales\n🎬 Video tutoriales cortos (2-3 min) dentro del portal\n💬 Chatbot de ayuda básico con respuestas a preguntas frecuentes',
+    benefit:'📉 Reduce llamadas de soporte por errores de usuario en un 40%\n📈 Meta: 80% de admins completan 1 acción en la primera semana\n😊 Mejora percepción del portal como herramienta fácil de usar',
+    priority:'Should Have', kpi:'Asistencia a webinar · % completación de primera acción · NPS post-capacitación',
+    story:'Como nuevo usuario del portal, quiero un tutorial claro, para poder gestionar mis líneas sin depender del soporte.' }
+];
+
+function filterMatrix(type, el) {
+  // Toggle active button
+  document.querySelectorAll('.mfbtn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  // Show/hide rows
+  document.querySelectorAll('.mrow').forEach(row => {
+    if (type === 'all' || row.dataset.type === type) {
+      row.classList.remove('hidden');
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+  // Hide detail panel when filter changes
+  const detail = document.getElementById('mdetail');
+  detail.classList.remove('visible');
+  document.querySelectorAll('.mrow').forEach(r => r.classList.remove('selected'));
+}
+
+function showDetail(id) {
+  const d = matrixData[id];
+  if (!d) return;
+  // Highlight selected row
+  document.querySelectorAll('.mrow').forEach(r => r.classList.remove('selected'));
+  document.querySelector('.mrow[data-id="'+id+'"]').classList.add('selected');
+  // Build detail HTML
+  const priorityColors = {
+    'Must Have': '#ef4444', 'Should Have': '#f59e0b',
+    'Could Have': '#22c55e', "Won't Have": '#64748b'
+  };
+  const pColor = priorityColors[d.priority] || '#64748b';
+  const detail = document.getElementById('mdetail');
+  detail.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+      <span class="chip" style="background:${d.bg};color:${d.color};font-size:.82rem;padding:4px 12px">${d.id}</span>
+      <span style="font-weight:800;font-size:1rem;color:${d.color}">${d.req}</span>
+      <span class="chip" style="background:${pColor}22;color:${pColor};margin-left:auto">${d.priority}</span>
+    </div>
+    <p style="font-size:.83rem;color:#374151;margin-bottom:14px;font-style:italic">${d.desc}</p>
+    <div class="mdetail-grid">
+      <div class="mdetail-box" style="background:#fff7ed;border:1px solid #fed7aa">
+        <div style="font-weight:700;color:#c2410c;margin-bottom:8px;font-size:.82rem">⚙️ ELEMENTO DEL SISTEMA</div>
+        <div style="font-size:.78rem;color:#374151;white-space:pre-line">${d.elem}</div>
+      </div>
+      <div class="mdetail-box" style="background:#f0fdf4;border:1px solid #86efac">
+        <div style="font-weight:700;color:#166534;margin-bottom:8px;font-size:.82rem">💰 BENEFICIO DE NEGOCIO</div>
+        <div style="font-size:.78rem;color:#374151;white-space:pre-line">${d.benefit}</div>
+      </div>
+      <div class="mdetail-box" style="background:#faf5ff;border:1px solid #d8b4fe">
+        <div style="font-weight:700;color:#7e22ce;margin-bottom:8px;font-size:.82rem">📈 KPI DE VALIDACIÓN</div>
+        <div style="font-size:.78rem;color:#374151">${d.kpi}</div>
+        <div style="font-weight:700;color:#0f766e;margin-top:12px;margin-bottom:6px;font-size:.82rem">📝 USER STORY</div>
+        <div style="font-size:.78rem;color:#374151;font-style:italic">"${d.story}"</div>
+      </div>
+    </div>
+  `;
+  detail.classList.add('visible');
+  // Scroll to detail
+  setTimeout(() => detail.scrollIntoView({behavior:'smooth', block:'nearest'}), 100);
+}
 
 // animate progress bars on scroll
 const observer = new IntersectionObserver(entries => {
