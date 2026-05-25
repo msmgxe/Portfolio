@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>6 Herramientas PO — Marco Saldarriaga</title>
+<style>
+  :root {
+    --slate-900:#0f172a;--slate-800:#1e293b;--slate-700:#334155;
+    --slate-500:#64748b;--slate-400:#94a3b8;--slate-200:#e2e8f0;
+    --slate-100:#f1f5f9;--slate-50:#f8fafc;--white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--slate-50);color:var(--slate-900);font-size:14px;line-height:1.5}
+
+  /* HEADER */
+  .header{background:var(--slate-900);color:#fff;padding:20px 24px}
+  .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px}
+  .header h1{font-size:20px;font-weight:700;letter-spacing:-0.3px}
+  .header p{color:#94a3b8;font-size:12px;margin-top:2px}
+
+  /* LAYOUT */
+  .layout{max-width:1200px;margin:0 auto;padding:20px 16px;display:grid;grid-template-columns:220px 1fr;gap:20px}
+  @media(max-width:768px){.layout{grid-template-columns:1fr}}
+
+  /* SIDEBAR */
+  .sidebar{display:flex;flex-direction:column;gap:12px}
+  .nav-card{background:#fff;border:1px solid var(--slate-200);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .nav-label{padding:10px 14px;background:var(--slate-100);border-bottom:1px solid var(--slate-200);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate-500)}
+  .nav-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border:none;border-bottom:1px solid var(--slate-100);background:none;cursor:pointer;width:100%;text-align:left;font-size:13px;color:var(--slate-700);transition:all .15s}
+  .nav-item:last-child{border-bottom:none}
+  .nav-item:hover{background:var(--slate-50)}
+  .nav-item.active{background:var(--slate-900);color:#fff;font-weight:600}
+  .nav-item .arrow{margin-left:auto;opacity:.5}
+  .progress-card{background:#fff;border:1px solid var(--slate-200);border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .prog-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate-500);margin-bottom:10px}
+  .prog-item{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:11px;color:var(--slate-400)}
+  .prog-item.done{color:var(--slate-900);font-weight:500}
+  .prog-dot{width:7px;height:7px;border-radius:50%;background:var(--slate-200);flex-shrink:0}
+  .prog-item.done .prog-dot{background:var(--slate-900)}
+
+  /* MAIN */
+  .main{display:flex;flex-direction:column;gap:16px}
+
+  /* CARDS */
+  .card{background:#fff;border:1px solid var(--slate-200);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .card-header{padding:14px 18px 10px;border-bottom:1px solid var(--slate-100)}
+  .card-title{font-size:13px;font-weight:700;color:var(--slate-900);display:flex;align-items:center;gap:7px}
+  .card-body{padding:16px 18px}
+
+  /* HERO CARD */
+  .hero-card{border-width:2px;padding:20px}
+  .hero-top{display:flex;align-items:flex-start;gap:14px}
+  .hero-icon{font-size:36px;line-height:1;flex-shrink:0}
+  .hero-badge{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:99px;margin-bottom:5px}
+  .hero-title{font-size:17px;font-weight:700;line-height:1.3}
+  .hero-definition{font-size:13px;color:var(--slate-700);line-height:1.6;margin-top:12px}
+  .hero-quote{margin-top:12px;padding-left:12px;border-left-width:2px;border-left-style:solid;font-size:12px;font-style:italic;color:var(--slate-500)}
+
+  /* TWO COL */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}}
+
+  /* LIST ITEMS */
+  .struct-item{display:flex;gap:8px;margin-bottom:10px;font-size:13px}
+  .struct-label{font-weight:700;flex-shrink:0}
+  .struct-desc{color:var(--slate-600)}
+
+  /* STEPS */
+  .step-item{display:flex;gap:10px;margin-bottom:10px;font-size:13px;align-items:flex-start}
+  .step-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;background:var(--slate-400)}
+  .step-num.first{background:var(--slate-900)}
+  .step-text{color:var(--slate-700);padding-top:2px}
+
+  /* TABLE */
+  .table-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{background:var(--slate-900);color:#fff;text-align:left;padding:8px 12px;font-size:11px;font-weight:600}
+  td{padding:8px 12px;border-bottom:1px solid var(--slate-100);color:var(--slate-600);vertical-align:top}
+  tr:nth-child(even) td{background:var(--slate-50)}
+  .td-label{font-weight:700;color:var(--slate-700)}
+  .note-box{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:11px;font-family:monospace;white-space:pre-line;font-weight:600;line-height:1.6}
+
+  /* TIPS (dark card) */
+  .tips-card{background:var(--slate-900);border-color:var(--slate-900)}
+  .tips-card .card-title{color:#fff}
+  .tip-item{display:flex;gap:8px;margin-bottom:8px;font-size:13px;color:#94a3b8}
+  .tip-item:last-child{margin-bottom:0}
+  .tip-arrow{color:#475569;flex-shrink:0}
+
+  /* NAV FOOTER */
+  .nav-footer{display:flex;justify-content:space-between;align-items:center;padding-top:4px}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .15s}
+  .btn-outline{background:#fff;border:1px solid var(--slate-200);color:var(--slate-700)}
+  .btn-outline:hover{background:var(--slate-50)}
+  .btn-outline:disabled{opacity:.3;cursor:not-allowed}
+  .btn-dark{background:var(--slate-900);color:#fff}
+  .btn-dark:hover{background:var(--slate-800)}
+  .btn-dark:disabled{opacity:.3;cursor:not-allowed}
+  .nav-counter{font-size:12px;color:var(--slate-400)}
+
+  /* TOOL COLORS */
+  .c-blue  {--accent:#1d4ed8;--bg:#eff6ff;--border:#bfdbfe;--badge-bg:#dbeafe;--badge-text:#1e40af}
+  .c-green {--accent:#047857;--bg:#ecfdf5;--border:#a7f3d0;--badge-bg:#d1fae5;--badge-text:#065f46}
+  .c-violet{--accent:#6d28d9;--bg:#f5f3ff;--border:#c4b5fd;--badge-bg:#ede9fe;--badge-text:#5b21b6}
+  .c-amber {--accent:#b45309;--bg:#fffbeb;--border:#fde68a;--badge-bg:#fef3c7;--badge-text:#92400e}
+  .c-rose  {--accent:#be123c;--bg:#fff1f2;--border:#fecdd3;--badge-bg:#ffe4e6;--badge-text:#9f1239}
+  .c-cyan  {--accent:#0e7490;--bg:#ecfeff;--border:#a5f3fc;--badge-bg:#cffafe;--badge-text:#155e75}
+
+  .hero-card{background:linear-gradient(135deg,var(--bg),#fff);border-color:var(--border)}
+  .hero-badge{background:var(--badge-bg);color:var(--badge-text)}
+  .hero-title{color:var(--accent)}
+  .hero-quote{border-color:var(--border);color:var(--slate-500)}
+  .struct-label{color:var(--accent)}
+  .example-card{border-color:var(--border);border-width:2px}
+  .note-box{background:var(--badge-bg);color:var(--accent)}
+
+  /* HIDDEN */
+  .tool-section{display:none}
+  .tool-section.visible{display:contents}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <span style="font-size:24px">🎯</span>
+    <div>
+      <h1>6 Herramientas Clave del Product Owner</h1>
+      <p>Guía práctica con ejemplos reales de Comsatel — Marco Saldarriaga</p>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="nav-card">
+      <div class="nav-label">Herramientas</div>
+      <button class="nav-item active" onclick="show('user-stories',this)"><span>📖</span> User Stories <span class="arrow">→</span></button>
+      <button class="nav-item" onclick="show('rice',this)"><span>📊</span> RICE Scoring</button>
+      <button class="nav-item" onclick="show('kano',this)"><span>📈</span> Kano Model</button>
+      <button class="nav-item" onclick="show('roadmap',this)"><span>🗺️</span> Product Roadmap</button>
+      <button class="nav-item" onclick="show('mvp',this)"><span>🚀</span> MVP</button>
+      <button class="nav-item" onclick="show('metricas',this)"><span>📉</span> Métricas de Éxito</button>
+    </div>
+    <div class="progress-card">
+      <div class="prog-label">Tu progreso</div>
+      <div class="prog-item done" id="prog-user-stories"><div class="prog-dot"></div>📖 User Stories</div>
+      <div class="prog-item" id="prog-rice"><div class="prog-dot"></div>📊 RICE Scoring</div>
+      <div class="prog-item" id="prog-kano"><div class="prog-dot"></div>📈 Kano Model</div>
+      <div class="prog-item" id="prog-roadmap"><div class="prog-dot"></div>🗺️ Product Roadmap</div>
+      <div class="prog-item" id="prog-mvp"><div class="prog-dot"></div>🚀 MVP</div>
+      <div class="prog-item" id="prog-metricas"><div class="prog-dot"></div>📉 Métricas de Éxito</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main-content">
+
+    <!-- ==================== USER STORIES ==================== -->
+    <div id="user-stories" class="tool-section c-blue visible">
+
+      <div class="card hero-card">
+        <div class="hero-top">
+          <span class="hero-icon">📖</span>
+          <div>
+            <span class="hero-badge">Herramienta PO</span>
+            <div class="hero-title">User Stories — La voz del cliente en el backlog</div>
+          </div>
+        </div>
+        <p class="hero-definition">Una User Story es una descripción breve de una funcionalidad desde la perspectiva del usuario final. No describe <strong>CÓMO</strong> hacerlo (eso es del equipo técnico), sino <strong>QUÉ</strong> necesita el usuario y <strong>POR QUÉ</strong>.</p>
+        <div class="hero-quote">"Una User Story no es un contrato. Es una promesa de conversación."</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header"><div class="card-title">💡 ¿Por qué usarlo?</div></div>
+          <div class="card-body">
+            <p style="color:#475569;font-size:13px;line-height:1.6">Permiten comunicar valor sin ambigüedad. En vez de "hacer un reporte", defines exactamente <strong>quién</strong> lo necesita y para qué <strong>objetivo de negocio</strong>. Evita que el equipo construya algo técnicamente correcto pero que nadie usa.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🏗️ Estructura</div></div>
+          <div class="card-body">
+            <div class="struct-item"><span class="struct-label">Como</span><span class="struct-desc">[rol del usuario] → quién tiene la necesidad</span></div>
+            <div class="struct-item"><span class="struct-label">Quiero</span><span class="struct-desc">[acción concreta] → qué quiere hacer</span></div>
+            <div class="struct-item"><span class="struct-label">Para</span><span class="struct-desc">[beneficio] → por qué lo necesita</span></div>
+            <div class="struct-item"><span class="struct-label">Criterios</span><span class="struct-desc">Given/When/Then → cuándo está "terminado"</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">📋 Paso a paso</div></div>
+        <div class="card-body">
+          <div class="step-item"><div class="step-num first">1</div><span class="step-text">Identifica al usuario real (no "el sistema" → "el técnico de campo de Comsatel")</span></div>
+          <div class="step-item"><div class="step-num">2</div><span class="step-text">Define la acción en una frase activa y específica</span></div>
+          <div class="step-item"><div class="step-num">3</div><span class="step-text">Conecta con un beneficio de negocio medible (no "para ver información")</span></div>
+          <div class="step-item"><div class="step-num">4</div><span class="step-text">Escribe mínimo 2 escenarios Given/When/Then (uno normal, uno edge case)</span></div>
+          <div class="step-item"><div class="step-num">5</div><span class="step-text">Agrega notas técnicas y riesgos al final (dependencias, asunciones)</span></div>
+        </div>
+      </div>
+
+      <div class="card example-card">
+        <div class="card-header"><div class="card-title">🏢 Ejemplo Práctico — Caso Comsatel Portal Corporativo</div></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Campo</th><th>Contenido</th></tr></thead>
+              <tbody>
+                <tr><td class="td-label">Como</td><td>Administrador de TI de empresa corporativa (cliente de Comsatel)</td></tr>
+                <tr><td class="td-label">Quiero</td><td>Ver el consumo de datos de cada línea móvil en tiempo real</td></tr>
+                <tr><td class="td-label">Para</td><td>Detectar líneas con exceso de consumo y evitar cargos adicionales en la factura mensual</td></tr>
+                <tr><td class="td-label">Escenario 1 — Consumo normal</td><td><strong>Dado que</strong> accedo al portal corporativo como admin / <strong>Cuando</strong> selecciono "Ver consumo" / <strong>Entonces</strong> veo tabla con: número de línea, MB usados, % del plan, estado (normal / alerta / bloqueada)</td></tr>
+                <tr><td class="td-label">Escenario 2 — Alerta de exceso</td><td><strong>Dado que</strong> una línea supera el 90% del plan / <strong>Cuando</strong> el sistema detecta esto / <strong>Entonces</strong> muestra badge rojo en esa fila y envía email automático al administrador</td></tr>
+                <tr><td class="td-label">Escenario 3 — Sin datos disponibles</td><td><strong>Dado que</strong> la API de Comsatel no responde / <strong>Cuando</strong> accedo al listado / <strong>Entonces</strong> veo mensaje "Datos no disponibles en este momento. Intenta en 5 min." (no pantalla en blanco)</td></tr>
+                <tr><td class="td-label">Notas técnicas</td><td>Depende del API de consumo interno. Latencia máxima aceptable: 3 seg. Riesgo: API puede tener data con 5 min de delay. Asumir paginación si empresa tiene +200 líneas.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card tips-card">
+        <div class="card-header"><div class="card-title">⚡ Tips & Errores comunes</div></div>
+        <div class="card-body">
+          <div class="tip-item"><span class="tip-arrow">→</span><span>❌ "Como usuario quiero un sistema rápido" — demasiado vago, no es testeable por QA</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>✅ "Como técnico de campo quiero ver el mapa de cobertura en mi celular para no perder tiempo en zonas sin señal"</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Una historia debe caber en un Post-It. Si no cabe, divídela en 2 o más.</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Los criterios de aceptación son la "definición de DONE" para QA — sin ellos no hay forma de saber si está terminado.</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Nunca pongas soluciones técnicas en la historia. Eso lo decide el equipo de desarrollo.</span></div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-outline" disabled>← Anterior</button>
+        <span class="nav-counter">1 / 6</span>
+        <button class="btn btn-dark" onclick="show('rice', document.querySelector('[onclick*=rice]'))">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ==================== RICE ==================== -->
+    <div id="rice" class="tool-section c-green">
+
+      <div class="card hero-card">
+        <div class="hero-top">
+          <span class="hero-icon">📊</span>
+          <div>
+            <span class="hero-badge">Herramienta PO</span>
+            <div class="hero-title">RICE Scoring — Prioriza con datos, no con opiniones</div>
+          </div>
+        </div>
+        <p class="hero-definition">RICE convierte la subjetividad en un número. Evalúa cada feature con 4 variables y calcula un puntaje. El feature con mayor puntaje entra al sprint primero. <strong>Elimina los debates de "esto es urgente"</strong> sin datos.</p>
+        <div class="hero-quote">"RICE no decide por ti. Te da datos para decidir con confianza."</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header"><div class="card-title">💡 ¿Por qué usarlo?</div></div>
+          <div class="card-body">
+            <p style="color:#475569;font-size:13px;line-height:1.6">Cuando el CEO dice "esto es urgente" y el cliente dice "esto es crítico", RICE te da argumentos objetivos. Muy útil con múltiples stakeholders que tienen agendas distintas.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🏗️ Las 4 Variables</div></div>
+          <div class="card-body">
+            <div class="struct-item"><span class="struct-label">R — Reach</span><span class="struct-desc">¿Cuántas personas/mes impacta?</span></div>
+            <div class="struct-item"><span class="struct-label">I — Impact</span><span class="struct-desc">Escala: 0.25 (mínimo) → 3 (masivo)</span></div>
+            <div class="struct-item"><span class="struct-label">C — Confidence</span><span class="struct-desc">¿Qué tan seguro estás? 50%–100%</span></div>
+            <div class="struct-item"><span class="struct-label">E — Effort</span><span class="struct-desc">Semanas-persona (más = peor score)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">📋 Fórmula y Paso a Paso</div></div>
+        <div class="card-body">
+          <div style="background:#d1fae5;border-radius:8px;padding:10px 14px;font-family:monospace;font-size:14px;font-weight:700;color:#065f46;margin-bottom:16px;text-align:center">
+            RICE Score = (Reach × Impact × Confidence) ÷ Effort
+          </div>
+          <div class="step-item"><div class="step-num first">1</div><span class="step-text">Lista todos los features candidatos al sprint</span></div>
+          <div class="step-item"><div class="step-num">2</div><span class="step-text">Puntúa cada uno en las 4 variables (idealmente con el equipo para evitar sesgos)</span></div>
+          <div class="step-item"><div class="step-num">3</div><span class="step-text">Calcula el score con la fórmula</span></div>
+          <div class="step-item"><div class="step-num">4</div><span class="step-text">Ordena de mayor a menor — el top N entra según velocidad del equipo</span></div>
+          <div class="step-item"><div class="step-num">5</div><span class="step-text">Recalcula si el contexto cambia (cliente clave se va, nueva regulación, etc.)</span></div>
+        </div>
+      </div>
+
+      <div class="card example-card">
+        <div class="card-header"><div class="card-title">🏢 Ejemplo — ¿Qué construir primero en el Portal Comsatel?</div></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Feature</th><th>Reach</th><th>Impact</th><th>Confidence</th><th>Effort (sem.)</th><th style="color:#6ee7b7">RICE Score</th></tr></thead>
+              <tbody>
+                <tr><td class="td-label">Ver listado de líneas</td><td>500</td><td>3</td><td>95%</td><td>2</td><td style="font-weight:700;color:#047857">712.5 🥇</td></tr>
+                <tr><td class="td-label">Cambiar plan de línea</td><td>300</td><td>2</td><td>80%</td><td>3</td><td style="font-weight:700;color:#047857">160.0 🥈</td></tr>
+                <tr><td class="td-label">Reporte PDF consumo</td><td>400</td><td>1</td><td>70%</td><td>2</td><td style="font-weight:700;color:#047857">140.0 🥉</td></tr>
+                <tr><td class="td-label">Integración facturación ERP</td><td>500</td><td>3</td><td>50%</td><td>8</td><td style="color:#dc2626;font-weight:700">93.75 ❌ Espera</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box">
+📌 Cálculo ver listado: (500 × 3 × 0.95) ÷ 2 = 712.5 → PRIORIDAD 1
+📌 Integración ERP: (500 × 3 × 0.50) ÷ 8 = 93.75 → Mucho esfuerzo, baja confianza → ESPERA
+          </div>
+        </div>
+      </div>
+
+      <div class="card tips-card">
+        <div class="card-header"><div class="card-title">⚡ Tips & Errores comunes</div></div>
+        <div class="card-body">
+          <div class="tip-item"><span class="tip-arrow">→</span><span>No necesitas exactitud matemática — el objetivo es ordenar comparativamente, no calcular con precisión</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Haz el RICE en equipo: el dev puede saber mejor el Effort, el comercial puede estimar mejor el Reach</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Actualiza los scores mensualmente — el mercado cambia, el RICE también</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Si dos features tienen score parecido, desempata con el riesgo técnico o dependencias</span></div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-outline" onclick="show('user-stories', document.querySelector('[onclick*=user-stories]'))">← Anterior</button>
+        <span class="nav-counter">2 / 6</span>
+        <button class="btn btn-dark" onclick="show('kano', document.querySelector('[onclick*=kano]'))">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ==================== KANO ==================== -->
+    <div id="kano" class="tool-section c-violet">
+
+      <div class="card hero-card">
+        <div class="hero-top">
+          <span class="hero-icon">📈</span>
+          <div>
+            <span class="hero-badge">Herramienta PO</span>
+            <div class="hero-title">Modelo Kano — Entiende qué encanta vs. qué es obligatorio</div>
+          </div>
+        </div>
+        <p class="hero-definition">Kano clasifica funcionalidades según cómo afectan la satisfacción del usuario. No todas las features tienen el mismo impacto emocional. Invertir igual en todo es un error — Kano te enseña dónde poner esfuerzo para el máximo impacto.</p>
+        <div class="hero-quote">"El usuario no sabe lo que quiere hasta que lo ve. Kano te ayuda a predecirlo."</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">🏗️ Las 5 Categorías de Kano</div></div>
+        <div class="card-body">
+          <div class="struct-item"><span class="struct-label">🔴 Must-be (Básicos)</span><span class="struct-desc">Sin ellos → usuario insatisfecho. Con ellos → neutral. Obligatorios pero no diferenciadores.</span></div>
+          <div class="struct-item"><span class="struct-label">📈 Performance (Lineales)</span><span class="struct-desc">A más calidad → más satisfacción. El usuario los valora explícitamente.</span></div>
+          <div class="struct-item"><span class="struct-label">✨ Delighters (Atractivos)</span><span class="struct-desc">No esperados. Si están → "¡Wow!". Si no están → nadie se queja. Son los diferenciadores.</span></div>
+          <div class="struct-item"><span class="struct-label">😐 Indifferent (Indiferentes)</span><span class="struct-desc">No cambia la satisfacción en ningún sentido. Elimínalos del backlog.</span></div>
+          <div class="struct-item"><span class="struct-label">🚫 Reverse (Inversas)</span><span class="struct-desc">A más de esto → menos satisfacción. Ej: notificaciones excesivas.</span></div>
+        </div>
+      </div>
+
+      <div class="card example-card">
+        <div class="card-header"><div class="card-title">🏢 Ejemplo — Portal Corporativo Comsatel</div></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Feature</th><th>Categoría</th><th>Si NO está…</th><th>Si SÍ está…</th></tr></thead>
+              <tbody>
+                <tr><td class="td-label">Login seguro (2FA)</td><td>🔴 Must-be</td><td>Nadie confía en el portal</td><td>Normal, esperado</td></tr>
+                <tr><td class="td-label">Ver consumo en tiempo real</td><td>📈 Performance</td><td>Frustración, llaman al call center</td><td>Muy satisfecho</td></tr>
+                <tr><td class="td-label">Alerta automática al 90% del plan</td><td>✨ Delighter</td><td>Nadie lo nota ni lo extraña</td><td>"¡Esto es increíble, qué útil!"</td></tr>
+                <tr><td class="td-label">Historial de llamadas por empleado</td><td>😐 Indiferente</td><td>Sin impacto emocional</td><td>Sin impacto emocional</td></tr>
+                <tr><td class="td-label">Notificación por cada MB usado</td><td>🚫 Reverse</td><td>Mejor sin ella</td><td>Molesta — la desactivan y se quejan</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box">
+💡 Estrategia: Asegura los Must-be → Optimiza los Performance → Sorprende con Delighters → Elimina los Indifferent
+          </div>
+        </div>
+      </div>
+
+      <div class="card tips-card">
+        <div class="card-header"><div class="card-title">⚡ Tips & Errores comunes</div></div>
+        <div class="card-body">
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Los Delighters de hoy son los Must-be de mañana (el WiFi en aviones era un Delighter en 2010, hoy es Must-be)</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Usa encuestas con preguntas funcionales/disfuncionales para clasificar objetivamente</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Combina Kano con RICE: un Delighter con alto RICE es tu goldmine de producto</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>No asumas la categoría — pregunta a usuarios reales, no a compañeros del equipo</span></div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-outline" onclick="show('rice', document.querySelector('[onclick*=rice]'))">← Anterior</button>
+        <span class="nav-counter">3 / 6</span>
+        <button class="btn btn-dark" onclick="show('roadmap', document.querySelector('[onclick*=roadmap]'))">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ==================== ROADMAP ==================== -->
+    <div id="roadmap" class="tool-section c-amber">
+
+      <div class="card hero-card">
+        <div class="hero-top">
+          <span class="hero-icon">🗺️</span>
+          <div>
+            <span class="hero-badge">Herramienta PO</span>
+            <div class="hero-title">Product Roadmap — La visión del producto en el tiempo</div>
+          </div>
+        </div>
+        <p class="hero-definition">Un roadmap es la representación visual de <strong>hacia dónde va el producto</strong> y cuándo. No es un Gantt de proyectos (no promete fechas exactas). Es una herramienta de <strong>comunicación estratégica</strong> para alinear stakeholders.</p>
+        <div class="hero-quote">"El roadmap es la conversación, no el contrato."</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header"><div class="card-title">💡 ¿Por qué usarlo?</div></div>
+          <div class="card-body">
+            <p style="color:#475569;font-size:13px;line-height:1.6">Sin roadmap, cada área tiene su propia visión del producto. Marketing dice una cosa, Ventas otra, Técnico otra. El roadmap alinea expectativas y da contexto a cada decisión de priorización.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🏗️ Los 3 Horizontes</div></div>
+          <div class="card-body">
+            <div class="struct-item"><span class="struct-label">🟢 NOW (0-3m)</span><span class="struct-desc">En desarrollo. Commitments claros. Features definidas.</span></div>
+            <div class="struct-item"><span class="struct-label">🟡 NEXT (3-6m)</span><span class="struct-desc">En planificación. Dirección clara, detalles pueden cambiar.</span></div>
+            <div class="struct-item"><span class="struct-label">🔵 LATER (6-12m+)</span><span class="struct-desc">Visión estratégica. Flexible. Sin compromisos de fecha.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card example-card">
+        <div class="card-header"><div class="card-title">🏢 Ejemplo — Roadmap Portal Corporativo Comsatel 2025</div></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Horizonte</th><th>Épica / Tema</th><th>Objetivo de Negocio</th></tr></thead>
+              <tbody>
+                <tr><td class="td-label">🟢 NOW (Ene–Mar)</td><td>Autenticación + Listado de líneas</td><td>Reducir 40% llamadas al call center</td></tr>
+                <tr><td class="td-label">🟢 NOW (Ene–Mar)</td><td>Ver consumo en tiempo real</td><td>Reducir 40% llamadas al call center</td></tr>
+                <tr><td class="td-label">🟡 NEXT (Abr–Jun)</td><td>Cambio de planes + Suspensión de líneas</td><td>Self-service completo para clientes corp.</td></tr>
+                <tr><td class="td-label">🟡 NEXT (Abr–Jun)</td><td>Alertas automáticas de consumo</td><td>Reducir cargos sorpresa a clientes</td></tr>
+                <tr><td class="td-label">🔵 LATER (Jul+)</td><td>Integración con facturación ERP</td><td>Automatizar proceso de cobro</td></tr>
+                <tr><td class="td-label">🔵 LATER (Jul+)</td><td>App móvil para admins corporativos</td><td>Acceso desde campo / disponibilidad 24x7</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box">
+⚠️ Diferencia clave: Roadmap vs. Gantt
+Gantt: "El módulo de pagos estará listo el 15 de marzo" (compromiso rígido)
+Roadmap: "En Q1 priorizamos la autenticación y el self-service básico" (dirección estratégica)
+          </div>
+        </div>
+      </div>
+
+      <div class="card tips-card">
+        <div class="card-header"><div class="card-title">⚡ Tips & Errores comunes</div></div>
+        <div class="card-body">
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Un roadmap NO es una lista de features con fechas de entrega comprometidas</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Basa el roadmap en objetivos de negocio, no en módulos técnicos ("Módulo de Reportes" es técnico; "Reducir llamadas al call center" es un objetivo)</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Revísalo mensualmente — el mercado cambia, el roadmap también</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Herramientas: Productboard, Aha!, Linear, Notion, o incluso un Excel bien hecho</span></div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-outline" onclick="show('kano', document.querySelector('[onclick*=kano]'))">← Anterior</button>
+        <span class="nav-counter">4 / 6</span>
+        <button class="btn btn-dark" onclick="show('mvp', document.querySelector('[onclick*=mvp]'))">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ==================== MVP ==================== -->
+    <div id="mvp" class="tool-section c-rose">
+
+      <div class="card hero-card">
+        <div class="hero-top">
+          <span class="hero-icon">🚀</span>
+          <div>
+            <span class="hero-badge">Herramienta PO</span>
+            <div class="hero-title">MVP — Lanzar rápido para aprender rápido</div>
+          </div>
+        </div>
+        <p class="hero-definition">Un MVP (Minimum Viable Product) es la versión más pequeña del producto que permite <strong>aprender lo máximo posible</strong>. NO es un producto incompleto o malo — es el producto correcto para validar una hipótesis antes de invertir meses de desarrollo.</p>
+        <div class="hero-quote">"Si no te da un poco de vergüenza tu primer MVP, lo lanzaste demasiado tarde."</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header"><div class="card-title">💡 ¿Por qué usarlo?</div></div>
+          <div class="card-body">
+            <p style="color:#475569;font-size:13px;line-height:1.6">Construir el producto completo sin validar es el error más costoso en tecnología. El MVP te permite <strong>fallar barato</strong> y aprender rápido antes de invertir meses de desarrollo en algo que nadie usa.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🏗️ Componentes del MVP</div></div>
+          <div class="card-body">
+            <div class="struct-item"><span class="struct-label">Mínimo</span><span class="struct-desc">Lo más pequeño posible que aún tenga valor real</span></div>
+            <div class="struct-item"><span class="struct-label">Viable</span><span class="struct-desc">Suficientemente bueno para uso real y feedback genuino</span></div>
+            <div class="struct-item"><span class="struct-label">Producto</span><span class="struct-desc">Algo que el usuario puede experimentar de verdad</span></div>
+            <div class="struct-item"><span class="struct-label">Hipótesis</span><span class="struct-desc">¿Qué pregunta específica responderá este MVP?</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card example-card">
+        <div class="card-header"><div class="card-title">🏢 Ejemplo — MVP del Portal Corporativo Comsatel</div></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Decisión</th><th>Detalle</th></tr></thead>
+              <tbody>
+                <tr><td class="td-label">🎯 Hipótesis a validar</td><td>Los admins TI pasan 2h/semana llamando al call center solo para consultar consumo. Si les damos un portal simple, reduciremos ese tiempo en 50%.</td></tr>
+                <tr><td class="td-label">✅ EN el MVP (incluir)</td><td>Login seguro + Tabla de líneas con columna de consumo del mes actual + Indicador de estado</td></tr>
+                <tr><td class="td-label">❌ FUERA del MVP (excluir)</td><td>Histórico de meses anteriores, gráficos de tendencia, cambio de plan, reportes PDF, notificaciones automáticas</td></tr>
+                <tr><td class="td-label">📏 Métrica de éxito</td><td>Si el 60% de admins usa el portal al menos 2 veces en el primer mes → hipótesis validada → invertimos en más features</td></tr>
+                <tr><td class="td-label">⏱️ Tiempo de construcción</td><td>4 semanas (no 4 meses)</td></tr>
+                <tr><td class="td-label">📊 Resultado esperado</td><td>Reducción de 40-50% en llamadas al call center sobre consultas de consumo</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box">
+🔄 Ciclo MVP:
+Hipótesis → Construir MVP → Medir comportamiento real → Aprender → ¿Pivotar / Perseverar / Parar? → Repetir
+          </div>
+        </div>
+      </div>
+
+      <div class="card tips-card">
+        <div class="card-header"><div class="card-title">⚡ Tips & Errores comunes</div></div>
+        <div class="card-body">
+          <div class="tip-item"><span class="tip-arrow">→</span><span>"Minimum" no significa malo — significa enfocado. Debe tener calidad suficiente para uso real.</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>El MVP responde UNA pregunta. Si responde varias → es demasiado grande, divídelo.</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>No preguntes "¿Te gustaría esto?" — observa el comportamiento real. Las intenciones mienten, el comportamiento no.</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Error clásico: construir un MVP que es el mini-producto completo con todas las features "en versión básica".</span></div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-outline" onclick="show('roadmap', document.querySelector('[onclick*=roadmap]'))">← Anterior</button>
+        <span class="nav-counter">5 / 6</span>
+        <button class="btn btn-dark" onclick="show('metricas', document.querySelector('[onclick*=metricas]'))">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ==================== MÉTRICAS ==================== -->
+    <div id="metricas" class="tool-section c-cyan">
+
+      <div class="card hero-card">
+        <div class="hero-top">
+          <span class="hero-icon">📉</span>
+          <div>
+            <span class="hero-badge">Herramienta PO</span>
+            <div class="hero-title">Métricas de Éxito — Saber si estás creando valor real</div>
+          </div>
+        </div>
+        <p class="hero-definition">Las métricas son los KPIs que demuestran que el producto genera valor. Debes definirlas <strong>ANTES de construir</strong>. "El producto está listo" no es suficiente — ¿está siendo usado? ¿resuelve el problema? ¿genera valor para el negocio?</p>
+        <div class="hero-quote">"Lo que no se mide, no se mejora." — Peter Drucker</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header"><div class="card-title">💡 ¿Por qué usarlo?</div></div>
+          <div class="card-body">
+            <p style="color:#475569;font-size:13px;line-height:1.6">Sin métricas puedes tener un producto técnicamente perfecto que nadie usa. Las métricas te mantienen honesto, alineado con el negocio, y te dan argumentos para defender o cambiar decisiones.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🏗️ Tipos de Métricas</div></div>
+          <div class="card-body">
+            <div class="struct-item"><span class="struct-label">⭐ North Star</span><span class="struct-desc">LA métrica que mejor captura el valor creado. Todo el equipo la conoce.</span></div>
+            <div class="struct-item"><span class="struct-label">🚀 Activación</span><span class="struct-desc">¿El usuario tuvo su primer momento de valor?</span></div>
+            <div class="struct-item"><span class="struct-label">🔄 Retención</span><span class="struct-desc">¿El usuario vuelve a usar el producto?</span></div>
+            <div class="struct-item"><span class="struct-label">💰 Negocio</span><span class="struct-desc">Impacto en revenue, costos o eficiencia operacional</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card example-card">
+        <div class="card-header"><div class="card-title">🏢 Ejemplo — Métricas del Portal Corporativo Comsatel</div></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo</th><th>Métrica</th><th>Baseline (antes)</th><th>Meta (3 meses)</th></tr></thead>
+              <tbody>
+                <tr><td class="td-label">⭐ North Star</td><td>Admins activos semanales en el portal</td><td>0</td><td>80% de clientes corporativos</td></tr>
+                <tr><td class="td-label">🚀 Activación</td><td>Tiempo hasta primer login exitoso</td><td>N/A</td><td>Menos de 5 minutos</td></tr>
+                <tr><td class="td-label">🔄 Retención</td><td>Admins que usan el portal 2+ veces/mes</td><td>0%</td><td>60%</td></tr>
+                <tr><td class="td-label">💰 Negocio</td><td>Llamadas al call center sobre consumo</td><td>1,200 / mes</td><td>Menos de 600 / mes (−50%)</td></tr>
+                <tr><td class="td-label">💰 Negocio</td><td>Costo de atención al cliente</td><td>S/ 18,000 / mes</td><td>Menos de S/ 9,000 / mes</td></tr>
+                <tr><td class="td-label">😊 Satisfacción</td><td>NPS (Net Promoter Score)</td><td>42</td><td>Mayor a 60</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box">
+⚠️ Evita "vanity metrics":
+❌ Número de registros, pageviews, descargas → no reflejan valor real
+✅ Admins que NO llaman al call center, tiempo ahorrado, NPS → miden impacto real
+          </div>
+        </div>
+      </div>
+
+      <div class="card tips-card">
+        <div class="card-header"><div class="card-title">⚡ Tips & Errores comunes</div></div>
+        <div class="card-body">
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Define siempre el baseline ANTES de lanzar — sin punto de partida no puedes medir mejora</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Una North Star mala: "líneas de código escritas". Una buena: "admins que no necesitan llamar al call center"</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Si una métrica no puede cambiar tu decisión → no la midas (ruido innecesario)</span></div>
+          <div class="tip-item"><span class="tip-arrow">→</span><span>Los datos cualitativos (entrevistas, feedback de usuarios) complementan y explican los cuantitativos</span></div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-outline" onclick="show('mvp', document.querySelector('[onclick*=mvp]'))">← Anterior</button>
+        <span class="nav-counter">6 / 6</span>
+        <button class="btn btn-dark" disabled>Siguiente →</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const ids = ['user-stories','rice','kano','roadmap','mvp','metricas'];
+
+  function show(id, btn) {
+    // hide all
+    ids.forEach(i => {
+      document.getElementById(i).classList.remove('visible');
+      document.getElementById('prog-'+i).classList.remove('done');
+    });
+    // show selected
+    document.getElementById(id).classList.add('visible');
+    document.getElementById('prog-'+id).classList.add('done');
+
+    // update nav items
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+
+    // scroll to top of main
+    document.getElementById('main-content').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+</script>
+</body>
+</html>
