@@ -3,733 +3,1189 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Herramientas PO — Ejemplos Comsatel | Marco Saldarriaga</title>
+<title>Toolkit PO — Comsatel | Marco Saldarriaga</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Georgia,'Times New Roman',serif;background:#f8f7f4;color:#1a1a1a;font-size:16px;line-height:1.7}
-  a{color:#1d4ed8;text-decoration:none}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f172a;--blue:#1d4ed8;--sky:#38bdf8;--slate:#64748b;
+  --green:#22c55e;--amber:#f59e0b;--red:#ef4444;--purple:#a855f7;
+  --orange:#f97316;--teal:#14b8a6;
+  --bg:#f8f7f4;--white:#ffffff;--border:#e2e8f0;
+}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--navy);font-size:15px;line-height:1.6}
 
-  /* HEADER */
-  .header{background:#0f172a;color:#f8fafc;padding:20px 16px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.4)}
-  .header h1{font-size:1.2rem;font-weight:700;letter-spacing:-.01em}
-  .header p{font-size:.78rem;color:#94a3b8;margin-top:2px}
-  .badge{display:inline-block;background:#1e40af;color:#bfdbfe;font-size:.7rem;padding:2px 8px;border-radius:3px;margin-top:6px;font-family:monospace}
+/* ── HEADER ── */
+.hdr{background:var(--navy);color:#f8fafc;padding:18px 16px 14px;position:sticky;top:0;z-index:200;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+.hdr-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hdr h1{font-size:1.15rem;font-weight:800;letter-spacing:-.02em}
+.hdr p{font-size:.72rem;color:#94a3b8;margin-top:2px}
+.hdr-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.65rem;font-family:monospace;font-weight:700;padding:3px 9px;border-radius:3px;white-space:nowrap}
+.badge-blue{background:#1e40af;color:#bfdbfe}
+.badge-green{background:#166534;color:#bbf7d0}
+.badge-amber{background:#78350f;color:#fde68a}
 
-  /* NAV TABS */
-  .tabs{display:flex;overflow-x:auto;background:#1e293b;gap:2px;padding:0 8px;scrollbar-width:none}
-  .tabs::-webkit-scrollbar{display:none}
-  .tab{flex:none;padding:10px 14px;font-size:.78rem;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;font-family:system-ui,sans-serif;font-weight:500}
-  .tab:hover{color:#e2e8f0}
-  .tab.active{color:#38bdf8;border-bottom-color:#38bdf8}
+/* ── NAV TABS ── */
+.nav{background:#1e293b;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-inner{display:flex;max-width:1100px;margin:0 auto;padding:0 8px}
+.tab{flex:none;padding:11px 15px;font-size:.75rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.2s;letter-spacing:.01em}
+.tab:hover{color:#e2e8f0}
+.tab.on{color:var(--sky);border-color:var(--sky)}
 
-  /* MAIN */
-  .main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+/* ── MAIN ── */
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
+.sec{display:none}.sec.on{display:block}
 
-  /* SECTION */
-  .section{display:none}
-  .section.active{display:block}
+/* ── SECTION HEADER ── */
+.sec-hdr{margin-bottom:24px}
+.sec-hdr h2{font-size:1.5rem;font-weight:800;color:var(--navy)}
+.sec-hdr p{color:var(--slate);margin-top:4px;font-size:.9rem}
 
-  /* CARDS */
-  .card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:20px;overflow:hidden}
-  .card-header{padding:14px 18px;border-bottom:1px solid #f1f5f9}
-  .card-header h2{font-size:1.05rem;font-weight:700;color:#0f172a}
-  .card-header p{font-size:.82rem;color:#64748b;margin-top:3px}
-  .card-body{padding:18px}
+/* ── CARD ── */
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:22px;overflow:hidden}
+.card-hdr{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.card-hdr h3{font-size:1rem;font-weight:700;color:var(--navy)}
+.card-hdr p{font-size:.8rem;color:var(--slate);margin-top:2px}
+.card-body{padding:20px}
+.icon-box{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
 
-  /* FORMULA BOX */
-  .formula{background:#0f172a;color:#7dd3fc;font-family:monospace;padding:14px 18px;border-radius:6px;font-size:.9rem;margin-bottom:16px;line-height:1.6}
-  .formula .var{color:#fbbf24}
-  .formula .eq{color:#a78bfa}
+/* ── FORMULA ── */
+.formula{background:var(--navy);color:#7dd3fc;font-family:'Courier New',monospace;padding:16px 20px;border-radius:8px;font-size:.85rem;line-height:1.9;margin-bottom:18px}
+.fvar{color:#fbbf24}.feq{color:#a78bfa}.fval{color:#86efac}
 
-  /* TABLE */
-  table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px}
-  thead tr{background:#0f172a;color:#f8fafc}
-  thead th{padding:10px 10px;text-align:left;font-weight:600;font-family:system-ui,sans-serif}
-  tbody tr{border-bottom:1px solid #f1f5f9;transition:background .15s}
-  tbody tr:hover{background:#f8fafc}
-  tbody td{padding:10px 10px;vertical-align:top}
-  .score-high{background:#dcfce7;color:#166534;font-weight:700;border-radius:4px;padding:2px 7px;font-family:monospace}
-  .score-mid{background:#fef9c3;color:#854d0e;font-weight:700;border-radius:4px;padding:2px 7px;font-family:monospace}
-  .score-low{background:#fee2e2;color:#991b1b;font-weight:700;border-radius:4px;padding:2px 7px;font-family:monospace}
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.tbl thead tr{background:var(--navy);color:#f8fafc}
+.tbl th{padding:11px 12px;text-align:left;font-weight:600;white-space:nowrap}
+.tbl td{padding:11px 12px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.tbl tbody tr:hover{background:#f8fafc}
+.chip{display:inline-block;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;font-family:monospace}
+.chip-green{background:#dcfce7;color:#166534}
+.chip-yellow{background:#fef9c3;color:#854d0e}
+.chip-red{background:#fee2e2;color:#991b1b}
+.chip-blue{background:#dbeafe;color:#1e40af}
+.chip-purple{background:#f3e8ff;color:#6b21a8}
+.chip-gray{background:#f1f5f9;color:#475569}
 
-  /* KANO GRID */
-  .kano-grid{display:grid;gap:14px}
-  @media(min-width:600px){.kano-grid{grid-template-columns:repeat(3,1fr)}}
-  .kano-card{border-radius:7px;padding:16px;border-left:4px solid}
-  .kano-must{background:#fef2f2;border-color:#ef4444}
-  .kano-perf{background:#eff6ff;border-color:#3b82f6}
-  .kano-deli{background:#f0fdf4;border-color:#22c55e}
-  .kano-card h3{font-size:.9rem;font-weight:700;margin-bottom:6px;font-family:system-ui,sans-serif}
-  .kano-must h3{color:#991b1b}
-  .kano-perf h3{color:#1d4ed8}
-  .kano-deli h3{color:#166534}
-  .kano-card .emoji{font-size:1.5rem;display:block;margin-bottom:8px}
-  .kano-card ul{list-style:none;font-size:.82rem;color:#374151}
-  .kano-card ul li{padding:3px 0;border-bottom:1px dashed #e5e7eb}
-  .kano-card ul li:last-child{border:none}
-  .kano-card .verdict{font-size:.75rem;margin-top:10px;font-style:italic;color:#6b7280}
+/* ── MOSCOW ── */
+.moscow-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.moscow-card{border-radius:10px;padding:18px;border-top:5px solid;transition:transform .2s,box-shadow .2s}
+.moscow-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.mc-must{background:#fef2f2;border-color:var(--red)}
+.mc-should{background:#fffbeb;border-color:var(--amber)}
+.mc-could{background:#f0fdf4;border-color:var(--green)}
+.mc-wont{background:#f8fafc;border-color:var(--slate)}
+.moscow-card .mc-icon{font-size:2rem;margin-bottom:10px;display:block}
+.moscow-card h4{font-size:1rem;font-weight:800;margin-bottom:4px}
+.mc-must h4{color:#991b1b}.mc-should h4{color:#92400e}.mc-could h4{color:#166534}.mc-wont h4{color:var(--slate)}
+.moscow-card .mc-desc{font-size:.78rem;color:#6b7280;margin-bottom:12px;font-style:italic}
+.moscow-card ul{list-style:none;font-size:.8rem}
+.moscow-card ul li{padding:4px 0;border-bottom:1px dashed #e5e7eb}
+.moscow-card ul li:last-child{border:none}
+.mc-must ul li::before{content:"🔴 "}
+.mc-should ul li::before{content:"🟡 "}
+.mc-could ul li::before{content:"🟢 "}
+.mc-wont ul li::before{content:"⚪ "}
 
-  /* USER STORY */
-  .story{background:#fff;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:20px;overflow:hidden}
-  .story-header{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #f1f5f9}
-  .pill{font-size:.7rem;font-family:monospace;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap}
-  .pill-must{background:#fecaca;color:#991b1b}
-  .pill-should{background:#fef08a;color:#854d0e}
-  .pill-could{background:#bbf7d0;color:#166534}
-  .story-header h3{font-size:.95rem;font-weight:700;color:#0f172a}
-  .story-body{padding:18px}
-  .story-fmt{background:#f8fafc;border-left:3px solid #3b82f6;padding:12px 16px;border-radius:0 6px 6px 0;font-family:monospace;font-size:.85rem;color:#1e40af;margin-bottom:14px;line-height:1.8}
-  .gherkin{margin-top:10px}
-  .gherkin h4{font-size:.8rem;font-weight:700;color:#374151;font-family:system-ui,sans-serif;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
-  .gherkin-box{background:#1e293b;color:#e2e8f0;border-radius:6px;padding:12px 14px;font-family:monospace;font-size:.8rem;line-height:1.9;margin-bottom:10px}
-  .gherkin-box .kw{color:#7dd3fc;font-weight:700}
-  .gherkin-box .val{color:#86efac}
-  .notes{background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:10px 14px;font-size:.8rem;color:#78350f;margin-top:12px}
-  .notes strong{display:block;margin-bottom:4px}
+/* ── PROCESS MAP ── */
+.pmap{overflow-x:auto;padding-bottom:10px}
+.pmap-flow{display:flex;align-items:flex-start;gap:0;min-width:700px;position:relative}
+.pmap-flow::before{content:'';position:absolute;top:38px;left:60px;right:60px;height:3px;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:0}
+.pstep{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;cursor:pointer}
+.pstep-num{width:76px;height:76px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;border:3px solid var(--white);box-shadow:0 4px 12px rgba(0,0,0,.2);transition:transform .25s,box-shadow .25s;color:var(--white);text-align:center;line-height:1.2}
+.pstep:hover .pstep-num{transform:scale(1.12);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.pstep.active .pstep-num{transform:scale(1.12);box-shadow:0 0 0 4px rgba(56,189,248,.5),0 8px 24px rgba(0,0,0,.3)}
+.pstep-label{font-size:.7rem;font-weight:600;color:var(--slate);margin-top:8px;text-align:center;max-width:80px;line-height:1.3}
+.ps1{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
+.ps2{background:linear-gradient(135deg,#06b6d4,#0891b2)}
+.ps3{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}
+.ps4{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.ps5{background:linear-gradient(135deg,#ec4899,#db2777)}
+.ps6{background:linear-gradient(135deg,#22c55e,#16a34a)}
+.ps7{background:linear-gradient(135deg,#14b8a6,#0d9488)}
+.pstep-arrow{position:absolute;top:34px;right:-6px;z-index:2;color:#94a3b8;font-size:1rem}
 
-  /* MVP */
-  .mvp-grid{display:grid;gap:14px}
-  @media(min-width:600px){.mvp-grid{grid-template-columns:1fr 1fr}}
-  .mvp-in{background:#f0fdf4;border:1px solid #86efac;border-radius:7px;padding:16px}
-  .mvp-out{background:#fef2f2;border:1px solid #fca5a5;border-radius:7px;padding:16px}
-  .mvp-in h3{color:#166534;font-size:.9rem;margin-bottom:10px;font-family:system-ui,sans-serif}
-  .mvp-out h3{color:#991b1b;font-size:.9rem;margin-bottom:10px;font-family:system-ui,sans-serif}
-  .mvp-in ul,.mvp-out ul{list-style:none;font-size:.82rem}
-  .mvp-in ul li{padding:4px 0;border-bottom:1px dashed #bbf7d0;color:#166534}
-  .mvp-out ul li{padding:4px 0;border-bottom:1px dashed #fca5a5;color:#991b1b}
-  .mvp-in ul li::before{content:"✅ "}
-  .mvp-out ul li::before{content:"⛔ "}
-  .mvp-goal{background:#eff6ff;border:1px solid #bfdbfe;border-radius:7px;padding:14px;margin-top:14px;font-size:.85rem;color:#1e40af}
-  .mvp-goal strong{display:block;font-size:.9rem;margin-bottom:4px}
+/* STEP DETAIL */
+.step-detail{background:var(--white);border:2px solid var(--sky);border-radius:10px;padding:20px;margin-top:20px;animation:slideIn .25s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.step-detail h4{font-size:1rem;font-weight:800;margin-bottom:12px;color:var(--navy)}
+.detail-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.detail-col h5{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);margin-bottom:8px}
+.detail-col ul{list-style:none;font-size:.8rem}
+.detail-col ul li{padding:3px 0;display:flex;align-items:center;gap:6px}
+.tool-tag{display:inline-block;font-size:.65rem;font-weight:700;padding:1px 7px;border-radius:3px;font-family:monospace;white-space:nowrap}
+.tt-rice{background:#dbeafe;color:#1e40af}
+.tt-kano{background:#f3e8ff;color:#7e22ce}
+.tt-moscow{background:#fef9c3;color:#92400e}
+.tt-story{background:#dcfce7;color:#166534}
+.tt-mvp{background:#ffedd5;color:#c2410c}
+.tt-map{background:#cffafe;color:#155e75}
+.tt-kpi{background:#f1f5f9;color:#475569}
 
-  /* ROADMAP */
-  .roadmap{display:grid;gap:14px}
-  @media(min-width:600px){.roadmap{grid-template-columns:repeat(3,1fr)}}
-  .rm-card{border-radius:7px;padding:16px;border-top:4px solid}
-  .rm-q1{background:#fff7ed;border-color:#f97316}
-  .rm-q2{background:#f0f9ff;border-color:#0ea5e9}
-  .rm-q3{background:#faf5ff;border-color:#a855f7}
-  .rm-card .q-label{font-size:.7rem;font-family:monospace;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-  .rm-q1 .q-label{color:#c2410c}
-  .rm-q2 .q-label{color:#0369a1}
-  .rm-q3 .q-label{color:#7e22ce}
-  .rm-card h3{font-size:.9rem;font-weight:700;margin-bottom:10px;font-family:system-ui,sans-serif;color:#0f172a}
-  .rm-card ul{list-style:none;font-size:.8rem;color:#374151}
-  .rm-card ul li{padding:4px 0;border-bottom:1px dashed #e5e7eb}
-  .rm-card ul li:last-child{border:none}
-  .rm-card ul li::before{content:"→ ";color:#94a3b8}
-  .rm-card .sprint-count{font-size:.72rem;color:#94a3b8;margin-top:10px;font-family:monospace}
+/* TOOL MAP */
+.toolmap-wrap{overflow-x:auto}
+.toolmap{min-width:640px;border-radius:10px;overflow:hidden}
+.toolmap-head{display:grid;grid-template-columns:160px repeat(7,1fr);background:var(--navy);color:#f8fafc;font-size:.72rem;font-weight:700;text-align:center}
+.toolmap-head div,.toolmap-row div{padding:10px 6px}
+.toolmap-row{display:grid;grid-template-columns:160px repeat(7,1fr);border-bottom:1px solid var(--border);font-size:.75rem;align-items:center}
+.toolmap-row:nth-child(even){background:#f8fafc}
+.toolmap-row:hover{background:#eff6ff}
+.toolmap-row .tool-name{font-weight:700;color:var(--navy);background:var(--white);border-right:2px solid var(--border)}
+.toolmap-row:nth-child(even) .tool-name{background:#f8fafc}
+.cell-yes{text-align:center;font-size:1.1rem}
+.cell-no{text-align:center;color:#e2e8f0;font-size:.9rem}
 
-  /* METRICS */
-  .metrics-grid{display:grid;gap:14px}
-  @media(min-width:600px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
-  .metric-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;position:relative;overflow:hidden}
-  .metric-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
-  .metric-card.m1::before{background:#ef4444}
-  .metric-card.m2::before{background:#3b82f6}
-  .metric-card.m3::before{background:#f59e0b}
-  .metric-card.m4::before{background:#22c55e}
-  .metric-card h3{font-size:.85rem;font-weight:700;color:#0f172a;margin-bottom:6px;font-family:system-ui,sans-serif;padding-left:10px}
-  .metric-card .current{font-size:1.5rem;font-weight:700;font-family:monospace;padding-left:10px}
-  .metric-card.m1 .current{color:#ef4444}
-  .metric-card.m2 .current{color:#3b82f6}
-  .metric-card.m3 .current{color:#f59e0b}
-  .metric-card.m4 .current{color:#22c55e}
-  .metric-card .target{font-size:.75rem;color:#64748b;padding-left:10px;margin-top:2px}
-  .metric-card .how{font-size:.75rem;color:#374151;margin-top:10px;padding:8px 10px;background:#f8fafc;border-radius:5px}
+/* KANO */
+.kano-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.kano-card{border-radius:10px;padding:16px;border-left:5px solid;transition:transform .2s}
+.kano-card:hover{transform:translateY(-2px)}
+.kc-must{background:#fef2f2;border-color:var(--red)}.kc-perf{background:#eff6ff;border-color:var(--blue)}.kc-deli{background:#f0fdf4;border-color:var(--green)}.kc-ind{background:#fafafa;border-color:var(--slate)}
+.kano-card h4{font-size:.9rem;font-weight:800;margin-bottom:4px}
+.kc-must h4{color:#991b1b}.kc-perf h4{color:var(--blue)}.kc-deli h4{color:#166534}.kc-ind h4{color:var(--slate)}
+.kano-card ul{list-style:none;font-size:.79rem}
+.kano-card ul li{padding:3px 0;border-bottom:1px dashed #e5e7eb}
+.kano-card ul li:last-child{border:none}
 
-  /* ALERT */
-  .alert{background:#eff6ff;border:1px solid #bfdbfe;border-radius:7px;padding:14px;font-size:.85rem;color:#1e40af;margin-bottom:20px;line-height:1.6}
-  .alert strong{color:#1d4ed8}
+/* USER STORY */
+.story-card{background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden}
+.story-hdr{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border)}
+.story-body{padding:20px}
+.story-fmt{background:#f0f9ff;border-left:4px solid var(--blue);padding:12px 16px;border-radius:0 8px 8px 0;font-family:monospace;font-size:.85rem;color:#1e40af;margin-bottom:16px;line-height:1.9}
+.gh-box{background:var(--navy);color:#e2e8f0;border-radius:8px;padding:14px 16px;font-family:monospace;font-size:.78rem;line-height:2;margin-bottom:10px}
+.gh-kw{color:#7dd3fc;font-weight:700}.gh-val{color:#86efac}
+.notes{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;font-size:.79rem;color:#78350f;margin-top:12px}
 
-  /* FOOTER */
-  .footer{text-align:center;padding:30px 16px;font-size:.75rem;color:#94a3b8;border-top:1px solid #e2e8f0;margin-top:30px}
-  .footer a{color:#3b82f6}
+/* MVP */
+.mvp-grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media(max-width:500px){.mvp-grid{grid-template-columns:1fr}}
+.mvp-in{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:18px}
+.mvp-out{background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:18px}
+.mvp-in h4{color:#166534;font-weight:800;margin-bottom:12px}
+.mvp-out h4{color:#991b1b;font-weight:800;margin-bottom:12px}
+.mvp-in ul,.mvp-out ul{list-style:none;font-size:.82rem}
+.mvp-in ul li{padding:4px 0;color:#166534;border-bottom:1px dashed #bbf7d0}
+.mvp-out ul li{padding:4px 0;color:#991b1b;border-bottom:1px dashed #fca5a5}
+.mvp-in ul li:last-child,.mvp-out ul li:last-child{border:none}
+.mvp-in ul li::before{content:"✅ "}
+.mvp-out ul li::before{content:"⛔ "}
 
-  /* UTIL */
-  .label{display:inline-block;font-size:.7rem;font-family:monospace;background:#f1f5f9;color:#475569;padding:2px 7px;border-radius:3px;margin-right:4px}
-  .tip{font-size:.78rem;color:#64748b;margin-top:8px;font-style:italic}
-  hr{border:none;border-top:1px solid #f1f5f9;margin:16px 0}
+/* ROADMAP */
+.rm-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.rm-card{border-radius:10px;padding:18px;border-top:5px solid;transition:transform .2s}
+.rm-card:hover{transform:translateY(-3px)}
+.rm-q1{background:#fff7ed;border-color:var(--orange)}.rm-q2{background:#f0f9ff;border-color:#0ea5e9}.rm-q3{background:#faf5ff;border-color:var(--purple)}
+.rm-card .qlabel{font-size:.65rem;font-family:monospace;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.rm-q1 .qlabel{color:#c2410c}.rm-q2 .qlabel{color:#0369a1}.rm-q3 .qlabel{color:#7e22ce}
+.rm-card h4{font-size:.95rem;font-weight:800;margin-bottom:10px;color:var(--navy)}
+.rm-card ul{list-style:none;font-size:.8rem;color:#374151}
+.rm-card ul li{padding:3px 0;border-bottom:1px dashed #e5e7eb}
+.rm-card ul li:last-child{border:none}
+.rm-card ul li::before{content:"→ ";color:#94a3b8}
+.sprint-badge{font-size:.7rem;font-family:monospace;margin-top:12px;color:#94a3b8}
+
+/* METRICS */
+.metrics-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.metric-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px;position:relative;overflow:hidden;transition:transform .2s}
+.metric-card:hover{transform:translateY(-2px)}
+.metric-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px}
+.metric-card.mc1::before{background:var(--red)}.metric-card.mc2::before{background:var(--blue)}.metric-card.mc3::before{background:var(--amber)}.metric-card.mc4::before{background:var(--green)}
+.metric-card .mnum{font-size:1.8rem;font-weight:800;font-family:monospace;margin:8px 0 4px}
+.mc1 .mnum{color:var(--red)}.mc2 .mnum{color:var(--blue)}.mc3 .mnum{color:var(--amber)}.mc4 .mnum{color:var(--green)}
+.metric-card .mtarget{font-size:.72rem;color:var(--slate)}
+.metric-card .mhow{font-size:.76rem;background:#f8fafc;border-radius:6px;padding:10px;margin-top:12px;color:#374151;line-height:1.5}
+
+/* RICE */
+.rice-score{font-family:monospace;font-weight:800;font-size:.9rem;padding:3px 9px;border-radius:5px}
+
+/* ALERT */
+.alert{border-radius:8px;padding:16px 18px;font-size:.85rem;line-height:1.7;margin-bottom:20px}
+.alert-blue{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+.alert-green{background:#f0fdf4;border:1px solid #86efac;color:#166534}
+.alert-amber{background:#fffbeb;border:1px solid #fde68a;color:#78350f}
+.alert strong{display:block;margin-bottom:4px;font-size:.9rem}
+
+/* ORGANIGRAM */
+.org-wrap{overflow-x:auto}
+.org{min-width:500px;font-size:.78rem}
+.org-node{background:var(--white);border:2px solid var(--border);border-radius:8px;padding:10px 14px;text-align:center;transition:all .2s;cursor:default}
+.org-node:hover{border-color:var(--sky);box-shadow:0 4px 12px rgba(56,189,248,.25);transform:translateY(-2px)}
+.org-node .title{font-weight:800;font-size:.82rem}
+.org-node .sub{font-size:.7rem;color:var(--slate);margin-top:2px}
+.org-center{display:flex;justify-content:center;margin-bottom:10px}
+.org-line{display:flex;justify-content:center;margin-bottom:4px}
+.org-line::before{content:'';display:block;width:2px;height:20px;background:var(--border)}
+.org-children{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;position:relative}
+.org-children::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:var(--border)}
+.org-child{position:relative}
+.org-child::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:14px;background:var(--border)}
+.org-child-inner{margin-top:14px}
+.on-po{border-color:var(--blue);background:#eff6ff}.on-po .title{color:var(--blue)}
+.on-af{border-color:var(--purple);background:#faf5ff}.on-af .title{color:#7e22ce}
+.on-scrum{border-color:var(--green);background:#f0fdf4}.on-scrum .title{color:#166534}
+.on-stake{border-color:var(--amber);background:#fffbeb}.on-stake .title{color:#92400e}
+.on-dev{border-color:var(--slate);background:#f8fafc}.on-dev .title{color:var(--slate)}
+.on-qa{border-color:var(--teal);background:#f0fdfa}.on-qa .title{color:#0f766e}
+.on-ux{border-color:var(--orange);background:#fff7ed}.on-ux .title{color:#c2410c}
+
+/* PROGRESS BAR */
+.progress-bar{background:#e2e8f0;border-radius:99px;height:8px;overflow:hidden;margin-top:6px}
+.progress-fill{height:100%;border-radius:99px;transition:width 1s ease}
+
+/* FOOTER */
+.footer{text-align:center;padding:32px 16px;font-size:.75rem;color:#94a3b8;border-top:1px solid var(--border);margin-top:30px}
+.footer a{color:var(--blue);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+
+hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+
+@media(max-width:640px){
+  .moscow-grid,.kano-grid,.metrics-grid{grid-template-columns:1fr}
+  .pmap-flow{gap:0}
+  .pstep-num{width:60px;height:60px;font-size:.65rem}
+  .toolmap-head,.toolmap-row{font-size:.62rem}
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>🛠 Herramientas del Product Owner</h1>
-  <p>Ejemplos aplicados al contexto de Comsatel Perú — Portal Corporativo</p>
-  <span class="badge">Marco Saldarriaga — Preparación Entrevista PO</span>
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div>
+      <h1>🛠 Product Owner Toolkit — Comsatel Perú</h1>
+      <p>Marco Saldarriaga · Análisis Funcional → Product Owner · Preparación entrevista 2026</p>
+    </div>
+    <div class="hdr-badges">
+      <span class="badge badge-blue">RICE Scoring</span>
+      <span class="badge badge-amber">MoSCoW</span>
+      <span class="badge badge-green">Kano · MVP · Roadmap</span>
+    </div>
+  </div>
 </div>
 
-<div class="tabs" id="tabs">
-  <div class="tab active" onclick="show('rice',this)">📊 RICE Scoring</div>
-  <div class="tab" onclick="show('kano',this)">🎯 Kano Model</div>
-  <div class="tab" onclick="show('stories',this)">📝 User Stories</div>
-  <div class="tab" onclick="show('mvp',this)">🚀 MVP</div>
-  <div class="tab" onclick="show('roadmap',this)">🗓 Roadmap</div>
-  <div class="tab" onclick="show('kpis',this)">📈 KPIs</div>
+<!-- NAVIGATION -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="tab on"  onclick="show('mapa',this)">🗺 Mapa de Procesos</div>
+    <div class="tab" onclick="show('organig',this)">🏢 Organigrama</div>
+    <div class="tab" onclick="show('moscow',this)">🎯 MoSCoW</div>
+    <div class="tab" onclick="show('rice',this)">📊 RICE Scoring</div>
+    <div class="tab" onclick="show('kano',this)">🔮 Kano Model</div>
+    <div class="tab" onclick="show('stories',this)">📝 User Stories</div>
+    <div class="tab" onclick="show('mvp',this)">🚀 MVP</div>
+    <div class="tab" onclick="show('roadmap',this)">🗓 Roadmap</div>
+    <div class="tab" onclick="show('kpis',this)">📈 KPIs</div>
+    <div class="tab" onclick="show('toolmap',this)">🔗 Mapa de Herramientas</div>
+  </div>
 </div>
 
-<div class="main">
+<div class="wrap">
 
-  <!-- ======================== RICE SCORING ======================== -->
-  <div class="section active" id="rice">
-
-    <div class="card">
-      <div class="card-header">
-        <h2>📊 RICE Scoring — Priorización del Backlog</h2>
-        <p>Técnica cuantitativa para priorizar features basándose en 4 variables</p>
-      </div>
-      <div class="card-body">
-
-        <div class="formula">
-          <span class="eq">Score</span> = (<span class="var">R</span>each × <span class="var">I</span>mpact × <span class="var">C</span>onfidence) / <span class="var">E</span>ffort<br><br>
-          <span class="var">R</span>each      → Nº usuarios que impacta por sprint (ej: 300 clientes)<br>
-          <span class="var">I</span>mpact     → Escala 0.25 / 0.5 / 1 / 2 / 3 (minimal → massive)<br>
-          <span class="var">C</span>onfidence → % seguridad de los datos: 100% / 80% / 50%<br>
-          <span class="var">E</span>ffort     → Sprints de trabajo del equipo (1 sprint = 2 semanas)
-        </div>
-
-        <p class="tip">🎯 Regla: Mayor score = mayor prioridad. El PO puede ajustar por criterios estratégicos no cuantificables.</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>R</th>
-              <th>I</th>
-              <th>C%</th>
-              <th>E</th>
-              <th>Score</th>
-              <th>Prioridad</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <strong>Portal autoservicio</strong><br>
-                <span style="font-size:.75rem;color:#64748b">Clientes corp. gestionan sus líneas sin llamar</span>
-              </td>
-              <td>500</td>
-              <td>3</td>
-              <td>80%</td>
-              <td>3</td>
-              <td><span class="score-high">400</span></td>
-              <td>🥇 #1</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Alertas de consumo</strong><br>
-                <span style="font-size:.75rem;color:#64748b">Notificación al 80% de consumo de datos/minutos</span>
-              </td>
-              <td>500</td>
-              <td>2</td>
-              <td>100%</td>
-              <td>1</td>
-              <td><span class="score-high">1000</span></td>
-              <td>🥇 #1 ⚡</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Cambio de plan online</strong><br>
-                <span style="font-size:.75rem;color:#64748b">Admin modifica plan sin intermediario</span>
-              </td>
-              <td>500</td>
-              <td>2</td>
-              <td>80%</td>
-              <td>2</td>
-              <td><span class="score-high">400</span></td>
-              <td>🥈 #2</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Reportes PDF por área</strong><br>
-                <span style="font-size:.75rem;color:#64748b">Exportar consumo por departamento en PDF</span>
-              </td>
-              <td>200</td>
-              <td>1</td>
-              <td>80%</td>
-              <td>2</td>
-              <td><span class="score-mid">80</span></td>
-              <td>🥉 #3</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Integración facturación</strong><br>
-                <span style="font-size:.75rem;color:#64748b">Vincular portal con sistema de facturación ERP</span>
-              </td>
-              <td>300</td>
-              <td>2</td>
-              <td>50%</td>
-              <td>5</td>
-              <td><span class="score-low">60</span></td>
-              <td>⏳ Futuro</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="alert" style="margin-top:18px">
-          <strong>💡 Cómo explicarlo en entrevista:</strong><br>
-          "Las Alertas de Consumo tienen score 1000 porque llegan a todos los 500 clientes, son de alto impacto, tenemos 100% de certeza del dato y solo toma 1 sprint. El portal completo tiene score 400 pero es la base para todo lo demás — lo priorizo igualmente en #1 por dependencia estratégica."
-        </div>
-
-      </div>
-    </div>
-
+<!-- ══════════════════════ MAPA DE PROCESOS ══════════════════════ -->
+<div class="sec on" id="mapa">
+  <div class="sec-hdr">
+    <h2>🗺 Mapa de Procesos del Análisis Funcional</h2>
+    <p>Haz clic en cada etapa para ver qué herramientas se usan y qué produce cada fase</p>
   </div>
 
-  <!-- ======================== KANO MODEL ======================== -->
-  <div class="section" id="kano">
-
-    <div class="card">
-      <div class="card-header">
-        <h2>🎯 Kano Model — Clasificación de Features</h2>
-        <p>Clasifica funcionalidades según su impacto en la satisfacción del cliente</p>
+  <div class="card">
+    <div class="card-body">
+      <div class="pmap">
+        <div class="pmap-flow" id="pflow">
+          <div class="pstep active" onclick="showStep(0,this)">
+            <div class="pstep-num ps1">1<br>Inicio</div>
+            <div class="pstep-label">Definición del problema</div>
+          </div>
+          <div class="pstep" onclick="showStep(1,this)">
+            <div class="pstep-num ps2">2<br>Discovery</div>
+            <div class="pstep-label">Levantamiento de info</div>
+          </div>
+          <div class="pstep" onclick="showStep(2,this)">
+            <div class="pstep-num ps3">3<br>Análisis</div>
+            <div class="pstep-label">Modelado de procesos</div>
+          </div>
+          <div class="pstep" onclick="showStep(3,this)">
+            <div class="pstep-num ps4">4<br>Priorización</div>
+            <div class="pstep-label">Qué construir primero</div>
+          </div>
+          <div class="pstep" onclick="showStep(4,this)">
+            <div class="pstep-num ps5">5<br>Documentación</div>
+            <div class="pstep-label">Historias y criterios</div>
+          </div>
+          <div class="pstep" onclick="showStep(5,this)">
+            <div class="pstep-num ps6">6<br>Validación</div>
+            <div class="pstep-label">Revisión con stakeholders</div>
+          </div>
+          <div class="pstep" onclick="showStep(6,this)">
+            <div class="pstep-num ps7">7<br>Entrega</div>
+            <div class="pstep-label">Sprint y seguimiento</div>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
 
-        <div class="formula">
-          El Kano Model responde: <span class="var">¿Qué pasa con la satisfacción si NO entregamos esta feature?</span><br><br>
-          <span class="eq">Must-be</span>   → Si falta: cliente furioso. Si existe: solo "ok". (Obligatorio)<br>
-          <span class="eq">Performance</span>→ Más = más feliz. Menos = más frustrado. (Diferenciador)<br>
-          <span class="eq">Delighter</span>  → Si falta: nadie lo nota. Si existe: sorpresa positiva. (WOW)<br>
-          <span class="eq">Indifferent</span>→ No mueve la aguja en ningún sentido. (Evitar)
-        </div>
-
-        <div class="kano-grid">
-          <div class="kano-card kano-must">
-            <span class="emoji">🔴</span>
-            <h3>Must-be (Obligatorios)</h3>
-            <p style="font-size:.75rem;color:#991b1b;margin-bottom:10px"><em>Sin esto el cliente rechaza el producto</em></p>
-            <ul>
-              <li>Login seguro con 2FA</li>
-              <li>Ver listado de líneas activas</li>
-              <li>Ver saldo de datos/minutos</li>
-              <li>Tiempo de carga &lt; 3 segundos</li>
-              <li>Disponibilidad 99.5% (uptime)</li>
-            </ul>
-            <p class="verdict">⚡ Prioridad absoluta. Si alguno falla, el portal no vale nada para el cliente.</p>
-          </div>
-
-          <div class="kano-card kano-perf">
-            <span class="emoji">🔵</span>
-            <h3>Performance (Lineales)</h3>
-            <p style="font-size:.75rem;color:#1d4ed8;margin-bottom:10px"><em>Más de esto = más satisfacción</em></p>
-            <ul>
-              <li>Velocidad de carga (más rápido = mejor)</li>
-              <li>Precisión del consumo en tiempo real</li>
-              <li>Filtros y búsquedas avanzadas</li>
-              <li>Más formatos de reporte (PDF, Excel)</li>
-              <li>Historial de cambios de plan</li>
-            </ul>
-            <p class="verdict">📈 Invertir aquí da retorno directo en NPS. Son las features de Q2.</p>
-          </div>
-
-          <div class="kano-card kano-deli">
-            <span class="emoji">🟢</span>
-            <h3>Delighters (Sorpresas)</h3>
-            <p style="font-size:.75rem;color:#166534;margin-bottom:10px"><em>El cliente no lo pide pero lo ama</em></p>
-            <ul>
-              <li>Sugerencia automática de plan óptimo según consumo</li>
-              <li>Dashboard predictivo: "A este ritmo, te quedan X días de datos"</li>
-              <li>Comparador de planes con simulación de ahorro</li>
-              <li>Alerta inteligente antes de quedarse sin datos</li>
-              <li>Reporte ejecutivo mensual automático por email</li>
-            </ul>
-            <p class="verdict">🌟 Para Q3+. Generan fidelización y diferenciación competitiva.</p>
-          </div>
-        </div>
-
-        <div class="alert" style="margin-top:18px">
-          <strong>💡 Cómo explicarlo en entrevista:</strong><br>
-          "Primero aseguro que los Must-be estén perfectos — si el login falla o el consumo se muestra mal, ningún Delighter salvará el producto. Luego en Q2 optimizo Performance para mejorar el NPS. Los Delighters son para cuando el producto ya está maduro y quiero superar expectativas."
-        </div>
-
-      </div>
+      <div class="step-detail" id="step-detail"><!-- dinámico --></div>
     </div>
-
   </div>
 
-  <!-- ======================== USER STORIES ======================== -->
-  <div class="section" id="stories">
-
-    <div class="alert">
-      <strong>Formato estándar:</strong> Como [usuario] quiero [acción] para [beneficio] — con criterios de aceptación en formato Given/When/Then (Gherkin). Cada historia debe ser INVEST: Independiente, Negociable, Valiosa, Estimable, Small, Testeable.
-    </div>
-
-    <!-- HISTORIA 1 -->
-    <div class="story">
-      <div class="story-header">
-        <span class="pill pill-must">MUST HAVE</span>
-        <h3>H-001: Ver listado de líneas corporativas</h3>
-      </div>
-      <div class="story-body">
-        <div class="story-fmt">
-Como <strong>administrador de TI corporativo</strong><br>
-Quiero <strong>ver el listado completo de líneas móviles asignadas a mi empresa</strong><br>
-Para <strong>monitorear el estado y consumo de todas las líneas sin llamar al call center</strong>
-        </div>
-
-        <div class="gherkin">
-          <h4>Criterios de Aceptación</h4>
-
-          <p style="font-size:.78rem;color:#64748b;margin-bottom:6px">Escenario 1: Ver líneas con datos completos</p>
-          <div class="gherkin-box">
-<span class="kw">Dado que</span> <span class="val">estoy autenticado como admin corporativo de Empresa XYZ</span><br>
-<span class="kw">Cuando</span>   <span class="val">accedo a la sección "Mis Líneas"</span><br>
-<span class="kw">Entonces</span> <span class="val">veo una tabla con: número de línea, plan actual,</span><br>
-           <span class="val">        consumo de datos (GB), consumo de minutos, estado (activa/suspendida)</span><br>
-<span class="kw">Y</span>        <span class="val">la tabla carga en menos de 3 segundos con hasta 500 líneas</span><br>
-<span class="kw">Y</span>        <span class="val">puedo ordenar por cualquier columna y filtrar por estado</span>
-          </div>
-
-          <p style="font-size:.78rem;color:#64748b;margin-bottom:6px">Escenario 2: Solo veo mis líneas (seguridad)</p>
-          <div class="gherkin-box">
-<span class="kw">Dado que</span> <span class="val">estoy autenticado como admin de Empresa XYZ</span><br>
-<span class="kw">Cuando</span>   <span class="val">intento acceder a líneas de otra empresa por URL directa</span><br>
-<span class="kw">Entonces</span> <span class="val">recibo error 403 Prohibido y soy redirigido al dashboard</span><br>
-<span class="kw">Y</span>        <span class="val">el intento queda registrado en el log de auditoría</span>
-          </div>
-
-          <p style="font-size:.78rem;color:#64748b;margin-bottom:6px">Escenario 3: Sin líneas asignadas</p>
-          <div class="gherkin-box">
-<span class="kw">Dado que</span> <span class="val">soy admin de una empresa recién registrada sin líneas</span><br>
-<span class="kw">Cuando</span>   <span class="val">accedo a "Mis Líneas"</span><br>
-<span class="kw">Entonces</span> <span class="val">veo el mensaje "Aún no tienes líneas asignadas. Contacta a tu ejecutivo."</span>
-          </div>
-        </div>
-
-        <div class="notes">
-          <strong>📌 Notas Técnicas / Riesgos</strong>
-          Dependencia: API del sistema de gestión de líneas de Comsatel (backend existente).<br>
-          Riesgo: Si la empresa tiene &gt;500 líneas, la carga puede ser lenta → mitigación: paginación de 50 en 50 + lazy loading.<br>
-          Asunción: El admin ya tiene cuenta creada por el área comercial de Comsatel.
-        </div>
+  <!-- VISTA DE PROCESO COMPLETO -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">🔄</div>
+      <div>
+        <h3>Ciclo completo del Análisis Funcional</h3>
+        <p>Vista general de entregables por etapa — contexto Comsatel Portal Corporativo</p>
       </div>
     </div>
-
-    <!-- HISTORIA 2 -->
-    <div class="story">
-      <div class="story-header">
-        <span class="pill pill-should">SHOULD HAVE</span>
-        <h3>H-007: Alerta cuando línea supera 80% de consumo</h3>
-      </div>
-      <div class="story-body">
-        <div class="story-fmt">
-Como <strong>administrador de TI corporativo</strong><br>
-Quiero <strong>recibir una alerta automática cuando una línea supera el 80% de su plan de datos</strong><br>
-Para <strong>tomar acción antes de que se genren cargos adicionales por exceso de consumo</strong>
-        </div>
-
-        <div class="gherkin">
-          <h4>Criterios de Aceptación</h4>
-
-          <p style="font-size:.78rem;color:#64748b;margin-bottom:6px">Escenario 1: Alerta en tiempo</p>
-          <div class="gherkin-box">
-<span class="kw">Dado que</span> <span class="val">la línea 987-654-321 tiene plan de 10GB</span><br>
-<span class="kw">Cuando</span>   <span class="val">el consumo acumulado llega a 8GB (80%)</span><br>
-<span class="kw">Entonces</span> <span class="val">el sistema envía email al admin dentro de los siguientes 15 minutos</span><br>
-<span class="kw">Y</span>        <span class="val">el asunto del email es: "[Comsatel] Alerta: línea 987-654-321 al 80% de datos"</span><br>
-<span class="kw">Y</span>        <span class="val">el email incluye: número de línea, consumo actual, consumo restante, link directo al portal</span>
-          </div>
-
-          <p style="font-size:.78rem;color:#64748b;margin-bottom:6px">Escenario 2: No duplicar alertas</p>
-          <div class="gherkin-box">
-<span class="kw">Dado que</span> <span class="val">ya se envió la alerta al 80% para la línea 987-654-321</span><br>
-<span class="kw">Cuando</span>   <span class="val">el consumo sigue aumentando (85%, 90%...)</span><br>
-<span class="kw">Entonces</span> <span class="val">NO se envía otra alerta hasta el 100% (agotamiento total)</span><br>
-<span class="kw">Y</span>        <span class="val">la alerta al 100% tiene asunto: "[URGENTE] Línea agotada — posibles cargos adicionales"</span>
-          </div>
-        </div>
-
-        <div class="notes">
-          <strong>📌 Notas Técnicas / Riesgos</strong>
-          Dependencia: Sistema de monitoreo de consumo de Comsatel debe exponer webhook o polling cada 15 min.<br>
-          Riesgo: Si el sistema upstream no actualiza en tiempo real, la alerta puede llegar tarde → validar con el equipo técnico de Comsatel.<br>
-          Asunción: El admin configura su email en el portal. Opcional en futuro: alertas por SMS/WhatsApp.
-        </div>
-      </div>
+    <div class="card-body">
+      <table class="tbl">
+        <thead><tr><th>#</th><th>Etapa</th><th>Qué hace el Analista / PO</th><th>Entregable</th><th>Herramientas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="chip chip-blue">01</span></td>
+            <td><strong>Inicio</strong></td>
+            <td>Define el problema de negocio y los objetivos medibles</td>
+            <td>Project Charter / Vision Board</td>
+            <td><span class="tool-tag tt-map">Elevator Pitch</span> <span class="tool-tag tt-kpi">OKRs</span></td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-blue">02</span></td>
+            <td><strong>Discovery</strong></td>
+            <td>Entrevistas, observación, talleres con usuarios y stakeholders</td>
+            <td>Lista de requerimientos brutos, Journey Map</td>
+            <td><span class="tool-tag tt-map">User Interviews</span> <span class="tool-tag tt-map">JTBD</span> <span class="tool-tag tt-kano">Kano Survey</span></td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-purple">03</span></td>
+            <td><strong>Análisis</strong></td>
+            <td>Modela procesos, identifica gaps y dependencias técnicas</td>
+            <td>BPMN, Diagrama de flujo, Casos de uso</td>
+            <td><span class="tool-tag tt-map">BPMN</span> <span class="tool-tag tt-map">UML</span> <span class="tool-tag tt-map">Impact Map</span></td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-yellow">04</span></td>
+            <td><strong>Priorización</strong></td>
+            <td>Decide el orden de construcción basado en valor/esfuerzo</td>
+            <td>Product Backlog ordenado</td>
+            <td><span class="tool-tag tt-moscow">MoSCoW</span> <span class="tool-tag tt-rice">RICE</span> <span class="tool-tag tt-kano">Kano</span> <span class="tool-tag tt-mvp">MVP</span></td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-green">05</span></td>
+            <td><strong>Documentación</strong></td>
+            <td>Escribe historias de usuario con criterios de aceptación</td>
+            <td>User Stories con Given/When/Then</td>
+            <td><span class="tool-tag tt-story">User Stories</span> <span class="tool-tag tt-story">Gherkin</span> <span class="tool-tag tt-map">Wireframes</span></td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-green">06</span></td>
+            <td><strong>Validación</strong></td>
+            <td>Revisa con stakeholders, ajusta y obtiene sign-off</td>
+            <td>Backlog refinado, Definition of Ready</td>
+            <td><span class="tool-tag tt-story">Sprint Review</span> <span class="tool-tag tt-moscow">Revisión MoSCoW</span> <span class="tool-tag tt-kpi">NPS</span></td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-green">07</span></td>
+            <td><strong>Entrega</strong></td>
+            <td>Acompaña el sprint, acepta o rechaza, mide resultados</td>
+            <td>Incremento de producto + métricas</td>
+            <td><span class="tool-tag tt-kpi">KPIs</span> <span class="tool-tag tt-map">Roadmap</span> <span class="tool-tag tt-kpi">Burndown</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+</div>
 
-    <!-- HISTORIA 3 -->
-    <div class="story">
-      <div class="story-header">
-        <span class="pill pill-could">COULD HAVE</span>
-        <h3>H-012: Generar reporte PDF de consumo mensual por área</h3>
-      </div>
-      <div class="story-body">
-        <div class="story-fmt">
-Como <strong>gerente de finanzas o administrador corporativo</strong><br>
-Quiero <strong>generar y descargar un reporte PDF del consumo mensual agrupado por área/departamento</strong><br>
-Para <strong>auditar gastos de telefonía y justificar el presupuesto ante la dirección</strong>
-        </div>
-
-        <div class="gherkin">
-          <h4>Criterios de Aceptación</h4>
-
-          <p style="font-size:.78rem;color:#64748b;margin-bottom:6px">Escenario 1: Generar reporte del mes anterior</p>
-          <div class="gherkin-box">
-<span class="kw">Dado que</span> <span class="val">estoy en la sección "Reportes" del portal</span><br>
-<span class="kw">Cuando</span>   <span class="val">selecciono mes "Abril 2026" y hago clic en "Generar PDF"</span><br>
-<span class="kw">Entonces</span> <span class="val">el sistema genera el PDF en menos de 10 segundos</span><br>
-<span class="kw">Y</span>        <span class="val">el PDF incluye: portada con logo Comsatel + empresa, tabla por área</span><br>
-           <span class="val">        con: nº líneas, GB consumidos, minutos usados, costo estimado</span><br>
-<span class="kw">Y</span>        <span class="val">el nombre del archivo es: "Consumo_EmpresaXYZ_Abril2026.pdf"</span>
-          </div>
-
-          <p style="font-size:.78rem;color:#64748b;margin-bottom:6px">Escenario 2: Empresa sin áreas configuradas</p>
-          <div class="gherkin-box">
-<span class="kw">Dado que</span> <span class="val">la empresa no ha agrupado sus líneas por área</span><br>
-<span class="kw">Cuando</span>   <span class="val">intenta generar el reporte por área</span><br>
-<span class="kw">Entonces</span> <span class="val">el sistema muestra: "Debes asignar áreas a tus líneas antes de usar este reporte"</span><br>
-<span class="kw">Y</span>        <span class="val">muestra un link directo a "Gestionar Áreas"</span>
-          </div>
-        </div>
-
-        <div class="notes">
-          <strong>📌 Notas Técnicas / Riesgos</strong>
-          Dependencia: Librería PDF del backend (ej: Puppeteer, WeasyPrint, iText).<br>
-          Riesgo: Empresas con 500+ líneas podrían tardar más de 10 seg → mostrar spinner + opción "enviar por email cuando esté listo".<br>
-          Asunción: Los costos mostrados son estimados (basados en plan). El costo real está en la factura oficial de Comsatel.
-        </div>
-      </div>
-    </div>
-
+<!-- ══════════════════════ ORGANIGRAMA ══════════════════════ -->
+<div class="sec" id="organig">
+  <div class="sec-hdr">
+    <h2>🏢 Organigrama del Equipo Ágil</h2>
+    <p>Dónde encaja el Product Owner y el Analista Funcional — y cómo se relacionan</p>
   </div>
 
-  <!-- ======================== MVP ======================== -->
-  <div class="section" id="mvp">
-
-    <div class="card">
-      <div class="card-header">
-        <h2>🚀 MVP — Minimum Viable Product</h2>
-        <p>Portal corporativo de Comsatel — versión mínima que genera valor real</p>
-      </div>
-      <div class="card-body">
-
-        <div class="formula">
-          <span class="eq">MVP</span> = la versión más pequeña del producto que valida la hipótesis central<br><br>
-          <span class="var">Hipótesis Comsatel:</span> "Si el cliente corporativo puede ver y gestionar sus líneas<br>
-          de forma autónoma, reduciremos las llamadas al call center en un <span class="eq">40%</span>"
-        </div>
-
-        <div class="mvp-grid">
-          <div class="mvp-in">
-            <h3>✅ DENTRO del MVP (Q1 — 6 semanas)</h3>
-            <ul>
-              <li>Login seguro (usuario + contraseña + OTP)</li>
-              <li>Dashboard: resumen de líneas y consumo</li>
-              <li>Listado de líneas con filtro por estado</li>
-              <li>Ver detalle de consumo por línea</li>
-              <li>Cambiar plan de una línea (flujo simple)</li>
-              <li>Alerta básica al 80% y 100% de consumo</li>
-              <li>Recuperar contraseña por email</li>
-            </ul>
-          </div>
-          <div class="mvp-out">
-            <h3>⛔ FUERA del MVP (Q2 o Q3)</h3>
-            <ul>
-              <li>Reportes PDF por área</li>
-              <li>Integración con facturación/ERP</li>
-              <li>App móvil nativa (iOS/Android)</li>
-              <li>Dashboard predictivo / IA</li>
-              <li>Gestión de múltiples admins</li>
-              <li>Suspensión/reactivación masiva</li>
-              <li>API pública para integración propia del cliente</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="mvp-goal">
-          <strong>🎯 Criterio de Éxito del MVP (90 días post-lanzamiento)</strong>
-          — Reducción del 40% en llamadas al call center relacionadas a consultas de líneas<br>
-          — 60% de clientes corporativos activos en el portal (adopción)<br>
-          — NPS del portal ≥ 60 en primera encuesta (30 días post-lanzamiento)<br>
-          — Cero incidentes de seguridad (acceso indebido entre empresas)
-        </div>
-
-        <div class="alert" style="margin-top:16px">
-          <strong>💡 Cómo explicarlo en entrevista:</strong><br>
-          "El MVP no es el producto completo, es el experimento más barato que valida si vamos en la dirección correcta. Entregamos en 6 semanas lo suficiente para que el cliente lo use, medimos el impacto en el call center, y con esos datos priorizamos Q2. Si el cliente no usa el portal, recalibramos antes de invertir en reportes y BI."
-        </div>
-
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff">🏢</div>
+      <div>
+        <h3>Estructura del Equipo Scrum — Comsatel Portal</h3>
+        <p>Roles, responsabilidades y flujo de comunicación</p>
       </div>
     </div>
-
-  </div>
-
-  <!-- ======================== ROADMAP ======================== -->
-  <div class="section" id="roadmap">
-
-    <div class="card">
-      <div class="card-header">
-        <h2>🗓 Product Roadmap — Portal Corporativo Comsatel</h2>
-        <p>Visión de 3 trimestres (Q1–Q3 2026) orientada a valor de negocio</p>
-      </div>
-      <div class="card-body">
-
-        <div class="formula">
-          El Roadmap responde: <span class="var">¿Qué construimos, en qué orden y por qué?</span><br><br>
-          No es un cronograma de proyecto — es una <span class="eq">declaración de intención estratégica</span><br>
-          Cambia con el feedback. Se revisa al final de cada sprint.
-        </div>
-
-        <div class="roadmap">
-          <div class="rm-card rm-q1">
-            <div class="q-label">Q1 2026 — Ene–Mar</div>
-            <h3>🟠 MVP: Autoservicio Básico</h3>
-            <p style="font-size:.75rem;color:#7c2d12;margin-bottom:10px"><em>Objetivo: Reducir 40% llamadas al call center</em></p>
-            <ul>
-              <li>Login seguro + OTP</li>
-              <li>Dashboard de líneas corporativas</li>
-              <li>Ver consumo de datos y minutos</li>
-              <li>Cambiar plan de una línea</li>
-              <li>Alertas al 80% y 100% por email</li>
-              <li>Recuperar contraseña</li>
-            </ul>
-            <div class="sprint-count">≈ 3 sprints (6 semanas)</div>
-          </div>
-
-          <div class="rm-card rm-q2">
-            <div class="q-label">Q2 2026 — Abr–Jun</div>
-            <h3>🔵 Analytics: Visibilidad y Control</h3>
-            <p style="font-size:.75rem;color:#0c4a6e;margin-bottom:10px"><em>Objetivo: NPS del portal ≥ 70</em></p>
-            <ul>
-              <li>Historial de consumo (últimos 6 meses)</li>
-              <li>Gráficas de consumo por línea/área</li>
-              <li>Reportes PDF por área/departamento</li>
-              <li>Suspender / reactivar líneas</li>
-              <li>Gestión de múltiples admins</li>
-              <li>Alertas configurables por el usuario</li>
-            </ul>
-            <div class="sprint-count">≈ 4 sprints (8 semanas)</div>
-          </div>
-
-          <div class="rm-card rm-q3">
-            <div class="q-label">Q3 2026 — Jul–Set</div>
-            <h3>🟣 Integración y Escala</h3>
-            <p style="font-size:.75rem;color:#581c87;margin-bottom:10px"><em>Objetivo: Retención de clientes enterprise</em></p>
-            <ul>
-              <li>Integración con sistema de facturación</li>
-              <li>Ver facturas y estado de pago</li>
-              <li>Dashboard predictivo (IA básica)</li>
-              <li>Sugerencia automática de plan óptimo</li>
-              <li>API para integración propia del cliente</li>
-              <li>App móvil (PWA)</li>
-            </ul>
-            <div class="sprint-count">≈ 5 sprints (10 semanas)</div>
-          </div>
-        </div>
-
-        <div class="alert" style="margin-top:18px">
-          <strong>💡 Cómo explicarlo en entrevista:</strong><br>
-          "El roadmap es un compromiso de dirección, no de fechas exactas. Q1 es lo que le prometemos al negocio. Q2 y Q3 son nuestra intención, sujetos a revisión según el feedback del MVP. Si los clientes adoptan el portal masivamente, podríamos adelantar la integración de facturación. Si hay problemas de usabilidad, pausamos Q2 y hacemos un sprint de mejoras de UX."
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ======================== KPIs ======================== -->
-  <div class="section" id="kpis">
-
-    <div class="card">
-      <div class="card-header">
-        <h2>📈 Métricas de Éxito (KPIs del Portal)</h2>
-        <p>Cómo mide el PO si el producto está entregando valor real al negocio</p>
-      </div>
-      <div class="card-body">
-
-        <div class="formula">
-          <span class="eq">Regla:</span> No midas outputs (features entregadas) — mide <span class="var">outcomes</span> (cambios en el comportamiento del usuario)<br><br>
-          ❌ "Entregamos 15 historias en el sprint" (output)<br>
-          ✅ "Reducimos las llamadas al call center en 35% este mes" (outcome)
-        </div>
-
-        <div class="metrics-grid">
-          <div class="metric-card m1">
-            <h3>📞 Reducción de llamadas al call center</h3>
-            <div class="current">-40%</div>
-            <div class="target">Meta: -40% en 90 días post-lanzamiento MVP</div>
-            <div class="how">
-              <strong>Cómo medir:</strong> Comparar volumen de llamadas sobre "estado de línea" y "cambio de plan" en el call center antes vs. después del lanzamiento del portal.<br><br>
-              <strong>Señal de alerta:</strong> Si a los 30 días la reducción es menor al 10%, hay un problema de adopción o usabilidad — hacer entrevistas a usuarios de inmediato.
+    <div class="card-body">
+      <div class="org-wrap">
+        <div class="org">
+          <!-- STAKEHOLDERS TOP -->
+          <div class="org-center">
+            <div class="org-node on-stake" style="width:260px">
+              <div class="title">👔 Stakeholders / Negocio</div>
+              <div class="sub">Gerencia Comercial · Gerencia TI · Clientes Corporativos</div>
             </div>
           </div>
+          <div class="org-line"></div>
 
-          <div class="metric-card m2">
-            <h3>😊 NPS del Portal (Net Promoter Score)</h3>
-            <div class="current">≥ 60</div>
-            <div class="target">Meta: NPS ≥ 60 en 30 días, ≥ 70 en 90 días</div>
-            <div class="how">
-              <strong>Cómo medir:</strong> Encuesta post-interacción (ej: después de cambiar un plan): "Del 1 al 10, ¿recomendarías este portal a otro administrador?" Promotores (9-10) − Detractores (0-6) = NPS.<br><br>
-              <strong>Señal de alerta:</strong> NPS menor a 30 en la primera encuesta → revisar usabilidad urgente.
+          <!-- PO -->
+          <div class="org-center">
+            <div class="org-node on-po" style="width:280px">
+              <div class="title">🎯 Product Owner / Analista Funcional Senior</div>
+              <div class="sub">Marco Saldarriaga · Tu rol en Comsatel</div>
+              <div style="margin-top:8px;font-size:.72rem;color:#1e40af">
+                Gestiona: Backlog · Priorización · User Stories · Criterios de aceptación
+              </div>
             </div>
           </div>
+          <div class="org-line"></div>
 
-          <div class="metric-card m3">
-            <h3>⏱ Tiempo promedio para completar una acción</h3>
-            <div class="current">&lt; 2 min</div>
-            <div class="target">Meta: Cambiar plan en menos de 2 minutos</div>
-            <div class="how">
-              <strong>Cómo medir:</strong> Analytics del portal (ej: Google Analytics / Mixpanel) midiendo tiempo entre inicio de flujo "Cambiar Plan" y confirmación exitosa.<br><br>
-              <strong>Antes del portal:</strong> La misma acción tomaba 8-15 minutos por teléfono. El portal debe ser ≥ 4x más rápido.
+          <!-- SCRUM MASTER -->
+          <div class="org-center">
+            <div class="org-node on-scrum" style="width:240px">
+              <div class="title">🔄 Scrum Master</div>
+              <div class="sub">Facilita ceremonias · Remueve impedimentos</div>
             </div>
           </div>
+          <div class="org-line"></div>
 
-          <div class="metric-card m4">
-            <h3>📊 Tasa de adopción del portal</h3>
-            <div class="current">60%</div>
-            <div class="target">Meta: 60% de clientes corp. activos a los 90 días</div>
-            <div class="how">
-              <strong>Cómo medir:</strong> (Clientes que iniciaron sesión al menos 1 vez en los últimos 30 días) / (Total de clientes corporativos con acceso) × 100<br><br>
-              <strong>Segmentar por:</strong> tamaño de empresa (1-50 líneas vs. 50-500 líneas). Las empresas grandes suelen adoptar más lento — considerar onboarding personalizado.
+          <!-- EQUIPO -->
+          <div class="org-children">
+            <div class="org-child">
+              <div class="org-child-inner">
+                <div class="org-node on-dev" style="width:130px">
+                  <div class="title">💻 Dev Backend</div>
+                  <div class="sub">APIs · Base de datos</div>
+                </div>
+              </div>
+            </div>
+            <div class="org-child">
+              <div class="org-child-inner">
+                <div class="org-node on-dev" style="width:130px">
+                  <div class="title">🖥 Dev Frontend</div>
+                  <div class="sub">Portal Web · React</div>
+                </div>
+              </div>
+            </div>
+            <div class="org-child">
+              <div class="org-child-inner">
+                <div class="org-node on-ux" style="width:130px">
+                  <div class="title">🎨 UX/UI Designer</div>
+                  <div class="sub">Prototipos · Flujos</div>
+                </div>
+              </div>
+            </div>
+            <div class="org-child">
+              <div class="org-child-inner">
+                <div class="org-node on-qa" style="width:130px">
+                  <div class="title">🧪 QA Engineer</div>
+                  <div class="sub">Pruebas · Criterios</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="alert" style="margin-top:18px">
-          <strong>💡 Cómo explicarlo en entrevista:</strong><br>
-          "Como PO reporto estas 4 métricas en cada Sprint Review al stakeholder. No reporto 'completamos 20 stories' — reporto 'la adopción subió de 32% a 48% este sprint, y las llamadas al call center bajaron 18%'. Eso es lo que el negocio entiende y lo que justifica seguir invirtiendo en el producto."
+      <hr>
+
+      <!-- RESPONSABILIDADES PO -->
+      <h4 style="font-weight:800;margin-bottom:14px;color:var(--navy)">🎯 Tus Responsabilidades como PO/Analista Funcional Senior</h4>
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+        <div style="background:#eff6ff;border-radius:8px;padding:14px">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:8px">⬆️ Hacia Stakeholders</div>
+          <ul style="list-style:none;font-size:.8rem;color:#1e40af">
+            <li style="padding:3px 0">→ Reportar avance del producto</li>
+            <li style="padding:3px 0">→ Gestionar expectativas y alcance</li>
+            <li style="padding:3px 0">→ Presentar roadmap y métricas</li>
+            <li style="padding:3px 0">→ Validar que el producto resuelve el problema de negocio</li>
+          </ul>
         </div>
-
-        <hr>
-
-        <div style="margin-top:14px">
-          <p style="font-weight:700;font-size:.9rem;margin-bottom:10px;color:#0f172a">📋 Reporte semanal tipo (para stakeholders):</p>
-          <div class="formula" style="font-size:.78rem">
-<span class="eq">Semana del 19/05 al 23/05/2026</span><br><br>
-✅ Sprint 4 completado — 18/20 historias entregadas (2 pasaron a Q2 por dependencia técnica)<br>
-📞 Llamadas al call center: <span class="var">-28%</span> vs. semana pre-lanzamiento (meta: -40% en 90 días → vamos bien)<br>
-😊 NPS: <span class="var">64</span> (8 respuestas esta semana — necesitamos más volumen para ser estadísticamente válido)<br>
-📊 Adopción: <span class="var">41%</span> de clientes activos (meta: 60% en 30 días — en riesgo, acelerando onboarding)<br>
-🔴 Riesgo: API de consumo de Comsatel tiene latencia elevada — coordinando con el equipo técnico
-          </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:14px">
+          <div style="font-weight:700;color:#166534;margin-bottom:8px">⬇️ Hacia el Equipo</div>
+          <ul style="list-style:none;font-size:.8rem;color:#166534">
+            <li style="padding:3px 0">→ Escribir User Stories claras y testables</li>
+            <li style="padding:3px 0">→ Priorizar el backlog cada sprint</li>
+            <li style="padding:3px 0">→ Responder preguntas de negocio en el acto</li>
+            <li style="padding:3px 0">→ Aceptar o rechazar el trabajo en Sprint Review</li>
+          </ul>
         </div>
-
+        <div style="background:#fffbeb;border-radius:8px;padding:14px">
+          <div style="font-weight:700;color:#92400e;margin-bottom:8px">↔️ Con Proveedores</div>
+          <ul style="list-style:none;font-size:.8rem;color:#92400e">
+            <li style="padding:3px 0">→ Levantar requerimientos de integración</li>
+            <li style="padding:3px 0">→ Validar SLAs y contratos técnicos</li>
+            <li style="padding:3px 0">→ Coordinar entregas y cronogramas</li>
+            <li style="padding:3px 0">→ Gestión de pagos y validaciones</li>
+          </ul>
+        </div>
       </div>
     </div>
-
   </div>
 
-</div><!-- /main -->
+  <!-- CEREMONIAS SCRUM -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4">🔄</div>
+      <div>
+        <h3>Tu rol en cada Ceremonia Scrum</h3>
+        <p>Qué haces exactamente en cada reunión del equipo ágil</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div style="border-radius:8px;padding:14px;background:#eff6ff;border:1px solid #bfdbfe">
+          <div style="font-size:1.2rem;margin-bottom:6px">📋</div>
+          <div style="font-weight:800;color:var(--blue);margin-bottom:6px">Sprint Planning</div>
+          <div style="font-size:.78rem;color:#1e40af">Presentas el tope del backlog. Explicas cada historia. El equipo estima. <strong>Tú decides qué entra en el sprint.</strong></div>
+        </div>
+        <div style="border-radius:8px;padding:14px;background:#f0fdf4;border:1px solid #86efac">
+          <div style="font-size:1.2rem;margin-bottom:6px">☀️</div>
+          <div style="font-weight:800;color:#166534;margin-bottom:6px">Daily Standup</div>
+          <div style="font-size:.78rem;color:#166534">Estás disponible para responder dudas de requerimientos. Si una historia no está clara, la ajustas <strong>en el momento, no después.</strong></div>
+        </div>
+        <div style="border-radius:8px;padding:14px;background:#fffbeb;border:1px solid #fde68a">
+          <div style="font-size:1.2rem;margin-bottom:6px">🔍</div>
+          <div style="font-weight:800;color:#92400e;margin-bottom:6px">Refinement</div>
+          <div style="font-size:.78rem;color:#92400e">Presentas las historias del próximo sprint. El equipo hace preguntas. <strong>Toda historia debe salir "Ready" con criterios claros.</strong></div>
+        </div>
+        <div style="border-radius:8px;padding:14px;background:#faf5ff;border:1px solid #d8b4fe">
+          <div style="font-size:1.2rem;margin-bottom:6px">✅</div>
+          <div style="font-weight:800;color:#7e22ce;margin-bottom:6px">Sprint Review</div>
+          <div style="font-size:.78rem;color:#7e22ce">El equipo demuestra. <strong>Tú aceptas o rechazas contra los criterios de aceptación.</strong> Invitas a stakeholders para feedback.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- ══════════════════════ MOSCOW ══════════════════════ -->
+<div class="sec" id="moscow">
+  <div class="sec-hdr">
+    <h2>🎯 Método MoSCoW — Priorización de Requerimientos</h2>
+    <p>Técnica para clasificar requerimientos por urgencia e importancia — aplicada al Portal Comsatel</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fffbeb">🎯</div>
+      <div>
+        <h3>¿Qué es MoSCoW?</h3>
+        <p>Framework de priorización diseñado para alinear expectativas con el equipo y stakeholders</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">MoSCoW</span> = técnica de priorización que clasifica requerimientos en 4 categorías<br><br>
+<span class="fvar">M</span>ust Have   → Obligatorio. Sin esto el producto NO puede lanzarse<br>
+<span class="fvar">S</span>hould Have → Importante. Debe estar, pero el lanzamiento puede continuar sin él<br>
+<span class="fvar">C</span>ould Have  → Deseable. Se incluye si hay tiempo y presupuesto<br>
+<span class="fvar">W</span>on't Have  → Fuera del scope actual. Queda para versiones futuras<br><br>
+<span class="feq">Regla de oro:</span> el <span class="fvar">Must</span> no puede superar el 60% del esfuerzo total del sprint
+      </div>
+
+      <div class="moscow-grid">
+        <div class="moscow-card mc-must">
+          <span class="mc-icon">🔴</span>
+          <h4>Must Have</h4>
+          <p class="mc-desc">"Sin esto, el portal no sirve. No negociable."</p>
+          <ul>
+            <li>Login seguro con verificación en 2 pasos</li>
+            <li>Ver listado de líneas corporativas asignadas</li>
+            <li>Ver consumo de datos y minutos por línea</li>
+            <li>Estado de cada línea (activa / suspendida)</li>
+            <li>Funcionamiento en móvil (responsive)</li>
+            <li>Tiempo de carga &lt; 3 seg con 500 líneas</li>
+          </ul>
+        </div>
+
+        <div class="moscow-card mc-should">
+          <span class="mc-icon">🟡</span>
+          <h4>Should Have</h4>
+          <p class="mc-desc">"Alta prioridad pero el MVP sobrevive sin esto."</p>
+          <ul>
+            <li>Cambiar el plan de una línea móvil</li>
+            <li>Alertas automáticas al 80% de consumo</li>
+            <li>Filtros y búsqueda por número de línea</li>
+            <li>Suspender / reactivar una línea</li>
+            <li>Historial de cambios de plan (últimos 3 meses)</li>
+          </ul>
+        </div>
+
+        <div class="moscow-card mc-could">
+          <span class="mc-icon">🟢</span>
+          <h4>Could Have</h4>
+          <p class="mc-desc">"Buena idea. Entra si sobra tiempo en el sprint."</p>
+          <ul>
+            <li>Exportar reporte de consumo en PDF</li>
+            <li>Agrupar líneas por área o departamento</li>
+            <li>Gráficas de consumo histórico</li>
+            <li>Comparador de planes disponibles</li>
+            <li>Panel de múltiples administradores</li>
+          </ul>
+        </div>
+
+        <div class="moscow-card mc-wont">
+          <span class="mc-icon">⚪</span>
+          <h4>Won't Have (ahora)</h4>
+          <p class="mc-desc">"Fuera del scope. Lo revisamos en Q3."</p>
+          <ul>
+            <li>App móvil nativa (iOS / Android)</li>
+            <li>Integración con sistema de facturación ERP</li>
+            <li>Sugerencia de plan por inteligencia artificial</li>
+            <li>API pública para clientes enterprise</li>
+            <li>Dashboard predictivo de consumo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alert alert-blue" style="margin-top:20px">
+        <strong>💡 Cómo usar MoSCoW en una reunión con stakeholders:</strong>
+        1. Presenta la lista completa de requerimientos levantados en el Discovery.<br>
+        2. Pide a cada stakeholder que clasifique cada requerimiento (M/S/C/W).<br>
+        3. Si un requerimiento tiene conflicto de clasificación → negocia con criterio de impacto al usuario final.<br>
+        4. El backlog ordenado es el resultado de este ejercicio.<br><br>
+        <strong>Frase para la entrevista:</strong> "En Comsatel usaría MoSCoW en el primer taller con el equipo comercial para alinear qué entra en el MVP sin generar falsas expectativas."
+      </div>
+
+      <hr>
+      <h4 style="font-weight:800;margin-bottom:14px">📊 MoSCoW vs. MoSCoW — ¿Cómo se ve en Jira?</h4>
+      <table class="tbl">
+        <thead><tr><th>Requerimiento</th><th>MoSCoW</th><th>Sprint</th><th>Justificación</th></tr></thead>
+        <tbody>
+          <tr><td>Login seguro + OTP</td><td><span class="chip chip-red">Must</span></td><td>Sprint 1</td><td>Sin acceso seguro no hay portal. Requerimiento de seguridad no negociable.</td></tr>
+          <tr><td>Ver listado de líneas</td><td><span class="chip chip-red">Must</span></td><td>Sprint 1</td><td>Es la funcionalidad central del producto. Sin ella no tiene valor.</td></tr>
+          <tr><td>Cambiar plan de línea</td><td><span class="chip chip-yellow">Should</span></td><td>Sprint 2</td><td>Reduce llamadas al call center. Importante pero el portal ya es útil sin ello.</td></tr>
+          <tr><td>Alertas de consumo</td><td><span class="chip chip-yellow">Should</span></td><td>Sprint 2</td><td>Alta demanda de clientes según entrevistas. No bloquea el MVP.</td></tr>
+          <tr><td>Reportes PDF por área</td><td><span class="chip chip-green">Could</span></td><td>Sprint 4–5</td><td>Útil para finanzas, pero la consulta online ya satisface la necesidad básica.</td></tr>
+          <tr><td>App móvil nativa</td><td><span class="chip chip-gray">Won't</span></td><td>Q3 2026+</td><td>El portal es responsive. La app nativa requiere 2+ sprints adicionales y un equipo mobile dedicado.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ RICE SCORING ══════════════════════ -->
+<div class="sec" id="rice">
+  <div class="sec-hdr">
+    <h2>📊 RICE Scoring — Priorización Cuantitativa</h2>
+    <p>Decide qué construir primero con números, no con opiniones</p>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">Score</span> = (<span class="fvar">R</span>each × <span class="fvar">I</span>mpact × <span class="fvar">C</span>onfidence) / <span class="fvar">E</span>ffort<br><br>
+<span class="fvar">R</span>each      → Usuarios impactados por sprint (ej: 300 clientes corporativos)<br>
+<span class="fvar">I</span>mpact     → Escala fija: 0.25 (mínimo) / 0.5 / 1 / 2 / 3 (masivo)<br>
+<span class="fvar">C</span>onfidence → % de certeza sobre los datos: 100% / 80% / 50%<br>
+<span class="fvar">E</span>ffort     → Sprints de trabajo del equipo completo (1 sprint = 2 semanas)
+      </div>
+      <table class="tbl">
+        <thead><tr><th>Feature</th><th>Reach</th><th>Impact</th><th>Conf%</th><th>Effort</th><th>Score</th><th>Prioridad</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Alertas de consumo</strong><br><span style="font-size:.72rem;color:var(--slate)">Notificación automática al 80%</span></td>
+            <td>500</td><td>2</td><td>100%</td><td>1</td>
+            <td><span class="rice-score chip-green">1000</span></td><td>🥇 #1</td>
+          </tr>
+          <tr>
+            <td><strong>Portal autoservicio</strong><br><span style="font-size:.72rem;color:var(--slate)">Ver y gestionar líneas</span></td>
+            <td>500</td><td>3</td><td>80%</td><td>3</td>
+            <td><span class="rice-score chip-green">400</span></td><td>🥇 #2</td>
+          </tr>
+          <tr>
+            <td><strong>Cambio de plan online</strong><br><span style="font-size:.72rem;color:var(--slate)">Sin intermediario</span></td>
+            <td>500</td><td>2</td><td>80%</td><td>2</td>
+            <td><span class="rice-score chip-green">400</span></td><td>🥈 #3</td>
+          </tr>
+          <tr>
+            <td><strong>Reportes PDF</strong><br><span style="font-size:.72rem;color:var(--slate)">Exportar consumo por área</span></td>
+            <td>200</td><td>1</td><td>80%</td><td>2</td>
+            <td><span class="rice-score chip-yellow">80</span></td><td>🥉 #4</td>
+          </tr>
+          <tr>
+            <td><strong>Integración facturación</strong><br><span style="font-size:.72rem;color:var(--slate)">Vincular con ERP</span></td>
+            <td>300</td><td>2</td><td>50%</td><td>5</td>
+            <td><span class="rice-score chip-red">60</span></td><td>⏳ Futuro</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert alert-blue" style="margin-top:16px">
+        <strong>💡 Para la entrevista:</strong> "Las alertas tienen score 1000 porque llegan a todos los clientes, son de alto impacto, 100% certeza y solo 1 sprint. Pero el portal base (score 400) va primero estratégicamente porque es la base de todo lo demás — el score RICE es un insumo, no una dictadura."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ KANO ══════════════════════ -->
+<div class="sec" id="kano">
+  <div class="sec-hdr">
+    <h2>🔮 Kano Model — Satisfacción del Cliente</h2>
+    <p>Clasifica features según su impacto real en la experiencia del usuario</p>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="formula">
+El Kano responde: <span class="fvar">¿Qué pasa con la satisfacción si NO entregamos esta feature?</span><br><br>
+🔴 <span class="feq">Must-be</span>    → Si falta: cliente furioso. Si está: solo "ok, esperado"<br>
+🔵 <span class="feq">Performance</span> → Más = más satisfacción. Menos = más frustración. Lineal.<br>
+🟢 <span class="feq">Delighter</span>   → Si falta: nadie lo nota. Si está: sorpresa y fidelización<br>
+⚪ <span class="feq">Indifferent</span>  → No mueve la aguja en ningún sentido. No invertir aquí.
+      </div>
+      <div class="kano-grid">
+        <div class="kano-card kc-must">
+          <h4>🔴 Must-be (Básicos obligatorios)</h4>
+          <p style="font-size:.72rem;color:#991b1b;margin-bottom:10px;font-style:italic">Sin esto el cliente rechaza el producto</p>
+          <ul><li>Login seguro con 2FA</li><li>Ver líneas activas y consumo</li><li>Disponibilidad 99.5% (uptime)</li><li>Carga en menos de 3 segundos</li><li>Datos correctos (no aproximados)</li></ul>
+        </div>
+        <div class="kano-card kc-perf">
+          <h4>🔵 Performance (Lineales)</h4>
+          <p style="font-size:.72rem;color:var(--blue);margin-bottom:10px;font-style:italic">Más de esto = más satisfacción</p>
+          <ul><li>Velocidad del portal (más rápido = mejor)</li><li>Precisión del consumo en tiempo real</li><li>Filtros y búsqueda avanzada</li><li>Múltiples formatos de reporte</li><li>Historial de cambios de plan</li></ul>
+        </div>
+        <div class="kano-card kc-deli">
+          <h4>🟢 Delighters (Sorpresas positivas)</h4>
+          <p style="font-size:.72rem;color:#166534;margin-bottom:10px;font-style:italic">El cliente no lo pide pero lo ama</p>
+          <ul><li>Sugerencia automática de plan óptimo</li><li>"A este ritmo te quedan X días de datos"</li><li>Comparador de planes con simulación de ahorro</li><li>Reporte ejecutivo mensual automático por email</li><li>Dashboard con tendencias predictivas</li></ul>
+        </div>
+        <div class="kano-card kc-ind">
+          <h4>⚪ Indifferent (No invertir)</h4>
+          <p style="font-size:.72rem;color:var(--slate);margin-bottom:10px;font-style:italic">No genera valor diferencial</p>
+          <ul><li>Temas visuales personalizables</li><li>Animaciones en la interfaz</li><li>Modo oscuro / claro</li><li>Tutoriales en video integrados</li><li>Ranking de "uso eficiente"</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ USER STORIES ══════════════════════ -->
+<div class="sec" id="stories">
+  <div class="sec-hdr">
+    <h2>📝 User Stories — Con Criterios de Aceptación</h2>
+    <p>Historias de usuario en formato estándar con Gherkin (Given/When/Then)</p>
+  </div>
+
+  <div class="alert alert-blue">
+    <strong>Formato INVEST:</strong> Independiente · Negociable · Valiosa · Estimable · Small · Testeable — Toda historia debe cumplir estos 6 criterios antes de entrar al sprint.
+  </div>
+
+  <div class="story-card">
+    <div class="story-hdr">
+      <span class="chip chip-red">MUST HAVE</span>
+      <div><strong>H-001: Ver listado de líneas corporativas</strong></div>
+    </div>
+    <div class="story-body">
+      <div class="story-fmt">Como <strong>administrador de TI corporativo</strong><br>Quiero <strong>ver el listado completo de mis líneas móviles</strong><br>Para <strong>monitorear estado y consumo sin llamar al call center</strong></div>
+      <div class="gh-box">
+<span class="gh-kw">Escenario 1:</span> Ver líneas con todos los datos<br>
+<span class="gh-kw">Dado que</span> <span class="gh-val">estoy autenticado como admin de Empresa XYZ</span><br>
+<span class="gh-kw">Cuando</span>   <span class="gh-val">accedo a "Mis Líneas"</span><br>
+<span class="gh-kw">Entonces</span> <span class="gh-val">veo tabla: número, plan, datos (GB), minutos, estado</span><br>
+<span class="gh-kw">Y</span>        <span class="gh-val">la tabla carga en &lt;3 seg con hasta 500 líneas</span><br>
+<span class="gh-kw">Y</span>        <span class="gh-val">puedo ordenar y filtrar por estado</span>
+      </div>
+      <div class="gh-box">
+<span class="gh-kw">Escenario 2:</span> Seguridad — solo veo mis líneas<br>
+<span class="gh-kw">Dado que</span> <span class="gh-val">soy admin de Empresa XYZ</span><br>
+<span class="gh-kw">Cuando</span>   <span class="gh-val">intento acceder a líneas de otra empresa por URL directa</span><br>
+<span class="gh-kw">Entonces</span> <span class="gh-val">recibo error 403 y soy redirigido al dashboard</span><br>
+<span class="gh-kw">Y</span>        <span class="gh-val">el intento queda en el log de auditoría</span>
+      </div>
+      <div class="notes"><strong>📌 Riesgos:</strong> Si la empresa tiene &gt;500 líneas → paginación de 50 en 50 + lazy loading. Dependencia: API del sistema de gestión de líneas de Comsatel (backend existente).</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-hdr">
+      <span class="chip chip-yellow">SHOULD HAVE</span>
+      <div><strong>H-007: Alerta automática al 80% de consumo</strong></div>
+    </div>
+    <div class="story-body">
+      <div class="story-fmt">Como <strong>administrador de TI corporativo</strong><br>Quiero <strong>recibir alerta cuando una línea supera el 80% de su plan</strong><br>Para <strong>actuar antes de generar cargos adicionales por exceso</strong></div>
+      <div class="gh-box">
+<span class="gh-kw">Escenario 1:</span> Alerta en el momento correcto<br>
+<span class="gh-kw">Dado que</span> <span class="gh-val">la línea 987-654-321 tiene plan de 10GB</span><br>
+<span class="gh-kw">Cuando</span>   <span class="gh-val">el consumo llega a 8GB (80%)</span><br>
+<span class="gh-kw">Entonces</span> <span class="gh-val">se envía email al admin en los siguientes 15 minutos</span><br>
+<span class="gh-kw">Y</span>        <span class="gh-val">el email incluye: número, consumo actual, restante, link al portal</span>
+      </div>
+      <div class="gh-box">
+<span class="gh-kw">Escenario 2:</span> No duplicar alertas<br>
+<span class="gh-kw">Dado que</span> <span class="gh-val">ya se envió la alerta al 80%</span><br>
+<span class="gh-kw">Cuando</span>   <span class="gh-val">el consumo sigue subiendo</span><br>
+<span class="gh-kw">Entonces</span> <span class="gh-val">NO se envía otra hasta el 100% (agotamiento total)</span>
+      </div>
+      <div class="notes"><strong>📌 Riesgo:</strong> El sistema de consumo debe actualizar cada 15 min (validar con equipo técnico). Futuro: alertas por SMS/WhatsApp.</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-hdr">
+      <span class="chip chip-green">COULD HAVE</span>
+      <div><strong>H-012: Reporte PDF de consumo mensual por área</strong></div>
+    </div>
+    <div class="story-body">
+      <div class="story-fmt">Como <strong>gerente de finanzas</strong><br>Quiero <strong>generar reporte PDF del consumo mensual agrupado por área</strong><br>Para <strong>auditar gastos de telefonía y justificar presupuesto</strong></div>
+      <div class="gh-box">
+<span class="gh-kw">Dado que</span> <span class="gh-val">estoy en "Reportes" y selecciono "Abril 2026"</span><br>
+<span class="gh-kw">Cuando</span>   <span class="gh-val">hago clic en "Generar PDF"</span><br>
+<span class="gh-kw">Entonces</span> <span class="gh-val">el PDF se genera en &lt;10 seg con: portada, tabla por área</span><br>
+<span class="gh-kw">Y</span>        <span class="gh-val">incluye: nº líneas, GB, minutos, costo estimado por área</span>
+      </div>
+      <div class="notes"><strong>📌 Riesgo:</strong> Empresas con 500+ líneas pueden tardar más — ofrecer "enviar por email cuando esté listo". Los costos son estimados, no la factura oficial.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ MVP ══════════════════════ -->
+<div class="sec" id="mvp">
+  <div class="sec-hdr">
+    <h2>🚀 MVP — Minimum Viable Product</h2>
+    <p>La versión más pequeña del portal que valida la hipótesis central de negocio</p>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">Hipótesis del MVP:</span> "Si el cliente corporativo puede ver y gestionar sus líneas de forma autónoma,<br>
+reduciremos las llamadas al call center en un <span class="fvar">40%</span> en los primeros 90 días."<br><br>
+<span class="feq">Criterio de éxito:</span> Si a los 30 días la reducción es &lt;10%, hay un problema de adopción → investigar.
+      </div>
+      <div class="mvp-grid">
+        <div class="mvp-in">
+          <h4>✅ DENTRO del MVP (6 semanas / 3 sprints)</h4>
+          <ul>
+            <li>Login seguro (usuario + OTP)</li>
+            <li>Dashboard con resumen de líneas</li>
+            <li>Listado de líneas con filtro por estado</li>
+            <li>Ver detalle de consumo por línea</li>
+            <li>Cambiar plan (flujo simple)</li>
+            <li>Alerta básica al 80% y 100% por email</li>
+            <li>Recuperar contraseña</li>
+          </ul>
+        </div>
+        <div class="mvp-out">
+          <h4>⛔ FUERA del MVP (Q2 o Q3)</h4>
+          <ul>
+            <li>Reportes PDF por área</li>
+            <li>Integración con facturación ERP</li>
+            <li>App móvil nativa</li>
+            <li>Dashboard predictivo con IA</li>
+            <li>Múltiples administradores</li>
+            <li>Suspensión masiva de líneas</li>
+            <li>API pública para clientes enterprise</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-green" style="margin-top:16px">
+        <strong>💡 Para la entrevista:</strong> "El MVP no es el producto completo — es el experimento más barato que valida si vamos en la dirección correcta. Entrego en 6 semanas lo suficiente para medir impacto real en el call center. Con esos datos priorizamos Q2. Si el usuario no usa el portal, recalibramos antes de invertir más."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ ROADMAP ══════════════════════ -->
+<div class="sec" id="roadmap">
+  <div class="sec-hdr">
+    <h2>🗓 Product Roadmap — Portal Corporativo Comsatel</h2>
+    <p>Visión de 3 trimestres orientada a valor de negocio, no a fechas exactas</p>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="formula">
+El Roadmap responde: <span class="fvar">¿Qué construimos, en qué orden y por qué?</span><br>
+No es un cronograma — es una <span class="feq">declaración de intención estratégica</span>. Se revisa al final de cada sprint.
+      </div>
+      <div class="rm-grid">
+        <div class="rm-card rm-q1">
+          <div class="qlabel">Q1 2026 · Ene–Mar</div>
+          <h4>🟠 MVP: Autoservicio Básico</h4>
+          <p style="font-size:.72rem;color:#7c2d12;margin-bottom:10px;font-style:italic">Objetivo: -40% llamadas al call center</p>
+          <ul>
+            <li>Login seguro + OTP</li>
+            <li>Dashboard de líneas corporativas</li>
+            <li>Ver consumo de datos y minutos</li>
+            <li>Cambiar plan de una línea</li>
+            <li>Alertas al 80% y 100% por email</li>
+          </ul>
+          <div class="sprint-badge">≈ 3 sprints (6 semanas)</div>
+        </div>
+        <div class="rm-card rm-q2">
+          <div class="qlabel">Q2 2026 · Abr–Jun</div>
+          <h4>🔵 Analytics: Visibilidad</h4>
+          <p style="font-size:.72rem;color:#0c4a6e;margin-bottom:10px;font-style:italic">Objetivo: NPS del portal ≥ 70</p>
+          <ul>
+            <li>Historial de consumo 6 meses</li>
+            <li>Gráficas de consumo por área</li>
+            <li>Reportes PDF por departamento</li>
+            <li>Suspender / reactivar líneas</li>
+            <li>Múltiples administradores</li>
+          </ul>
+          <div class="sprint-badge">≈ 4 sprints (8 semanas)</div>
+        </div>
+        <div class="rm-card rm-q3">
+          <div class="qlabel">Q3 2026 · Jul–Set</div>
+          <h4>🟣 Integración y Escala</h4>
+          <p style="font-size:.72rem;color:#581c87;margin-bottom:10px;font-style:italic">Objetivo: Retención clientes enterprise</p>
+          <ul>
+            <li>Integración con facturación</li>
+            <li>Ver facturas y estado de pago</li>
+            <li>Dashboard predictivo (IA básica)</li>
+            <li>Sugerencia automática de plan</li>
+            <li>App móvil (PWA)</li>
+          </ul>
+          <div class="sprint-badge">≈ 5 sprints (10 semanas)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ KPIS ══════════════════════ -->
+<div class="sec" id="kpis">
+  <div class="sec-hdr">
+    <h2>📈 KPIs — Métricas de Éxito del Portal</h2>
+    <p>Cómo mide el PO si el producto está generando valor real</p>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="formula">
+❌ <span class="fvar">Output</span> (malo): "Entregamos 15 historias en el sprint"<br>
+✅ <span class="feq">Outcome</span> (bien): "Reducimos las llamadas al call center en un 35% este mes"
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-card mc1">
+          <h4 style="font-size:.85rem;font-weight:700">📞 Reducción llamadas al call center</h4>
+          <div class="mnum">-40%</div>
+          <div class="mtarget">Meta: 90 días post-lanzamiento MVP</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:72%;background:var(--red)"></div></div>
+          <div class="mhow">Comparar volumen de llamadas sobre "estado de línea" antes vs. después del portal. Señal roja: si a 30 días la reducción es menor al 10% → entrevistar usuarios de inmediato.</div>
+        </div>
+        <div class="metric-card mc2">
+          <h4 style="font-size:.85rem;font-weight:700">😊 NPS del Portal</h4>
+          <div class="mnum">≥ 60</div>
+          <div class="mtarget">Meta: ≥60 en 30 días / ≥70 en 90 días</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:60%;background:var(--blue)"></div></div>
+          <div class="mhow">Encuesta post-interacción: "Del 1-10, ¿recomendarías este portal?" — NPS = Promotores (9-10) - Detractores (0-6).</div>
+        </div>
+        <div class="metric-card mc3">
+          <h4 style="font-size:.85rem;font-weight:700">⏱ Tiempo para completar acción</h4>
+          <div class="mnum">&lt; 2 min</div>
+          <div class="mtarget">Meta: Cambiar plan en &lt;2 min (vs 15 min por teléfono)</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:85%;background:var(--amber)"></div></div>
+          <div class="mhow">Analytics del portal midiendo tiempo entre inicio del flujo "Cambiar Plan" y confirmación. El portal debe ser ≥4x más rápido que la vía telefónica.</div>
+        </div>
+        <div class="metric-card mc4">
+          <h4 style="font-size:.85rem;font-weight:700">📊 Tasa de adopción</h4>
+          <div class="mnum">60%</div>
+          <div class="mtarget">Meta: 60% de clientes activos a los 90 días</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:60%;background:var(--green)"></div></div>
+          <div class="mhow">(Clientes que iniciaron sesión en últimos 30 días / Total con acceso) × 100. Empresas grandes adoptan más lento — considerar onboarding personalizado.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ MAPA DE HERRAMIENTAS ══════════════════════ -->
+<div class="sec" id="toolmap">
+  <div class="sec-hdr">
+    <h2>🔗 Mapa de Herramientas por Etapa</h2>
+    <p>Qué herramienta del PO se aplica en cada fase del análisis funcional</p>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="toolmap-wrap">
+        <div class="toolmap">
+          <div class="toolmap-head">
+            <div>Herramienta</div>
+            <div>1. Inicio</div>
+            <div>2. Discovery</div>
+            <div>3. Análisis</div>
+            <div>4. Priorización</div>
+            <div>5. Documentación</div>
+            <div>6. Validación</div>
+            <div>7. Entrega</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-moscow">MoSCoW</span></div>
+            <div class="cell-no">·</div><div class="cell-no">·</div><div class="cell-yes">✅</div>
+            <div class="cell-yes">⭐</div><div class="cell-no">·</div><div class="cell-yes">✅</div><div class="cell-no">·</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-rice">RICE Scoring</span></div>
+            <div class="cell-no">·</div><div class="cell-no">·</div><div class="cell-no">·</div>
+            <div class="cell-yes">⭐</div><div class="cell-no">·</div><div class="cell-yes">✅</div><div class="cell-no">·</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-kano">Kano Model</span></div>
+            <div class="cell-no">·</div><div class="cell-yes">✅</div><div class="cell-yes">✅</div>
+            <div class="cell-yes">⭐</div><div class="cell-no">·</div><div class="cell-no">·</div><div class="cell-no">·</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-story">User Stories</span></div>
+            <div class="cell-no">·</div><div class="cell-no">·</div><div class="cell-yes">✅</div>
+            <div class="cell-no">·</div><div class="cell-yes">⭐</div><div class="cell-yes">✅</div><div class="cell-yes">✅</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-mvp">MVP</span></div>
+            <div class="cell-yes">✅</div><div class="cell-no">·</div><div class="cell-no">·</div>
+            <div class="cell-yes">⭐</div><div class="cell-yes">✅</div><div class="cell-yes">✅</div><div class="cell-yes">✅</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-map">Roadmap</span></div>
+            <div class="cell-yes">⭐</div><div class="cell-no">·</div><div class="cell-no">·</div>
+            <div class="cell-yes">✅</div><div class="cell-no">·</div><div class="cell-yes">✅</div><div class="cell-yes">✅</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-kpi">KPIs / OKRs</span></div>
+            <div class="cell-yes">⭐</div><div class="cell-no">·</div><div class="cell-no">·</div>
+            <div class="cell-no">·</div><div class="cell-no">·</div><div class="cell-yes">✅</div><div class="cell-yes">⭐</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-map">BPMN / Flujos</span></div>
+            <div class="cell-no">·</div><div class="cell-yes">✅</div><div class="cell-yes">⭐</div>
+            <div class="cell-no">·</div><div class="cell-yes">✅</div><div class="cell-no">·</div><div class="cell-no">·</div>
+          </div>
+          <div class="toolmap-row">
+            <div class="tool-name"><span class="tool-tag tt-map">Customer Journey</span></div>
+            <div class="cell-no">·</div><div class="cell-yes">⭐</div><div class="cell-yes">✅</div>
+            <div class="cell-no">·</div><div class="cell-no">·</div><div class="cell-no">·</div><div class="cell-no">·</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;font-size:.75rem;color:var(--slate)">⭐ = Herramienta principal en esa etapa &nbsp;·&nbsp; ✅ = También se usa &nbsp;·&nbsp; · = No aplica</div>
+
+      <hr>
+      <div class="alert alert-amber">
+        <strong>💡 Resumen para la entrevista:</strong>
+        Como PO/Analista Funcional, uso MoSCoW y RICE en la Priorización (etapa 4), User Stories en la Documentación (etapa 5), y KPIs en la Entrega (etapa 7). Kano lo aplico desde el Discovery (etapa 2) para entender qué features generan satisfacción real vs. las que son solo "ruido". El Roadmap lo defino en el Inicio y lo reviso cada sprint con los stakeholders.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
 <div class="footer">
-  Preparación de entrevista — Marco Saldarriaga Medina &nbsp;·&nbsp;
-  <a href="/guia-product-owner.html">Ver guía completa PO</a> &nbsp;·&nbsp;
-  <a href="/herramientas-po.html">Ver herramientas PO</a> &nbsp;·&nbsp;
-  <a href="/">Portfolio</a>
+  Marco Saldarriaga Medina · Product Owner / Analista Funcional Senior
+  &nbsp;·&nbsp;<a href="/guia-product-owner.html">Guía PO completa</a>
+  &nbsp;·&nbsp;<a href="/herramientas-po.html">Herramientas</a>
+  &nbsp;·&nbsp;<a href="/">Portfolio</a>
 </div>
 
 <script>
-  function show(id, el) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    el.classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-</script>
+// ── TABS ──
+function show(id, el) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+  window.scrollTo({top:64, behavior:'smooth'});
+}
 
+// ── PROCESS MAP STEPS ──
+const steps = [
+  {
+    title:'🔵 Etapa 1: Inicio — Definición del Problema',
+    color:'#3b82f6',
+    tasks:['Identificar el problema de negocio a resolver','Definir los objetivos medibles (OKRs)','Mapear los stakeholders clave','Establecer restricciones (tiempo, presupuesto, alcance)'],
+    tools:['MVP (visión inicial)','Elevator Pitch','OKRs / KPIs iniciales','Roadmap de alto nivel'],
+    output:'Project Charter · Vision Board · Lista de stakeholders',
+    comsatel:'Comsatel necesita reducir costos del call center. El problema: clientes corporativos no pueden autogestionar sus líneas. El objetivo: -40% llamadas en 90 días.'
+  },
+  {
+    title:'🔵 Etapa 2: Discovery — Levantamiento de Información',
+    color:'#06b6d4',
+    tasks:['Entrevistas con usuarios y stakeholders (5-7 mínimo)','Observación de procesos actuales (shadowing)','Talleres de co-creación (workshops)','Revisión de sistemas existentes y documentación'],
+    tools:['User Interviews','Jobs to Be Done (JTBD)','Customer Journey Map','Kano Survey','Observación directa'],
+    output:'Lista de requerimientos brutos · Journey Map · Pain Points',
+    comsatel:'Entrevistar a 5 administradores de TI corporativos y 3 agentes del call center. Pregunta clave: "¿Qué acciones realizas por teléfono que preferirías hacer tú mismo online?"'
+  },
+  {
+    title:'🟣 Etapa 3: Análisis — Modelado de Procesos',
+    color:'#8b5cf6',
+    tasks:['Modelar el proceso actual (AS-IS)','Diseñar el proceso futuro (TO-BE)','Identificar brechas, dependencias y riesgos técnicos','Elaborar casos de uso de alto nivel'],
+    tools:['BPMN / Diagramas de flujo','UML (casos de uso)','Impact Mapping','Kano Model (clasificación)','Análisis GAP'],
+    output:'Diagramas BPMN · Casos de uso · Mapa de dependencias',
+    comsatel:'Mapear el flujo actual: cliente llama → agente busca contrato → verifica identidad → realiza cambio → confirma. El AS-IS toma 15 min. El TO-BE debe hacerse en 2 min desde el portal.'
+  },
+  {
+    title:'🟡 Etapa 4: Priorización — Qué Construir Primero',
+    color:'#f59e0b',
+    tasks:['Clasificar requerimientos con MoSCoW','Calcular score RICE para cada feature','Aplicar Kano para entender impacto en satisfacción','Definir el alcance del MVP','Construir el Product Backlog priorizado'],
+    tools:['MoSCoW ⭐','RICE Scoring ⭐','Kano Model','MVP Canvas','Planning Poker (estimación)'],
+    output:'Product Backlog priorizado · Definición del MVP · Sprint 1 listo',
+    comsatel:'Login + ver líneas + alertas = MUST (Must Have). Cambio de plan = SHOULD. Reportes PDF = COULD. App nativa = Won\'t Have en Q1. El backlog queda ordenado para el Sprint Planning.'
+  },
+  {
+    title:'🔴 Etapa 5: Documentación — Historias y Criterios',
+    color:'#ec4899',
+    tasks:['Escribir User Stories en formato estándar','Definir criterios de aceptación (Given/When/Then)','Adjuntar wireframes o mockups por historia','Validar que cada historia cumple la Definition of Ready (DoR)'],
+    tools:['User Stories (Formato As a / I want / So that)','Gherkin / BDD','Wireframes / Figma','Definition of Ready (DoR)'],
+    output:'Backlog de User Stories "Ready" · Criterios de aceptación · Mockups aprobados',
+    comsatel:'"Como admin corporativo, quiero ver el consumo de datos de cada línea, para tomar decisiones sin llamar al call center." — Criterio: tabla carga en <3 seg, datos actualizados cada 15 min.'
+  },
+  {
+    title:'🟢 Etapa 6: Validación — Sign-off con Stakeholders',
+    color:'#22c55e',
+    tasks:['Presentar las historias al equipo en el Refinement','Obtener confirmación de stakeholders (sign-off)','Ajustar criterios según feedback recibido','Validar estimaciones con el equipo técnico'],
+    tools:['Sprint Review (validación del incremento)','Revisión MoSCoW (¿sigue siendo Must?)','Definition of Ready','NPS / Feedback de stakeholders'],
+    output:'Backlog refinado y aprobado · DoR cumplido · Sprint Planning listo',
+    comsatel:'Presentar el mockup del portal al gerente comercial de Comsatel y al cliente corporativo piloto. Validar que la lista de líneas responde la pregunta: "¿Necesito llamar al call center para saber el consumo de mi equipo?"'
+  },
+  {
+    title:'🔵 Etapa 7: Entrega — Sprint y Seguimiento',
+    color:'#14b8a6',
+    tasks:['Acompañar al equipo durante el sprint (disponible para preguntas)','Aceptar o rechazar el trabajo en la Sprint Review','Medir los KPIs acordados en Etapa 1','Actualizar el roadmap con el aprendizaje del sprint'],
+    tools:['KPIs / OKRs ⭐','Burndown Chart','Velocity (story points/sprint)','Roadmap actualizado'],
+    output:'Incremento de producto entregado · Métricas actualizadas · Backlog para siguiente sprint',
+    comsatel:'Sprint 1 entregado: login + listado de líneas. Medir: % de admins que ingresan al portal la primera semana (adopción temprana). Si es menor al 20%, hay un problema de comunicación o usabilidad.'
+  }
+];
+
+let currentStep = 0;
+function showStep(i, el) {
+  currentStep = i;
+  document.querySelectorAll('.pstep').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  renderDetail(i);
+}
+
+function renderDetail(i) {
+  const s = steps[i];
+  const detail = document.getElementById('step-detail');
+  detail.style.borderColor = s.color;
+  detail.innerHTML = `
+    <h4 style="color:${s.color};margin-bottom:16px">${s.title}</h4>
+    <div class="detail-grid">
+      <div class="detail-col">
+        <h5>🔨 Qué hace el PO/Analista</h5>
+        <ul>${s.tasks.map(t=>`<li>→ ${t}</li>`).join('')}</ul>
+      </div>
+      <div class="detail-col">
+        <h5>🛠 Herramientas</h5>
+        <ul>${s.tools.map(t=>`<li><span class="tool-tag" style="background:${s.color}22;color:${s.color}">${t}</span></li>`).join('')}</ul>
+      </div>
+      <div class="detail-col">
+        <h5>📦 Entregable</h5>
+        <ul><li style="color:#374151">${s.output}</li></ul>
+        <h5 style="margin-top:14px">🏢 Ejemplo Comsatel</h5>
+        <ul><li style="color:#374151;font-style:italic">${s.comsatel}</li></ul>
+      </div>
+    </div>
+  `;
+}
+
+// init
+renderDetail(0);
+
+// animate progress bars on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('.progress-fill').forEach(b => {
+        const w = b.style.width; b.style.width='0'; setTimeout(()=>b.style.width=w, 100);
+      });
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.metrics-grid').forEach(g => observer.observe(g));
+</script>
 </body>
 </html>
