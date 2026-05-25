@@ -25,13 +25,22 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:v
 .badge-green{background:#166534;color:#bbf7d0}
 .badge-amber{background:#78350f;color:#fde68a}
 
-/* ── NAV TABS ── */
-.nav{background:#1e293b;overflow-x:auto;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nav-inner{display:flex;max-width:1100px;margin:0 auto;padding:0 8px}
-.tab{flex:none;padding:11px 15px;font-size:.75rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.2s;letter-spacing:.01em}
-.tab:hover{color:#e2e8f0}
-.tab.on{color:var(--sky);border-color:var(--sky)}
+/* ── NAV TABS (grid — siempre visibles) ── */
+.nav{background:#1e293b}
+.nav-inner{display:grid;grid-template-columns:repeat(6,1fr);max-width:1100px;margin:0 auto}
+.tab{padding:10px 8px;font-size:.72rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;text-align:center;transition:.2s;letter-spacing:.01em;white-space:normal;line-height:1.35}
+.tab:hover{color:#e2e8f0;background:rgba(255,255,255,.04)}
+.tab.on{color:var(--sky);border-color:var(--sky);background:rgba(56,189,248,.07)}
+
+/* ── NAV MÓVIL (select dropdown) ── */
+.nav-mob{display:none;background:#1e293b;padding:10px 14px 12px}
+.nav-mob-label{font-size:.65rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.nav-sel{width:100%;padding:10px 36px 10px 14px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;font-size:.88rem;font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px}
+.nav-sel:focus{outline:2px solid var(--sky);outline-offset:2px}
+
+/* ── BREAKPOINTS NAV ── */
+@media(max-width:900px){.nav-inner{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:599px){.nav{display:none}.nav-mob{display:block}}
 
 /* ── MAIN ── */
 .wrap{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
@@ -264,10 +273,10 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
   </div>
 </div>
 
-<!-- NAVIGATION -->
-<div class="nav">
+<!-- NAVIGATION — DESKTOP/TABLET: grid 2 filas · MOBILE: select dropdown -->
+<div class="nav" id="nav-tabs">
   <div class="nav-inner">
-    <div class="tab on"  onclick="show('mapa',this)">🗺 Mapa de Procesos</div>
+    <div class="tab on"  onclick="show('mapa',this)">🗺 Mapa Procesos</div>
     <div class="tab" onclick="show('organig',this)">🏢 Organigrama</div>
     <div class="tab" onclick="show('moscow',this)">🎯 MoSCoW</div>
     <div class="tab" onclick="show('rice',this)">📊 RICE Scoring</div>
@@ -276,10 +285,29 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <div class="tab" onclick="show('mvp',this)">🚀 MVP</div>
     <div class="tab" onclick="show('roadmap',this)">🗓 Roadmap</div>
     <div class="tab" onclick="show('kpis',this)">📈 KPIs</div>
-    <div class="tab" onclick="show('toolmap',this)">🔗 Mapa de Herramientas</div>
-    <div class="tab" onclick="show('matriz',this)">📋 Matriz Requerimientos</div>
-    <div class="tab" onclick="show('riesgos',this)">⚠️ Matriz Riesgos</div>
+    <div class="tab" onclick="show('toolmap',this)">🔗 Herramientas</div>
+    <div class="tab" onclick="show('matriz',this)">📋 Matriz Req.</div>
+    <div class="tab" onclick="show('riesgos',this)">⚠️ Riesgos</div>
   </div>
+</div>
+
+<!-- NAVIGATION — MÓVIL: select nativo -->
+<div class="nav-mob" id="nav-mob">
+  <div class="nav-mob-label">📌 Selecciona una sección</div>
+  <select class="nav-sel" id="nav-select" onchange="showFromSelect(this)">
+    <option value="mapa">🗺 Mapa de Procesos del Análisis Funcional</option>
+    <option value="organig">🏢 Organigrama y Roles</option>
+    <option value="moscow">🎯 MoSCoW — Priorización</option>
+    <option value="rice">📊 RICE Scoring</option>
+    <option value="kano">🔮 Kano Model</option>
+    <option value="stories">📝 User Stories con Criterios</option>
+    <option value="mvp">🚀 MVP — Producto Mínimo Viable</option>
+    <option value="roadmap">🗓 Roadmap Q1–Q3 2026</option>
+    <option value="kpis">📈 KPIs y Métricas de Éxito</option>
+    <option value="toolmap">🔗 Mapa de Herramientas por Etapa</option>
+    <option value="matriz">📋 Matriz de Requerimientos</option>
+    <option value="riesgos">⚠️ Matriz de Riesgos</option>
+  </select>
 </div>
 
 <div class="wrap">
@@ -1793,8 +1821,18 @@ function show(id, el) {
   document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   document.getElementById(id).classList.add('on');
-  el.classList.add('on');
-  window.scrollTo({top:64, behavior:'smooth'});
+  if (el) el.classList.add('on');
+  // Sincroniza el select del móvil
+  const sel = document.getElementById('nav-select');
+  if (sel) sel.value = id;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showFromSelect(sel) {
+  const id = sel.value;
+  // Activa el tab correspondiente en el nav de escritorio (para mantener estado)
+  const tab = document.querySelector('.tab[onclick*="\''+id+'\'"]');
+  show(id, tab);
 }
 
 // ── PROCESS MAP STEPS ──
