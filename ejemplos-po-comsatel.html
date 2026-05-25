@@ -278,6 +278,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <div class="tab" onclick="show('kpis',this)">📈 KPIs</div>
     <div class="tab" onclick="show('toolmap',this)">🔗 Mapa de Herramientas</div>
     <div class="tab" onclick="show('matriz',this)">📋 Matriz Requerimientos</div>
+    <div class="tab" onclick="show('riesgos',this)">⚠️ Matriz Riesgos</div>
   </div>
 </div>
 
@@ -1441,6 +1442,341 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
 </div>
 <!-- /MATRIZ -->
 
+<!-- ══════════════════════ MATRIZ DE RIESGOS ══════════════════════ -->
+<div class="sec" id="riesgos">
+  <div class="sec-hdr">
+    <h2>⚠️ Matriz de Riesgos del Proyecto</h2>
+    <p>Identifica, cuantifica y mitiga los riesgos antes de que impacten el cronograma o el presupuesto</p>
+  </div>
+
+  <!-- QUÉ ES + FÓRMULA + FASES -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fef2f2;font-size:1.3rem">🎯</div>
+      <div>
+        <h3>¿Qué es la Matriz de Riesgos?</h3>
+        <p>Herramienta que combina Probabilidad × Impacto para priorizar qué riesgos atender primero</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">Nivel de Riesgo</span> = <span class="fvar">Probabilidad (1–5)</span> <span class="feq">×</span> <span class="fvar">Impacto (1–5)</span><br><br>
+<span class="fvar">Probabilidad: </span><span class="fval">1=Raro · 2=Improbable · 3=Posible · 4=Probable · 5=Casi Seguro</span><br>
+<span class="fvar">Impacto:      </span><span class="fval">1=Insignificante · 2=Menor · 3=Moderado · 4=Mayor · 5=Catastrófico</span><br><br>
+<span style="color:#4ade80">■ Score 1–4: Bajo </span> <span style="color:#fbbf24"> ■ Score 5–9: Medio </span> <span style="color:#fb923c"> ■ Score 10–14: Alto </span> <span style="color:#f87171"> ■ Score 15–25: Crítico</span>
+      </div>
+
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:20px">
+        <div style="background:#fef2f2;border-radius:8px;padding:14px;border-left:4px solid #ef4444">
+          <div style="font-weight:700;color:#991b1b;margin-bottom:6px">⚠️ RIESGO</div>
+          <div style="font-size:.79rem;color:#374151">Evento que <strong>podría</strong> ocurrir. Aún no ha pasado. Se gestiona con prevención.</div>
+          <div style="font-size:.72rem;color:#991b1b;margin-top:6px;font-style:italic">Ej: "El proveedor podría fallar"</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:8px;padding:14px;border-left:4px solid #f97316">
+          <div style="font-weight:700;color:#c2410c;margin-bottom:6px">🚧 PROBLEMA</div>
+          <div style="font-size:.79rem;color:#374151">Riesgo que <strong>ya ocurrió</strong>. Requiere un plan de contingencia inmediato.</div>
+          <div style="font-size:.72rem;color:#c2410c;margin-top:6px;font-style:italic">Ej: "El proveedor falló hoy"</div>
+        </div>
+        <div style="background:#faf5ff;border-radius:8px;padding:14px;border-left:4px solid #a855f7">
+          <div style="font-weight:700;color:#7e22ce;margin-bottom:6px">📋 INCIDENCIA</div>
+          <div style="font-size:.79rem;color:#374151">Desviación del plan que se reporta, documenta y escala si supera el umbral.</div>
+          <div style="font-size:.72rem;color:#7e22ce;margin-top:6px;font-style:italic">Ej: "La velocity cayó 30% este sprint"</div>
+        </div>
+      </div>
+
+      <div style="font-weight:700;color:var(--navy);margin-bottom:12px;font-size:.9rem">📍 ¿En qué fases del Análisis Funcional se aplica?</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;border:1px solid #bfdbfe;font-size:.78rem;flex:1;min-width:150px">
+          <div style="font-weight:700;color:var(--blue)">Etapa 1 — Inicio</div>
+          <div style="color:#374151;margin-top:3px">Identificación inicial de riesgos · Registro preliminar en el Project Charter</div>
+        </div>
+        <div style="background:#faf5ff;border-radius:8px;padding:10px 14px;border:1px solid #d8b4fe;font-size:.78rem;flex:1;min-width:150px">
+          <div style="font-weight:700;color:#7e22ce">Etapa 2 — Levantamiento</div>
+          <div style="color:#374151;margin-top:3px">Detectar riesgos de integración y datos al levantar el estado AS-IS</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:8px;padding:10px 14px;border:1px solid #fed7aa;font-size:.78rem;flex:1;min-width:150px">
+          <div style="font-weight:700;color:#c2410c">Etapa 3 — Análisis ⭐</div>
+          <div style="color:#374151;margin-top:3px">Cuantificar P×I · Priorizar · Definir planes de mitigación · Entrega formal</div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;border:1px solid #86efac;font-size:.78rem;flex:1;min-width:150px">
+          <div style="font-weight:700;color:#166534">Etapas 4–7 — Continuo</div>
+          <div style="color:#374151;margin-top:3px">Revisión en cada Sprint Review · Actualizar si el score cambia</div>
+        </div>
+      </div>
+      <div class="alert alert-amber">
+        <strong>💡 Regla práctica:</strong> La Matriz de Riesgos se entrega formalmente al finalizar la <strong>Etapa 3 (Análisis)</strong>, junto con los diagramas BPMN. Es un documento vivo que se revisa en cada Sprint Review — no un entregable de inicio que se archiva.
+      </div>
+    </div>
+  </div>
+
+  <!-- VISUAL 5×5 RISK MATRIX -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fef2f2;font-size:1.3rem">🗺</div>
+      <div>
+        <h3>Mapa de Riesgos — Portal Corporativo Comsatel</h3>
+        <p>10 riesgos identificados · Haz clic en cualquier badge para ver el detalle completo</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;align-items:center">
+        <span style="font-size:.78rem;font-weight:600;color:var(--slate)">Leyenda:</span>
+        <div style="display:flex;align-items:center;gap:5px;font-size:.75rem"><div style="width:14px;height:14px;background:#dcfce7;border:1px solid #86efac;border-radius:2px"></div>Bajo (1–4)</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:.75rem"><div style="width:14px;height:14px;background:#fef9c3;border:1px solid #fde047;border-radius:2px"></div>Medio (5–9)</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:.75rem"><div style="width:14px;height:14px;background:#ffedd5;border:1px solid #fdba74;border-radius:2px"></div>Alto (10–14)</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:.75rem"><div style="width:14px;height:14px;background:#fee2e2;border:1px solid #fca5a5;border-radius:2px"></div>Crítico (15–25)</div>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table style="border-collapse:collapse;min-width:500px;width:100%">
+          <thead>
+            <tr>
+              <th style="background:#0f172a;color:#64748b;padding:10px 8px;font-size:.63rem;font-weight:700;text-align:center;border:3px solid white;min-width:88px;vertical-align:middle">PROB ↓ / IMP →</th>
+              <th style="background:var(--navy);color:#f8fafc;padding:9px 4px;text-align:center;font-size:.68rem;font-weight:700;border:3px solid white">I=1<br><span style="font-weight:400;font-size:.58rem">Insignificante</span></th>
+              <th style="background:var(--navy);color:#f8fafc;padding:9px 4px;text-align:center;font-size:.68rem;font-weight:700;border:3px solid white">I=2<br><span style="font-weight:400;font-size:.58rem">Menor</span></th>
+              <th style="background:var(--navy);color:#f8fafc;padding:9px 4px;text-align:center;font-size:.68rem;font-weight:700;border:3px solid white">I=3<br><span style="font-weight:400;font-size:.58rem">Moderado</span></th>
+              <th style="background:var(--navy);color:#f8fafc;padding:9px 4px;text-align:center;font-size:.68rem;font-weight:700;border:3px solid white">I=4<br><span style="font-weight:400;font-size:.58rem">Mayor</span></th>
+              <th style="background:var(--navy);color:#f8fafc;padding:9px 4px;text-align:center;font-size:.68rem;font-weight:700;border:3px solid white">I=5<br><span style="font-weight:400;font-size:.58rem">Catastrófico</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- P=5 -->
+            <tr>
+              <td style="background:#1e293b;color:#94a3b8;padding:10px 8px;font-size:.63rem;font-weight:700;border:3px solid white;text-align:right;white-space:nowrap">P=5 — Casi Seguro</td>
+              <td style="background:#fef9c3;border:3px solid white;text-align:center;padding:10px 4px;min-width:80px"><span style="font-size:.62rem;color:#854d0e;font-weight:700">5</span></td>
+              <td style="background:#ffedd5;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#9a3412;font-weight:700">10</span></td>
+              <td style="background:#fee2e2;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#991b1b;font-weight:700">15</span></td>
+              <td style="background:#fee2e2;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#991b1b;font-weight:700">20</span></td>
+              <td style="background:#fee2e2;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#991b1b;font-weight:700">25</span></td>
+            </tr>
+            <!-- P=4 -->
+            <tr>
+              <td style="background:#1e293b;color:#94a3b8;padding:10px 8px;font-size:.63rem;font-weight:700;border:3px solid white;text-align:right;white-space:nowrap">P=4 — Probable</td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#166534;font-weight:700">4</span></td>
+              <td style="background:#fef9c3;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#854d0e;font-weight:700">8</span></td>
+              <td style="background:#ffedd5;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(4)" style="background:#f97316;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-05</button>
+                <span style="font-size:.6rem;color:#9a3412;font-weight:700">12</span>
+              </td>
+              <td style="background:#fee2e2;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(0)" style="background:#ef4444;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-01</button>
+                <span style="font-size:.6rem;color:#991b1b;font-weight:700">16</span>
+              </td>
+              <td style="background:#fee2e2;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#991b1b;font-weight:700">20</span></td>
+            </tr>
+            <!-- P=3 -->
+            <tr>
+              <td style="background:#1e293b;color:#94a3b8;padding:10px 8px;font-size:.63rem;font-weight:700;border:3px solid white;text-align:right;white-space:nowrap">P=3 — Posible</td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#166534;font-weight:700">3</span></td>
+              <td style="background:#fef9c3;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#854d0e;font-weight:700">6</span></td>
+              <td style="background:#fef9c3;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(5)" style="background:#ca8a04;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-06</button>
+                <span style="font-size:.6rem;color:#854d0e;font-weight:700">9</span>
+              </td>
+              <td style="background:#ffedd5;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(1)" style="background:#f97316;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-02</button>
+                <span style="font-size:.6rem;color:#9a3412;font-weight:700">12</span>
+              </td>
+              <td style="background:#fee2e2;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(2)" style="background:#ef4444;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-03</button>
+                <span style="font-size:.6rem;color:#991b1b;font-weight:700">15</span>
+              </td>
+            </tr>
+            <!-- P=2 -->
+            <tr>
+              <td style="background:#1e293b;color:#94a3b8;padding:10px 8px;font-size:.63rem;font-weight:700;border:3px solid white;text-align:right;white-space:nowrap">P=2 — Improbable</td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#166534;font-weight:700">2</span></td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(6)" style="background:#22c55e;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-07</button>
+                <span style="font-size:.6rem;color:#166534;font-weight:700">4</span>
+              </td>
+              <td style="background:#fef9c3;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(8)" style="background:#ca8a04;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-09</button>
+                <span style="font-size:.6rem;color:#854d0e;font-weight:700">6</span>
+              </td>
+              <td style="background:#fef9c3;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(7)" style="background:#ca8a04;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-08</button>
+                <span style="font-size:.6rem;color:#854d0e;font-weight:700">8</span>
+              </td>
+              <td style="background:#ffedd5;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(3)" style="background:#f97316;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-04</button>
+                <span style="font-size:.6rem;color:#9a3412;font-weight:700">10</span>
+              </td>
+            </tr>
+            <!-- P=1 -->
+            <tr>
+              <td style="background:#1e293b;color:#94a3b8;padding:10px 8px;font-size:.63rem;font-weight:700;border:3px solid white;text-align:right;white-space:nowrap">P=1 — Raro</td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#166534;font-weight:700">1</span></td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#166534;font-weight:700">2</span></td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:8px 4px">
+                <button onclick="showRisk(9)" style="background:#22c55e;color:white;border:none;border-radius:5px;padding:4px 8px;font-size:.65rem;font-weight:800;cursor:pointer;display:block;margin:0 auto 3px;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">R-10</button>
+                <span style="font-size:.6rem;color:#166534;font-weight:700">3</span>
+              </td>
+              <td style="background:#dcfce7;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#166534;font-weight:700">4</span></td>
+              <td style="background:#fef9c3;border:3px solid white;text-align:center;padding:10px 4px"><span style="font-size:.62rem;color:#854d0e;font-weight:700">5</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Detail panel from grid clicks -->
+      <div id="rdetail-grid" style="display:none;background:var(--white);border:2px solid #f97316;border-radius:10px;padding:18px;margin-top:16px;animation:slideIn .2s ease"></div>
+    </div>
+  </div>
+
+  <!-- RISK REGISTER TABLE -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fff7ed;font-size:1.3rem">📋</div>
+      <div>
+        <h3>Registro de Riesgos (Risk Register)</h3>
+        <p>10 riesgos del portal Comsatel · Filtra por categoría · Haz clic en la fila para ver detalle completo</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <style>
+        .rbtn{padding:6px 14px;border:2px solid var(--border);border-radius:20px;background:var(--white);cursor:pointer;font-size:.75rem;font-weight:600;transition:.2s;color:var(--slate)}
+        .rbtn:hover,.rbtn.active{background:var(--navy);color:#f8fafc;border-color:var(--navy)}
+        .rrow{transition:background .15s;cursor:pointer}
+        .rrow:hover{background:#fef2f2!important}
+        .rrow.selected{background:#fff7ed!important;outline:2px solid #f97316}
+        .rrow.hidden{display:none}
+        .rdetail-tbl{background:var(--white);border:2px solid #f97316;border-radius:10px;padding:18px;margin-top:14px;animation:slideIn .2s ease;display:none}
+        .rdetail-tbl.visible{display:block}
+        .rdetail-cols{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:12px}
+        .rdetail-col{border-radius:8px;padding:12px}
+      </style>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+        <button class="rbtn active" onclick="filterRisk('all',this)">Todos (10)</button>
+        <button class="rbtn" onclick="filterRisk('negocio',this)">💼 Negocio</button>
+        <button class="rbtn" onclick="filterRisk('tecnico',this)">⚙️ Técnico</button>
+        <button class="rbtn" onclick="filterRisk('seguridad',this)">🔐 Seguridad</button>
+        <button class="rbtn" onclick="filterRisk('organizacional',this)">👥 Organizacional</button>
+        <button class="rbtn" onclick="filterRisk('recursos',this)">👤 Recursos</button>
+        <button class="rbtn" onclick="filterRisk('externo',this)">🌐 Externo</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="tbl" id="risk-tbl">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th style="min-width:200px">Riesgo</th>
+              <th>Categoría</th>
+              <th style="text-align:center">P</th>
+              <th style="text-align:center">I</th>
+              <th style="text-align:center">Score</th>
+              <th>Nivel</th>
+              <th style="min-width:120px">Propietario</th>
+            </tr>
+          </thead>
+          <tbody id="risk-tbody"></tbody>
+        </table>
+      </div>
+      <div class="rdetail-tbl" id="rdetail-tbl"></div>
+    </div>
+  </div>
+
+  <!-- ESTRATEGIA DE RESPUESTA POR NIVEL -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">🛡</div>
+      <div>
+        <h3>Estrategia de Respuesta por Nivel de Riesgo</h3>
+        <p>Qué acción concreta tomar según el score calculado — de Crítico a Bajo</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <div style="border-radius:10px;padding:16px;background:#fee2e2;border-top:4px solid #ef4444">
+          <div style="font-weight:800;color:#991b1b;margin-bottom:4px;font-size:.9rem">🔴 CRÍTICO (15–25)</div>
+          <div style="font-size:.75rem;color:#7f1d1d;font-style:italic;margin-bottom:10px">Estrategia: EVITAR o TRANSFERIR</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ Escalar inmediatamente a la gerencia</li>
+            <li style="padding:3px 0">✦ Plan de contingencia documentado y aprobado</li>
+            <li style="padding:3px 0">✦ Revisión en cada Sprint Review sin excepción</li>
+            <li style="padding:3px 0">✦ Propietario con autoridad y presupuesto asignado</li>
+            <li style="padding:3px 0">✦ Considerar transferir el riesgo (seguro, contrato)</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#fecaca;padding:6px 8px;border-radius:5px;color:#991b1b">
+            <strong>Comsatel:</strong> R-01 Adopción · R-03 Integración facturación
+          </div>
+        </div>
+        <div style="border-radius:10px;padding:16px;background:#ffedd5;border-top:4px solid #f97316">
+          <div style="font-weight:800;color:#9a3412;margin-bottom:4px;font-size:.9rem">🟠 ALTO (10–14)</div>
+          <div style="font-size:.75rem;color:#7c2d12;font-style:italic;margin-bottom:10px">Estrategia: MITIGAR activamente</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ Plan de mitigación detallado en ejecución</li>
+            <li style="padding:3px 0">✦ Revisión quincenal del estado del riesgo</li>
+            <li style="padding:3px 0">✦ KPI o trigger definido para escalar a Crítico</li>
+            <li style="padding:3px 0">✦ Propietario responsable del seguimiento diario</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#fed7aa;padding:6px 8px;border-radius:5px;color:#9a3412">
+            <strong>Comsatel:</strong> R-02 Migración · R-04 Seguridad · R-05 Scope
+          </div>
+        </div>
+        <div style="border-radius:10px;padding:16px;background:#fef9c3;border-top:4px solid #ca8a04">
+          <div style="font-weight:800;color:#854d0e;margin-bottom:4px;font-size:.9rem">🟡 MEDIO (5–9)</div>
+          <div style="font-size:.75rem;color:#713f12;font-style:italic;margin-bottom:10px">Estrategia: MONITOREAR</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ Registrado con plan de acción listo (sin activar)</li>
+            <li style="padding:3px 0">✦ Revisión en cada Sprint Review</li>
+            <li style="padding:3px 0">✦ Trigger definido para promover a Alto</li>
+            <li style="padding:3px 0">✦ Sin recursos adicionales asignados aún</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#fef08a;padding:6px 8px;border-radius:5px;color:#854d0e">
+            <strong>Comsatel:</strong> R-06 Rendimiento · R-08 Equipo TI · R-09 Regulatorio
+          </div>
+        </div>
+        <div style="border-radius:10px;padding:16px;background:#dcfce7;border-top:4px solid #22c55e">
+          <div style="font-weight:800;color:#166534;margin-bottom:4px;font-size:.9rem">🟢 BAJO (1–4)</div>
+          <div style="font-size:.75rem;color:#14532d;font-style:italic;margin-bottom:10px">Estrategia: ACEPTAR y registrar</div>
+          <ul style="list-style:none;font-size:.79rem;color:#374151">
+            <li style="padding:3px 0">✦ Documentado en el Risk Register</li>
+            <li style="padding:3px 0">✦ Sin acción inmediata requerida</li>
+            <li style="padding:3px 0">✦ Revisión trimestral o por sprint</li>
+            <li style="padding:3px 0">✦ Reasignado si el score sube a Medio</li>
+          </ul>
+          <div style="margin-top:10px;font-size:.72rem;background:#bbf7d0;padding:6px 8px;border-radius:5px;color:#166534">
+            <strong>Comsatel:</strong> R-07 Resistencia call center · R-10 Proveedor SMS
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;background:var(--navy);border-radius:10px;padding:18px">
+        <div style="font-weight:700;color:#7dd3fc;margin-bottom:12px;font-size:.88rem">📊 Resumen de los 10 riesgos de Comsatel</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <div style="background:#fee2e2;border-radius:8px;padding:10px 16px;text-align:center">
+            <div style="font-size:1.5rem;font-weight:800;color:#ef4444">2</div>
+            <div style="font-size:.7rem;color:#991b1b;font-weight:700">🔴 Críticos</div>
+          </div>
+          <div style="background:#ffedd5;border-radius:8px;padding:10px 16px;text-align:center">
+            <div style="font-size:1.5rem;font-weight:800;color:#f97316">3</div>
+            <div style="font-size:.7rem;color:#9a3412;font-weight:700">🟠 Altos</div>
+          </div>
+          <div style="background:#fef9c3;border-radius:8px;padding:10px 16px;text-align:center">
+            <div style="font-size:1.5rem;font-weight:800;color:#ca8a04">3</div>
+            <div style="font-size:.7rem;color:#854d0e;font-weight:700">🟡 Medios</div>
+          </div>
+          <div style="background:#dcfce7;border-radius:8px;padding:10px 16px;text-align:center">
+            <div style="font-size:1.5rem;font-weight:800;color:#22c55e">2</div>
+            <div style="font-size:.7rem;color:#166534;font-weight:700">🟢 Bajos</div>
+          </div>
+          <div style="background:#eff6ff;border-radius:8px;padding:10px 16px;text-align:center;flex:1;min-width:120px">
+            <div style="font-size:.78rem;color:var(--blue);font-weight:700;margin-bottom:4px">Riesgo más urgente</div>
+            <div style="font-size:.75rem;color:#1e40af">R-01 (Score 16) — Adopción del portal<br>R-03 (Score 15) — Integración facturación</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-blue" style="margin-top:20px">
+        <strong>💡 Para la entrevista — frase clave:</strong>
+        "En cada Sprint Review pregunto: '¿Algún riesgo Crítico o Alto se materializó esta semana?' Si la respuesta es sí, activamos el plan de contingencia. Si un riesgo Medio subió de score, lo promovemos a Alto y asignamos propietario inmediatamente. La Matriz de Riesgos no es un entregable de inicio — es un artefacto vivo que reviso sprint a sprint."
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /RIESGOS -->
+
 </div><!-- /wrap -->
 
 <!-- FOOTER -->
@@ -1704,6 +2040,187 @@ function showDetail(id) {
   // Scroll to detail
   setTimeout(() => detail.scrollIntoView({behavior:'smooth', block:'nearest'}), 100);
 }
+
+// ── MATRIZ DE RIESGOS ──
+const riskData = [
+  {id:'R-01',cat:'negocio',catLabel:'💼 Negocio',prob:4,impact:4,score:16,level:'critical',
+   name:'Baja adopción del portal por administradores corporativos',
+   desc:'Los administradores prefieren seguir llamando al call center por resistencia al cambio o falta de habilidad digital.',
+   causes:'Falta de capacitación · Interfaz poco intuitiva · Hábito arraigado de llamar · Sin incentivo para cambiar',
+   effects:'Portal no reduce las llamadas → ROI negativo → Presupuesto no justificado ante la gerencia de Comsatel',
+   mitigation:'Onboarding obligatorio antes del lanzamiento · Guía rápida de 1 página · Métricas de adopción semanales · NPS mensual del portal · Incentivo al primer uso exitoso',
+   trigger:'Adopción <20% en semana 2 post-lanzamiento',
+   owner:'Product Owner + Área Comercial',
+   phase:'Etapa 6 (Validación) y Etapa 7 (Entrega)'},
+  {id:'R-02',cat:'tecnico',catLabel:'⚙️ Técnico',prob:3,impact:4,score:12,level:'high',
+   name:'Falla en la migración de datos de clientes existentes',
+   desc:'Los datos actuales (contratos, líneas, configuración) no migran correctamente y los clientes no acceden el día del lanzamiento.',
+   causes:'Datos inconsistentes en sistemas legados · Formatos incompatibles · Scripts de migración no testeados en producción',
+   effects:'Clientes sin acceso en el lanzamiento → Avalancha de llamadas al call center → Daño reputacional inmediato',
+   mitigation:'Migración por lotes con validación automática · Ambiente staging idéntico a producción · Plan de rollback documentado · Corrida completa 1 semana antes del go-live',
+   trigger:'Error >5% de registros en prueba de migración en staging',
+   owner:'Líder Técnico + DBA',
+   phase:'Etapa 7 (Sprint de Migración)'},
+  {id:'R-03',cat:'tecnico',catLabel:'⚙️ Técnico',prob:3,impact:5,score:15,level:'critical',
+   name:'Falla en integración con sistema de facturación de Comsatel',
+   desc:'La API del sistema interno de facturación no está disponible, documentada o tiene cambios incompatibles con el portal.',
+   causes:'Documentación desactualizada · Sistema legado sin API REST · Cambios en facturación durante el proyecto',
+   effects:'Funciones clave no operan (cambio de plan, alertas, reportes) → MVP incompleto → Retraso de 2–4 sprints',
+   mitigation:'Reunión temprana con equipo de facturación · API mocks para desarrollo paralelo · Contrato de interfaz firmado · Entorno de pruebas de integración dedicado',
+   trigger:'API no disponible al iniciar Sprint 1 de integración',
+   owner:'Analista Funcional / PO + Arquitecto',
+   phase:'Detectar en Etapa 3 (Análisis) — crítico hacerlo temprano'},
+  {id:'R-04',cat:'seguridad',catLabel:'🔐 Seguridad',prob:2,impact:5,score:10,level:'high',
+   name:'Brecha de seguridad en datos corporativos',
+   desc:'Acceso no autorizado a líneas y contratos de clientes corporativos por vulnerabilidad en el portal.',
+   causes:'Sin 2FA · Inyección SQL · Tokens JWT con expiración larga · Sin auditoría de accesos · Sin separación por tenant',
+   effects:'Pérdida de datos sensibles → Multas por Ley 29733 Perú → Pérdida de contratos enterprise → Daño reputacional grave',
+   mitigation:'2FA obligatorio · Pentest antes del go-live · HTTPS/TLS 1.3 · Log de accesos · OWASP Top 10 checklist · Aislamiento por tenant en todas las consultas BD',
+   trigger:'Hallazgo crítico en pentest · Acceso anómalo detectado en logs de auditoría',
+   owner:'Equipo de Seguridad + Arquitecto',
+   phase:'Etapas 3 y 5 (Análisis y Documentación de RNFs) + previo al go-live'},
+  {id:'R-05',cat:'negocio',catLabel:'💼 Negocio',prob:4,impact:3,score:12,level:'high',
+   name:'Cambio de scope por stakeholders durante el sprint',
+   desc:'Stakeholders solicitan cambios en requerimientos ya aprobados o agregan nuevas features en mitad del sprint activo.',
+   causes:'Requerimientos no validados correctamente · Stakeholders que no participaron en el Refinement · Cambios del mercado o de la competencia',
+   effects:'Sprint incompleto → Velocity cae → Roadmap retrasado → Equipo desmotivado → Deuda técnica acumulada',
+   mitigation:'Proceso formal de Change Management · Backlog congelado durante el sprint · Sprint Review como única puerta de entrada de feedback · Scope visible y publicado',
+   trigger:'Solicitud de cambio fuera del Sprint Review · Historia modificada durante el sprint activo',
+   owner:'Product Owner (decisión final sobre el backlog)',
+   phase:'Todas las fases — principalmente Etapas 4 y 7'},
+  {id:'R-06',cat:'tecnico',catLabel:'⚙️ Técnico',prob:3,impact:3,score:9,level:'medium',
+   name:'Rendimiento degradado con volumen alto de líneas',
+   desc:'El portal carga en más de 3 segundos cuando un cliente corporativo tiene más de 500 líneas activas, violando el RNF-01.',
+   causes:'Queries sin optimizar · Sin paginación en API · Sin caché · Volumen de datos subestimado en el diseño inicial',
+   effects:'Usuarios abandonan el portal → Baja adopción → Violación del RNF-01 → Posible penalidad en SLA contractual',
+   mitigation:'Load testing con datos reales antes del lanzamiento · Paginación server-side (50 filas/página) · Caché Redis · Monitoreo de performance en staging con 1.000+ líneas',
+   trigger:'Tiempo de carga >3 seg en pruebas con dataset completo',
+   owner:'Líder Técnico + QA',
+   phase:'Etapa 5 (especificar RNFs) + previo a Etapa 7 (testing de performance)'},
+  {id:'R-07',cat:'organizacional',catLabel:'👥 Organizacional',prob:2,impact:2,score:4,level:'low',
+   name:'Resistencia del call center al cambio organizacional',
+   desc:'El equipo del call center percibe el portal como amenaza a sus puestos y no colabora activamente en la transición.',
+   causes:'Temor a reducción de personal · Sin plan de reasignación de tareas · Falta de comunicación sobre el impacto real en sus roles',
+   effects:'Boicot pasivo al portal · Agentes aconsejan a clientes seguir llamando · Resistencia en etapas de capacitación conjunta',
+   mitigation:'Comunicar temprano: el portal libera al call center de tareas repetitivas → más tiempo para casos complejos de mayor valor · Involucrar al call center en el diseño del portal',
+   trigger:'Feedback negativo persistente del call center en Sprint Reviews · Quejas de clientes que citan recomendación de agentes',
+   owner:'Gerente de Operaciones + RRHH + PO',
+   phase:'Etapa 1 (Inicio — gestión del cambio) y Etapa 6 (Validación)'},
+  {id:'R-08',cat:'recursos',catLabel:'👤 Recursos',prob:2,impact:4,score:8,level:'medium',
+   name:'Falta de disponibilidad del equipo técnico asignado',
+   desc:'Los desarrolladores tienen responsabilidades en otros proyectos de Comsatel y no tienen dedicación completa al portal.',
+   causes:'Equipo compartido entre múltiples proyectos · Vacaciones y ausencias no planificadas · Estimaciones optimistas de capacidad',
+   effects:'Velocity real <70% estimada → Sprints incompletos → Fechas de entrega comprometidas → Roadmap desalineado',
+   mitigation:'Confirmar dedicación exclusiva antes de iniciar · Buffer 20% en estimaciones · Identificar recursos de respaldo · Acuerdo formal de dedicación con la Gerencia de TI',
+   trigger:'Velocity real <70% de la estimada por 2 sprints consecutivos',
+   owner:'Project Manager / PO + Gerencia de TI',
+   phase:'Etapa 1 (definición del equipo) y revisión en cada Sprint Planning'},
+  {id:'R-09',cat:'externo',catLabel:'🌐 Externo',prob:2,impact:3,score:6,level:'medium',
+   name:'Cambios regulatorios en protección de datos (Perú)',
+   desc:'Nuevas regulaciones de la ANPD o Osiptel que exijan cambios en cómo el portal almacena o procesa datos de clientes.',
+   causes:'Evolución de la Ley 29733 de Protección de Datos · Nuevas regulaciones sectoriales de Osiptel para telecomunicaciones',
+   effects:'Rediseño de módulos de almacenamiento · Multas por incumplimiento regulatorio · Retraso en el lanzamiento',
+   mitigation:'Privacy by Design desde el inicio del proyecto · Monitoreo mensual de boletines de ANPD y Osiptel · Asesoría legal incluida en el presupuesto del proyecto',
+   trigger:'Nueva resolución regulatoria publicada durante el proyecto que afecte el almacenamiento de datos',
+   owner:'Área Legal + PO',
+   phase:'Etapa 1 (Inicio) y revisión continua en cada sprint'},
+  {id:'R-10',cat:'externo',catLabel:'🌐 Externo',prob:1,impact:3,score:3,level:'low',
+   name:'Falla del proveedor de notificaciones (email/SMS)',
+   desc:'El servicio de envío de alertas de consumo falla por caída o discontinuidad del proveedor de email o SMS contratado.',
+   causes:'Dependencia de proveedor único (SendGrid, AWS SES) · Problemas de cuota o facturación · Cambios en la API del proveedor sin previo aviso',
+   effects:'Alertas de consumo no se envían → Clientes exceden su plan sin aviso → Reclamos por cargos adicionales en la factura',
+   mitigation:'Arquitectura con proveedor principal + proveedor de respaldo (failover automático) · Cola de mensajes persistente con retry · Monitoreo de tasa de entrega >95%',
+   trigger:'Tasa de entrega de emails <95% sostenida por más de 30 minutos · Proveedor reporta caída de servicio',
+   owner:'Líder Técnico + DevOps',
+   phase:'Etapa 5 (RNF de disponibilidad) y Etapa 7 (configuración de infraestructura)'}
+];
+
+const rLevelMeta = {
+  low:      {bg:'#dcfce7',color:'#166534',border:'#86efac', label:'🟢 Bajo'},
+  medium:   {bg:'#fef9c3',color:'#854d0e',border:'#fde047', label:'🟡 Medio'},
+  high:     {bg:'#ffedd5',color:'#9a3412',border:'#fdba74', label:'🟠 Alto'},
+  critical: {bg:'#fee2e2',color:'#991b1b',border:'#fca5a5', label:'🔴 Crítico'}
+};
+
+function buildRiskTable() {
+  const tbody = document.getElementById('risk-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = riskData.map((r, i) => {
+    const m = rLevelMeta[r.level];
+    return `<tr class="rrow" data-cat="${r.cat}" data-id="${i}" onclick="showRisk(${i})">
+      <td><span class="chip" style="background:${m.bg};color:${m.color}">${r.id}</span></td>
+      <td><strong>${r.name}</strong></td>
+      <td><span style="font-size:.72rem">${r.catLabel}</span></td>
+      <td style="text-align:center;font-weight:700;color:${m.color}">${r.prob}</td>
+      <td style="text-align:center;font-weight:700;color:${m.color}">${r.impact}</td>
+      <td style="text-align:center"><span style="background:${m.bg};color:${m.color};padding:2px 8px;border-radius:8px;font-weight:800;font-size:.78rem">${r.score}</span></td>
+      <td><span style="background:${m.bg};color:${m.color};padding:3px 10px;border-radius:10px;font-size:.72rem;font-weight:700">${m.label}</span></td>
+      <td style="font-size:.72rem;color:var(--slate)">${r.owner.split(' +')[0]}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filterRisk(cat, el) {
+  document.querySelectorAll('.rbtn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.rrow').forEach(row => {
+    row.classList.toggle('hidden', cat !== 'all' && row.dataset.cat !== cat);
+  });
+  document.getElementById('rdetail-tbl').classList.remove('visible');
+  document.querySelectorAll('.rrow').forEach(r => r.classList.remove('selected'));
+}
+
+function showRisk(id) {
+  const r = riskData[id];
+  if (!r) return;
+  const m = rLevelMeta[r.level];
+  const html = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+      <span style="font-weight:800;font-size:.9rem;padding:4px 14px;border-radius:8px;background:${m.bg};color:${m.color};border:1px solid ${m.border}">${r.id} — ${m.label} · Score ${r.score}</span>
+      <span style="font-size:.78rem;color:var(--slate)">${r.catLabel}</span>
+    </div>
+    <div style="font-weight:700;color:var(--navy);margin-bottom:6px;font-size:1rem">${r.name}</div>
+    <p style="font-size:.83rem;color:#374151;margin-bottom:14px;font-style:italic">${r.desc}</p>
+    <div class="rdetail-cols">
+      <div class="rdetail-col" style="background:#fef2f2;border:1px solid #fca5a5">
+        <div style="font-weight:700;color:#991b1b;margin-bottom:6px;font-size:.8rem">⚡ CAUSAS</div>
+        <div style="font-size:.78rem;color:#374151">${r.causes}</div>
+      </div>
+      <div class="rdetail-col" style="background:#fff7ed;border:1px solid #fed7aa">
+        <div style="font-weight:700;color:#c2410c;margin-bottom:6px;font-size:.8rem">💥 EFECTOS</div>
+        <div style="font-size:.78rem;color:#374151">${r.effects}</div>
+      </div>
+      <div class="rdetail-col" style="background:#f0fdf4;border:1px solid #86efac">
+        <div style="font-weight:700;color:#166534;margin-bottom:6px;font-size:.8rem">🛡 MITIGACIÓN</div>
+        <div style="font-size:.78rem;color:#374151">${r.mitigation}</div>
+      </div>
+      <div class="rdetail-col" style="background:#faf5ff;border:1px solid #d8b4fe">
+        <div style="font-weight:700;color:#7e22ce;margin-bottom:6px;font-size:.8rem">🚨 TRIGGER DE ACTIVACIÓN</div>
+        <div style="font-size:.78rem;color:#374151">${r.trigger}</div>
+        <div style="font-weight:700;color:#0f766e;margin-top:10px;margin-bottom:4px;font-size:.8rem">👤 PROPIETARIO</div>
+        <div style="font-size:.78rem;color:#374151">${r.owner}</div>
+        <div style="font-weight:700;color:var(--slate);margin-top:10px;margin-bottom:4px;font-size:.8rem">📍 FASE DEL PROYECTO</div>
+        <div style="font-size:.78rem;color:#374151">${r.phase}</div>
+      </div>
+    </div>`;
+  // Update both detail panels (grid panel + table panel)
+  const gridDet = document.getElementById('rdetail-grid');
+  const tblDet  = document.getElementById('rdetail-tbl');
+  if (gridDet) { gridDet.innerHTML = html; gridDet.style.display = 'block'; }
+  if (tblDet)  { tblDet.innerHTML = html; tblDet.classList.add('visible'); }
+  // Highlight row in table
+  document.querySelectorAll('.rrow').forEach(row => row.classList.remove('selected'));
+  const selRow = document.querySelector('.rrow[data-id="'+id+'"]');
+  if (selRow) selRow.classList.add('selected');
+  // Smooth scroll to table detail
+  setTimeout(() => {
+    if (tblDet && tblDet.classList.contains('visible')) {
+      tblDet.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+  }, 100);
+}
+
+buildRiskTable();
 
 // animate progress bars on scroll
 const observer = new IntersectionObserver(entries => {
