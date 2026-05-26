@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Toolkit PO — Comsatel | Marco Saldarriaga</title>
+<title>Toolkit Analista Funcional Senior & PO | Marco Saldarriaga</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -25,22 +25,23 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:v
 .badge-green{background:#166534;color:#bbf7d0}
 .badge-amber{background:#78350f;color:#fde68a}
 
-/* ── NAV TABS (grid — siempre visibles) ── */
+/* ── NAV TABS — 2 grupos categorizados ── */
 .nav{background:#1e293b}
-.nav-inner{display:grid;grid-template-columns:repeat(6,1fr);max-width:1100px;margin:0 auto}
-.tab{padding:10px 8px;font-size:.72rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;text-align:center;transition:.2s;letter-spacing:.01em;white-space:normal;line-height:1.35}
-.tab:hover{color:#e2e8f0;background:rgba(255,255,255,.04)}
-.tab.on{color:var(--sky);border-color:var(--sky);background:rgba(56,189,248,.07)}
+.nav-inner{display:grid;grid-template-columns:repeat(9,1fr);max-width:1100px;margin:0 auto}
+.nav-cat{font-size:.55rem;color:#475569;font-weight:800;text-transform:uppercase;letter-spacing:.09em;padding:4px 10px;background:#192435;border-top:1px solid #2d3f55;grid-column:1/-1}
+.tab{padding:9px 5px;font-size:.67rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;text-align:center;transition:.2s;white-space:normal;line-height:1.3}
+.tab:hover{color:#e2e8f0;background:rgba(255,255,255,.05)}
+.tab.on{color:var(--sky);border-color:var(--sky);background:rgba(56,189,248,.08)}
 
-/* ── NAV MÓVIL (select dropdown) ── */
+/* ── NAV MÓVIL (select dropdown — <768px) ── */
 .nav-mob{display:none;background:#1e293b;padding:10px 14px 12px}
 .nav-mob-label{font-size:.65rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .nav-sel{width:100%;padding:10px 36px 10px 14px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;font-size:.88rem;font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px}
 .nav-sel:focus{outline:2px solid var(--sky);outline-offset:2px}
 
 /* ── BREAKPOINTS NAV ── */
-@media(max-width:900px){.nav-inner{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:599px){.nav{display:none}.nav-mob{display:block}}
+@media(max-width:960px){.nav-inner{grid-template-columns:repeat(6,1fr)}}
+@media(max-width:680px){.nav{display:none}.nav-mob{display:block}}
 
 /* ── MAIN ── */
 .wrap{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
@@ -262,22 +263,31 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
 <div class="hdr">
   <div class="hdr-inner">
     <div>
-      <h1>🛠 Product Owner Toolkit — Comsatel Perú</h1>
-      <p>Marco Saldarriaga · Análisis Funcional → Product Owner · Preparación entrevista 2026</p>
+      <h1>🛠 Toolkit: Analista Funcional Senior & Product Owner</h1>
+      <p>Marco Saldarriaga · Metodologías · Herramientas · Ejemplos aplicados a Empresa de TI · 2026</p>
     </div>
     <div class="hdr-badges">
-      <span class="badge badge-blue">RICE Scoring</span>
-      <span class="badge badge-amber">MoSCoW</span>
-      <span class="badge badge-green">Kano · MVP · Roadmap</span>
+      <span class="badge badge-blue">BPM · Lean 6σ · PMI/Ágil</span>
+      <span class="badge badge-amber">BSC · IA/RPA · Finanzas</span>
+      <span class="badge badge-green">MoSCoW · RICE · Kano · MVP</span>
     </div>
   </div>
 </div>
 
-<!-- NAVIGATION — DESKTOP/TABLET: grid 2 filas · MOBILE: select dropdown -->
+<!-- NAVIGATION — DESKTOP: 2 grupos 9×9 con categorías · MOBILE: select -->
 <div class="nav" id="nav-tabs">
   <div class="nav-inner">
-    <div class="tab on"  onclick="show('mapa',this)">🗺 Mapa Procesos</div>
+    <div class="nav-cat">🔬 Análisis Funcional &amp; Metodologías</div>
+    <div class="tab on" onclick="show('mapa',this)">🗺 Mapa de Procesos</div>
     <div class="tab" onclick="show('organig',this)">🏢 Organigrama</div>
+    <div class="tab" onclick="show('bpm',this)">🔄 BPM</div>
+    <div class="tab" onclick="show('lean',this)">⚡ Lean Six Sigma</div>
+    <div class="tab" onclick="show('pmi',this)">🏗 PMI / Ágil</div>
+    <div class="tab" onclick="show('bsc',this)">🎛 Balanced Scorecard</div>
+    <div class="tab" onclick="show('autoIA',this)">🤖 IA &amp; Automatización</div>
+    <div class="tab" onclick="show('finanzas',this)">💰 Análisis Financiero</div>
+    <div class="tab" onclick="show('toolmap',this)">🔗 Herramientas</div>
+    <div class="nav-cat">🛠 Herramientas PO &amp; Entregables</div>
     <div class="tab" onclick="show('moscow',this)">🎯 MoSCoW</div>
     <div class="tab" onclick="show('rice',this)">📊 RICE Scoring</div>
     <div class="tab" onclick="show('kano',this)">🔮 Kano Model</div>
@@ -285,31 +295,39 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <div class="tab" onclick="show('mvp',this)">🚀 MVP</div>
     <div class="tab" onclick="show('roadmap',this)">🗓 Roadmap</div>
     <div class="tab" onclick="show('kpis',this)">📈 KPIs</div>
-    <div class="tab" onclick="show('toolmap',this)">🔗 Herramientas</div>
-    <div class="tab" onclick="show('matriz',this)">📋 Matriz Req.</div>
+    <div class="tab" onclick="show('matriz',this)">📋 Requisitos</div>
     <div class="tab" onclick="show('riesgos',this)">⚠️ Riesgos</div>
   </div>
 </div>
 
-<!-- NAVIGATION — MÓVIL: select nativo -->
+<!-- NAVIGATION — MÓVIL: select nativo con optgroups -->
 <div class="nav-mob" id="nav-mob">
   <div class="nav-mob-label">📌 Selecciona una sección</div>
   <select class="nav-sel" id="nav-select" onchange="showFromSelect(this)">
-    <option value="mapa">🗺 Mapa de Procesos del Análisis Funcional</option>
-    <option value="organig">🏢 Organigrama y Roles</option>
-    <option value="moscow">🎯 MoSCoW — Priorización</option>
-    <option value="rice">📊 RICE Scoring</option>
-    <option value="kano">🔮 Kano Model</option>
-    <option value="stories">📝 User Stories con Criterios</option>
-    <option value="mvp">🚀 MVP — Producto Mínimo Viable</option>
-    <option value="roadmap">🗓 Roadmap Q1–Q3 2026</option>
-    <option value="kpis">📈 KPIs y Métricas de Éxito</option>
-    <option value="toolmap">🔗 Mapa de Herramientas por Etapa</option>
-    <option value="matriz">📋 Matriz de Requerimientos</option>
-    <option value="riesgos">⚠️ Matriz de Riesgos</option>
+    <optgroup label="🔬 Análisis Funcional &amp; Metodologías">
+      <option value="mapa">🗺 Mapa de Procesos del Análisis Funcional</option>
+      <option value="organig">🏢 Organigrama y Roles del Equipo</option>
+      <option value="bpm">🔄 BPM — Business Process Management</option>
+      <option value="lean">⚡ Lean Six Sigma — DMAIC</option>
+      <option value="pmi">🏗 Gestión de Proyectos — PMI / Ágil</option>
+      <option value="bsc">🎛 Balanced Scorecard — 4 Perspectivas</option>
+      <option value="autoIA">🤖 IA y Automatización de Procesos</option>
+      <option value="finanzas">💰 Análisis de Procesos Financieros</option>
+      <option value="toolmap">🔗 Mapa de Herramientas por Etapa</option>
+    </optgroup>
+    <optgroup label="🛠 Herramientas PO &amp; Entregables">
+      <option value="moscow">🎯 MoSCoW — Priorización</option>
+      <option value="rice">📊 RICE Scoring</option>
+      <option value="kano">🔮 Kano Model</option>
+      <option value="stories">📝 User Stories con Criterios de Aceptación</option>
+      <option value="mvp">🚀 MVP — Producto Mínimo Viable</option>
+      <option value="roadmap">🗓 Roadmap Q1–Q3 2026</option>
+      <option value="kpis">📈 KPIs y Métricas de Éxito</option>
+      <option value="matriz">📋 Matriz de Requerimientos</option>
+      <option value="riesgos">⚠️ Matriz de Riesgos del Proyecto</option>
+    </optgroup>
   </select>
 </div>
-
 <div class="wrap">
 
 <!-- ══════════════════════ MAPA DE PROCESOS ══════════════════════ -->
@@ -364,7 +382,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
       <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">🔄</div>
       <div>
         <h3>Ciclo completo del Análisis Funcional</h3>
-        <p>Vista general de entregables por etapa — contexto Comsatel Portal Corporativo</p>
+        <p>Vista general de entregables por etapa — contexto TI Corp Portal Corporativo</p>
       </div>
     </div>
     <div class="card-body">
@@ -437,7 +455,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <div class="card-hdr">
       <div class="icon-box" style="background:#eff6ff">🏢</div>
       <div>
-        <h3>Estructura del Equipo Scrum — Comsatel Portal</h3>
+        <h3>Estructura del Equipo Scrum — TI Corp Portal</h3>
         <p>Roles, responsabilidades y flujo de comunicación</p>
       </div>
     </div>
@@ -457,7 +475,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
           <div class="org-center">
             <div class="org-node on-po" style="width:280px">
               <div class="title">🎯 Product Owner / Analista Funcional Senior</div>
-              <div class="sub">Marco Saldarriaga · Tu rol en Comsatel</div>
+              <div class="sub">Marco Saldarriaga · Tu rol en TI Corp</div>
               <div style="margin-top:8px;font-size:.72rem;color:#1e40af">
                 Gestiona: Backlog · Priorización · User Stories · Criterios de aceptación
               </div>
@@ -588,7 +606,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
 <div class="sec" id="moscow">
   <div class="sec-hdr">
     <h2>🎯 Método MoSCoW — Priorización de Requerimientos</h2>
-    <p>Técnica para clasificar requerimientos por urgencia e importancia — aplicada al Portal Comsatel</p>
+    <p>Técnica para clasificar requerimientos por urgencia e importancia — aplicada al Portal TI Corp</p>
   </div>
 
   <div class="card">
@@ -670,7 +688,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
         2. Pide a cada stakeholder que clasifique cada requerimiento (M/S/C/W).<br>
         3. Si un requerimiento tiene conflicto de clasificación → negocia con criterio de impacto al usuario final.<br>
         4. El backlog ordenado es el resultado de este ejercicio.<br><br>
-        <strong>Frase para la entrevista:</strong> "En Comsatel usaría MoSCoW en el primer taller con el equipo comercial para alinear qué entra en el MVP sin generar falsas expectativas."
+        <strong>Frase para la entrevista:</strong> "En TI Corp usaría MoSCoW en el primer taller con el equipo comercial para alinear qué entra en el MVP sin generar falsas expectativas."
       </div>
 
       <hr>
@@ -816,7 +834,7 @@ El Kano responde: <span class="fvar">¿Qué pasa con la satisfacción si NO entr
 <span class="gh-kw">Entonces</span> <span class="gh-val">recibo error 403 y soy redirigido al dashboard</span><br>
 <span class="gh-kw">Y</span>        <span class="gh-val">el intento queda en el log de auditoría</span>
       </div>
-      <div class="notes"><strong>📌 Riesgos:</strong> Si la empresa tiene &gt;500 líneas → paginación de 50 en 50 + lazy loading. Dependencia: API del sistema de gestión de líneas de Comsatel (backend existente).</div>
+      <div class="notes"><strong>📌 Riesgos:</strong> Si la empresa tiene &gt;500 líneas → paginación de 50 en 50 + lazy loading. Dependencia: API del sistema de gestión de líneas de TI Corp (backend existente).</div>
     </div>
   </div>
 
@@ -911,7 +929,7 @@ reduciremos las llamadas al call center en un <span class="fvar">40%</span> en l
 <!-- ══════════════════════ ROADMAP ══════════════════════ -->
 <div class="sec" id="roadmap">
   <div class="sec-hdr">
-    <h2>🗓 Product Roadmap — Portal Corporativo Comsatel</h2>
+    <h2>🗓 Product Roadmap — Portal TI Corp</h2>
     <p>Visión de 3 trimestres orientada a valor de negocio, no a fechas exactas</p>
   </div>
   <div class="card">
@@ -1180,7 +1198,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ El sistema genera reportes en PDF</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#dbeafe;padding:6px 8px;border-radius:5px;color:#1e40af">
-            <strong>Comsatel:</strong> RF-01 Ver líneas · RF-02 Cambiar plan · RF-03 Alertas consumo
+            <strong>TI Corp:</strong> RF-01 Ver líneas · RF-02 Cambiar plan · RF-03 Alertas consumo
           </div>
         </div>
 
@@ -1194,7 +1212,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ Datos encriptados con TLS 1.3</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#ffedd5;padding:6px 8px;border-radius:5px;color:#c2410c">
-            <strong>Comsatel:</strong> RNF-01 Rendimiento · RNF-02 Seguridad · RNF-03 Disponibilidad
+            <strong>TI Corp:</strong> RNF-01 Rendimiento · RNF-02 Seguridad · RNF-03 Disponibilidad
           </div>
         </div>
 
@@ -1208,7 +1226,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ El reporte usa precios del contrato vigente</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#f3e8ff;padding:6px 8px;border-radius:5px;color:#7e22ce">
-            <strong>Comsatel:</strong> RN-01 Privacidad · RN-02 Facturación · RN-03 Alertas
+            <strong>TI Corp:</strong> RN-01 Privacidad · RN-02 Facturación · RN-03 Alertas
           </div>
         </div>
 
@@ -1222,7 +1240,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ Período de coexistencia de sistemas (30 días)</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#dcfce7;padding:6px 8px;border-radius:5px;color:#166534">
-            <strong>Comsatel:</strong> RT-01 Migración · RT-02 Capacitación · RT-03 Paralelo
+            <strong>TI Corp:</strong> RT-01 Migración · RT-02 Capacitación · RT-03 Paralelo
           </div>
         </div>
       </div>
@@ -1234,7 +1252,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <div class="card-hdr">
       <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">📊</div>
       <div>
-        <h3>Matriz Completa — Portal Corporativo Comsatel</h3>
+        <h3>Matriz Completa — Portal TI Corp</h3>
         <p>Requerimiento → Elemento del sistema → Beneficio medible · Haz clic en una fila para ver el detalle</p>
       </div>
     </div>
@@ -1542,7 +1560,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <div class="card-hdr">
       <div class="icon-box" style="background:#fef2f2;font-size:1.3rem">🗺</div>
       <div>
-        <h3>Mapa de Riesgos — Portal Corporativo Comsatel</h3>
+        <h3>Mapa de Riesgos — Portal TI Corp</h3>
         <p>10 riesgos identificados · Haz clic en cualquier badge para ver el detalle completo</p>
       </div>
     </div>
@@ -1657,7 +1675,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
       <div class="icon-box" style="background:#fff7ed;font-size:1.3rem">📋</div>
       <div>
         <h3>Registro de Riesgos (Risk Register)</h3>
-        <p>10 riesgos del portal Comsatel · Filtra por categoría · Haz clic en la fila para ver detalle completo</p>
+        <p>10 riesgos del portal TI Corp · Filtra por categoría · Haz clic en la fila para ver detalle completo</p>
       </div>
     </div>
     <div class="card-body">
@@ -1725,7 +1743,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ Considerar transferir el riesgo (seguro, contrato)</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#fecaca;padding:6px 8px;border-radius:5px;color:#991b1b">
-            <strong>Comsatel:</strong> R-01 Adopción · R-03 Integración facturación
+            <strong>TI Corp:</strong> R-01 Adopción · R-03 Integración facturación
           </div>
         </div>
         <div style="border-radius:10px;padding:16px;background:#ffedd5;border-top:4px solid #f97316">
@@ -1738,7 +1756,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ Propietario responsable del seguimiento diario</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#fed7aa;padding:6px 8px;border-radius:5px;color:#9a3412">
-            <strong>Comsatel:</strong> R-02 Migración · R-04 Seguridad · R-05 Scope
+            <strong>TI Corp:</strong> R-02 Migración · R-04 Seguridad · R-05 Scope
           </div>
         </div>
         <div style="border-radius:10px;padding:16px;background:#fef9c3;border-top:4px solid #ca8a04">
@@ -1751,7 +1769,7 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ Sin recursos adicionales asignados aún</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#fef08a;padding:6px 8px;border-radius:5px;color:#854d0e">
-            <strong>Comsatel:</strong> R-06 Rendimiento · R-08 Equipo TI · R-09 Regulatorio
+            <strong>TI Corp:</strong> R-06 Rendimiento · R-08 Equipo TI · R-09 Regulatorio
           </div>
         </div>
         <div style="border-radius:10px;padding:16px;background:#dcfce7;border-top:4px solid #22c55e">
@@ -1764,13 +1782,13 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
             <li style="padding:3px 0">✦ Reasignado si el score sube a Medio</li>
           </ul>
           <div style="margin-top:10px;font-size:.72rem;background:#bbf7d0;padding:6px 8px;border-radius:5px;color:#166534">
-            <strong>Comsatel:</strong> R-07 Resistencia call center · R-10 Proveedor SMS
+            <strong>TI Corp:</strong> R-07 Resistencia call center · R-10 Proveedor SMS
           </div>
         </div>
       </div>
 
       <div style="margin-top:20px;background:var(--navy);border-radius:10px;padding:18px">
-        <div style="font-weight:700;color:#7dd3fc;margin-bottom:12px;font-size:.88rem">📊 Resumen de los 10 riesgos de Comsatel</div>
+        <div style="font-weight:700;color:#7dd3fc;margin-bottom:12px;font-size:.88rem">📊 Resumen de los 10 riesgos de TI Corp</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px">
           <div style="background:#fee2e2;border-radius:8px;padding:10px 16px;text-align:center">
             <div style="font-size:1.5rem;font-weight:800;color:#ef4444">2</div>
@@ -1804,6 +1822,902 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
 
 </div>
 <!-- /RIESGOS -->
+
+
+<!-- ══════════════════════ BPM ══════════════════════ -->
+<div class="sec" id="bpm">
+  <div class="sec-hdr">
+    <h2>🔄 BPM — Business Process Management</h2>
+    <p>Disciplina para descubrir, modelar, ejecutar, monitorear y optimizar procesos de negocio</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">🎯</div>
+      <div><h3>¿Qué es BPM y por qué lo usa el Analista Funcional?</h3>
+      <p>BPM ≠ BPMN · BPM es la disciplina · BPMN es la notación para diagramarlo</p></div>
+    </div>
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">BPM</span> = <span class="fvar">Descubrir</span> → <span class="fvar">Diseñar</span> → <span class="fvar">Modelar</span> → <span class="fvar">Ejecutar</span> → <span class="fvar">Monitorear</span> → <span class="fvar">Optimizar</span><br><br>
+<span class="fvar">AS-IS </span><span class="feq">→</span> Proceso actual (con desperdicios y cuellos de botella)<br>
+<span class="fvar">TO-BE </span><span class="feq">→</span> Proceso futuro optimizado (lo que el sistema debe hacer)<br>
+<span class="fvar">GAP   </span><span class="feq">→</span> La brecha entre ambos = <span class="fval">el backlog de trabajo</span>
+      </div>
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+        <div style="background:#eff6ff;border-radius:8px;padding:14px;border-top:3px solid var(--blue)">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:6px">1 Descubrir</div>
+          <div style="font-size:.78rem;color:#374151">Entrevistas, observación, talleres · Documentar el proceso AS-IS · Identificar pain points</div>
+        </div>
+        <div style="background:#faf5ff;border-radius:8px;padding:14px;border-top:3px solid var(--purple)">
+          <div style="font-weight:700;color:#7e22ce;margin-bottom:6px">2 Diseñar</div>
+          <div style="font-size:.78rem;color:#374151">Proponer el TO-BE · Análisis GAP · Definir KPIs del proceso · Involucrar stakeholders</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:8px;padding:14px;border-top:3px solid var(--orange)">
+          <div style="font-weight:700;color:#c2410c;margin-bottom:6px">3 Modelar</div>
+          <div style="font-size:.78rem;color:#374151">Diagramar con BPMN 2.0 · Validar con el equipo · Conectar flujos a User Stories</div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:14px;border-top:3px solid var(--green)">
+          <div style="font-weight:700;color:#166534;margin-bottom:6px">4 Ejecutar</div>
+          <div style="font-size:.78rem;color:#374151">Implementar el proceso (manual, semi-auto o RPA) · UAT · Gestión del cambio</div>
+        </div>
+        <div style="background:#fef9c3;border-radius:8px;padding:14px;border-top:3px solid #ca8a04">
+          <div style="font-weight:700;color:#854d0e;margin-bottom:6px">5 Monitorear</div>
+          <div style="font-size:.78rem;color:#374151">KPIs del proceso · Dashboards · Alertas de desviación · SLA tracking</div>
+        </div>
+        <div style="background:#fef2f2;border-radius:8px;padding:14px;border-top:3px solid var(--red)">
+          <div style="font-weight:700;color:#991b1b;margin-bottom:6px">6 Optimizar</div>
+          <div style="font-size:.78rem;color:#374151">Kaizen continuo · Nuevos ciclos de mejora · Lecciones aprendidas · Actualizar BPMN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fff7ed;font-size:1.3rem">🔷</div>
+      <div><h3>Elementos BPMN 2.0 — La Notación Estándar</h3>
+      <p>Los símbolos que todo Analista Funcional debe dominar para modelar procesos</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div style="border-radius:8px;padding:14px;background:#eff6ff;border:1px solid #bfdbfe">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:8px">⬤ Eventos (Events)</div>
+          <div style="font-size:.78rem;color:#374151">
+            <div style="padding:3px 0"><strong>Inicio (●):</strong> Dispara el proceso</div>
+            <div style="padding:3px 0"><strong>Intermedio (○):</strong> Ocurre durante el flujo</div>
+            <div style="padding:3px 0"><strong>Fin (◉):</strong> Termina el proceso</div>
+            <div style="padding:3px 0"><strong>Timer, Error, Mensaje:</strong> Tipos de eventos</div>
+          </div>
+        </div>
+        <div style="border-radius:8px;padding:14px;background:#f0fdf4;border:1px solid #86efac">
+          <div style="font-weight:700;color:#166534;margin-bottom:8px">▭ Tareas (Tasks)</div>
+          <div style="font-size:.78rem;color:#374151">
+            <div style="padding:3px 0"><strong>Usuario (👤):</strong> La hace una persona</div>
+            <div style="padding:3px 0"><strong>Servicio (⚙):</strong> La hace un sistema/API</div>
+            <div style="padding:3px 0"><strong>Script (📜):</strong> La ejecuta código automático</div>
+            <div style="padding:3px 0"><strong>Manual (✋):</strong> Fuera del sistema</div>
+          </div>
+        </div>
+        <div style="border-radius:8px;padding:14px;background:#fff7ed;border:1px solid #fed7aa">
+          <div style="font-weight:700;color:#c2410c;margin-bottom:8px">◇ Compuertas (Gateways)</div>
+          <div style="font-size:.78rem;color:#374151">
+            <div style="padding:3px 0"><strong>Exclusiva (×):</strong> Solo un camino (if/else)</div>
+            <div style="padding:3px 0"><strong>Paralela (+):</strong> Todos los caminos a la vez</div>
+            <div style="padding:3px 0"><strong>Inclusiva (○):</strong> Uno o más caminos</div>
+            <div style="padding:3px 0"><strong>Evento (⬟):</strong> Basada en eventos</div>
+          </div>
+        </div>
+        <div style="border-radius:8px;padding:14px;background:#faf5ff;border:1px solid #d8b4fe">
+          <div style="font-weight:700;color:#7e22ce;margin-bottom:8px">→ Flujos y Contenedores</div>
+          <div style="font-size:.78rem;color:#374151">
+            <div style="padding:3px 0"><strong>Flujo de secuencia (→):</strong> Orden de tareas</div>
+            <div style="padding:3px 0"><strong>Flujo de mensaje (--→):</strong> Entre participantes</div>
+            <div style="padding:3px 0"><strong>Pool:</strong> Participante del proceso</div>
+            <div style="padding:3px 0"><strong>Lane (carril):</strong> Rol dentro del pool</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">📊</div>
+      <div><h3>Ejemplo AS-IS → TO-BE: Mesa de Ayuda TI Corp</h3>
+      <p>Cómo el BPM transforma un proceso manual en uno automatizado — con métricas reales</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:16px;grid-template-columns:1fr 1fr">
+        <div style="background:#fef2f2;border-radius:10px;padding:16px;border:2px solid #fca5a5">
+          <div style="font-weight:800;color:#991b1b;margin-bottom:10px;font-size:.9rem">🔴 AS-IS — Proceso Actual</div>
+          <div style="font-size:.78rem;color:#374151">
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #fee2e2">
+              <span style="color:#991b1b;font-weight:700;min-width:18px">1.</span>
+              <span>Empleado detecta problema y llama al helpdesk (espera 5 min)</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #fee2e2">
+              <span style="color:#991b1b;font-weight:700;min-width:18px">2.</span>
+              <span>Agente crea ticket manualmente en el sistema</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #fee2e2">
+              <span style="color:#991b1b;font-weight:700;min-width:18px">3.</span>
+              <span>Supervisor asigna manualmente al técnico correcto</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #fee2e2">
+              <span style="color:#991b1b;font-weight:700;min-width:18px">4.</span>
+              <span>Técnico resuelve · Llama al empleado para confirmar</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0">
+              <span style="color:#991b1b;font-weight:700;min-width:18px">5.</span>
+              <span>Agente cierra el ticket manualmente</span>
+            </div>
+          </div>
+          <div style="margin-top:12px;background:#fee2e2;border-radius:6px;padding:8px;font-size:.72rem">
+            <strong>⏱ Tiempo promedio: 45 min</strong> · 💰 Costo: $25/ticket · 📞 500 tickets/mes
+          </div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:10px;padding:16px;border:2px solid #86efac">
+          <div style="font-weight:800;color:#166534;margin-bottom:10px;font-size:.9rem">🟢 TO-BE — Proceso Optimizado</div>
+          <div style="font-size:.78rem;color:#374151">
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #dcfce7">
+              <span style="color:#166534;font-weight:700;min-width:18px">1.</span>
+              <span>Empleado reporta incidencia en el portal (formulario inteligente)</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #dcfce7">
+              <span style="color:#166534;font-weight:700;min-width:18px">2.</span>
+              <span>Sistema auto-clasifica y crea ticket con prioridad asignada</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #dcfce7">
+              <span style="color:#166534;font-weight:700;min-width:18px">3.</span>
+              <span>Sistema notifica al técnico más disponible automáticamente</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid #dcfce7">
+              <span style="color:#166534;font-weight:700;min-width:18px">4.</span>
+              <span>Técnico resuelve · Sistema notifica al empleado por email</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:6px;padding:4px 0">
+              <span style="color:#166534;font-weight:700;min-width:18px">5.</span>
+              <span>Sistema cierra ticket + envía encuesta de satisfacción</span>
+            </div>
+          </div>
+          <div style="margin-top:12px;background:#dcfce7;border-radius:6px;padding:8px;font-size:.72rem">
+            <strong>⏱ Tiempo promedio: 15 min</strong> · 💰 Costo: $8/ticket · 📈 Ahorro: $8,500/mes
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;background:var(--navy);border-radius:8px;padding:14px;display:flex;flex-wrap:wrap;gap:16px">
+        <div style="text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.4rem;font-weight:800;color:#22c55e">-30 min</div>
+          <div style="font-size:.7rem;color:#94a3b8">por ticket</div>
+        </div>
+        <div style="text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.4rem;font-weight:800;color:#38bdf8">-68%</div>
+          <div style="font-size:.7rem;color:#94a3b8">costo por ticket</div>
+        </div>
+        <div style="text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.4rem;font-weight:800;color:#fbbf24">$102K</div>
+          <div style="font-size:.7rem;color:#94a3b8">ahorro anual</div>
+        </div>
+        <div style="text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.4rem;font-weight:800;color:#a78bfa">GAP → Backlog</div>
+          <div style="font-size:.7rem;color:#94a3b8">el gap se convierte en User Stories</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fef9c3;font-size:1.3rem">🛠</div>
+      <div><h3>Herramientas BPM y dónde aplica en el Análisis Funcional</h3></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:16px">
+        <div style="background:#f8fafc;border-radius:8px;padding:12px;border:1px solid var(--border)">
+          <div style="font-weight:700;color:var(--navy);margin-bottom:4px">🆓 Bizagi Modeler</div>
+          <div style="font-size:.76rem;color:var(--slate)">Gratuito · Estándar BPMN 2.0 · Muy usado en Perú/LATAM</div>
+        </div>
+        <div style="background:#f8fafc;border-radius:8px;padding:12px;border:1px solid var(--border)">
+          <div style="font-weight:700;color:var(--navy);margin-bottom:4px">🔵 Camunda</div>
+          <div style="font-size:.76rem;color:var(--slate)">Open source · Automatización de procesos · Integra con código</div>
+        </div>
+        <div style="background:#f8fafc;border-radius:8px;padding:12px;border:1px solid var(--border)">
+          <div style="font-weight:700;color:var(--navy);margin-bottom:4px">🌐 Lucidchart</div>
+          <div style="font-size:.76rem;color:var(--slate)">Web · Colaborativo · Ideal para trabajo remoto en equipo</div>
+        </div>
+        <div style="background:#f8fafc;border-radius:8px;padding:12px;border:1px solid var(--border)">
+          <div style="font-weight:700;color:var(--navy);margin-bottom:4px">🟣 ARIS</div>
+          <div style="font-size:.76rem;color:var(--slate)">Enterprise · Estándar corporativo · Costoso pero poderoso</div>
+        </div>
+        <div style="background:#f8fafc;border-radius:8px;padding:12px;border:1px solid var(--border)">
+          <div style="font-weight:700;color:var(--navy);margin-bottom:4px">🔷 Visio / Draw.io</div>
+          <div style="font-size:.76rem;color:var(--slate)">Microsoft Visio (pago) · Draw.io (gratuito y web)</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <div style="background:#eff6ff;border-radius:6px;padding:8px 12px;font-size:.76rem"><strong>Etapa 2:</strong> Documentar AS-IS en entrevistas</div>
+        <div style="background:#faf5ff;border-radius:6px;padding:8px 12px;font-size:.76rem"><strong>Etapa 3:</strong> Diseñar TO-BE y análisis GAP</div>
+        <div style="background:#f0fdf4;border-radius:6px;padding:8px 12px;font-size:.76rem"><strong>Etapa 5:</strong> Convertir flujos en User Stories</div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:14px">
+        <strong>💡 Para la entrevista:</strong> "Uso BPMN para mostrar el proceso AS-IS al equipo técnico y al negocio en el mismo diagrama. El GAP entre el AS-IS y el TO-BE se convierte directamente en las épicas del product backlog, con cada paso del TO-BE siendo una o varias User Stories."
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /BPM -->
+
+<!-- ══════════════════════ LEAN SIX SIGMA ══════════════════════ -->
+<div class="sec" id="lean">
+  <div class="sec-hdr">
+    <h2>⚡ Lean Six Sigma</h2>
+    <p>Eliminar desperdicios (Lean) + reducir variación y defectos (Six Sigma) = procesos eficientes y predecibles</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fef9c3;font-size:1.3rem">🎯</div>
+      <div><h3>Lean + Six Sigma: ¿Qué son y cómo se combinan?</h3></div>
+    </div>
+    <div class="card-body">
+      <div class="formula">
+<span class="fvar">Lean      </span><span class="feq">= </span><span class="fval">Eliminar desperdicios · Flujo continuo · Entregar valor rápido (Toyota)</span><br>
+<span class="fvar">Six Sigma </span><span class="feq">= </span><span class="fval">Reducir variación · 3.4 defectos/millón · Datos como base de decisión (Motorola)</span><br>
+<span class="fvar">Lean 6σ   </span><span class="feq">= </span><span class="fval">Velocidad (Lean) + Calidad (Six Sigma) = Procesos eficientes sin errores</span><br><br>
+<span class="feq">Metodología estrella: </span><span class="fvar">D</span>efine → <span class="fvar">M</span>easure → <span class="fvar">A</span>nalyze → <span class="fvar">I</span>mprove → <span class="fvar">C</span>ontrol <span class="feq">(DMAIC)</span>
+      </div>
+      <div style="display:grid;gap:10px;grid-template-columns:repeat(5,1fr)">
+        <div style="background:#eff6ff;border-radius:8px;padding:12px;text-align:center;border-top:4px solid var(--blue)">
+          <div style="font-size:1.2rem;font-weight:800;color:var(--blue)">D</div>
+          <div style="font-weight:700;color:var(--blue);font-size:.78rem;margin:4px 0">DEFINE</div>
+          <div style="font-size:.7rem;color:#374151">¿Cuál es el problema? · Charter · VOC · SIPOC</div>
+        </div>
+        <div style="background:#faf5ff;border-radius:8px;padding:12px;text-align:center;border-top:4px solid var(--purple)">
+          <div style="font-size:1.2rem;font-weight:800;color:#7e22ce">M</div>
+          <div style="font-weight:700;color:#7e22ce;font-size:.78rem;margin:4px 0">MEASURE</div>
+          <div style="font-size:.7rem;color:#374151">¿Cuál es el estado actual? · Baseline · Datos</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:8px;padding:12px;text-align:center;border-top:4px solid var(--orange)">
+          <div style="font-size:1.2rem;font-weight:800;color:#c2410c">A</div>
+          <div style="font-weight:700;color:#c2410c;font-size:.78rem;margin:4px 0">ANALYZE</div>
+          <div style="font-size:.7rem;color:#374151">¿Cuál es la causa raíz? · Ishikawa · Pareto</div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px;text-align:center;border-top:4px solid var(--green)">
+          <div style="font-size:1.2rem;font-weight:800;color:#166534">I</div>
+          <div style="font-weight:700;color:#166534;font-size:.78rem;margin:4px 0">IMPROVE</div>
+          <div style="font-size:.7rem;color:#374151">¿Cómo lo resolvemos? · Piloto · Implementar</div>
+        </div>
+        <div style="background:#fef9c3;border-radius:8px;padding:12px;text-align:center;border-top:4px solid #ca8a04">
+          <div style="font-size:1.2rem;font-weight:800;color:#854d0e">C</div>
+          <div style="font-weight:700;color:#854d0e;font-size:.78rem;margin:4px 0">CONTROL</div>
+          <div style="font-size:.7rem;color:#374151">¿Cómo lo mantenemos? · SOPs · Dashboard</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fef2f2;font-size:1.3rem">🗑</div>
+      <div><h3>Los 8 Desperdicios (TIMWOODS) en contexto TI</h3>
+      <p>Lean identifica 8 tipos de desperdicio que no agregan valor — todos ocurren en proyectos de TI</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div style="background:#fef2f2;border-radius:8px;padding:12px;border-left:4px solid #ef4444">
+          <div style="font-weight:800;color:#991b1b;font-size:.85rem">T — Transport</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">Información que pasa por muchos intermediarios sin valor · Tickets reenviados entre 5 equipos</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:8px;padding:12px;border-left:4px solid #f97316">
+          <div style="font-weight:800;color:#9a3412;font-size:.85rem">I — Inventory</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">200+ tickets sin resolver acumulados · Features a medio hacer en el backlog sin prioridad</div>
+        </div>
+        <div style="background:#fef9c3;border-radius:8px;padding:12px;border-left:4px solid #ca8a04">
+          <div style="font-weight:800;color:#854d0e;font-size:.85rem">M — Motion</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">Técnicos van físicamente a escritorios para problemas solucionables de forma remota</div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px;border-left:4px solid #22c55e">
+          <div style="font-weight:800;color:#166534;font-size:.85rem">W — Waiting</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">Esperar aprobaciones por 2 horas para un cambio de 5 min · Sprints bloqueados por dependencias</div>
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:12px;border-left:4px solid var(--blue)">
+          <div style="font-weight:800;color:#1e40af;font-size:.85rem">O — Overprocessing</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">Documentar requerimientos en Word + Jira + Confluence + email + reunión. ¿Solo uno era suficiente?</div>
+        </div>
+        <div style="background:#faf5ff;border-radius:8px;padding:12px;border-left:4px solid var(--purple)">
+          <div style="font-weight:800;color:#7e22ce;font-size:.85rem">O — Overproduction</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">Desarrollar features que nadie pidió · Reportes que nadie lee · Funcionalidades sin uso</div>
+        </div>
+        <div style="background:#fef2f2;border-radius:8px;padding:12px;border-left:4px solid #ef4444">
+          <div style="font-weight:800;color:#991b1b;font-size:.85rem">D — Defects</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">Bugs = retrabajos = tiempo perdido · Requisitos mal levantados = defectos en el producto</div>
+        </div>
+        <div style="background:#dcfce7;border-radius:8px;padding:12px;border-left:4px solid #22c55e">
+          <div style="font-weight:800;color:#166534;font-size:.85rem">S — Skills (subutilización)</div>
+          <div style="font-size:.76rem;color:#374151;margin-top:4px">Senior developers haciendo tareas repetitivas de copy-paste · PO sin autoridad sobre el backlog</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">📋</div>
+      <div><h3>SIPOC — Ejemplo aplicado a TI Corp (Mesa de Ayuda)</h3>
+      <p>Supplier · Input · Process · Output · Customer: vista macro del proceso antes de detallarlo con BPMN</p></div>
+    </div>
+    <div class="card-body">
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr>
+            <th style="background:#166534;min-width:120px">S — Supplier</th>
+            <th style="background:#1d4ed8;min-width:140px">I — Input</th>
+            <th style="background:#7e22ce;min-width:200px">P — Process</th>
+            <th style="background:#c2410c;min-width:160px">O — Output</th>
+            <th style="background:#0f766e;min-width:120px">C — Customer</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td style="background:#dcfce7"><div style="font-size:.78rem">✦ Empleados<br>✦ Equipo TI<br>✦ Proveedores software<br>✦ Monitoreo automático</div></td>
+              <td style="background:#eff6ff"><div style="font-size:.78rem">✦ Reporte de incidencia<br>✦ Solicitud de servicio<br>✦ Alerta del sistema<br>✦ Solicitud de cambio</div></td>
+              <td style="background:#faf5ff">
+                <div style="font-size:.78rem">
+                  <div style="padding:3px 0;border-bottom:1px solid #d8b4fe">1. Recibir y clasificar ticket</div>
+                  <div style="padding:3px 0;border-bottom:1px solid #d8b4fe">2. Asignar al equipo correcto</div>
+                  <div style="padding:3px 0;border-bottom:1px solid #d8b4fe">3. Diagnosticar causa raíz</div>
+                  <div style="padding:3px 0;border-bottom:1px solid #d8b4fe">4. Implementar solución</div>
+                  <div style="padding:3px 0">5. Validar y cerrar ticket</div>
+                </div>
+              </td>
+              <td style="background:#fff7ed"><div style="font-size:.78rem">✦ Incidencia resuelta<br>✦ Reporte SLA<br>✦ Base de conocimiento actualizada<br>✦ Encuesta de satisfacción</div></td>
+              <td style="background:#f0fdf4"><div style="font-size:.78rem">✦ Empleados<br>✦ Gerentes de área<br>✦ Gerencia TI<br>✦ Dirección</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-blue" style="margin-top:14px">
+        <strong>💡 Para la entrevista:</strong> "El SIPOC lo uso al inicio del proyecto para alinear con todos los stakeholders qué entra, qué sale y quiénes participan en el proceso — antes de ir al detalle con el BPMN. Es el mapa de una sola página que evita malentendidos."
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /LEAN -->
+
+<!-- ══════════════════════ PMI / ÁGIL ══════════════════════ -->
+<div class="sec" id="pmi">
+  <div class="sec-hdr">
+    <h2>🏗 Gestión de Proyectos — PMI / Ágil / Híbrido</h2>
+    <p>Las tres grandes escuelas de gestión de proyectos y cómo combinarlas según el contexto</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">⚖</div>
+      <div><h3>PMI vs Ágil vs Híbrido — ¿Cuándo usar cada uno?</h3></div>
+    </div>
+    <div class="card-body">
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr>
+            <th>Dimensión</th>
+            <th style="background:#1e40af;color:#bfdbfe">PMI / PMBOK (Predictivo)</th>
+            <th style="background:#166534;color:#bbf7d0">Ágil / Scrum (Adaptativo)</th>
+            <th style="background:#78350f;color:#fde68a">Híbrido (Más común)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><strong>Planificación</strong></td><td>Detallada al inicio (WBS completo)</td><td>Rolling wave (sprint a sprint)</td><td>Plan macro + sprints detallados</td></tr>
+            <tr><td><strong>Alcance</strong></td><td>Fijo — cambios son excepciones</td><td>Flexible — el cambio es bienvenido</td><td>Macro fijo, micro flexible</td></tr>
+            <tr><td><strong>Documentación</strong></td><td>Pesada: actas, informes, planes</td><td>Ligera: User Stories, retrospectivas</td><td>Media: charters + backlogs</td></tr>
+            <tr><td><strong>Entrega</strong></td><td>Al final del proyecto (big bang)</td><td>Incremental cada sprint (2 semanas)</td><td>Hitos + entregas parciales</td></tr>
+            <tr><td><strong>Riesgo</strong></td><td>Identificado y gestionado al inicio</td><td>Revisado en cada sprint</td><td>Registro formal + revisión ágil</td></tr>
+            <tr><td><strong>Mejor para</strong></td><td>Proyectos con requisitos claros y fijos</td><td>Productos con requisitos evolutivos</td><td>Proyectos enterprise con TI ágil</td></tr>
+            <tr><td><strong>Ejemplo TI Corp</strong></td><td>Migración de ERP (alcance fijo)</td><td>Portal de autoservicio (evoluciona)</td><td>Transformación digital (ambos)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#fff7ed;font-size:1.3rem">🗂</div>
+      <div><h3>PMI / PMBOK — Los 5 Grupos de Procesos</h3>
+      <p>Marco global de gestión que aplica a todo proyecto, independientemente del tamaño</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
+        <div style="background:#eff6ff;border-radius:10px;padding:14px;border-top:4px solid var(--blue)">
+          <div style="font-weight:800;color:var(--blue);margin-bottom:4px">1 INICIO</div>
+          <ul style="list-style:none;font-size:.76rem;color:#374151">
+            <li style="padding:2px 0">→ Project Charter</li>
+            <li style="padding:2px 0">→ Registro de stakeholders</li>
+            <li style="padding:2px 0">→ Definir el sponsor</li>
+            <li style="padding:2px 0">→ Kick-off formal</li>
+          </ul>
+        </div>
+        <div style="background:#faf5ff;border-radius:10px;padding:14px;border-top:4px solid var(--purple)">
+          <div style="font-weight:800;color:#7e22ce;margin-bottom:4px">2 PLANIFICACIÓN</div>
+          <ul style="list-style:none;font-size:.76rem;color:#374151">
+            <li style="padding:2px 0">→ WBS (Estructura de desglose)</li>
+            <li style="padding:2px 0">→ Cronograma (Gantt)</li>
+            <li style="padding:2px 0">→ Presupuesto base</li>
+            <li style="padding:2px 0">→ Plan de riesgos</li>
+          </ul>
+        </div>
+        <div style="background:#fff7ed;border-radius:10px;padding:14px;border-top:4px solid var(--orange)">
+          <div style="font-weight:800;color:#c2410c;margin-bottom:4px">3 EJECUCIÓN</div>
+          <ul style="list-style:none;font-size:.76rem;color:#374151">
+            <li style="padding:2px 0">→ Dirigir y gestionar el trabajo</li>
+            <li style="padding:2px 0">→ Desarrollar el equipo</li>
+            <li style="padding:2px 0">→ Gestionar comunicaciones</li>
+            <li style="padding:2px 0">→ Implementar respuestas a riesgos</li>
+          </ul>
+        </div>
+        <div style="background:#fef9c3;border-radius:10px;padding:14px;border-top:4px solid #ca8a04">
+          <div style="font-weight:800;color:#854d0e;margin-bottom:4px">4 CONTROL</div>
+          <ul style="list-style:none;font-size:.76rem;color:#374151">
+            <li style="padding:2px 0">→ Control de cambios</li>
+            <li style="padding:2px 0">→ Valor ganado (EVM)</li>
+            <li style="padding:2px 0">→ Informes de desempeño</li>
+            <li style="padding:2px 0">→ Control de cronograma</li>
+          </ul>
+        </div>
+        <div style="background:#f0fdf4;border-radius:10px;padding:14px;border-top:4px solid var(--green)">
+          <div style="font-weight:800;color:#166534;margin-bottom:4px">5 CIERRE</div>
+          <ul style="list-style:none;font-size:.76rem;color:#374151">
+            <li style="padding:2px 0">→ Entrega formal al cliente</li>
+            <li style="padding:2px 0">→ Lecciones aprendidas</li>
+            <li style="padding:2px 0">→ Cierre de contratos</li>
+            <li style="padding:2px 0">→ Archivo del proyecto</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">🔄</div>
+      <div><h3>Scrum + Kanban + SAFe — Marcos Ágiles en Proyectos TI</h3></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div style="background:#f0fdf4;border-radius:10px;padding:16px;border:1px solid #86efac">
+          <div style="font-weight:800;color:#166534;margin-bottom:8px">🔄 SCRUM</div>
+          <div style="font-size:.78rem;color:#374151;margin-bottom:8px">El más usado en desarrollo de software. Sprints fijos de 1-4 semanas con roles claros.</div>
+          <ul style="list-style:none;font-size:.75rem;color:#166534">
+            <li>✦ Roles: PO, SM, Dev Team</li>
+            <li>✦ Artefactos: Backlog, Sprint Backlog, Incremento</li>
+            <li>✦ Ceremonias: Planning, Daily, Review, Retro</li>
+            <li>✦ Ideal para: proyectos de producto digital</li>
+          </ul>
+        </div>
+        <div style="background:#eff6ff;border-radius:10px;padding:16px;border:1px solid #bfdbfe">
+          <div style="font-weight:800;color:var(--blue);margin-bottom:8px">📋 KANBAN</div>
+          <div style="font-size:.78rem;color:#374151;margin-bottom:8px">Flujo continuo sin sprints. Limita el trabajo en progreso (WIP) para optimizar el throughput.</div>
+          <ul style="list-style:none;font-size:.75rem;color:var(--blue)">
+            <li>✦ Columnas: To Do → In Progress → Done</li>
+            <li>✦ WIP limits: máximo N tareas por columna</li>
+            <li>✦ Métricas: Lead time, Cycle time, Throughput</li>
+            <li>✦ Ideal para: soporte, operaciones, mantenimiento</li>
+          </ul>
+        </div>
+        <div style="background:#faf5ff;border-radius:10px;padding:16px;border:1px solid #d8b4fe">
+          <div style="font-weight:800;color:#7e22ce;margin-bottom:8px">🏢 SAFe</div>
+          <div style="font-size:.78rem;color:#374151;margin-bottom:8px">Scaled Agile Framework para empresas grandes con múltiples equipos Scrum coordinados.</div>
+          <ul style="list-style:none;font-size:.75rem;color:#7e22ce">
+            <li>✦ PI Planning cada 10-12 semanas (Program Increment)</li>
+            <li>✦ Agile Release Trains (ARTs): 50-125 personas</li>
+            <li>✦ Épicas → Features → User Stories</li>
+            <li>✦ Ideal para: transformación digital a escala</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:14px">
+        <strong>💡 Para la entrevista:</strong> "Con 28 años de experiencia he usado PMI para governanza y reporting al directorio, y Scrum para los equipos de entrega. El enfoque híbrido es lo más frecuente en proyectos enterprise de TI en Perú. El PMI da control financiero; el Ágil da velocidad y adaptabilidad."
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /PMI -->
+
+<!-- ══════════════════════ BALANCED SCORECARD ══════════════════════ -->
+<div class="sec" id="bsc">
+  <div class="sec-hdr">
+    <h2>🎛 Balanced Scorecard — Las 4 Perspectivas</h2>
+    <p>Marco estratégico que traduce la visión de la empresa en objetivos e indicadores medibles desde 4 ángulos</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">🎯</div>
+      <div><h3>¿Qué es el Balanced Scorecard?</h3>
+      <p>Creado por Kaplan y Norton (1992) · Equilibra indicadores financieros y no financieros</p></div>
+    </div>
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">BSC</span> = 4 perspectivas que responden:<br><br>
+<span class="fvar">Financiera:      </span><span class="fval">¿Cómo nos ven los accionistas? → ROI, EBITDA, Reducción de costos</span><br>
+<span class="fvar">Cliente:         </span><span class="fval">¿Cómo nos ven los clientes? → NPS, satisfacción, retención</span><br>
+<span class="fvar">Procesos Internos:</span><span class="fval">¿En qué debemos ser excelentes? → Calidad, velocidad, eficiencia</span><br>
+<span class="fvar">Aprendizaje:     </span><span class="fval">¿Podemos seguir mejorando? → Capacitación, innovación, cultura</span>
+      </div>
+
+      <div style="display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-top:4px">
+        <div style="background:#f0fdf4;border-radius:10px;padding:16px;border:2px solid #22c55e">
+          <div style="font-weight:800;color:#166534;margin-bottom:8px;font-size:.9rem">💰 FINANCIERA</div>
+          <div style="font-size:.78rem;color:#374151;margin-bottom:8px;font-style:italic">"¿Los resultados financieros reflejan nuestra estrategia?"</div>
+          <ul style="list-style:none;font-size:.76rem;color:#166534">
+            <li style="padding:2px 0">→ ROI del portal: &gt;75% en año 2</li>
+            <li style="padding:2px 0">→ Costo por ticket: reducir de $25 a $8</li>
+            <li style="padding:2px 0">→ Ahorro operativo: $102K/año</li>
+            <li style="padding:2px 0">→ Payback: mes 14</li>
+          </ul>
+        </div>
+        <div style="background:#eff6ff;border-radius:10px;padding:16px;border:2px solid var(--blue)">
+          <div style="font-weight:800;color:var(--blue);margin-bottom:8px;font-size:.9rem">👥 CLIENTE</div>
+          <div style="font-size:.78rem;color:#374151;margin-bottom:8px;font-style:italic">"¿Nuestros clientes (usuarios internos) están satisfechos?"</div>
+          <ul style="list-style:none;font-size:.76rem;color:var(--blue)">
+            <li style="padding:2px 0">→ NPS del portal: objetivo ≥ 60</li>
+            <li style="padding:2px 0">→ Adopción: 70% en 90 días</li>
+            <li style="padding:2px 0">→ Tiempo de resolución: &lt;15 min</li>
+            <li style="padding:2px 0">→ First Contact Resolution: &gt;80%</li>
+          </ul>
+        </div>
+        <div style="background:#fff7ed;border-radius:10px;padding:16px;border:2px solid #f97316">
+          <div style="font-weight:800;color:#c2410c;margin-bottom:8px;font-size:.9rem">⚙️ PROCESOS INTERNOS</div>
+          <div style="font-size:.78rem;color:#374151;margin-bottom:8px;font-style:italic">"¿En qué procesos debemos destacar para generar valor?"</div>
+          <ul style="list-style:none;font-size:.76rem;color:#c2410c">
+            <li style="padding:2px 0">→ SLA compliance: &gt;95%</li>
+            <li style="padding:2px 0">→ Auto-routing: 90% de tickets</li>
+            <li style="padding:2px 0">→ Uptime del portal: 99.5%</li>
+            <li style="padding:2px 0">→ Defect rate en producción: &lt;2%</li>
+          </ul>
+        </div>
+        <div style="background:#faf5ff;border-radius:10px;padding:16px;border:2px solid var(--purple)">
+          <div style="font-weight:800;color:#7e22ce;margin-bottom:8px;font-size:.9rem">🎓 APRENDIZAJE Y CRECIMIENTO</div>
+          <div style="font-size:.78rem;color:#374151;margin-bottom:8px;font-style:italic">"¿Tenemos la capacidad para ejecutar la estrategia?"</div>
+          <ul style="list-style:none;font-size:.76rem;color:#7e22ce">
+            <li style="padding:2px 0">→ % equipo TI con certificación Scrum</li>
+            <li style="padding:2px 0">→ Artículos en la base de conocimiento</li>
+            <li style="padding:2px 0">→ Horas de capacitación por trimestre</li>
+            <li style="padding:2px 0">→ Retención del equipo de TI</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-amber" style="margin-top:16px">
+        <strong>💡 Clave del BSC:</strong> Las 4 perspectivas tienen una relación causa-efecto de abajo hacia arriba: el <strong>Aprendizaje</strong> mejora los <strong>Procesos Internos</strong>, que mejoran la experiencia del <strong>Cliente</strong>, que finalmente mejoran los <strong>Resultados Financieros</strong>.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">🗺</div>
+      <div><h3>Mapa Estratégico BSC — TI Corp Portal de Servicios</h3>
+      <p>Cómo los objetivos de las 4 perspectivas se conectan en cadena de valor</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div style="background:#f0fdf4;border:2px solid #22c55e;border-radius:8px;padding:12px">
+          <div style="font-weight:700;color:#166534;font-size:.78rem;margin-bottom:6px">💰 FINANCIERA — Meta: ROI &gt;75% en Año 2</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:12px;font-size:.72rem">↑ Reducción costo operativo TI</span>
+            <span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:12px;font-size:.72rem">↑ ROI del Portal</span>
+            <span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:12px;font-size:.72rem">↓ Costo por ticket resuelto</span>
+          </div>
+        </div>
+        <div style="text-align:center;font-size:.75rem;color:var(--slate)">⬆ impacta</div>
+        <div style="background:#eff6ff;border:2px solid var(--blue);border-radius:8px;padding:12px">
+          <div style="font-weight:700;color:var(--blue);font-size:.78rem;margin-bottom:6px">👥 CLIENTE — Meta: NPS ≥ 60 · Adopción 70%</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#dbeafe;color:var(--blue);padding:3px 10px;border-radius:12px;font-size:.72rem">↑ Satisfacción empleados con TI</span>
+            <span style="background:#dbeafe;color:var(--blue);padding:3px 10px;border-radius:12px;font-size:.72rem">↑ Adopción del Portal</span>
+            <span style="background:#dbeafe;color:var(--blue);padding:3px 10px;border-radius:12px;font-size:.72rem">↓ Escalaciones al helpdesk</span>
+          </div>
+        </div>
+        <div style="text-align:center;font-size:.75rem;color:var(--slate)">⬆ impacta</div>
+        <div style="background:#fff7ed;border:2px solid #f97316;border-radius:8px;padding:12px">
+          <div style="font-weight:700;color:#c2410c;font-size:.78rem;margin-bottom:6px">⚙️ PROCESOS — Meta: SLA &gt;95% · Auto-routing 90%</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#ffedd5;color:#c2410c;padding:3px 10px;border-radius:12px;font-size:.72rem">↓ Tiempo resolución de tickets</span>
+            <span style="background:#ffedd5;color:#c2410c;padding:3px 10px;border-radius:12px;font-size:.72rem">↑ Automatización del routing</span>
+            <span style="background:#ffedd5;color:#c2410c;padding:3px 10px;border-radius:12px;font-size:.72rem">↑ First Contact Resolution</span>
+          </div>
+        </div>
+        <div style="text-align:center;font-size:.75rem;color:var(--slate)">⬆ impacta</div>
+        <div style="background:#faf5ff;border:2px solid var(--purple);border-radius:8px;padding:12px">
+          <div style="font-weight:700;color:#7e22ce;font-size:.78rem;margin-bottom:6px">🎓 APRENDIZAJE — Base de todo lo anterior</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#f3e8ff;color:#7e22ce;padding:3px 10px;border-radius:12px;font-size:.72rem">↑ Capacitación equipo TI</span>
+            <span style="background:#f3e8ff;color:#7e22ce;padding:3px 10px;border-radius:12px;font-size:.72rem">↑ Base de conocimiento</span>
+            <span style="background:#f3e8ff;color:#7e22ce;padding:3px 10px;border-radius:12px;font-size:.72rem">↑ Cultura de mejora continua</span>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:16px">
+        <strong>💡 Para la entrevista:</strong> "El BSC me sirve como PO para justificar el roadmap del producto ante el directorio. Cada feature del backlog se conecta a una de las 4 perspectivas. Así no hablo solo de 'funcionalidades' sino de impacto estratégico medible."
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /BSC -->
+
+<!-- ══════════════════════ IA & AUTOMATIZACIÓN ══════════════════════ -->
+<div class="sec" id="autoIA">
+  <div class="sec-hdr">
+    <h2>🤖 IA y Automatización de Procesos</h2>
+    <p>RPA, BPA, API y AI — cuándo usar cada uno y cómo impactan el rol del Analista Funcional</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#faf5ff;font-size:1.3rem">📊</div>
+      <div><h3>El Espectro de la Automatización</h3>
+      <p>De lo más simple (manual) a lo más inteligente (IA generativa)</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:16px;align-items:stretch">
+        <div style="flex:1;min-width:100px;background:#f8fafc;border-radius:8px;padding:12px;border-top:3px solid #94a3b8;text-align:center">
+          <div style="font-size:1.2rem">✋</div>
+          <div style="font-weight:700;font-size:.72rem;color:var(--slate);margin:4px 0">MANUAL</div>
+          <div style="font-size:.68rem;color:#94a3b8">Persona ejecuta cada paso</div>
+        </div>
+        <div style="flex:1;min-width:100px;background:#fef9c3;border-radius:8px;padding:12px;border-top:3px solid #ca8a04;text-align:center">
+          <div style="font-size:1.2rem">📊</div>
+          <div style="font-weight:700;font-size:.72rem;color:#854d0e;margin:4px 0">MACROS / SCRIPTS</div>
+          <div style="font-size:.68rem;color:#854d0e">Excel VBA, SQL scripts</div>
+        </div>
+        <div style="flex:1;min-width:100px;background:#ffedd5;border-radius:8px;padding:12px;border-top:3px solid #f97316;text-align:center">
+          <div style="font-size:1.2rem">🤖</div>
+          <div style="font-weight:700;font-size:.72rem;color:#c2410c;margin:4px 0">RPA</div>
+          <div style="font-size:.68rem;color:#c2410c">Bot que simula usuario</div>
+        </div>
+        <div style="flex:1;min-width:100px;background:#eff6ff;border-radius:8px;padding:12px;border-top:3px solid var(--blue);text-align:center">
+          <div style="font-size:1.2rem">🔌</div>
+          <div style="font-weight:700;font-size:.72rem;color:var(--blue);margin:4px 0">API / BPA</div>
+          <div style="font-size:.68rem;color:var(--blue)">Sistemas integrados</div>
+        </div>
+        <div style="flex:1;min-width:100px;background:#f0fdf4;border-radius:8px;padding:12px;border-top:3px solid #22c55e;text-align:center">
+          <div style="font-size:1.2rem">🧠</div>
+          <div style="font-weight:700;font-size:.72rem;color:#166534;margin:4px 0">ML / AI</div>
+          <div style="font-size:.68rem;color:#166534">Aprende y predice</div>
+        </div>
+        <div style="flex:1;min-width:100px;background:#faf5ff;border-radius:8px;padding:12px;border-top:3px solid var(--purple);text-align:center">
+          <div style="font-size:1.2rem">✨</div>
+          <div style="font-weight:700;font-size:.72rem;color:#7e22ce;margin:4px 0">GEN AI</div>
+          <div style="font-size:.68rem;color:#7e22ce">Genera texto, código, diseño</div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr>
+            <th>Criterio</th>
+            <th style="background:#c2410c;color:white">🤖 RPA</th>
+            <th style="background:#1d4ed8;color:white">🔌 API Integration</th>
+            <th style="background:#7e22ce;color:white">🧠 IA / ML</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><strong>¿Cuándo usar?</strong></td><td>Sistemas legados sin API · UI-based</td><td>Sistemas modernos con API REST</td><td>Patrones complejos · Predicciones</td></tr>
+            <tr><td><strong>Implementación</strong></td><td>Rápida (días/semanas)</td><td>Media (semanas)</td><td>Lenta (meses)</td></tr>
+            <tr><td><strong>Mantenimiento</strong></td><td>Alto (se rompe con cambios de UI)</td><td>Bajo</td><td>Medio (reentrenamiento)</td></tr>
+            <tr><td><strong>Inteligencia</strong></td><td>Ninguna (sigue reglas exactas)</td><td>Ninguna (integra datos)</td><td>Alta (aprende de datos)</td></tr>
+            <tr><td><strong>Costo</strong></td><td>Medio ($UiPath, Power Automate)</td><td>Bajo (desarrollo propio)</td><td>Alto (datos + infraestructura)</td></tr>
+            <tr><td><strong>Ejemplo TI Corp</strong></td><td>Copiar datos del ERP legado a reportes Excel</td><td>Conectar portal con sistema de tickets</td><td>Auto-clasificar prioridad de tickets por texto</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#faf5ff;font-size:1.3rem">✨</div>
+      <div><h3>IA Generativa para el Analista Funcional / PO</h3>
+      <p>Herramientas de IA que ya puedes usar hoy para ser más productivo en tu rol</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <div style="background:#faf5ff;border-radius:10px;padding:14px;border:1px solid #d8b4fe">
+          <div style="font-weight:700;color:#7e22ce;margin-bottom:4px">✨ ChatGPT / Claude</div>
+          <div style="font-size:.76rem;color:#374151;margin-bottom:6px">Redactar User Stories, criterios de aceptación, documentación técnica, borradores de emails a stakeholders</div>
+          <div style="font-size:.7rem;font-weight:700;color:#7e22ce">Riesgo: alucinaciones — siempre revisar</div>
+        </div>
+        <div style="background:#eff6ff;border-radius:10px;padding:14px;border:1px solid #bfdbfe">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:4px">🔵 GitHub Copilot</div>
+          <div style="font-size:.76rem;color:#374151;margin-bottom:6px">Revisar especificaciones técnicas, entender código existente, generar casos de prueba básicos</div>
+          <div style="font-size:.7rem;font-weight:700;color:var(--blue)">Ideal para: comunicación con dev team</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:10px;padding:14px;border:1px solid #fed7aa">
+          <div style="font-weight:700;color:#c2410c;margin-bottom:4px">🎨 Miro AI / Figma AI</div>
+          <div style="font-size:.76rem;color:#374151;margin-bottom:6px">Generar diagramas de flujo, wireframes iniciales y mapas mentales desde texto descriptivo</div>
+          <div style="font-size:.7rem;font-weight:700;color:#c2410c">Ideal para: workshops y prototipos rápidos</div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:10px;padding:14px;border:1px solid #86efac">
+          <div style="font-weight:700;color:#166534;margin-bottom:4px">📊 Power BI Copilot</div>
+          <div style="font-size:.76rem;color:#374151;margin-bottom:6px">Crear dashboards de métricas de producto con lenguaje natural. Ideal para KPIs y OKRs</div>
+          <div style="font-size:.7rem;font-weight:700;color:#166534">Ideal para: reportes de sprint y roadmap</div>
+        </div>
+        <div style="background:#fef9c3;border-radius:10px;padding:14px;border:1px solid #fde047">
+          <div style="font-weight:700;color:#854d0e;margin-bottom:4px">⚡ Power Automate + AI Builder</div>
+          <div style="font-size:.76rem;color:#374151;margin-bottom:6px">Automatizar flujos de aprobación, extraer datos de formularios y documentos con OCR inteligente</div>
+          <div style="font-size:.7rem;font-weight:700;color:#854d0e">Sin código: ideal para AF sin perfil técnico</div>
+        </div>
+        <div style="background:#fef2f2;border-radius:10px;padding:14px;border:1px solid #fca5a5">
+          <div style="font-weight:700;color:#991b1b;margin-bottom:4px">⚠️ Riesgos de IA en AF</div>
+          <div style="font-size:.76rem;color:#374151">
+            <div style="padding:2px 0">✦ Datos confidenciales en herramientas públicas</div>
+            <div style="padding:2px 0">✦ Requisitos incorrectos si no se validan</div>
+            <div style="padding:2px 0">✦ Dependencia excesiva sin criterio propio</div>
+          </div>
+          <div style="font-size:.7rem;font-weight:700;color:#991b1b;margin-top:4px">Regla: IA asiste, humano decide y valida</div>
+        </div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:14px">
+        <strong>💡 Para la entrevista:</strong> "Uso Claude/ChatGPT para generar el primer borrador de User Stories y criterios de aceptación, pero siempre los valido con el equipo. Esto me ahorra 60% del tiempo de documentación inicial. La IA no reemplaza el análisis — acelera la producción de artefactos."
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /autoIA -->
+
+<!-- ══════════════════════ ANÁLISIS FINANCIERO ══════════════════════ -->
+<div class="sec" id="finanzas">
+  <div class="sec-hdr">
+    <h2>💰 Análisis de Procesos Financieros</h2>
+    <p>Los procesos financieros clave en TI y cómo el Analista Funcional les agrega valor con métricas reales</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">🏦</div>
+      <div><h3>Procesos Financieros Clave en Proyectos TI</h3>
+      <p>Qué debe conocer el AF para dialogar con el área de Finanzas y CFO</p></div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))">
+        <div style="background:#eff6ff;border-radius:8px;padding:14px;border-left:4px solid var(--blue)">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:6px">AP — Cuentas por Pagar</div>
+          <div style="font-size:.76rem;color:#374151">Pago a proveedores TI: licencias de software, servidores, servicios cloud. Control de contratos y vencimientos.</div>
+          <div style="font-size:.7rem;color:var(--blue);margin-top:6px;font-weight:600">AF aporta: automatizar aprobaciones de pago</div>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:14px;border-left:4px solid #22c55e">
+          <div style="font-weight:700;color:#166534;margin-bottom:6px">AR — Cuentas por Cobrar</div>
+          <div style="font-size:.76rem;color:#374151">Facturación de servicios TI internos a unidades de negocio (chargeback model) o a clientes externos.</div>
+          <div style="font-size:.7rem;color:#166534;margin-top:6px;font-weight:600">AF aporta: portal de facturación automatizado</div>
+        </div>
+        <div style="background:#faf5ff;border-radius:8px;padding:14px;border-left:4px solid var(--purple)">
+          <div style="font-weight:700;color:#7e22ce;margin-bottom:6px">GL — Libro Mayor</div>
+          <div style="font-size:.76rem;color:#374151">Capitalización del software desarrollado internamente (NIC 38 / IAS 38). ¿Es gasto o activo?</div>
+          <div style="font-size:.7rem;color:#7e22ce;margin-top:6px;font-weight:600">AF aporta: clasificar horas dev capitalizable</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:8px;padding:14px;border-left:4px solid #f97316">
+          <div style="font-weight:700;color:#c2410c;margin-bottom:6px">Budget vs Actuals</div>
+          <div style="font-size:.76rem;color:#374151">Control de varianza entre presupuesto aprobado y gasto real del proyecto TI. Análisis de desviaciones.</div>
+          <div style="font-size:.7rem;color:#c2410c;margin-top:6px;font-weight:600">AF aporta: dashboard de seguimiento presupuestal</div>
+        </div>
+        <div style="background:#fef9c3;border-radius:8px;padding:14px;border-left:4px solid #ca8a04">
+          <div style="font-weight:700;color:#854d0e;margin-bottom:6px">TCO — Costo Total de Propiedad</div>
+          <div style="font-size:.76rem;color:#374151">Costo total durante el ciclo de vida: desarrollo + licencias + infraestructura + soporte + mantenimiento.</div>
+          <div style="font-size:.7rem;color:#854d0e;margin-top:6px;font-weight:600">AF aporta: análisis buy vs build</div>
+        </div>
+        <div style="background:#fef2f2;border-radius:8px;padding:14px;border-left:4px solid #ef4444">
+          <div style="font-weight:700;color:#991b1b;margin-bottom:6px">Controles SOX / Auditoría</div>
+          <div style="font-size:.76rem;color:#374151">Controles IT para sistemas financieros significativos: acceso, segregación de funciones, logs de auditoría.</div>
+          <div style="font-size:.7rem;color:#991b1b;margin-top:6px;font-weight:600">AF aporta: diseñar controles en los requerimientos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4;font-size:1.3rem">📊</div>
+      <div><h3>ROI y Análisis Costo-Beneficio — Portal TI Corp</h3>
+      <p>Cómo se justifica financieramente un proyecto ante el directorio — con números reales</p></div>
+    </div>
+    <div class="card-body">
+      <div class="formula">
+<span class="feq">ROI</span> = (<span class="fvar">Beneficio Neto</span> / <span class="fvar">Inversión Total</span>) × 100<br>
+<span class="feq">Payback Period</span> = <span class="fvar">Inversión</span> / <span class="fvar">Ahorro mensual</span><br>
+<span class="feq">NPV</span> = Suma de (<span class="fvar">Flujo de caja futuro</span> / (1 + <span class="fvar">tasa de descuento</span>)^año) - <span class="fvar">Inversión inicial</span>
+      </div>
+
+      <div style="overflow-x:auto;margin-top:14px">
+        <table class="tbl">
+          <thead><tr>
+            <th>Concepto</th>
+            <th style="text-align:right">Año 0</th>
+            <th style="text-align:right">Año 1</th>
+            <th style="text-align:right">Año 2</th>
+            <th style="text-align:right">Año 3</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#fef2f2">
+              <td><strong>💸 INVERSIÓN</strong></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>Desarrollo del portal</td>
+              <td style="text-align:right;color:#991b1b">-$90,000</td>
+              <td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">—</td>
+            </tr>
+            <tr>
+              <td>Infraestructura cloud</td>
+              <td style="text-align:right;color:#991b1b">-$12,000</td>
+              <td style="text-align:right;color:#991b1b">-$18,000</td>
+              <td style="text-align:right;color:#991b1b">-$18,000</td>
+              <td style="text-align:right;color:#991b1b">-$18,000</td>
+            </tr>
+            <tr>
+              <td>Mantenimiento y soporte</td>
+              <td style="text-align:right">—</td>
+              <td style="text-align:right;color:#991b1b">-$12,000</td>
+              <td style="text-align:right;color:#991b1b">-$12,000</td>
+              <td style="text-align:right;color:#991b1b">-$12,000</td>
+            </tr>
+            <tr style="background:#f0fdf4">
+              <td><strong>💰 BENEFICIOS</strong></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>Ahorro en call center (-68% costo/ticket)</td>
+              <td style="text-align:right">—</td>
+              <td style="text-align:right;color:#166534">+$102,000</td>
+              <td style="text-align:right;color:#166534">+$102,000</td>
+              <td style="text-align:right;color:#166534">+$102,000</td>
+            </tr>
+            <tr>
+              <td>Productividad agentes liberados</td>
+              <td style="text-align:right">—</td>
+              <td style="text-align:right;color:#166534">+$24,000</td>
+              <td style="text-align:right;color:#166534">+$24,000</td>
+              <td style="text-align:right;color:#166534">+$24,000</td>
+            </tr>
+            <tr style="background:#fef9c3;font-weight:700">
+              <td><strong>📊 FLUJO NETO</strong></td>
+              <td style="text-align:right;color:#991b1b">-$102,000</td>
+              <td style="text-align:right;color:#ca8a04">+$96,000</td>
+              <td style="text-align:right;color:#166534">+$96,000</td>
+              <td style="text-align:right;color:#166534">+$96,000</td>
+            </tr>
+            <tr style="background:#dcfce7;font-weight:700">
+              <td><strong>📈 FLUJO ACUMULADO</strong></td>
+              <td style="text-align:right;color:#991b1b">-$102,000</td>
+              <td style="text-align:right;color:#ca8a04">-$6,000</td>
+              <td style="text-align:right;color:#166534">+$90,000</td>
+              <td style="text-align:right;color:#166534">+$186,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+        <div style="background:var(--navy);border-radius:8px;padding:12px 16px;text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.3rem;font-weight:800;color:#fbbf24">13 meses</div>
+          <div style="font-size:.7rem;color:#94a3b8">Payback Period</div>
+        </div>
+        <div style="background:var(--navy);border-radius:8px;padding:12px 16px;text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.3rem;font-weight:800;color:#22c55e">+88%</div>
+          <div style="font-size:.7rem;color:#94a3b8">ROI en Año 2</div>
+        </div>
+        <div style="background:var(--navy);border-radius:8px;padding:12px 16px;text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.3rem;font-weight:800;color:#38bdf8">$186K</div>
+          <div style="font-size:.7rem;color:#94a3b8">Beneficio acumulado Año 3</div>
+        </div>
+        <div style="background:var(--navy);border-radius:8px;padding:12px 16px;text-align:center;flex:1;min-width:100px">
+          <div style="font-size:1.3rem;font-weight:800;color:#a78bfa">$8/ticket</div>
+          <div style="font-size:.7rem;color:#94a3b8">Costo post-portal (vs $25)</div>
+        </div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:14px">
+        <strong>💡 Para la entrevista:</strong> "Cuando presento un proyecto al directorio no hablo de funcionalidades — hablo de ROI, payback period y flujo de caja. Un Analista Funcional que puede conectar los requerimientos técnicos con el impacto financiero tiene una ventaja diferenciadora enorme."
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /FINANZAS -->
+
 
 </div><!-- /wrap -->
 
@@ -1843,7 +2757,7 @@ const steps = [
     tasks:['Identificar el problema de negocio a resolver','Definir los objetivos medibles (OKRs)','Mapear los stakeholders clave','Establecer restricciones (tiempo, presupuesto, alcance)'],
     tools:['MVP (visión inicial)','Elevator Pitch','OKRs / KPIs iniciales','Roadmap de alto nivel'],
     output:'Project Charter · Vision Board · Lista de stakeholders',
-    comsatel:'Comsatel necesita reducir costos del call center. El problema: clientes corporativos no pueden autogestionar sus líneas. El objetivo: -40% llamadas en 90 días.'
+    ti-corp:'TI Corp necesita reducir costos del call center. El problema: clientes corporativos no pueden autogestionar sus líneas. El objetivo: -40% llamadas en 90 días.'
   },
   {
     title:'🔵 Etapa 2: Discovery — Levantamiento de Información',
@@ -1851,7 +2765,7 @@ const steps = [
     tasks:['Entrevistas con usuarios y stakeholders (5-7 mínimo)','Observación de procesos actuales (shadowing)','Talleres de co-creación (workshops)','Revisión de sistemas existentes y documentación'],
     tools:['User Interviews','Jobs to Be Done (JTBD)','Customer Journey Map','Kano Survey','Observación directa'],
     output:'Lista de requerimientos brutos · Journey Map · Pain Points',
-    comsatel:'Entrevistar a 5 administradores de TI corporativos y 3 agentes del call center. Pregunta clave: "¿Qué acciones realizas por teléfono que preferirías hacer tú mismo online?"'
+    ti-corp:'Entrevistar a 5 administradores de TI corporativos y 3 agentes del call center. Pregunta clave: "¿Qué acciones realizas por teléfono que preferirías hacer tú mismo online?"'
   },
   {
     title:'🟣 Etapa 3: Análisis — Modelado de Procesos',
@@ -1859,7 +2773,7 @@ const steps = [
     tasks:['Modelar el proceso actual (AS-IS)','Diseñar el proceso futuro (TO-BE)','Identificar brechas, dependencias y riesgos técnicos','Elaborar casos de uso de alto nivel'],
     tools:['BPMN / Diagramas de flujo','UML (casos de uso)','Impact Mapping','Kano Model (clasificación)','Análisis GAP'],
     output:'Diagramas BPMN · Casos de uso · Mapa de dependencias',
-    comsatel:'Mapear el flujo actual: cliente llama → agente busca contrato → verifica identidad → realiza cambio → confirma. El AS-IS toma 15 min. El TO-BE debe hacerse en 2 min desde el portal.'
+    ti-corp:'Mapear el flujo actual: cliente llama → agente busca contrato → verifica identidad → realiza cambio → confirma. El AS-IS toma 15 min. El TO-BE debe hacerse en 2 min desde el portal.'
   },
   {
     title:'🟡 Etapa 4: Priorización — Qué Construir Primero',
@@ -1867,7 +2781,7 @@ const steps = [
     tasks:['Clasificar requerimientos con MoSCoW','Calcular score RICE para cada feature','Aplicar Kano para entender impacto en satisfacción','Definir el alcance del MVP','Construir el Product Backlog priorizado'],
     tools:['MoSCoW ⭐','RICE Scoring ⭐','Kano Model','MVP Canvas','Planning Poker (estimación)'],
     output:'Product Backlog priorizado · Definición del MVP · Sprint 1 listo',
-    comsatel:'Login + ver líneas + alertas = MUST (Must Have). Cambio de plan = SHOULD. Reportes PDF = COULD. App nativa = Won\'t Have en Q1. El backlog queda ordenado para el Sprint Planning.'
+    ti-corp:'Login + ver líneas + alertas = MUST (Must Have). Cambio de plan = SHOULD. Reportes PDF = COULD. App nativa = Won\'t Have en Q1. El backlog queda ordenado para el Sprint Planning.'
   },
   {
     title:'🔴 Etapa 5: Documentación — Historias y Criterios',
@@ -1875,7 +2789,7 @@ const steps = [
     tasks:['Escribir User Stories en formato estándar','Definir criterios de aceptación (Given/When/Then)','Adjuntar wireframes o mockups por historia','Validar que cada historia cumple la Definition of Ready (DoR)'],
     tools:['User Stories (Formato As a / I want / So that)','Gherkin / BDD','Wireframes / Figma','Definition of Ready (DoR)'],
     output:'Backlog de User Stories "Ready" · Criterios de aceptación · Mockups aprobados',
-    comsatel:'"Como admin corporativo, quiero ver el consumo de datos de cada línea, para tomar decisiones sin llamar al call center." — Criterio: tabla carga en <3 seg, datos actualizados cada 15 min.'
+    ti-corp:'"Como admin corporativo, quiero ver el consumo de datos de cada línea, para tomar decisiones sin llamar al call center." — Criterio: tabla carga en <3 seg, datos actualizados cada 15 min.'
   },
   {
     title:'🟢 Etapa 6: Validación — Sign-off con Stakeholders',
@@ -1883,7 +2797,7 @@ const steps = [
     tasks:['Presentar las historias al equipo en el Refinement','Obtener confirmación de stakeholders (sign-off)','Ajustar criterios según feedback recibido','Validar estimaciones con el equipo técnico'],
     tools:['Sprint Review (validación del incremento)','Revisión MoSCoW (¿sigue siendo Must?)','Definition of Ready','NPS / Feedback de stakeholders'],
     output:'Backlog refinado y aprobado · DoR cumplido · Sprint Planning listo',
-    comsatel:'Presentar el mockup del portal al gerente comercial de Comsatel y al cliente corporativo piloto. Validar que la lista de líneas responde la pregunta: "¿Necesito llamar al call center para saber el consumo de mi equipo?"'
+    ti-corp:'Presentar el mockup del portal al gerente comercial de TI Corp y al cliente corporativo piloto. Validar que la lista de líneas responde la pregunta: "¿Necesito llamar al call center para saber el consumo de mi equipo?"'
   },
   {
     title:'🔵 Etapa 7: Entrega — Sprint y Seguimiento',
@@ -1891,7 +2805,7 @@ const steps = [
     tasks:['Acompañar al equipo durante el sprint (disponible para preguntas)','Aceptar o rechazar el trabajo en la Sprint Review','Medir los KPIs acordados en Etapa 1','Actualizar el roadmap con el aprendizaje del sprint'],
     tools:['KPIs / OKRs ⭐','Burndown Chart','Velocity (story points/sprint)','Roadmap actualizado'],
     output:'Incremento de producto entregado · Métricas actualizadas · Backlog para siguiente sprint',
-    comsatel:'Sprint 1 entregado: login + listado de líneas. Medir: % de admins que ingresan al portal la primera semana (adopción temprana). Si es menor al 20%, hay un problema de comunicación o usabilidad.'
+    ti-corp:'Sprint 1 entregado: login + listado de líneas. Medir: % de admins que ingresan al portal la primera semana (adopción temprana). Si es menor al 20%, hay un problema de comunicación o usabilidad.'
   }
 ];
 
@@ -1921,8 +2835,8 @@ function renderDetail(i) {
       <div class="detail-col">
         <h5>📦 Entregable</h5>
         <ul><li style="color:#374151">${s.output}</li></ul>
-        <h5 style="margin-top:14px">🏢 Ejemplo Comsatel</h5>
-        <ul><li style="color:#374151;font-style:italic">${s.comsatel}</li></ul>
+        <h5 style="margin-top:14px">🏢 Ejemplo TI Corp</h5>
+        <ul><li style="color:#374151;font-style:italic">${s.ti-corp}</li></ul>
       </div>
     </div>
   `;
@@ -1986,7 +2900,7 @@ const matrixData = [
     req:'Disponibilidad: 99.5% de uptime mensual',
     desc:'El portal debe estar disponible el 99.5% del tiempo, lo que equivale a un máximo de 3.6 horas de caída al mes.',
     elem:'☁️ Deploy en cloud con balanceo de carga (AWS/GCP/Azure)\n📡 Monitoreo 24/7 con alertas automáticas al equipo técnico\n🔄 Failover automático ante falla de nodo\n📅 Mantenimiento programado en horario de bajo tráfico',
-    benefit:'💼 Confiabilidad garantizada para clientes enterprise\n📜 SLA contractual cumplido (penalidades si baja del 99%)\n🤝 Incrementa confianza del cliente en Comsatel como proveedor',
+    benefit:'💼 Confiabilidad garantizada para clientes enterprise\n📜 SLA contractual cumplido (penalidades si baja del 99%)\n🤝 Incrementa confianza del cliente en TI Corp como proveedor',
     priority:'Must Have', kpi:'Uptime mensual (%) · MTTR (tiempo medio de recuperación)',
     story:'Como gerente de TI, quiero que el portal esté disponible las 24 horas, para que mi equipo lo use en cualquier momento.' },
   { id:'RN-01', type:'rn', color:'#a855f7', bg:'#faf5ff',
@@ -2006,10 +2920,10 @@ const matrixData = [
   { id:'RT-01', type:'rt', color:'#22c55e', bg:'#f0fdf4',
     req:'Migrar cuentas corporativas existentes al portal',
     desc:'Todos los clientes corporativos actuales deben tener sus credenciales creadas y recibir acceso al portal desde el día del lanzamiento.',
-    elem:'🔄 Script de migración masiva de datos de clientes\n📧 Envío automatizado de emails de bienvenida con contraseña temporal\n✅ Proceso de activación de cuenta (primer login + cambio de clave)\n📊 Dashboard de estado de migración para el equipo de Comsatel',
+    elem:'🔄 Script de migración masiva de datos de clientes\n📧 Envío automatizado de emails de bienvenida con contraseña temporal\n✅ Proceso de activación de cuenta (primer login + cambio de clave)\n📊 Dashboard de estado de migración para el equipo de TI Corp',
     benefit:'🚀 Adopción inmediata desde el día 1 sin fricción de registro\n📈 Meta: 60% de clientes activos en el portal en los primeros 30 días\n📞 Evita el escenario "no tengo cuenta" que generaría llamadas al call center',
     priority:'Must Have', kpi:'% de clientes migrados · % activos en semana 1 · Llamadas de soporte por login',
-    story:'Como cliente existente de Comsatel, quiero recibir mis credenciales del portal por email, para poder usarlo desde el primer día.' },
+    story:'Como cliente existente de TI Corp, quiero recibir mis credenciales del portal por email, para poder usarlo desde el primer día.' },
   { id:'RT-02', type:'rt', color:'#22c55e', bg:'#f0fdf4',
     req:'Capacitación a administradores corporativos',
     desc:'Antes del lanzamiento, cada administrador corporativo recibirá una sesión de onboarding de 45 minutos y acceso a materiales de soporte.',
@@ -2085,7 +2999,7 @@ const riskData = [
    name:'Baja adopción del portal por administradores corporativos',
    desc:'Los administradores prefieren seguir llamando al call center por resistencia al cambio o falta de habilidad digital.',
    causes:'Falta de capacitación · Interfaz poco intuitiva · Hábito arraigado de llamar · Sin incentivo para cambiar',
-   effects:'Portal no reduce las llamadas → ROI negativo → Presupuesto no justificado ante la gerencia de Comsatel',
+   effects:'Portal no reduce las llamadas → ROI negativo → Presupuesto no justificado ante la gerencia de TI Corp',
    mitigation:'Onboarding obligatorio antes del lanzamiento · Guía rápida de 1 página · Métricas de adopción semanales · NPS mensual del portal · Incentivo al primer uso exitoso',
    trigger:'Adopción <20% en semana 2 post-lanzamiento',
    owner:'Product Owner + Área Comercial',
@@ -2100,7 +3014,7 @@ const riskData = [
    owner:'Líder Técnico + DBA',
    phase:'Etapa 7 (Sprint de Migración)'},
   {id:'R-03',cat:'tecnico',catLabel:'⚙️ Técnico',prob:3,impact:5,score:15,level:'critical',
-   name:'Falla en integración con sistema de facturación de Comsatel',
+   name:'Falla en integración con sistema de facturación de TI Corp',
    desc:'La API del sistema interno de facturación no está disponible, documentada o tiene cambios incompatibles con el portal.',
    causes:'Documentación desactualizada · Sistema legado sin API REST · Cambios en facturación durante el proyecto',
    effects:'Funciones clave no operan (cambio de plan, alertas, reportes) → MVP incompleto → Retraso de 2–4 sprints',
@@ -2146,7 +3060,7 @@ const riskData = [
    phase:'Etapa 1 (Inicio — gestión del cambio) y Etapa 6 (Validación)'},
   {id:'R-08',cat:'recursos',catLabel:'👤 Recursos',prob:2,impact:4,score:8,level:'medium',
    name:'Falta de disponibilidad del equipo técnico asignado',
-   desc:'Los desarrolladores tienen responsabilidades en otros proyectos de Comsatel y no tienen dedicación completa al portal.',
+   desc:'Los desarrolladores tienen responsabilidades en otros proyectos de TI Corp y no tienen dedicación completa al portal.',
    causes:'Equipo compartido entre múltiples proyectos · Vacaciones y ausencias no planificadas · Estimaciones optimistas de capacidad',
    effects:'Velocity real <70% estimada → Sprints incompletos → Fechas de entrega comprometidas → Roadmap desalineado',
    mitigation:'Confirmar dedicación exclusiva antes de iniciar · Buffer 20% en estimaciones · Identificar recursos de respaldo · Acuerdo formal de dedicación con la Gerencia de TI',
