@@ -134,6 +134,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 /* ── Footer ── */
 .footer{text-align:center;padding:24px;color:#94a3b8;font-size:.78rem;background:#1e293b;margin-top:40px}
 .footer a{color:var(--sky);text-decoration:none}
+
+/* ── AUDIO PLAYER ── */
+.audio-bar{position:fixed;bottom:0;left:0;right:0;background:#1e293b;border-top:2px solid #334155;padding:10px 16px;display:flex;align-items:center;gap:12px;z-index:200;transform:translateY(100%);transition:transform .3s ease;box-shadow:0 -4px 20px rgba(0,0,0,.4)}
+.audio-bar.visible{transform:translateY(0)}
+.audio-play-btn{background:var(--sky);color:#0f172a;border:none;border-radius:50%;width:38px;height:38px;font-size:1.1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.2s}
+.audio-play-btn:hover{background:#7dd3fc;transform:scale(1.1)}
+.audio-stop-btn{background:#ef4444;color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:.8rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.2s}
+.audio-stop-btn:hover{background:#dc2626}
+.audio-info{flex:1;min-width:0}
+.audio-title{font-size:.78rem;font-weight:700;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.audio-status{font-size:.7rem;color:#64748b;margin-top:2px}
+.audio-progress{flex-shrink:0;display:flex;align-items:center;gap:6px}
+.audio-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse-dot 1.5s infinite}
+.audio-dot.paused{animation:none;background:#94a3b8}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.tab-audio-btn{background:rgba(56,189,248,.15);color:var(--sky);border:1.5px solid rgba(56,189,248,.4);border-radius:20px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s;margin-bottom:16px}
+.tab-audio-btn:hover{background:rgba(56,189,248,.25)}
+.tab-audio-btn.playing{background:rgba(56,189,248,.25);animation:pulse-border 2s infinite}
+@keyframes pulse-border{0%,100%{border-color:rgba(56,189,248,.4)}50%{border-color:var(--sky)}}
+.voice-note{font-size:.7rem;color:#475569;margin-left:8px;font-style:italic}
+
 </style>
 </head>
 <body>
@@ -201,6 +222,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <h2>📐 UML — Los 5 Diagramas que más Preguntan</h2>
     <p>Un Jefe de Desarrollo valida que el AF sepa cuándo usar cada diagrama y qué información comunica al equipo técnico.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-uml" onclick="playTab('uml')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Qué diagramas UML usas en tu día a día y para qué sirve cada uno? Dame un ejemplo concreto."
@@ -590,6 +612,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <h2>📋 Requisitos — FR, NFR y Trazabilidad</h2>
     <p>El Jefe de Dev quiere saber si sabes especificar requisitos que el equipo pueda implementar sin ambigüedades.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-reqs" onclick="playTab('reqs')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Cómo distingues un requisito funcional de uno no funcional? Dame 3 ejemplos de cada uno para el proyecto que mencionaste."
@@ -716,6 +739,7 @@ Depende de: RF-002 (Autenticación) · API-Comsatel-Consumo-v2
     <h2>🔌 APIs REST — Lo que el Equipo Técnico espera que sepas</h2>
     <p>Como AF Senior, debes poder especificar endpoints, entender errores y colaborar con el equipo de integración sin depender de ellos para cada pregunta.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-api" onclick="playTab('api')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Has trabajado con APIs? ¿Cómo documentas un endpoint para que el equipo pueda implementarlo?"
@@ -817,6 +841,7 @@ porPagina   Int     optional  default: 20, max: 100
     <h2>🗄 SQL — Consultas que todo AF Senior debe dominar</h2>
     <p>No necesitas ser DBA, pero sí debes poder escribir consultas para validar datos, verificar requisitos y crear reportes rápidos sin depender del equipo técnico.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-sql" onclick="playTab('sql')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Has trabajado con SQL? ¿Puedes escribir una consulta para obtener las líneas con más del 80% de consumo?" — A veces te dan papel y lápiz.
@@ -927,6 +952,7 @@ porPagina   Int     optional  default: 20, max: 100
     <h2>🔷 Modelado de Datos — ERD y Normalización</h2>
     <p>El AF diseña el modelo conceptual y colabora con el DBA para el modelo físico. Debes poder dibujar un ERD básico en papel.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-data" onclick="playTab('data')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "Dibuja el modelo de datos básico para el portal de gestión de líneas de Comsatel. ¿Qué entidades identificas?"
@@ -1087,6 +1113,7 @@ porPagina   Int     optional  default: 20, max: 100
     <h2>🏗 Arquitectura de Software — Lo que el AF debe saber</h2>
     <p>No necesitas ser arquitecto, pero sí entender los patrones para escribir requisitos técnicos que tengan sentido y colaborar con el equipo sin fricciones.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-arch" onclick="playTab('arch')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Qué es una arquitectura de 3 capas? ¿Cuándo usarías microservicios vs monolito?"
@@ -1177,6 +1204,7 @@ porPagina   Int     optional  default: 20, max: 100
     <h2>🔄 SDLC & Agile — Tu rol en el Equipo de Desarrollo</h2>
     <p>El Jefe de Desarrollo necesita saber cómo encajas en su equipo. No solo qué metodología conoces, sino <strong>qué entregas en cada etapa</strong>.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-sdlc" onclick="playTab('sdlc')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Cómo es tu proceso desde que recibes un requerimiento hasta que el desarrollador empieza a codear? ¿Qué artefactos produces?"
@@ -1290,6 +1318,7 @@ porPagina   Int     optional  default: 20, max: 100
     <h2>🧪 Testing & UAT — Cómo validas que el sistema cumple los requisitos</h2>
     <p>El AF es responsable del UAT. Pero un Senior también entiende los otros tipos de prueba para colaborar mejor con el equipo de QA.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-test" onclick="playTab('test')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Cómo escribes un caso de prueba? Dame un ejemplo para la funcionalidad de alerta de consumo."
@@ -1402,6 +1431,7 @@ Posible causa raíz (sugerencia del AF):
     <h2>🐙 Git — Lo que un AF debe conocer</h2>
     <p>No necesitas ser experto, pero sí entender el flujo para colaborar con el equipo: revisar cambios en la documentación, aprobar PRs de reqs, y no romper el repo si tocas un archivo.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-git" onclick="playTab('git')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Pregunta típica:</strong> "¿Tienes experiencia con Git? ¿Cómo manejas la documentación de requisitos en el repositorio?"
@@ -1409,15 +1439,84 @@ Posible causa raíz (sugerencia del AF):
 
   <div class="uml-box">
     <div class="uml-title">🌿 Git Flow — El flujo que usa el equipo de desarrollo</div>
-    <div class="uml-diagram">main ────●──────────────────────────────●── (producción)
-           │                              ↑ merge
-develop ──●────●──────────────────────●──
-               │                      ↑ merge
-feature/  ─────●──●──●──●─────────────
-portal-lineas  (commits del dev)
-
-hotfix/   ────────────────────────●──●── (fix urgente en producción)
-bug-consumo</div>
+    <div style="background:#0f172a;border-radius:10px;overflow:hidden;border:1px solid #334155">
+<svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+<defs>
+  <marker id="gt-a" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#94a3b8"/></marker>
+  <marker id="gt-mg" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#a78bfa"/></marker>
+</defs>
+<rect width="760" height="230" fill="#0f172a"/>
+<!-- Branch labels -->
+<text x="18" y="54" font-family="monospace" font-size="9.5" fill="#fbbf24" font-weight="bold">main</text>
+<text x="18" y="114" font-family="monospace" font-size="9.5" fill="#60a5fa" font-weight="bold">develop</text>
+<text x="18" y="174" font-family="monospace" font-size="9.5" fill="#4ade80" font-weight="bold">feature/</text>
+<text x="18" y="184" font-family="monospace" font-size="8" fill="#4ade80">portal-lineas</text>
+<text x="18" y="210" font-family="monospace" font-size="9.5" fill="#f87171" font-weight="bold">hotfix/</text>
+<text x="18" y="220" font-family="monospace" font-size="8" fill="#f87171">bug-consumo</text>
+<!-- Separator line -->
+<line x1="110" y1="10" x2="110" y2="230" stroke="#1e293b" stroke-width="1.5"/>
+<!-- MAIN branch line -->
+<line x1="130" y1="50" x2="730" y2="50" stroke="#f59e0b" stroke-width="2.5"/>
+<!-- DEVELOP branch line -->
+<line x1="180" y1="110" x2="640" y2="110" stroke="#3b82f6" stroke-width="2.5"/>
+<!-- FEATURE branch line -->
+<line x1="250" y1="170" x2="560" y2="170" stroke="#22c55e" stroke-width="2.5"/>
+<!-- HOTFIX branch line -->
+<line x1="660" y1="200" x2="720" y2="200" stroke="#ef4444" stroke-width="2.5"/>
+<!-- MAIN commits ● -->
+<circle cx="130" cy="50" r="7" fill="#f59e0b" stroke="#0f172a" stroke-width="2"/>
+<circle cx="665" cy="50" r="7" fill="#a78bfa" stroke="#0f172a" stroke-width="2"/>
+<circle cx="728" cy="50" r="7" fill="#a78bfa" stroke="#0f172a" stroke-width="2"/>
+<!-- DEVELOP commits ● -->
+<circle cx="180" cy="110" r="7" fill="#3b82f6" stroke="#0f172a" stroke-width="2"/>
+<circle cx="250" cy="110" r="7" fill="#3b82f6" stroke="#0f172a" stroke-width="2"/>
+<circle cx="560" cy="110" r="7" fill="#a78bfa" stroke="#0f172a" stroke-width="2"/>
+<circle cx="640" cy="110" r="7" fill="#a78bfa" stroke="#0f172a" stroke-width="2"/>
+<!-- FEATURE commits ● -->
+<circle cx="250" cy="170" r="6" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+<circle cx="340" cy="170" r="6" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+<circle cx="420" cy="170" r="6" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+<circle cx="500" cy="170" r="6" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+<circle cx="560" cy="170" r="6" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+<!-- HOTFIX commits ● -->
+<circle cx="660" cy="200" r="6" fill="#ef4444" stroke="#0f172a" stroke-width="2"/>
+<circle cx="720" cy="200" r="6" fill="#ef4444" stroke="#0f172a" stroke-width="2"/>
+<!-- Branch: main → develop (fork down) -->
+<path d="M 130,50 C 155,50 155,110 180,110" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+<!-- Branch: develop → feature (fork down) -->
+<path d="M 250,110 C 250,135 250,145 250,170" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+<!-- Merge: feature → develop -->
+<path d="M 560,170 C 560,145 560,135 560,110" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#gt-mg)"/>
+<!-- Merge: develop → main -->
+<path d="M 640,110 C 640,80 650,60 665,50" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#gt-mg)"/>
+<!-- Branch+Merge: main → hotfix → main -->
+<path d="M 665,50 C 670,50 672,80 660,200" fill="none" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="4,2"/>
+<path d="M 720,200 C 730,200 735,80 728,50" fill="none" stroke="#ef4444" stroke-width="1.2" marker-end="url(#gt-mg)"/>
+<!-- Labels on commits -->
+<rect x="115" y="20" width="32" height="16" rx="3" fill="#1e293b"/>
+<text x="131" y="31" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#fbbf24">v1.0</text>
+<rect x="614" y="20" width="58" height="16" rx="3" fill="#1e293b"/>
+<text x="643" y="31" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#a78bfa">merge dev</text>
+<rect x="706" y="20" width="44" height="16" rx="3" fill="#1e293b"/>
+<text x="728" y="31" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#a78bfa">hotfix</text>
+<rect x="530" y="80" width="54" height="16" rx="3" fill="#1e293b"/>
+<text x="557" y="91" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#a78bfa">merge feat</text>
+<!-- Commit messages on feature -->
+<text x="340" y="155" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#86efac">feat: login</text>
+<text x="420" y="155" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#86efac">feat: lineas</text>
+<text x="500" y="155" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#86efac">feat: consumo</text>
+<!-- "production" tag -->
+<rect x="735" y="40" width="20" height="20" rx="3" fill="#f59e0b"/>
+<text x="745" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#0f172a" font-weight="bold">🚀</text>
+<!-- PR label -->
+<rect x="310" y="130" width="48" height="15" rx="3" fill="#3b82f6" opacity="0.3"/>
+<text x="334" y="141" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#93c5fd">Pull Request</text>
+<!-- Timeline labels at bottom -->
+<text x="130" y="226" text-anchor="middle" font-family="monospace" font-size="7" fill="#475569">init</text>
+<text x="250" y="226" text-anchor="middle" font-family="monospace" font-size="7" fill="#475569">branch</text>
+<text x="560" y="226" text-anchor="middle" font-family="monospace" font-size="7" fill="#475569">merge</text>
+<text x="665" y="226" text-anchor="middle" font-family="monospace" font-size="7" fill="#475569">release</text>
+</svg></div>
     <p style="font-size:.8rem;color:#475569;margin-top:10px">
       <strong>El AF interactúa con Git para:</strong> actualizar documentación en el repo,
       aprobar Pull Requests con cambios que afectan requisitos, revisar diffs de código
@@ -1491,6 +1590,7 @@ git diff docs/RF-001.md
     <h2>💬 Las 10 Preguntas del Jefe de Desarrollo</h2>
     <p>Preguntas reales que hace un Dev Lead en una entrevista con un AF Senior — con tus respuestas personalizadas basadas en tu CV.</p>
   </div>
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-qa" onclick="playTab('qa')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="entrevista-tip">
     <strong>🎯 Estrategia:</strong> Responde siempre con estructura: <strong>Contexto → Acción → Resultado</strong>. Menciona tecnologías por su nombre (SQL Server, Oracle, C#, Python, Bizagi). Cuantifica cuando puedas.
@@ -1611,6 +1711,300 @@ function showFromSelect(sel) {
   const tab = document.querySelector('.tab[onclick*="\''+id+'\'"]');
   show(id, tab);
 }
+// ── WEB SPEECH API — NARRATIONS ─────────────────────────────────────────────
+const narrations = {
+  uml: `¡Bienvenido al repaso de UML! Los diagramas UML, o Lenguaje Unificado de Modelado, son el lenguaje universal que usan los equipos de desarrollo para comunicarse sin ambigüedades. Como Analista Funcional Senior, dominar UML te permite traducir el negocio al lenguaje técnico y viceversa.
+
+El Diagrama de Casos de Uso es tu primer entregable al inicio de cualquier proyecto. Muestra QUÉ puede hacer el sistema desde la perspectiva de los actores, sin entrar en detalles técnicos. Es perfecto para validar el alcance con el cliente y el equipo técnico.
+
+El Diagrama de Secuencia es el más valorado por los desarrolladores. Muestra cómo fluyen los mensajes entre componentes a lo largo del tiempo. Si necesitas documentar una integración de APIs o un flujo de autenticación, este es tu diagrama.
+
+El Diagrama de Actividad es similar al BPMN pero más técnico. Modela flujos con decisiones, bifurcaciones y paralelismo. Úsalo para flujos de negocio complejos que el equipo de desarrollo necesita implementar.
+
+El Diagrama de Clases comunica la estructura de datos del dominio. Muestra entidades, atributos, métodos y relaciones. El AF lo crea en colaboración con el arquitecto.
+
+Finalmente, el Diagrama de Estados modela el ciclo de vida de una entidad del negocio, como una línea móvil o una orden de compra. Cada estado tiene reglas de negocio distintas que debes especificar claramente.
+
+Recuerda para la entrevista: un Jefe de Desarrollo espera que sepas cuándo usar cada diagrama, no solo que los conozcas de nombre.`,
+
+  reqs: `Los requisitos son el corazón del trabajo del Analista Funcional. Una especificación ambigua o incompleta es la causa número uno de retrasos en el desarrollo, errores en producción y conflictos con el cliente.
+
+Los Requisitos Funcionales describen QUÉ hace el sistema, el comportamiento observable desde el usuario. Por ejemplo: el portal debe mostrar el consumo de datos de cada línea actualizado cada 15 minutos.
+
+Los Requisitos No Funcionales describen CÓMO lo hace: velocidad, seguridad, disponibilidad, escalabilidad. La clave es siempre ser medible. Nunca digas que el sistema debe ser rápido. Di: el sistema debe responder en menos de 2 segundos para el percentil 95 de requests con hasta 500 usuarios concurrentes.
+
+La Definition of Ready es tu estándar de calidad para una historia de usuario. Si una historia no cumple los criterios de DoR, no entra al sprint. Esto protege al equipo de comenzar trabajo sin información suficiente.
+
+La Definition of Done te dice cuándo el trabajo está realmente terminado: código revisado, tests pasando, UAT aprobado y documentación actualizada.
+
+La Matriz de Trazabilidad es el artefacto que más valoran los Jefes de Desarrollo. Garantiza que cada requisito tiene un caso de prueba y que ningún código se escribe sin respaldo de negocio.
+
+Para la entrevista: prepara un ejemplo concreto de un requisito bien especificado que aceleró el desarrollo, y otro de un requisito ambiguo que causó problemas. Esos dos historias responden el setenta por ciento de las preguntas sobre requisitos.`,
+
+  api: `Las APIs REST son el sistema nervioso de las aplicaciones modernas. Como Analista Funcional Senior, no necesitas programarlas, pero sí especificarlas con suficiente detalle para que el equipo las implemente sin ambigüedades.
+
+REST usa el protocolo HTTP para comunicar sistemas. Cada operación tiene un método: GET para consultar sin modificar, POST para crear nuevos recursos, PUT y PATCH para actualizar, y DELETE para eliminar o desactivar.
+
+Los códigos de respuesta HTTP son el idioma de las APIs. Doscientos significa éxito. Doscientos uno, recurso creado. Cuatrocientos, datos inválidos enviados. Cuatrocientos uno, el usuario no está autenticado. Cuatrocientos tres, autenticado pero sin permiso. Cuatrocientos cuatro, el recurso no existe. Y quinientos, error interno del servidor.
+
+Cuando especificas un endpoint para el equipo técnico, debes incluir: la URL completa con los parámetros, el método HTTP, el formato del cuerpo de la solicitud, la estructura del JSON de respuesta, y todos los posibles errores con su mensaje al usuario.
+
+Esto se documenta en una Especificación de Endpoint, o en Swagger u OpenAPI. Un AF Senior puede leer y escribir estas especificaciones, y eso lo diferencia enormemente de un analista junior.
+
+REST es más moderno y ligero. SOAP es más formal y seguro, usado en banca y gobierno. En Comsatel probablemente uses REST para el portal de autogestión.`,
+
+  sql: `SQL, o Structured Query Language, es el lenguaje de las bases de datos relacionales. Como Analista Funcional, usas SQL para validar datos, verificar que los reportes sean correctos, y crear consultas rápidas sin depender del equipo de desarrollo.
+
+El SELECT básico es tu herramienta más usada. Con WHERE filtras filas, con ORDER BY ordenas resultados, y con LIMIT controlas la cantidad de filas retornadas.
+
+Los JOINs son la habilidad SQL más preguntada en entrevistas. INNER JOIN devuelve solo las filas que coinciden en ambas tablas. LEFT JOIN devuelve todas las filas de la tabla izquierda más las coincidencias. Úsalos para combinar datos de múltiples tablas relacionadas.
+
+GROUP BY agrupa los resultados y te permite usar funciones de agregación: COUNT para contar, SUM para sumar, AVG para promediar, MAX y MIN para extremos. Con HAVING filtras los grupos, no las filas individuales.
+
+Las subconsultas te permiten hacer preguntas complejas: dame todas las empresas cuyas líneas tienen en promedio más del setenta por ciento de consumo. Eso se hace con un SELECT dentro de otro SELECT.
+
+En la entrevista, si te piden escribir una consulta, empieza por el caso más simple: SELECT las columnas que necesitas, FROM la tabla principal, WHERE la condición clave. Luego agrega complejidad gradualmente. Ese proceso muestra metodología, no solo resultado.`,
+
+  data: `El Modelado de Datos es la habilidad que conecta el negocio con la base de datos. El Diagrama Entidad-Relación, o ERD, muestra cómo se estructuran y relacionan los datos de un sistema.
+
+Como Analista Funcional, diseñas el modelo conceptual, que es el modelo de negocio sin preocuparte por detalles técnicos. Luego trabajas con el DBA para traducirlo al modelo físico, que es la estructura real de tablas.
+
+Las relaciones tienen cardinalidad: uno a uno, como un usuario con su perfil; uno a muchos, como una empresa con muchas líneas; y muchos a muchos, como usuarios que administran múltiples líneas, que requiere una tabla intermedia.
+
+La clave primaria, o PK, identifica de forma única cada fila de la tabla. La clave foránea, o FK, es una referencia a la PK de otra tabla y crea la relación entre tablas.
+
+La normalización es el proceso de organizar los datos para eliminar redundancia. La Primera Forma Normal requiere que cada celda tenga un único valor. La Segunda, que todo dependa de la clave primaria completa. La Tercera, que no haya dependencias transitivas.
+
+Para la entrevista: dibuja el ERD del portal de Comsatel en papel. Las entidades son Empresa, Línea, Plan, Usuario y Consumo. Practica explicar las relaciones: una empresa tiene muchas líneas, cada línea pertenece a un plan, un usuario pertenece a una empresa.`,
+
+  arch: `La Arquitectura de Software define cómo están organizados los componentes de un sistema. Como Analista Funcional, necesitas entender los patrones arquitectónicos para escribir requisitos técnicos que tengan sentido y colaborar fluidamente con el equipo.
+
+La arquitectura de tres capas es la más común en aplicaciones empresariales. La capa de Presentación es lo que ve el usuario: el portal web, la app móvil. La capa de Lógica de Negocio contiene las reglas y procesos del sistema. Y la capa de Datos gestiona la persistencia en la base de datos.
+
+Como AF, escribes requisitos para las tres capas: en Presentación, especificas pantallas, validaciones y mensajes de error. En Lógica de Negocio, defines las reglas de negocio y flujos. En Datos, diseñas las entidades y restricciones.
+
+La arquitectura Monolítica pone toda la aplicación en un solo despliegue. Es simple al inicio, ideal para un MVP o un equipo pequeño como el proyecto de Comsatel. Los Microservicios dividen el sistema en servicios pequeños e independientes, cada uno con su propia base de datos. Son ideales para sistemas de gran escala con múltiples equipos, como Netflix o Amazon.
+
+Para la entrevista, tu respuesta sobre arquitectura para Comsatel debería ser: empezaría con un monolito bien estructurado en capas para el MVP. Si el sistema crece en usuarios y equipos, migraríamos gradualmente a microservicios por dominio: líneas, facturación y alertas. Eso demuestra criterio técnico sin sobrediseñar.`,
+
+  sdlc: `El Ciclo de Vida del Desarrollo de Software, SDLC, define cómo se planifica, construye y entrega el software. Como Analista Funcional Senior, tu rol es clave en cada etapa.
+
+En la metodología Ágil con Scrum, el trabajo se organiza en sprints de dos semanas. Hay cinco ceremonias clave: el Sprint Planning donde presentas las historias del backlog al equipo; el Daily Standup donde reportas bloqueos; el Refinement donde preparas las próximas historias; el Sprint Review donde validas el incremento como representante del negocio; y la Retrospectiva donde el equipo mejora su proceso.
+
+Tu flujo como AF va de la mano con este ciclo. Primero levantas requerimientos con entrevistas y talleres. Luego los analizas modelando procesos en BPMN. Después los especificas como historias de usuario con criterios de aceptación medibles. En el Refinement los presentas al equipo para estimación. Y en el Sprint Review los validas contra los criterios de aceptación.
+
+Lo que diferencia a un AF Senior de uno junior es la anticipación. Un Senior escribe historias que el equipo puede implementar sin tres rondas de aclaraciones. Detecta los casos borde antes de que el equipo llegue a ellos. Y gestiona el cambio de alcance con respeto pero con firmeza.
+
+Para la entrevista: cuando te pregunten por tu proceso, menciona los artefactos concretos que produces en cada etapa. No basta con decir que usas Scrum; demuestra que entiendes el rol del AF en cada ceremonia.`,
+
+  test: `El Testing o Pruebas de Software garantiza que el sistema cumple los requisitos antes de llegar al usuario. Como Analista Funcional, eres responsable del UAT, las Pruebas de Aceptación del Usuario.
+
+La pirámide de testing tiene tres niveles. En la base están los Unit Tests, escritos por los desarrolladores para probar funciones individuales. En el medio están las Pruebas de Integración, que verifican que los módulos funcionan juntos. Y en la cima están los End-to-End y el UAT, donde el AF valida que el sistema cumple los requisitos de negocio.
+
+Un caso de prueba bien escrito tiene cinco partes: la precondición, que describe el estado del sistema antes de ejecutar la prueba; los pasos numerados para reproducirla; el resultado esperado medible; el resultado actual obtenido; y el estado final: pasa, falla o está bloqueado.
+
+Un buen reporte de bug incluye: un título descriptivo del problema, la severidad, los pasos para reproducirlo, el resultado esperado versus el actual, y si es posible, una hipótesis de la causa raíz. Ese último punto demuestra madurez técnica.
+
+Para la entrevista: menciona que antes del Sprint Review pasas dos horas ejecutando los casos de prueba en ambiente de QA. Así llegas con evidencia concreta de qué funciona y qué no, en lugar de hacer la validación en vivo durante la reunión. Eso impresiona a cualquier Jefe de Desarrollo.`,
+
+  git: `Git es el sistema de control de versiones más usado en el mundo. Como Analista Funcional, no necesitas ser experto en Git, pero sí entender el flujo para colaborar con el equipo sin fricción.
+
+El Git Flow organiza el trabajo en ramas o branches. La rama main contiene el código en producción, el que usa el cliente real. La rama develop es donde se integran las nuevas funcionalidades antes de ir a producción. Las ramas feature son donde cada desarrollador trabaja en una historia de usuario específica. Y las ramas hotfix son para correcciones urgentes que van directamente a producción.
+
+Como AF, interactúas con Git principalmente para tres cosas. Primero, versionar la documentación de requisitos en el repositorio, para que el equipo siempre tenga acceso a la última versión. Segundo, revisar Pull Requests cuando un desarrollador termina una feature, validando que el cambio implementa los criterios de aceptación correctamente. Tercero, usar git pull para actualizar tu copia local con los últimos cambios del equipo.
+
+Los comandos básicos que debes conocer son: git clone para clonar el repositorio, git pull para actualizar tu copia, git add y git commit para guardar cambios en la documentación, y git push para subirlos al servidor.
+
+Para la entrevista: menciona que en tus proyectos anteriores versionabas los documentos de requisitos en el repositorio junto con el código. Eso muestra visión de equipo y buenas prácticas.`,
+
+  qa: `Llegamos a la parte más importante de este repaso: las preguntas reales que hace un Jefe de Desarrollo en una entrevista con un Analista Funcional Senior.
+
+La pregunta más frecuente es sobre tu proceso: cómo vas desde un requerimiento hasta que el desarrollador empieza a codear. Responde describiendo las cinco etapas: levantamiento, análisis, especificación, refinement y validación. Menciona los artefactos concretos que produces en cada etapa.
+
+También te preguntarán sobre cómo manejas requisitos ambiguos o imposibles. La respuesta correcta demuestra que negocias, no que simplemente rechazas o aceptas. Cuando un desarrollador dice que algo es imposible, primero entiendes la restricción técnica, luego buscas si el objetivo de negocio se puede lograr de otra forma.
+
+El manejo del scope creep, o cambios de alcance en mitad del sprint, es otra pregunta clásica. Demuestra que tienes un proceso: registras el nuevo pedido, evalúas su prioridad, y si es urgente, negocias un intercambio en lugar de simplemente agregar trabajo al sprint.
+
+Para cerrar la entrevista, cuando pregunten por qué quieres trabajar en Comsatel, conecta tu experiencia en sectores como banca, salud y gobierno con el contexto de la empresa. Menciona que tu fortaleza es ser el puente entre el negocio y el código: requisitos tan claros que el desarrollador puede arrancar sin necesitar reuniones de aclaración.
+
+Tienes 28 años de experiencia, certificación en Scrum y habilidades en análisis de datos. Eso es un perfil diferenciador. Comunícalo con confianza mañana. ¡Mucho éxito!`
+};
+
+let currentUtterance = null;
+let currentTabId = null;
+let isSpeaking = false;
+
+function getSpanishVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  // Try to find a Spanish voice - prefer ES variants
+  return voices.find(v => v.lang === 'es-US') ||
+         voices.find(v => v.lang === 'es-MX') ||
+         voices.find(v => v.lang === 'es-419') ||
+         voices.find(v => v.lang.startsWith('es')) ||
+         voices[0];
+}
+
+function playTab(tabId) {
+  if (!('speechSynthesis' in window)) {
+    alert('Tu navegador no soporta síntesis de voz. Usa Chrome para mejor experiencia.');
+    return;
+  }
+
+  const text = narrations[tabId];
+  if (!text) return;
+
+  // If same tab and already playing, toggle pause
+  if (currentTabId === tabId && isSpeaking) {
+    toggleAudio();
+    return;
+  }
+
+  // Stop previous
+  window.speechSynthesis.cancel();
+  isSpeaking = false;
+
+  currentTabId = tabId;
+  const tabNames = {
+    uml:'📐 UML — Diagramas', reqs:'📋 Requisitos', api:'🔌 APIs REST',
+    sql:'🗄 SQL', data:'🔷 Modelo de Datos', arch:'🏗 Arquitectura',
+    sdlc:'🔄 SDLC & Agile', test:'🧪 Testing & UAT', git:'🐙 Git',
+    qa:'💬 Preguntas Clave'
+  };
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'es-419';
+  utterance.rate = 0.88;
+  utterance.pitch = 1.05;
+  utterance.volume = 1;
+
+  // Set voice after voices load
+  const setVoice = () => {
+    const voice = getSpanishVoice();
+    if (voice) utterance.voice = voice;
+  };
+  if (window.speechSynthesis.getVoices().length > 0) {
+    setVoice();
+  } else {
+    window.speechSynthesis.onvoiceschanged = setVoice;
+  }
+
+  utterance.onstart = () => {
+    isSpeaking = true;
+    updateUI(true, tabNames[tabId] || tabId);
+    updateBtnState(tabId, true);
+  };
+  utterance.onpause = () => {
+    isSpeaking = false;
+    document.getElementById('audio-play-btn').textContent = '▶';
+    document.getElementById('audio-dot').classList.add('paused');
+    document.getElementById('audio-status').textContent = 'Pausado — pulsa ▶ para continuar';
+  };
+  utterance.onresume = () => {
+    isSpeaking = true;
+    document.getElementById('audio-play-btn').textContent = '⏸';
+    document.getElementById('audio-dot').classList.remove('paused');
+    document.getElementById('audio-status').textContent = 'Reproduciendo...';
+  };
+  utterance.onend = () => {
+    isSpeaking = false;
+    currentUtterance = null;
+    updateUI(false, tabNames[tabId]);
+    updateBtnState(tabId, false);
+  };
+  utterance.onerror = () => {
+    isSpeaking = false;
+    document.getElementById('audio-status').textContent = '⚠ Error — intenta con Chrome';
+  };
+
+  // Estimate progress (rough: chars vs time)
+  const totalChars = text.length;
+  let charsPer100ms = totalChars / (text.length * 0.055 * 1000 / 100);
+  let charsRead = 0;
+  const progressInterval = setInterval(() => {
+    if (!isSpeaking) { clearInterval(progressInterval); return; }
+    charsRead = Math.min(charsRead + 80, totalChars);
+    const pct = Math.round((charsRead / totalChars) * 100);
+    document.getElementById('audio-pct').textContent = pct + '%';
+    if (pct >= 100) clearInterval(progressInterval);
+  }, 300);
+
+  currentUtterance = utterance;
+  window.speechSynthesis.speak(utterance);
+}
+
+function toggleAudio() {
+  if (!('speechSynthesis' in window)) return;
+  if (window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
+  } else if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.pause();
+  } else if (currentTabId) {
+    playTab(currentTabId);
+  }
+}
+
+function stopAudio() {
+  window.speechSynthesis.cancel();
+  isSpeaking = false;
+  currentUtterance = null;
+  if (currentTabId) updateBtnState(currentTabId, false);
+  currentTabId = null;
+  document.getElementById('audio-bar').classList.remove('visible');
+  document.getElementById('audio-pct').textContent = '0%';
+}
+
+function updateUI(playing, title) {
+  const bar = document.getElementById('audio-bar');
+  const btn = document.getElementById('audio-play-btn');
+  const dot = document.getElementById('audio-dot');
+  const status = document.getElementById('audio-status');
+  const titleEl = document.getElementById('audio-title');
+  bar.classList.add('visible');
+  btn.textContent = playing ? '⏸' : '▶';
+  if (playing) dot.classList.remove('paused'); else dot.classList.add('paused');
+  titleEl.textContent = title || '';
+  status.textContent = playing ? 'Reproduciendo · Mejor experiencia en Chrome' : 'Terminado';
+}
+
+function updateBtnState(tabId, playing) {
+  document.querySelectorAll('.tab-audio-btn').forEach(b => b.classList.remove('playing'));
+  if (playing) {
+    const btn = document.getElementById('btn-' + tabId);
+    if (btn) btn.classList.add('playing');
+  }
+  // Update button text
+  const btn = document.getElementById('btn-' + tabId);
+  if (btn) {
+    btn.innerHTML = playing
+      ? '⏸ Pausar<span class="voice-note">(voz IA)</span>'
+      : '🎧 Escuchar explicación<span class="voice-note">(voz IA)</span>';
+  }
+}
+
+// Auto-play when tab changes (optional - uncomment to enable)
+// const _origShow = show;
+// window.show = function(id, el) { _origShow(id, el); stopAudio(); }
+
+// Load voices on page load
+window.addEventListener('load', () => {
+  if ('speechSynthesis' in window) window.speechSynthesis.getVoices();
+});
+
 </script>
+
+<!-- ── FLOATING AUDIO PLAYER ── -->
+<div class="audio-bar" id="audio-bar">
+  <button class="audio-play-btn" id="audio-play-btn" onclick="toggleAudio()">▶</button>
+  <div class="audio-info">
+    <div class="audio-title" id="audio-title">Selecciona una sección y pulsa 🎧</div>
+    <div class="audio-status" id="audio-status">Listo para reproducir · Mejor en Chrome</div>
+  </div>
+  <div class="audio-progress">
+    <div class="audio-dot paused" id="audio-dot"></div>
+    <span style="font-size:.7rem;color:#64748b" id="audio-pct">0%</span>
+  </div>
+  <button class="audio-stop-btn" onclick="stopAudio()" title="Detener">■</button>
+</div>
+
 </body>
 </html>
