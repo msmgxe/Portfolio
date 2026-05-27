@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Repaso Técnico — Entrevista Jefe de Desarrollo | Marco Saldarriaga</title>
+<style>
+:root{
+  --navy:#0f172a;--blue:#1d4ed8;--sky:#38bdf8;--slate:#64748b;
+  --green:#22c55e;--amber:#f59e0b;--red:#ef4444;--purple:#a855f7;
+  --orange:#f97316;--teal:#14b8a6;--bg:#f1f5f9;--white:#ffffff;--border:#e2e8f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:#1e293b;font-size:15px}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#1d4ed8 100%);padding:28px 20px 20px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero h1{font-size:1.6rem;font-weight:900;color:#fff;position:relative;line-height:1.2}
+.hero h1 span{color:var(--sky)}
+.hero p{color:#94a3b8;font-size:.85rem;margin-top:8px;position:relative}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;position:relative}
+.badge{padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.04em}
+.badge-red{background:#fee2e2;color:#dc2626}
+.badge-blue{background:#dbeafe;color:#1d4ed8}
+.badge-green{background:#dcfce7;color:#16a34a}
+.badge-amber{background:#fef3c7;color:#b45309}
+.badge-purple{background:#f3e8ff;color:#7e22ce}
+
+/* ── COUNTDOWN ── */
+.countdown{background:#dc2626;color:#fff;text-align:center;padding:10px;font-weight:700;font-size:.85rem;letter-spacing:.05em}
+.countdown span{font-size:1.1rem;margin:0 4px}
+
+/* ── NAV ── */
+.nav{background:#1e293b;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.nav-inner{display:grid;grid-template-columns:repeat(5,1fr);max-width:1100px;margin:0 auto}
+.nav-cat{font-size:.55rem;color:#475569;font-weight:800;text-transform:uppercase;letter-spacing:.09em;padding:4px 10px;background:#192435;border-top:2px solid #2d3f55;grid-column:1/-1}
+.tab{padding:9px 4px;font-size:.65rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;text-align:center;transition:.2s;white-space:normal;line-height:1.3}
+.tab:hover{color:#e2e8f0;background:rgba(255,255,255,.05)}
+.tab.on{color:var(--sky);border-color:var(--sky);background:rgba(56,189,248,.08)}
+@media(max-width:680px){.nav{display:none}.nav-mob{display:block}}
+
+/* ── MOBILE NAV ── */
+.nav-mob{display:none;background:#1e293b;padding:10px 14px}
+.nav-mob-label{font-size:.7rem;color:#64748b;font-weight:700;margin-bottom:6px;text-transform:uppercase}
+.nav-sel{width:100%;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:10px 12px;font-size:.85rem;appearance:none;-webkit-appearance:none;cursor:pointer}
+
+/* ── MAIN WRAP ── */
+.wrap{max-width:1100px;margin:0 auto;padding:20px 14px}
+.sec{display:none}
+.sec.on{display:block}
+
+/* ── SECTION HEADER ── */
+.sec-hdr{margin-bottom:20px;padding:18px 20px;background:#fff;border-radius:12px;border-left:5px solid var(--blue);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.sec-hdr h2{font-size:1.4rem;font-weight:800;color:var(--navy)}
+.sec-hdr p{color:var(--slate);margin-top:4px;font-size:.88rem}
+.entrevista-tip{background:#fff7ed;border:1.5px solid #f97316;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.entrevista-tip strong{color:#ea580c}
+.alert-green{background:#f0fdf4;border:1.5px solid #22c55e;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.alert-green strong{color:#15803d}
+.alert-blue{background:#eff6ff;border:1.5px solid #3b82f6;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.alert-blue strong{color:#1d4ed8}
+.alert-red{background:#fef2f2;border:1.5px solid #ef4444;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.alert-red strong{color:#dc2626}
+
+/* ── CARDS ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:16px 0}
+.card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-top:4px solid}
+.card h4{font-size:.95rem;font-weight:800;margin-bottom:8px}
+.card p,.card li{font-size:.82rem;color:#475569;line-height:1.5}
+.card ul{padding-left:16px;margin-top:6px}
+
+/* ── CODE BLOCKS ── */
+.code{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;overflow-x:auto;margin:12px 0;position:relative}
+.code .kw{color:#38bdf8}  /* keywords */
+.code .str{color:#86efac} /* strings */
+.code .cm{color:#64748b}  /* comments */
+.code .fn{color:#f9a8d4}  /* functions */
+.code .num{color:#fde68a} /* numbers */
+.code .op{color:#fb923c}  /* operators */
+.code-label{font-size:.65rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+
+/* ── TABLES ── */
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:14px 0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.tbl th{background:#1e293b;color:#e2e8f0;padding:10px 12px;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+.tbl td{padding:9px 12px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:nth-child(even) td{background:#f8fafc}
+.chip{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:700}
+.chip-green{background:#dcfce7;color:#15803d}
+.chip-red{background:#fee2e2;color:#dc2626}
+.chip-blue{background:#dbeafe;color:#1d4ed8}
+.chip-amber{background:#fef3c7;color:#b45309}
+.chip-purple{background:#f3e8ff;color:#7e22ce}
+.chip-slate{background:#f1f5f9;color:#475569}
+
+/* ── UML Visual ── */
+.uml-box{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.07);margin:12px 0}
+.uml-title{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:10px}
+.uml-diagram{background:#f8fafc;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.8;color:#1e293b;overflow-x:auto;white-space:pre;border:1px solid #e2e8f0}
+
+/* ── STEP FLOW ── */
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
+.flow-step{background:#fff;border-radius:8px;padding:10px 14px;font-size:.78rem;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.08);border-left:4px solid;flex:1;min-width:120px}
+.flow-arrow{color:#94a3b8;font-size:1.2rem;font-weight:300}
+@media(max-width:600px){.flow-arrow{display:none}}
+
+/* ── Q&A ── */
+.qa-item{background:#fff;border-radius:12px;margin:12px 0;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.qa-q{background:#1e293b;color:#e2e8f0;padding:14px 18px;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:10px}
+.qa-q .qnum{background:var(--sky);color:#0f172a;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0}
+.qa-a{padding:16px 18px;font-size:.84rem;line-height:1.65;color:#374151;border-left:4px solid var(--sky)}
+.qa-a .tu{background:#eff6ff;border-radius:8px;padding:10px 14px;margin-top:10px;font-style:italic;font-size:.82rem;color:#1d4ed8;border-left:3px solid #3b82f6}
+.qa-a .tu::before{content:"💬 Tu respuesta: ";font-weight:800;font-style:normal}
+
+/* ── SQL highlight ── */
+.sql-kw{color:#38bdf8;font-weight:700}
+.sql-fn{color:#f9a8d4}
+.sql-str{color:#86efac}
+.sql-cm{color:#64748b;font-style:italic}
+.sql-num{color:#fde68a}
+
+/* ── Pill tabs inside section ── */
+.ptabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.ptab{padding:6px 14px;border-radius:20px;font-size:.78rem;font-weight:700;cursor:pointer;border:2px solid #e2e8f0;background:#fff;color:#475569;transition:.2s}
+.ptab.on{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.pcontent{display:none}
+.pcontent.on{display:block}
+
+/* ── pyramid ── */
+.pyramid{text-align:center;margin:16px auto;max-width:420px}
+.pyr-row{margin:0 auto;display:flex;align-items:center;justify-content:center;height:40px;border-radius:4px;margin-bottom:3px;font-size:.78rem;font-weight:700;color:#fff}
+
+/* ── Footer ── */
+.footer{text-align:center;padding:24px;color:#94a3b8;font-size:.78rem;background:#1e293b;margin-top:40px}
+.footer a{color:var(--sky);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>⚡ Repaso Técnico<br><span>Entrevista Jefe de Desarrollo</span></h1>
+  <p>Marco Saldarriaga · Analista Funcional Senior · Comsatel · 2026</p>
+  <div class="badge-row">
+    <span class="badge badge-red">🔥 Entrevista Mañana 3:00 PM</span>
+    <span class="badge badge-blue">UML · SQL · APIs · Git</span>
+    <span class="badge badge-green">Testing · Arquitectura · SDLC</span>
+    <span class="badge badge-purple">10 Preguntas Clave</span>
+  </div>
+</div>
+
+<div class="countdown">
+  🎯 Enfocado en lo que pregunta un <span>Jefe de Desarrollo</span> a un Analista Funcional Senior
+</div>
+
+<!-- NAV DESKTOP -->
+<div class="nav" id="nav-tabs">
+  <div class="nav-inner">
+    <div class="nav-cat">📐 Documentación Técnica</div>
+    <div class="tab on"  onclick="show('uml',this)">📐 UML</div>
+    <div class="tab" onclick="show('reqs',this)">📋 Requisitos</div>
+    <div class="tab" onclick="show('api',this)">🔌 APIs REST</div>
+    <div class="tab" onclick="show('sql',this)">🗄 SQL</div>
+    <div class="tab" onclick="show('data',this)">🔷 Modelo de Datos</div>
+    <div class="nav-cat">⚙️ Proceso & Desarrollo</div>
+    <div class="tab" onclick="show('arch',this)">🏗 Arquitectura</div>
+    <div class="tab" onclick="show('sdlc',this)">🔄 SDLC & Agile</div>
+    <div class="tab" onclick="show('test',this)">🧪 Testing & UAT</div>
+    <div class="tab" onclick="show('git',this)">🐙 Git</div>
+    <div class="tab" onclick="show('qa',this)">💬 Preguntas Clave</div>
+  </div>
+</div>
+
+<!-- NAV MOBILE -->
+<div class="nav-mob" id="nav-mob">
+  <div class="nav-mob-label">📌 Selecciona un tema</div>
+  <select class="nav-sel" id="nav-select" onchange="showFromSelect(this)">
+    <optgroup label="📐 Documentación Técnica">
+      <option value="uml">📐 UML — Los 5 diagramas clave</option>
+      <option value="reqs">📋 Requisitos Funcionales vs No Funcionales</option>
+      <option value="api">🔌 APIs REST — Conceptos esenciales</option>
+      <option value="sql">🗄 SQL — Consultas que todo AF debe saber</option>
+      <option value="data">🔷 Modelado de Datos — ERD y normalización</option>
+    </optgroup>
+    <optgroup label="⚙️ Proceso & Desarrollo">
+      <option value="arch">🏗 Arquitectura de Software</option>
+      <option value="sdlc">🔄 SDLC & Agile — Tu rol en el equipo</option>
+      <option value="test">🧪 Testing & UAT — Casos de prueba</option>
+      <option value="git">🐙 Git para Analistas</option>
+      <option value="qa">💬 Las 10 Preguntas del Jefe de Dev</option>
+    </optgroup>
+  </select>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════ UML ══════════════ -->
+<div class="sec on" id="uml">
+  <div class="sec-hdr">
+    <h2>📐 UML — Los 5 Diagramas que más Preguntan</h2>
+    <p>Un Jefe de Desarrollo valida que el AF sepa cuándo usar cada diagrama y qué información comunica al equipo técnico.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Qué diagramas UML usas en tu día a día y para qué sirve cada uno? Dame un ejemplo concreto."
+  </div>
+
+  <!-- Diagrama 1: Casos de Uso -->
+  <div class="uml-box">
+    <div class="uml-title">1️⃣ Diagrama de Casos de Uso — ¿Qué puede hacer el sistema?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Al inicio del proyecto para mostrar las funcionalidades al cliente y al equipo técnico sin entrar en detalles.</p>
+        <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
+          <li><strong>Actor:</strong> quien interactúa (cliente, admin, sistema externo)</li>
+          <li><strong>Caso de uso:</strong> funcionalidad del sistema (elipse)</li>
+          <li><strong>&lt;&lt;include&gt;&gt;:</strong> siempre se ejecuta junto</li>
+          <li><strong>&lt;&lt;extend&gt;&gt;:</strong> extensión opcional</li>
+        </ul>
+        <div class="alert-green" style="margin-top:10px">
+          <strong>✅ Ejemplo Comsatel:</strong> Actor "Admin Corporativo" → caso de uso "Gestionar Líneas" &lt;&lt;include&gt;&gt; "Autenticar Usuario"
+        </div>
+      </div>
+      <div class="uml-diagram">+------------------+
+|   Sistema Portal |
+|                  |
+|  (Autenticar)    |
+|       ↑include   |
+|  (Ver Líneas)   |
+|  (Cambiar Plan) |
+|  (Ver Consumo)  |
+|                  |
++------------------+
+👤 Admin Corp → todas
+👤 Agente CC  → Ver solo</div>
+    </div>
+  </div>
+
+  <!-- Diagrama 2: Secuencia -->
+  <div class="uml-box">
+    <div class="uml-title">2️⃣ Diagrama de Secuencia — ¿Cómo fluye el mensaje?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para explicar al equipo técnico el flujo de llamadas entre componentes. Esencial para diseñar APIs e integraciones.</p>
+        <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
+          <li><strong>Línea de vida:</strong> actor/componente vertical</li>
+          <li><strong>Mensaje síncrono →:</strong> espera respuesta</li>
+          <li><strong>Mensaje asíncrono --→:</strong> no espera</li>
+          <li><strong>Fragmento alt/loop:</strong> condiciones y ciclos</li>
+        </ul>
+        <div class="alert-blue" style="margin-top:10px">
+          <strong>💡 Para la entrevista:</strong> Siempre dibuja el happy path primero, luego menciona los flujos alternativos (error 401, timeout, datos no encontrados).
+        </div>
+      </div>
+      <div class="uml-diagram">Usuario  Portal   API    BD
+  |         |        |      |
+  |--login→ |        |      |
+  |         |--POST /auth→  |
+  |         |        |--SELECT→
+  |         |        |←─token─|
+  |         |←200+JWT|      |
+  |←session─|        |      |
+  |         |        |      |
+  |--GET líneas→      |      |
+  |         |--GET /lines→  |
+  |         |        |--SELECT→
+  |         |        |←rows─|
+  |         |←200+JSON      |
+  |←tabla──|        |      |</div>
+    </div>
+  </div>
+
+  <!-- Diagrama 3: Actividad -->
+  <div class="uml-box">
+    <div class="uml-title">3️⃣ Diagrama de Actividad — ¿Cómo fluye el proceso?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para modelar flujos de negocio complejos con decisiones. Similar al BPMN pero más técnico.</p>
+        <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
+          <li><strong>Inicio (●):</strong> punto de entrada</li>
+          <li><strong>Actividad [□]:</strong> acción concreta</li>
+          <li><strong>Decisión (◇):</strong> bifurcación con condiciones</li>
+          <li><strong>Fork/Join (━━━):</strong> paralelismo</li>
+          <li><strong>Fin (⊗):</strong> punto de salida</li>
+        </ul>
+      </div>
+      <div class="uml-diagram">         ●
+         ↓
+   [Recibe solicitud]
+         ↓
+    ◇ ¿Autenticado? ◇
+   sí ↓        ↗ no
+[Ver Líneas]  [Redirigir Login]
+      ↓
+ ◇ ¿Tiene permiso? ◇
+sí ↓            ↗ no
+[Mostrar datos] [Error 403]
+      ↓
+      ⊗</div>
+    </div>
+  </div>
+
+  <!-- Diagrama 4: Clases -->
+  <div class="uml-box">
+    <div class="uml-title">4️⃣ Diagrama de Clases — ¿Cómo está estructurado el sistema?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para comunicar al equipo la estructura de datos del dominio. El AF lo crea con el arquitecto.</p>
+        <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
+          <li><strong>Clase:</strong> nombre + atributos + métodos</li>
+          <li><strong>Herencia (▷):</strong> "es un"</li>
+          <li><strong>Composición (◆):</strong> "parte de" (muere con el padre)</li>
+          <li><strong>Asociación (─):</strong> "se relaciona con"</li>
+          <li><strong>Multiplicidad:</strong> 1, *, 1..*, 0..1</li>
+        </ul>
+      </div>
+      <div class="uml-diagram">┌──────────────┐      ┌──────────────┐
+│   Empresa    │1    *│    Línea     │
+│──────────────│◆────→│──────────────│
+│ ruc: String  │      │ numero: Str  │
+│ nombre: Str  │      │ plan: String │
+│──────────────│      │ consumo: Int │
+│ getLineas()  │      │──────────────│
+└──────────────┘      │ activar()    │
+                      │ suspender()  │
+                      └──────────────┘
+                             ↑ hereda
+                      ┌──────────────┐
+                      │  LineaMovil  │
+                      │ imei: String │
+                      └──────────────┘</div>
+    </div>
+  </div>
+
+  <!-- Diagrama 5: Estado -->
+  <div class="uml-box">
+    <div class="uml-title">5️⃣ Diagrama de Estados — ¿Cómo cambia el estado de un objeto?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para modelar el ciclo de vida de una entidad del negocio (tickets, órdenes, líneas móviles).</p>
+        <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
+          <li><strong>Estado [   ]:</strong> situación de la entidad</li>
+          <li><strong>Transición →:</strong> evento que cambia el estado</li>
+          <li><strong>Guardia [cond]:</strong> condición para la transición</li>
+          <li><strong>Acción /act:</strong> lo que ocurre al transitar</li>
+        </ul>
+        <div class="alert-green" style="margin-top:10px">
+          <strong>✅ Ejemplo Comsatel:</strong> Línea móvil → estados: Solicitada → Activa → Suspendida → Cancelada. Cada estado tiene reglas de negocio distintas.
+        </div>
+      </div>
+      <div class="uml-diagram">    ●
+    ↓ activar()
+[SOLICITADA]
+    ↓ aprobación/enviar SIM
+ [ACTIVA] ←──────────────┐
+    ↓ [consumo>100%]     │
+[SUSPENDIDA]  reactivar()┘
+    ↓ cancelar()
+[CANCELADA]
+    ↓
+    ⊗</div>
+    </div>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> En AFP Profuturo usaste diagramas de secuencia para documentar la integración de tokenización PCI-DSS. En Perurail modelaste el flujo de reservas con diagramas de actividad en Bizagi/Visio. Menciona estos proyectos concretos.
+  </div>
+</div>
+<!-- /UML -->
+
+<!-- ══════════════ REQUISITOS ══════════════ -->
+<div class="sec" id="reqs">
+  <div class="sec-hdr">
+    <h2>📋 Requisitos — FR, NFR y Trazabilidad</h2>
+    <p>El Jefe de Dev quiere saber si sabes especificar requisitos que el equipo pueda implementar sin ambigüedades.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Cómo distingues un requisito funcional de uno no funcional? Dame 3 ejemplos de cada uno para el proyecto que mencionaste."
+  </div>
+
+  <table class="tbl">
+    <tr>
+      <th>Tipo</th><th>Definición</th><th>Ejemplo Comsatel</th><th>Cómo medirlo</th>
+    </tr>
+    <tr>
+      <td><span class="chip chip-blue">RF</span> Funcional</td>
+      <td>Lo que el sistema <strong>hace</strong> — comportamiento observable</td>
+      <td>"El portal debe mostrar el consumo de datos de cada línea actualizado cada 15 min"</td>
+      <td>Test de aceptación: ¿el dato cambia en ≤15 min?</td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-amber">RNF</span> No Funcional</td>
+      <td>Cómo el sistema lo hace — calidad del servicio</td>
+      <td>"El portal debe cargar en ≤2 segundos con 500 usuarios concurrentes"</td>
+      <td>JMeter / prueba de carga</td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-purple">RN</span> Negocio</td>
+      <td>Reglas del dominio que rigen el comportamiento</td>
+      <td>"Solo el administrador corporativo puede cambiar el plan de sus líneas"</td>
+      <td>Test de roles y permisos</td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-slate">RT</span> Transición</td>
+      <td>Requisitos para la migración / cambio de sistema</td>
+      <td>"Los datos históricos de los últimos 12 meses deben migrarse al nuevo portal"</td>
+      <td>Conteo de registros antes/después</td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-red">RS</span> Seguridad</td>
+      <td>Controles de acceso, cifrado, auditoría</td>
+      <td>"Las sesiones deben expirar a los 30 min de inactividad (PCI-DSS)"</td>
+      <td>Test de sesión expirada</td>
+    </tr>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+    <div class="card" style="border-color:#3b82f6">
+      <h4>✅ Definition of Ready (DoR)</h4>
+      <p>Una historia está lista para el sprint si:</p>
+      <ul>
+        <li>Está escrita en formato As a / I want / So that</li>
+        <li>Criterios de aceptación en formato Given/When/Then</li>
+        <li>Estimada por el equipo (Planning Poker)</li>
+        <li>Sin dependencias bloqueantes abiertas</li>
+        <li>Mockup o wireframe adjunto si aplica</li>
+        <li>No tiene ambigüedades (el equipo lo entiende solo)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:#22c55e">
+      <h4>✅ Definition of Done (DoD)</h4>
+      <p>Una historia está terminada si:</p>
+      <ul>
+        <li>Código revisado (code review aprobado)</li>
+        <li>Unit tests escritos y pasando</li>
+        <li>Tests de integración pasando</li>
+        <li>Desplegado en ambiente de pruebas</li>
+        <li>UAT validado por el AF/PO</li>
+        <li>Documentación técnica actualizada</li>
+        <li>Sin bugs Críticos o Altos abiertos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="uml-box">
+    <div class="uml-title">📑 Especificación de Requisito — Formato IEEE 830 simplificado</div>
+    <div class="code-label">RF-001 — Portal de Autogestión Corporativa</div>
+    <div class="code">
+<span class="cm">/* Identificación */</span>
+ID:          RF-001
+Nombre:      Consulta de consumo por línea
+Prioridad:   ALTA  |  Estado: Aprobado  |  Versión: 1.2
+
+<span class="cm">/* Descripción */</span>
+El sistema <span class="kw">DEBE</span> permitir al Administrador Corporativo
+consultar el consumo de datos (MB/GB), minutos y SMS
+de cada línea activa de su empresa en tiempo real.
+
+<span class="cm">/* Criterios de Aceptación */</span>
+<span class="str">DADO</span> que el usuario está autenticado como Admin Corporativo
+<span class="str">CUANDO</span> accede a "Mis Líneas" y selecciona una línea
+<span class="str">ENTONCES</span> el sistema muestra:
+  - Consumo actual en MB/GB con barra de progreso
+  - Porcentaje usado vs. plan contratado
+  - Datos actualizados con timestamp (≤15 min de desfase)
+  - Alerta visual si consumo ≥ 80%
+
+<span class="cm">/* Restricciones */</span>
+- Tiempo de respuesta: &lt; 2 segundos
+- Solo visible para líneas de SU empresa (RUC validado)
+- No aplica para líneas suspendidas (mostrar estado)
+
+<span class="cm">/* Dependencias */</span>
+Depende de: RF-002 (Autenticación) · API-Comsatel-Consumo-v2
+    </div>
+  </div>
+
+  <div class="uml-box">
+    <div class="uml-title">🔗 Matriz de Trazabilidad — Por qué importa al Dev Lead</div>
+    <table class="tbl">
+      <tr><th>Requisito</th><th>User Story</th><th>Módulo</th><th>Test Case</th><th>Estado</th></tr>
+      <tr><td>RF-001</td><td>US-007</td><td>LineaModule</td><td>TC-012, TC-013</td><td><span class="chip chip-green">✅ Implementado</span></td></tr>
+      <tr><td>RF-002</td><td>US-001</td><td>AuthModule</td><td>TC-001, TC-002</td><td><span class="chip chip-green">✅ Implementado</span></td></tr>
+      <tr><td>RF-003</td><td>US-009</td><td>AlertModule</td><td>TC-015</td><td><span class="chip chip-amber">🔄 En desarrollo</span></td></tr>
+      <tr><td>RNF-001</td><td>—</td><td>Infraestructura</td><td>TC-Performance-01</td><td><span class="chip chip-blue">📋 Pendiente</span></td></tr>
+    </table>
+    <p style="font-size:.8rem;color:#64748b;margin-top:8px">💡 La matriz de trazabilidad garantiza que cada requisito tiene un test y que nada se implementa sin respaldo de negocio. Es el artefacto que más valoran los Dev Leads.</p>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> En Oncosalud gestionaste la tokenización de pagos — un proyecto con requisitos PCI-DSS estrictos donde la trazabilidad entre requisitos de seguridad y casos de prueba era obligatoria.
+  </div>
+</div>
+<!-- /REQUISITOS -->
+
+<!-- ══════════════ API ══════════════ -->
+<div class="sec" id="api">
+  <div class="sec-hdr">
+    <h2>🔌 APIs REST — Lo que el Equipo Técnico espera que sepas</h2>
+    <p>Como AF Senior, debes poder especificar endpoints, entender errores y colaborar con el equipo de integración sin depender de ellos para cada pregunta.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Has trabajado con APIs? ¿Cómo documentas un endpoint para que el equipo pueda implementarlo?"
+  </div>
+
+  <div class="card-grid">
+    <div class="card" style="border-color:#3b82f6">
+      <h4>🔵 GET — Consultar</h4>
+      <p>Obtiene datos. No modifica nada.</p>
+      <ul><li>GET /api/lineas → lista todas</li><li>GET /api/lineas/987654321 → una línea</li><li>GET /api/lineas?estado=activa → filtrado</li></ul>
+    </div>
+    <div class="card" style="border-color:#22c55e">
+      <h4>🟢 POST — Crear</h4>
+      <p>Crea un nuevo recurso. Body con JSON.</p>
+      <ul><li>POST /api/lineas → nueva línea</li><li>POST /api/sesion → login</li><li>POST /api/alertas → crear alerta</li></ul>
+    </div>
+    <div class="card" style="border-color:#f59e0b">
+      <h4>🟡 PUT/PATCH — Actualizar</h4>
+      <p>PUT: reemplaza todo. PATCH: solo campos.</p>
+      <ul><li>PUT /api/lineas/987 → actualiza completo</li><li>PATCH /api/lineas/987 → solo el plan</li></ul>
+    </div>
+    <div class="card" style="border-color:#ef4444">
+      <h4>🔴 DELETE — Eliminar</h4>
+      <p>Elimina o desactiva un recurso.</p>
+      <ul><li>DELETE /api/lineas/987 → elimina</li><li>Generalmente se hace soft delete (estado=CANCELADA)</li></ul>
+    </div>
+  </div>
+
+  <div class="uml-box" style="margin-top:16px">
+    <div class="uml-title">📊 Tabla de Códigos HTTP — Los que más debes recordar</div>
+    <table class="tbl">
+      <tr><th>Código</th><th>Nombre</th><th>Cuándo ocurre</th><th>Acción del AF</th></tr>
+      <tr><td><span class="chip chip-green">200 OK</span></td><td>Éxito</td><td>GET/PUT exitoso</td><td>Verificar datos correctos en response</td></tr>
+      <tr><td><span class="chip chip-green">201 Created</span></td><td>Creado</td><td>POST exitoso</td><td>Verificar que retorna el ID del nuevo recurso</td></tr>
+      <tr><td><span class="chip chip-slate">204 No Content</span></td><td>Sin contenido</td><td>DELETE exitoso</td><td>Normal — no esperar body en response</td></tr>
+      <tr><td><span class="chip chip-amber">400 Bad Request</span></td><td>Solicitud inválida</td><td>Body mal formado, campo faltante</td><td>Especificar validaciones en el requisito</td></tr>
+      <tr><td><span class="chip chip-red">401 Unauthorized</span></td><td>No autenticado</td><td>Token inválido o expirado</td><td>Definir flujo de re-login en el requisito</td></tr>
+      <tr><td><span class="chip chip-red">403 Forbidden</span></td><td>Sin permiso</td><td>Autenticado pero sin rol</td><td>Documentar la matriz de roles/permisos</td></tr>
+      <tr><td><span class="chip chip-red">404 Not Found</span></td><td>No encontrado</td><td>Recurso no existe</td><td>Especificar mensaje de error al usuario</td></tr>
+      <tr><td><span class="chip chip-red">500 Server Error</span></td><td>Error interno</td><td>Bug en el servidor</td><td>Definir mensaje genérico al usuario + logging</td></tr>
+    </table>
+  </div>
+
+  <div class="uml-box">
+    <div class="uml-title">📝 Especificación de Endpoint — Lo que entregas al equipo técnico</div>
+    <div class="code-label">Ejemplo: GET /api/v1/empresas/{ruc}/lineas</div>
+    <div class="code">
+<span class="cm">────── ENDPOINT SPEC ──────────────────────────────────────</span>
+Método:   <span class="kw">GET</span>
+URL:      /api/v1/empresas/<span class="str">{ruc}</span>/lineas
+Auth:     Bearer JWT  (header: Authorization: Bearer &lt;token&gt;)
+Versión:  v1
+
+<span class="cm">── Path Params ────────────────────────────────────────────</span>
+ruc         String  required  RUC de la empresa (11 dígitos)
+
+<span class="cm">── Query Params ───────────────────────────────────────────</span>
+estado      String  optional  activa | suspendida | todas
+pagina      Int     optional  default: 1
+porPagina   Int     optional  default: 20, max: 100
+
+<span class="cm">── Response 200 OK ────────────────────────────────────────</span>
+{
+  <span class="str">"total"</span>: <span class="num">48</span>,
+  <span class="str">"pagina"</span>: <span class="num">1</span>,
+  <span class="str">"lineas"</span>: [
+    {
+      <span class="str">"numero"</span>:   <span class="str">"987654321"</span>,
+      <span class="str">"plan"</span>:     <span class="str">"Empresarial 10GB"</span>,
+      <span class="str">"estado"</span>:   <span class="str">"activa"</span>,
+      <span class="str">"consumoMB"</span>: <span class="num">7680</span>,
+      <span class="str">"limiteMB"</span>:  <span class="num">10240</span>,
+      <span class="str">"porcentaje"</span>:<span class="num">75.0</span>,
+      <span class="str">"ultimaActualizacion"</span>: <span class="str">"2026-05-27T14:30:00Z"</span>
+    }
+  ]
+}
+
+<span class="cm">── Errores posibles ───────────────────────────────────────</span>
+401 → Token expirado → Redirigir a login
+403 → RUC no corresponde al usuario → "Sin acceso"
+404 → Empresa no encontrada → "RUC no registrado"
+    </div>
+  </div>
+
+  <div class="alert-blue">
+    <strong>💡 Dato clave:</strong> REST vs SOAP — REST usa JSON y HTTP puro (más rápido, más moderno). SOAP usa XML y un estándar de mensaje más rígido (más seguro para banca/gobierno). Comsatel probablemente usa REST para el portal. En AFP Profuturo probablemente interactuaste con SOAP o APIs bancarias legacy.
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> Mencionaste Python con pandas/NumPy — lo que implica que has consumido APIs para obtener datos. También Flutter/Dart para móvil requiere integración con APIs REST. Úsalo como ejemplo.
+  </div>
+</div>
+<!-- /API -->
+
+<!-- ══════════════ SQL ══════════════ -->
+<div class="sec" id="sql">
+  <div class="sec-hdr">
+    <h2>🗄 SQL — Consultas que todo AF Senior debe dominar</h2>
+    <p>No necesitas ser DBA, pero sí debes poder escribir consultas para validar datos, verificar requisitos y crear reportes rápidos sin depender del equipo técnico.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Has trabajado con SQL? ¿Puedes escribir una consulta para obtener las líneas con más del 80% de consumo?" — A veces te dan papel y lápiz.
+  </div>
+
+  <!-- SELECT básico -->
+  <div class="uml-box">
+    <div class="uml-title">1️⃣ SELECT básico — WHERE, ORDER BY, LIMIT</div>
+    <div class="code"><span class="sql-cm">-- Líneas con consumo mayor al 80% del plan</span>
+<span class="sql-kw">SELECT</span>
+    l.numero_linea,
+    l.nombre_titular,
+    l.plan_nombre,
+    l.consumo_mb,
+    l.limite_mb,
+    <span class="sql-fn">ROUND</span>((l.consumo_mb * <span class="sql-num">100.0</span> / l.limite_mb), <span class="sql-num">1</span>) <span class="sql-kw">AS</span> porcentaje_uso
+<span class="sql-kw">FROM</span> lineas l
+<span class="sql-kw">WHERE</span> l.estado = <span class="sql-str">'ACTIVA'</span>
+  <span class="sql-kw">AND</span> l.consumo_mb > (l.limite_mb * <span class="sql-num">0.80</span>)
+<span class="sql-kw">ORDER BY</span> porcentaje_uso <span class="sql-kw">DESC</span>
+<span class="sql-kw">LIMIT</span> <span class="sql-num">10</span>;</div>
+  </div>
+
+  <!-- JOIN -->
+  <div class="uml-box">
+    <div class="uml-title">2️⃣ JOINs — La habilidad SQL más preguntada</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px">
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:.78rem">
+        <strong style="color:#15803d">INNER JOIN</strong><br>
+        Solo filas que existen en AMBAS tablas.<br>
+        Ejemplo: solo líneas CON empresa registrada.
+      </div>
+      <div style="background:#eff6ff;border-radius:8px;padding:10px;font-size:.78rem">
+        <strong style="color:#1d4ed8">LEFT JOIN</strong><br>
+        Todas las filas de la tabla izquierda + matches.<br>
+        Ejemplo: TODAS las empresas, tengan o no líneas.
+      </div>
+      <div style="background:#fef3c7;border-radius:8px;padding:10px;font-size:.78rem">
+        <strong style="color:#b45309">RIGHT JOIN</strong><br>
+        Todas las filas de la tabla derecha + matches.<br>
+        Raro — generalmente se reescribe como LEFT.
+      </div>
+    </div>
+    <div class="code"><span class="sql-cm">-- Empresas con su número de líneas activas</span>
+<span class="sql-kw">SELECT</span>
+    e.ruc,
+    e.razon_social,
+    e.segmento,
+    <span class="sql-fn">COUNT</span>(l.id) <span class="sql-kw">AS</span> total_lineas,
+    <span class="sql-fn">SUM</span>(<span class="sql-kw">CASE WHEN</span> l.estado = <span class="sql-str">'ACTIVA'</span> <span class="sql-kw">THEN</span> <span class="sql-num">1</span> <span class="sql-kw">ELSE</span> <span class="sql-num">0</span> <span class="sql-kw">END</span>) <span class="sql-kw">AS</span> lineas_activas
+<span class="sql-kw">FROM</span> empresas e
+<span class="sql-kw">LEFT JOIN</span> lineas l <span class="sql-kw">ON</span> e.ruc = l.ruc_empresa
+<span class="sql-kw">GROUP BY</span> e.ruc, e.razon_social, e.segmento
+<span class="sql-kw">HAVING</span> <span class="sql-fn">COUNT</span>(l.id) > <span class="sql-num">0</span>
+<span class="sql-kw">ORDER BY</span> total_lineas <span class="sql-kw">DESC</span>;</div>
+  </div>
+
+  <!-- GROUP BY + Agregaciones -->
+  <div class="uml-box">
+    <div class="uml-title">3️⃣ GROUP BY + Funciones de Agregación</div>
+    <div class="code"><span class="sql-cm">-- Resumen de consumo por plan (para el dashboard del portal)</span>
+<span class="sql-kw">SELECT</span>
+    plan_nombre,
+    <span class="sql-fn">COUNT</span>(*) <span class="sql-kw">AS</span> total_lineas,
+    <span class="sql-fn">AVG</span>(consumo_mb) <span class="sql-kw">AS</span> consumo_promedio_mb,
+    <span class="sql-fn">MAX</span>(consumo_mb) <span class="sql-kw">AS</span> consumo_maximo_mb,
+    <span class="sql-fn">SUM</span>(consumo_mb) <span class="sql-kw">AS</span> consumo_total_mb,
+    <span class="sql-fn">COUNT</span>(<span class="sql-kw">CASE WHEN</span> consumo_mb > (limite_mb * <span class="sql-num">0.9</span>) <span class="sql-kw">THEN</span> <span class="sql-num">1</span> <span class="sql-kw">END</span>) <span class="sql-kw">AS</span> lineas_criticas
+<span class="sql-kw">FROM</span> lineas
+<span class="sql-kw">WHERE</span> estado = <span class="sql-str">'ACTIVA'</span>
+<span class="sql-kw">GROUP BY</span> plan_nombre
+<span class="sql-kw">HAVING</span> <span class="sql-fn">COUNT</span>(*) >= <span class="sql-num">5</span>  <span class="sql-cm">-- solo planes con al menos 5 líneas</span>
+<span class="sql-kw">ORDER BY</span> consumo_promedio_mb <span class="sql-kw">DESC</span>;</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:10px">
+      <div style="background:#f8fafc;border-radius:6px;padding:8px;font-size:.75rem;text-align:center"><strong>COUNT(*)</strong><br>Cuenta filas</div>
+      <div style="background:#f8fafc;border-radius:6px;padding:8px;font-size:.75rem;text-align:center"><strong>SUM(col)</strong><br>Suma valores</div>
+      <div style="background:#f8fafc;border-radius:6px;padding:8px;font-size:.75rem;text-align:center"><strong>AVG(col)</strong><br>Promedio</div>
+      <div style="background:#f8fafc;border-radius:6px;padding:8px;font-size:.75rem;text-align:center"><strong>MAX/MIN</strong><br>Máximo/Mínimo</div>
+      <div style="background:#f8fafc;border-radius:6px;padding:8px;font-size:.75rem;text-align:center"><strong>HAVING</strong><br>Filtra grupos</div>
+    </div>
+  </div>
+
+  <!-- Subquery -->
+  <div class="uml-box">
+    <div class="uml-title">4️⃣ Subconsultas — Para validaciones de negocio</div>
+    <div class="code"><span class="sql-cm">-- Empresas cuyo consumo promedio supera el 70% del plan</span>
+<span class="sql-cm">-- (útil para identificar candidatos a upgrade de plan)</span>
+<span class="sql-kw">SELECT</span> ruc, razon_social
+<span class="sql-kw">FROM</span> empresas
+<span class="sql-kw">WHERE</span> ruc <span class="sql-kw">IN</span> (
+    <span class="sql-kw">SELECT</span> ruc_empresa
+    <span class="sql-kw">FROM</span> lineas
+    <span class="sql-kw">WHERE</span> estado = <span class="sql-str">'ACTIVA'</span>
+    <span class="sql-kw">GROUP BY</span> ruc_empresa
+    <span class="sql-kw">HAVING</span> <span class="sql-fn">AVG</span>(consumo_mb * <span class="sql-num">100.0</span> / limite_mb) > <span class="sql-num">70</span>
+);</div>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> Tienes SQL Server y Oracle en tu CV. Menciona que en AFP Profuturo escribías consultas para validar datos de afiliados y reportes de Power BI/MicroStrategy que usaban SQL como fuente.
+  </div>
+</div>
+<!-- /SQL -->
+
+<!-- ══════════════ MODELO DE DATOS ══════════════ -->
+<div class="sec" id="data">
+  <div class="sec-hdr">
+    <h2>🔷 Modelado de Datos — ERD y Normalización</h2>
+    <p>El AF diseña el modelo conceptual y colabora con el DBA para el modelo físico. Debes poder dibujar un ERD básico en papel.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "Dibuja el modelo de datos básico para el portal de gestión de líneas de Comsatel. ¿Qué entidades identificas?"
+  </div>
+
+  <div class="uml-box">
+    <div class="uml-title">📊 ERD — Portal de Líneas Corporativas</div>
+    <div class="uml-diagram">┌─────────────┐       ┌─────────────┐       ┌──────────────┐
+│   EMPRESA   │ 1   * │   LINEA     │ 1   * │   CONSUMO    │
+│─────────────│───────│─────────────│───────│──────────────│
+│ ruc (PK)    │       │ id (PK)     │       │ id (PK)      │
+│ razon_social│       │ numero      │       │ linea_id (FK)│
+│ segmento    │       │ empresa_ruc │       │ fecha        │
+│ estado      │       │   (FK)      │       │ tipo         │
+│ fecha_alta  │       │ plan_id(FK) │       │ cantidad     │
+└─────────────┘       │ estado      │       │ unidad       │
+                      │ fecha_activ │       └──────────────┘
+      ┌───────────────└─────────────┘
+      ↓
+┌─────────────┐       ┌─────────────┐       ┌──────────────┐
+│    PLAN     │       │   USUARIO   │ *   * │   LINEA      │
+│─────────────│       │─────────────│       │  (ver arriba)│
+│ id (PK)     │       │ id (PK)     │───────│              │
+│ nombre      │       │ email       │       │              │
+│ precio      │       │ empresa_ruc │       │              │
+│ datos_mb    │       │   (FK)      │       │              │
+│ minutos     │       │ rol         │       │              │
+│ sms         │       │ password_h  │       │              │
+└─────────────┘       └─────────────┘       └──────────────┘</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+    <div class="card" style="border-color:#3b82f6">
+      <h4>📐 Tipos de Relación</h4>
+      <ul>
+        <li><strong>1:1</strong> — Un usuario tiene una sesión activa</li>
+        <li><strong>1:N</strong> — Una empresa tiene muchas líneas</li>
+        <li><strong>N:M</strong> — Usuarios administran múltiples líneas (tabla intermedia)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:#a855f7">
+      <h4>📐 Normalización (lo mínimo)</h4>
+      <ul>
+        <li><strong>1FN:</strong> Sin grupos repetidos, cada celda = 1 valor</li>
+        <li><strong>2FN:</strong> Todo depende de la clave primaria completa</li>
+        <li><strong>3FN:</strong> Sin dependencias transitivas</li>
+        <li><strong>Desnorm.:</strong> Para reportes/BI se acepta desnormalizar</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="uml-box">
+    <div class="uml-title">🔑 Conceptos clave que pregunta un Dev Lead</div>
+    <table class="tbl">
+      <tr><th>Concepto</th><th>Qué es</th><th>Ejemplo</th></tr>
+      <tr><td><strong>PK (Primary Key)</strong></td><td>Identifica únicamente cada fila</td><td>linea.numero (nunca duplicado)</td></tr>
+      <tr><td><strong>FK (Foreign Key)</strong></td><td>Referencia a PK de otra tabla</td><td>linea.empresa_ruc → empresa.ruc</td></tr>
+      <tr><td><strong>Índice</strong></td><td>Acelera las búsquedas</td><td>Índice en linea.estado para filtros frecuentes</td></tr>
+      <tr><td><strong>Constraint</strong></td><td>Regla de integridad en BD</td><td>NOT NULL, UNIQUE, CHECK (estado IN ('activa','suspendida'))</td></tr>
+      <tr><td><strong>Trigger</strong></td><td>Acción automática ante evento</td><td>Registrar auditoría al cambiar el plan</td></tr>
+      <tr><td><strong>Vista (View)</strong></td><td>Consulta guardada reutilizable</td><td>v_lineas_activas_con_consumo</td></tr>
+    </table>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> Usaste Erwin para modelado de datos — menciónalo directamente. "En [proyecto] modelé las entidades usando Erwin y trabajé con el DBA para traducirlo al modelo físico en Oracle/SQL Server."
+  </div>
+</div>
+<!-- /DATA -->
+
+<!-- ══════════════ ARQUITECTURA ══════════════ -->
+<div class="sec" id="arch">
+  <div class="sec-hdr">
+    <h2>🏗 Arquitectura de Software — Lo que el AF debe saber</h2>
+    <p>No necesitas ser arquitecto, pero sí entender los patrones para escribir requisitos técnicos que tengan sentido y colaborar con el equipo sin fricciones.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Qué es una arquitectura de 3 capas? ¿Cuándo usarías microservicios vs monolito?"
+  </div>
+
+  <!-- 3 capas -->
+  <div class="uml-box">
+    <div class="uml-title">🏛 Arquitectura 3 Capas — La más común en empresa</div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:16px;align-items:start">
+      <div class="uml-diagram" style="text-align:center">
+┌─────────────────┐
+│  PRESENTACIÓN   │  ← HTML/React/Flutter
+│  (Frontend)     │     lo que ve el usuario
+└────────┬────────┘
+         │ HTTP/REST
+┌────────▼────────┐
+│  LÓGICA DE      │  ← Node/Java/.NET/Python
+│  NEGOCIO        │     reglas, validaciones
+│  (Backend/API)  │     cálculos, flujos
+└────────┬────────┘
+         │ SQL/ORM
+┌────────▼────────┐
+│  DATOS          │  ← SQL Server/Oracle
+│  (BD)           │     persistencia
+└─────────────────┘</div>
+      <div>
+        <p style="font-size:.83rem;color:#475569;margin-bottom:12px">El AF <strong>escribe requisitos</strong> para las 3 capas:</p>
+        <table class="tbl">
+          <tr><th>Capa</th><th>Qué especifica el AF</th></tr>
+          <tr><td><strong>Frontend</strong></td><td>Wireframes, validaciones de campo, mensajes de error, accesibilidad</td></tr>
+          <tr><td><strong>Backend</strong></td><td>Reglas de negocio, flujos, permisos, APIs, casos de error</td></tr>
+          <tr><td><strong>BD</strong></td><td>Entidades, relaciones, restricciones, datos maestros</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monolito vs Microservicios -->
+  <div class="uml-box">
+    <div class="uml-title">⚖️ Monolito vs Microservicios</div>
+    <table class="tbl">
+      <tr><th>Dimensión</th><th>Monolito</th><th>Microservicios</th></tr>
+      <tr><td><strong>Qué es</strong></td><td>Todo el sistema en 1 aplicación</td><td>Sistema dividido en servicios pequeños e independientes</td></tr>
+      <tr><td><strong>Despliegue</strong></td><td>1 deploy para todo</td><td>Cada servicio se despliega independiente</td></tr>
+      <tr><td><strong>Escala</strong></td><td>Escala todo el sistema (costoso)</td><td>Escala solo el servicio que lo necesita</td></tr>
+      <tr><td><strong>Complejidad</strong></td><td>Simple al inicio</td><td>Alta — necesita orquestación, API Gateway</td></tr>
+      <tr><td><strong>Cuándo usar</strong></td><td>MVP, equipo pequeño, sistema simple</td><td>Sistema grande, múltiples equipos, alta escala</td></tr>
+      <tr><td><strong>Ejemplo</strong></td><td>Portal Comsatel v1 (MVP)</td><td>Netflix, Amazon — millones de usuarios</td></tr>
+    </table>
+    <div class="alert-blue" style="margin-top:10px">
+      <strong>💡 Respuesta segura:</strong> "Para el portal de Comsatel, dado que es un MVP con 1 equipo de desarrollo, empezaría con un monolito bien estructurado en capas. Si el sistema crece en usuarios y equipos, migraríamos gradualmente a microservicios por dominio (líneas, facturación, alertas)."
+    </div>
+  </div>
+
+  <!-- Conceptos adicionales -->
+  <div class="card-grid">
+    <div class="card" style="border-color:#14b8a6">
+      <h4>🔀 API Gateway</h4>
+      <p>Punto único de entrada para todas las APIs. Maneja: autenticación, rate limiting, logging, routing.</p>
+      <p style="margin-top:8px"><em>El AF lo menciona en: "El portal consume la API de consumo y la API de planes a través de un API Gateway centralizado."</em></p>
+    </div>
+    <div class="card" style="border-color:#8b5cf6">
+      <h4>⚡ Cache</h4>
+      <p>Guarda respuestas frecuentes en memoria (Redis) para no ir a la BD cada vez.</p>
+      <p style="margin-top:8px"><em>Requisito: "Los datos de consumo se cachean 15 minutos. El catálogo de planes se cachea 24 horas."</em></p>
+    </div>
+    <div class="card" style="border-color:#f97316">
+      <h4>📨 Queue / Cola de mensajes</h4>
+      <p>Procesa tareas de forma asíncrona. Útil para notificaciones, emails, reportes grandes.</p>
+      <p style="margin-top:8px"><em>Requisito: "Las alertas de consumo se envían por cola (RabbitMQ/SQS) — el usuario las recibe en &lt;5 min."</em></p>
+    </div>
+    <div class="card" style="border-color:#ef4444">
+      <h4>🔐 JWT / Tokens</h4>
+      <p>JSON Web Token: estándar de autenticación stateless. El servidor emite un token firmado que el cliente envía en cada request.</p>
+      <p style="margin-top:8px"><em>Tienes experiencia con PCI-DSS y tokenización — aplica directamente.</em></p>
+    </div>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> En Oncosalud implementaste tokenización de pagos — proceso que involucra directamente arquitectura de seguridad. En UPC usaste C#/.NET y Supabase. Conoces la diferencia entre frontend (Flutter/React) y backend.
+  </div>
+</div>
+<!-- /ARCH -->
+
+<!-- ══════════════ SDLC ══════════════ -->
+<div class="sec" id="sdlc">
+  <div class="sec-hdr">
+    <h2>🔄 SDLC & Agile — Tu rol en el Equipo de Desarrollo</h2>
+    <p>El Jefe de Desarrollo necesita saber cómo encajas en su equipo. No solo qué metodología conoces, sino <strong>qué entregas en cada etapa</strong>.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Cómo es tu proceso desde que recibes un requerimiento hasta que el desarrollador empieza a codear? ¿Qué artefactos produces?"
+  </div>
+
+  <!-- Tu flujo -->
+  <div class="uml-box">
+    <div class="uml-title">⚡ Tu flujo como AF Senior — De requerimiento a sprint</div>
+    <div class="flow">
+      <div class="flow-step" style="border-color:#3b82f6">
+        <div style="color:#3b82f6;font-size:.7rem">1. LEVANTAMIENTO</div>
+        Entrevistas · Talleres · Observación
+        <div style="font-size:.72rem;color:#64748b;margin-top:4px">Entregable: Acta de reunión</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#8b5cf6">
+        <div style="color:#8b5cf6;font-size:.7rem">2. ANÁLISIS</div>
+        BPMN · Casos de uso · Diagrama de clases
+        <div style="font-size:.72rem;color:#64748b;margin-top:4px">Entregable: Diagramas</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#f59e0b">
+        <div style="color:#f59e0b;font-size:.7rem">3. ESPECIFICACIÓN</div>
+        RF/RNF · User Stories · DoR check
+        <div style="font-size:.72rem;color:#64748b;margin-top:4px">Entregable: Backlog priorizado</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#22c55e">
+        <div style="color:#22c55e;font-size:.7rem">4. REFINEMENT</div>
+        Clarifica con equipo · Estiman
+        <div style="font-size:.72rem;color:#64748b;margin-top:4px">Entregable: Stories listas</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#ef4444">
+        <div style="color:#ef4444;font-size:.7rem">5. UAT</div>
+        Valida criterios · Acepta/Rechaza
+        <div style="font-size:.72rem;color:#64748b;margin-top:4px">Entregable: Sign-off</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ceremonias -->
+  <div class="uml-box">
+    <div class="uml-title">🏁 Ceremonias Scrum — Tu rol en cada una</div>
+    <table class="tbl">
+      <tr><th>Ceremonia</th><th>Duración (sprint 2 sem)</th><th>Rol del AF</th><th>Lo que aportas</th></tr>
+      <tr>
+        <td><strong>Sprint Planning</strong></td>
+        <td>≤ 4 horas</td>
+        <td>Presenta stories, responde preguntas</td>
+        <td>Backlog priorizado y stories en DoR</td>
+      </tr>
+      <tr>
+        <td><strong>Daily Standup</strong></td>
+        <td>15 min</td>
+        <td>Reporta bloqueos de requisitos, aclara dudas</td>
+        <td>Disponibilidad para consultas técnicas</td>
+      </tr>
+      <tr>
+        <td><strong>Refinement</strong></td>
+        <td>≤ 2 horas/semana</td>
+        <td>Presenta próximas stories, recibe estimaciones</td>
+        <td>Stories bien redactadas, mockups</td>
+      </tr>
+      <tr>
+        <td><strong>Sprint Review</strong></td>
+        <td>≤ 2 horas</td>
+        <td>Valida el incremento, acepta/rechaza</td>
+        <td>Criterios de aceptación como lista de verificación</td>
+      </tr>
+      <tr>
+        <td><strong>Retrospectiva</strong></td>
+        <td>≤ 1.5 horas</td>
+        <td>Participa con el equipo</td>
+        <td>Feedback sobre calidad de los requisitos</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+    <div class="card" style="border-color:#f97316">
+      <h4>⚠️ Lo que diferencia un AF Senior</h4>
+      <ul>
+        <li>Anticipa preguntas del equipo técnico</li>
+        <li>Sus stories no necesitan 3 rondas de aclaración</li>
+        <li>Sabe decir "eso no está en el alcance, lo ponemos en backlog" sin conflicto</li>
+        <li>Detecta cuando un dev interpreta mal un requisito antes de que se termine</li>
+        <li>Produce documentación que sobrevive a la rotación del equipo</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:#3b82f6">
+      <h4>✅ Waterfall vs Ágil — cuándo cada uno</h4>
+      <ul>
+        <li><strong>Waterfall:</strong> Requisitos muy fijos, regulatorio (banca, gobierno), contratos de precio fijo</li>
+        <li><strong>Ágil:</strong> Requisitos evolutivos, producto digital, equipo co-ubicado o coordinado</li>
+        <li><strong>Híbrido:</strong> Fases predictivas (contrato, diseño) + ejecución ágil (sprints)</li>
+        <li><em>Comsatel: probablemente híbrido (contratos con cliente + desarrollo ágil interno)</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> Tienes certificación Scrum Master (ISM) — sabes las ceremonias a fondo. En UPC (docente) enseñaste metodologías. En múltiples proyectos has trabajado waterfall y ágil. Menciona que adaptás la metodología al contexto.
+  </div>
+</div>
+<!-- /SDLC -->
+
+<!-- ══════════════ TESTING ══════════════ -->
+<div class="sec" id="test">
+  <div class="sec-hdr">
+    <h2>🧪 Testing & UAT — Cómo validas que el sistema cumple los requisitos</h2>
+    <p>El AF es responsable del UAT. Pero un Senior también entiende los otros tipos de prueba para colaborar mejor con el equipo de QA.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Cómo escribes un caso de prueba? Dame un ejemplo para la funcionalidad de alerta de consumo."
+  </div>
+
+  <!-- Pirámide -->
+  <div class="uml-box">
+    <div class="uml-title">🔺 Pirámide de Testing — Dónde actúa el AF</div>
+    <div class="pyramid">
+      <div class="pyr-row" style="width:120px;background:#ef4444">E2E / UAT</div>
+      <div class="pyr-row" style="width:220px;background:#f59e0b">Integración</div>
+      <div class="pyr-row" style="width:320px;background:#22c55e">Unit Tests</div>
+      <div style="font-size:.75rem;color:#64748b;margin-top:8px">
+        ↑ El AF diseña y ejecuta los <strong>E2E y UAT</strong><br>
+        Revisa pero no ejecuta unit e integración (eso es el dev/QA)
+      </div>
+    </div>
+    <table class="tbl" style="margin-top:14px">
+      <tr><th>Tipo</th><th>Quién lo hace</th><th>Qué prueba</th><th>Herramienta</th></tr>
+      <tr><td><span class="chip chip-green">Unit</span></td><td>Desarrollador</td><td>Función o método individual</td><td>JUnit, pytest, xUnit</td></tr>
+      <tr><td><span class="chip chip-blue">Integración</span></td><td>Dev / QA</td><td>Módulos interactuando entre sí</td><td>Postman, REST Assured</td></tr>
+      <tr><td><span class="chip chip-amber">Sistema / E2E</span></td><td>QA / AF</td><td>Flujo completo de usuario</td><td>Selenium, Cypress, manual</td></tr>
+      <tr><td><span class="chip chip-red">UAT</span></td><td>AF + Usuario</td><td>Requisitos de negocio cumplidos</td><td>Casos de prueba manuales</td></tr>
+      <tr><td><span class="chip chip-purple">Regresión</span></td><td>QA</td><td>Que lo nuevo no rompe lo existente</td><td>Suite automatizada</td></tr>
+      <tr><td><span class="chip chip-slate">Performance</span></td><td>QA especializado</td><td>Carga, estrés, volumen</td><td>JMeter, Gatling</td></tr>
+    </table>
+  </div>
+
+  <!-- Caso de prueba -->
+  <div class="uml-box">
+    <div class="uml-title">📝 Caso de Prueba — Estructura completa</div>
+    <div class="code">
+<span class="cm">══════════════════════════════════════════════════</span>
+ID:          TC-015
+Historia:    US-009 — Alerta cuando línea supera 80%
+Prioridad:   Alta
+Tipo:        Funcional / UAT
+Ambiente:    QA (datos de prueba cargados)
+<span class="cm">──────────────────────────────────────────────────</span>
+PRECONDICIONES:
+  ✓ Usuario autenticado como Admin Corporativo
+  ✓ Empresa "Test SA" con RUC 20123456789
+  ✓ Línea 987654321 con plan 10GB (10,240 MB)
+  ✓ Consumo actual: 8,500 MB (83%)
+<span class="cm">──────────────────────────────────────────────────</span>
+PASOS:
+  1. Ingresar al portal → "Mis Líneas"
+  2. Seleccionar línea 987654321
+  3. Observar la barra de consumo
+  4. Revisar bandeja de notificaciones
+<span class="cm">──────────────────────────────────────────────────</span>
+RESULTADO ESPERADO:
+  ✓ Barra de consumo muestra 83% en color ROJO
+  ✓ Ícono de alerta (⚠️) visible en la línea
+  ✓ Notificación en bandeja: "Línea 987654321 ha
+    superado el 80% de su plan — 8.5/10 GB"
+  ✓ El administrador recibe email de alerta
+<span class="cm">──────────────────────────────────────────────────</span>
+RESULTADO ACTUAL:  _____________ (llenar en ejecución)
+ESTADO:           PASS ✅ / FAIL ❌ / BLOQUEADO ⛔
+EVIDENCIA:        [screenshot] [log de BD]
+DEFECTO (si falla): DEF-xxx — descripción
+    </div>
+  </div>
+
+  <!-- Bug Report -->
+  <div class="uml-box">
+    <div class="uml-title">🐛 Reporte de Bug — Cómo lo documenta el AF</div>
+    <div class="code">
+Título:    Portal muestra consumo desactualizado (>1 hora de desfase)
+ID:        DEF-042
+Severidad: <span class="op">Alta</span>  (impide cumplir RF-001)
+Prioridad: <span class="op">Alta</span>
+Historia:  US-007 / TC-012
+
+Ambiente:  QA · Chrome 124 · Windows 11
+Fecha:     2026-05-27
+
+Pasos para reproducir:
+  1. Login como Admin Corporativo
+  2. Ir a Mis Líneas → Línea 987654321
+  3. Comparar timestamp de "Última actualización"
+
+Resultado ESPERADO:
+  Timestamp de actualización ≤ 15 minutos antes de ahora
+
+Resultado ACTUAL:
+  Timestamp muestra "2026-05-27 08:30" siendo las 10:15
+  Desfase: 105 minutos (viola RF-001)
+
+Evidencia:
+  [screenshot-defecto-042.png]
+  [log API: GET /consumo devuelve cache de 2 horas]
+
+Posible causa raíz (sugerencia del AF):
+  El TTL del cache parece estar configurado en 2h
+  en lugar de 15min. Revisar config de Redis.
+    </div>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> En Oncosalud validaste el proceso de tokenización con casos de prueba específicos de PCI-DSS (escenarios de pago exitoso, pago rechazado, timeout, duplicado). Ese tipo de testing exhaustivo es exactamente lo que busca un Jefe de Desarrollo.
+  </div>
+</div>
+<!-- /TEST -->
+
+<!-- ══════════════ GIT ══════════════ -->
+<div class="sec" id="git">
+  <div class="sec-hdr">
+    <h2>🐙 Git — Lo que un AF debe conocer</h2>
+    <p>No necesitas ser experto, pero sí entender el flujo para colaborar con el equipo: revisar cambios en la documentación, aprobar PRs de reqs, y no romper el repo si tocas un archivo.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Pregunta típica:</strong> "¿Tienes experiencia con Git? ¿Cómo manejas la documentación de requisitos en el repositorio?"
+  </div>
+
+  <div class="uml-box">
+    <div class="uml-title">🌿 Git Flow — El flujo que usa el equipo de desarrollo</div>
+    <div class="uml-diagram">main ────●──────────────────────────────●── (producción)
+           │                              ↑ merge
+develop ──●────●──────────────────────●──
+               │                      ↑ merge
+feature/  ─────●──●──●──●─────────────
+portal-lineas  (commits del dev)
+
+hotfix/   ────────────────────────●──●── (fix urgente en producción)
+bug-consumo</div>
+    <p style="font-size:.8rem;color:#475569;margin-top:10px">
+      <strong>El AF interactúa con Git para:</strong> actualizar documentación en el repo,
+      aprobar Pull Requests con cambios que afectan requisitos, revisar diffs de código
+      cuando valida que una feature cumple los criterios.
+    </p>
+  </div>
+
+  <div class="uml-box">
+    <div class="uml-title">⌨️ Comandos Git que el AF debe conocer</div>
+    <div class="code">
+<span class="sql-cm"># Clonar el repositorio del proyecto</span>
+git clone https://github.com/empresa/portal-comsatel.git
+
+<span class="sql-cm"># Ver el estado de los cambios</span>
+git status
+
+<span class="sql-cm"># Actualizar tu copia local con los últimos cambios</span>
+git pull origin develop
+
+<span class="sql-cm"># Crear rama para documentación</span>
+git checkout -b <span class="kw">docs/</span>requisitos-modulo-lineas
+
+<span class="sql-cm"># Agregar archivos modificados al commit</span>
+git add docs/RF-001-consulta-consumo.md
+
+<span class="sql-cm"># Guardar los cambios con mensaje descriptivo</span>
+git commit -m <span class="str">"docs: actualiza criterios RF-001 según reunión 27-may"</span>
+
+<span class="sql-cm"># Subir la rama al servidor</span>
+git push origin docs/requisitos-modulo-lineas
+
+<span class="sql-cm"># Ver el historial de cambios</span>
+git log --oneline -10
+
+<span class="sql-cm"># Ver qué cambió en un archivo</span>
+git diff docs/RF-001.md
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+    <div class="card" style="border-color:#22c55e">
+      <h4>✅ Pull Request — Rol del AF como revisor</h4>
+      <ul>
+        <li>Revisa que el código implementa los criterios de aceptación</li>
+        <li>Comenta discrepancias: "Este flujo no contempla el caso cuando el plan es 0MB"</li>
+        <li>Aprueba cuando el incremento cumple los requisitos</li>
+        <li>NO revisa calidad de código — eso es el tech lead</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:#f59e0b">
+      <h4>📁 Qué documenta el AF en el repo</h4>
+      <ul>
+        <li>/docs/requisitos/ — specs FR/NFR en Markdown</li>
+        <li>/docs/diagramas/ — UML, BPMN como imágenes</li>
+        <li>/docs/casos-prueba/ — casos de prueba UAT</li>
+        <li>/docs/decision-log/ — decisiones de diseño y su porqué</li>
+        <li>README.md — visión y contexto del proyecto</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert-green">
+    <strong>✅ Tu experiencia:</strong> Tienes Git/GitHub en tu CV y experiencia con Python en proyectos propios. Eso ya implica manejo del flujo básico. Menciona que en UPC y tus proyectos de análisis de datos usas Git para versionar scripts y documentación.
+  </div>
+</div>
+<!-- /GIT -->
+
+<!-- ══════════════ Q&A ══════════════ -->
+<div class="sec" id="qa">
+  <div class="sec-hdr">
+    <h2>💬 Las 10 Preguntas del Jefe de Desarrollo</h2>
+    <p>Preguntas reales que hace un Dev Lead en una entrevista con un AF Senior — con tus respuestas personalizadas basadas en tu CV.</p>
+  </div>
+
+  <div class="entrevista-tip">
+    <strong>🎯 Estrategia:</strong> Responde siempre con estructura: <strong>Contexto → Acción → Resultado</strong>. Menciona tecnologías por su nombre (SQL Server, Oracle, C#, Python, Bizagi). Cuantifica cuando puedas.
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">1</div> ¿Cómo es tu proceso desde que un stakeholder te da un requerimiento hasta que el desarrollador empieza a codear?</div>
+    <div class="qa-a">
+      <p>Hay 5 etapas clave: <strong>(1) Levantamiento</strong> — entrevistas estructuradas y talleres con el stakeholder para entender el problema de negocio real, no solo lo que pide. <strong>(2) Análisis</strong> — modelo el proceso en BPMN con Bizagi para identificar el AS-IS y diseñar el TO-BE. <strong>(3) Especificación</strong> — escribo requisitos funcionales y no funcionales con criterios de aceptación medibles (Given/When/Then). <strong>(4) Revisión técnica</strong> — sesión con el equipo técnico para validar que es implementable y ajustar si hay restricciones. <strong>(5) Refinement</strong> — en el contexto Scrum, presento las historias en refinement para que el equipo estime y aclare dudas antes del sprint planning.</p>
+      <div class="tu">En Perurail, cuando el área comercial pidió "un sistema para gestionar reservas", mi primer paso fue modelar el proceso actual de reservas (15 pasos manuales) en Bizagi, identificar los 4 flujos críticos y priorizar el MVP. El equipo de desarrollo recibió specs tan detalladas que redujimos las dudas en desarrollo en un 60%.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">2</div> Dame un ejemplo de un requisito mal especificado que causó problemas y cómo lo resolviste.</div>
+    <div class="qa-a">
+      <p>Los requisitos ambiguos más comunes son los que usan palabras como "rápido", "seguro" o "amigable" sin definición medible.</p>
+      <div class="tu">En un proyecto de AFP Profuturo, el requisito original decía "el sistema debe responder rápidamente". El equipo implementó sin criterio claro. Cuando el cliente probó con 200 afiliados concurrentes y la página tardaba 8 segundos, hubo conflicto. Aprendí que todo RNF de performance debe especificarse así: "El sistema debe responder en ≤2 segundos para el percentil 95 de requests con hasta 500 usuarios concurrentes, medido con JMeter en ambiente de staging". Desde entonces incluyo un RNF de performance firmado por el cliente en el kick-off.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">3</div> ¿Cómo colaboras con el equipo de desarrollo durante el sprint? ¿Cuánto tiempo del desarrollador consumes?</div>
+    <div class="qa-a">
+      <p>El AF debe estar disponible pero no ser una interrupción constante. La regla que sigo: si una duda del dev tarda menos de 5 minutos en aclarar, la respondo inmediatamente. Si es compleja, agendo una sesión corta (30 min) con el arquitecto o tech lead incluido.</p>
+      <div class="tu">En la práctica, mantengo un canal de Slack/Teams dedicado al proyecto donde los devs pueden poner dudas con contexto. Respondo en máximo 2 horas en horario laboral. Adicionalmente, en el daily me aseguro de preguntar si hay algún requisito que esté siendo interpretado diferente. En proyectos Scrum también hago "desk check" informal a mitad del sprint — reviso el trabajo en progreso antes de que esté terminado, para atrapar malentendidos temprano.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">4</div> ¿Qué haces cuando un desarrollador te dice que un requisito es técnicamente imposible?</div>
+    <div class="qa-a">
+      <p>Primero escucho y entiendo la restricción técnica. Luego analizo si el objetivo de negocio se puede cumplir de otra forma. Hay una diferencia entre "no se puede hacer así" y "no se puede hacer".</p>
+      <div class="tu">En Oncosalud, el dev dijo que no podíamos procesar pagos en tiempo real sin depender del gateway externo (que tenía SLA de 3 segundos). El requisito original pedía confirmación "instantánea". Analizamos el flujo y propuse una solución: confirmación optimista inmediata al usuario + procesamiento asíncrono en background con notificación por email si fallaba. El cliente aceptó porque el objetivo real era "el usuario no espera en pantalla", no necesariamente que el proceso termine en tiempo real. Esa solución se implementó y redujo los timeouts percibidos por el usuario a cero.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">5</div> ¿Tienes experiencia con integraciones entre sistemas? ¿Cómo las documentas?</div>
+    <div class="qa-a">
+      <p>Las integraciones son el punto más delicado en análisis porque involucran dos sistemas, dos equipos y a veces dos empresas. Mi documentación de integración siempre incluye: el contrato de la API (endpoints, request/response, errores), el diagrama de secuencia con los flujos exitosos y de error, y un acuerdo de SLA entre sistemas.</p>
+      <div class="tu">En AFP Profuturo trabajé con la integración entre el sistema de afiliados y la plataforma de tokenización de pagos (PCI-DSS). Documenté el flujo completo con diagrama de secuencia: usuario → frontend → backend AFP → gateway tokenización → banco. Para cada llamada especifiqué el timeout esperado, el comportamiento en caso de error (retry, fallback, mensaje al usuario) y los controles de auditoría requeridos por PCI-DSS. Esta documentación sirvió también para el equipo de QA para diseñar los casos de prueba de integración.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">6</div> ¿Cómo manejas el scope creep — cuando el cliente pide cambios en mitad del sprint?</div>
+    <div class="qa-a">
+      <p>Con respeto pero con firmeza. El scope creep es la principal amenaza a la velocidad del equipo. El proceso que sigo: registro el nuevo pedido en el backlog, evalúo su prioridad con el PO, y si es urgente negocio el intercambio (saca algo del sprint o espera al siguiente).</p>
+      <div class="tu">En UPC, donde coordinaba proyectos académicos con múltiples stakeholders, la frase que aprendí a usar es: "Eso es una excelente mejora, lo registramos en el backlog. Si es prioritario, podemos verlo en el próximo sprint — ¿qué sería lo menos crítico de sacar del sprint actual para incluirlo?". Eso involucra al cliente en el trade-off en lugar de simplemente decirle "no". Funciona 9 de cada 10 veces.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">7</div> ¿Qué experiencia tienes con bases de datos? ¿Puedes hacer consultas SQL?</div>
+    <div class="qa-a">
+      <p>Sí, tengo experiencia con SQL Server y Oracle. Escribo consultas para validar datos, verificar que los reportes muestren los valores correctos y crear consultas de análisis para Power BI y MicroStrategy. No soy DBA, pero puedo leer y escribir queries de complejidad media — JOINs, GROUP BY, subconsultas.</p>
+      <div class="tu">En AFP Profuturo validaba los reportes de fondos de pensiones directamente contra la BD Oracle. Por ejemplo, cuando el reporte de MicroStrategy mostraba un número diferente al que el actuario calculaba manualmente, escribía la consulta equivalente en SQL para encontrar la discrepancia. En Python con pandas hacía el mismo análisis pero para conjuntos de datos grandes que SQL tardaba en procesar.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">8</div> ¿Cómo validas que lo que entregó el equipo de desarrollo cumple los requisitos?</div>
+    <div class="qa-a">
+      <p>El proceso de UAT tiene 3 niveles: (1) <strong>Desk check</strong> informal a mitad del sprint — reviso el trabajo en progreso antes de que esté terminado. (2) <strong>Pruebas formales</strong> contra los casos de prueba documentados en el sprint review. (3) <strong>Pruebas de regresión</strong> — me aseguro que lo nuevo no rompe lo anterior.</p>
+      <div class="tu">Tengo una práctica: antes del sprint review, paso 2 horas en ambiente de QA ejecutando los casos de prueba de las historias del sprint. Así llego al sprint review con un estado claro: qué pasa, qué falla. Si hay una historia que falla un criterio, la marco como no aceptada con el caso de prueba fallido documentado — no con una queja genérica. Eso ayuda al dev a entender exactamente qué corregir sin debates.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">9</div> ¿Has trabajado con equipos de desarrollo remotos o distribuidos? ¿Cómo te organizas?</div>
+    <div class="qa-a">
+      <p>Sí, en varios proyectos he coordinado con equipos distribuidos en diferentes ciudades o países. Las claves: documentación escrita clara (no solo verbal), uso disciplinado de herramientas (Jira, Confluence, Slack), horario de reuniones con ventana de solapamiento y decisiones siempre documentadas en ticket o acta.</p>
+      <div class="tu">En Belmond Perurail coordinaba con equipos en Lima y Cusco. La regla que establecimos: ninguna decisión de diseño o cambio de alcance se tomaba en una llamada sin quedar documentado en el ticket de Jira. Eso evitaba el "yo creí que habíamos dicho X". También estandarizamos el formato de user story para que cualquier dev pudiera retomar una historia sin necesitar una sesión de explicación.</div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">10</div> ¿Por qué quieres trabajar en Comsatel y qué aportarías al equipo de desarrollo?</div>
+    <div class="qa-a">
+      <p>Esta pregunta cierra la entrevista — es tu momento de diferenciarte.</p>
+      <div class="tu">"Comsatel opera en un sector que conozco desde el lado del cliente corporativo — he gestionado proyectos de TI donde el proveedor de telecomunicaciones era un aliado crítico. Eso me da perspectiva real del dolor que tienen los administradores corporativos cuando no pueden autogestionar sus líneas. <br><br>Lo que aportaría al equipo de desarrollo es un puente sólido entre el negocio y el código: requisitos tan claros que el desarrollador pueda arrancar sin necesitar 3 reuniones de aclaración, validaciones técnicas que detecten inconsistencias antes de que lleguen al dev, y 28 años de experiencia en sectores regulados (banca, salud, gobierno) que me permiten anticipar los casos borde que el cliente no menciona pero sí espera que el sistema maneje."</div>
+    </div>
+  </div>
+
+  <div class="alert-green" style="margin-top:20px">
+    <strong>✅ Tip final para mañana:</strong> Lleva 2 ejemplos concretos memorizados: uno de un requisito bien especificado que aceleró el desarrollo, y uno de un bug que detectaste en UAT que habría costado mucho más tarde. Esos dos ejemplos responden el 70% de las preguntas de un Dev Lead.
+  </div>
+
+  <div class="alert-red" style="margin-top:12px">
+    <strong>🚨 No digas esto mañana:</strong> "Yo solo hago el levantamiento" · "Eso es cosa del programador" · "Normalmente el cliente me lo explica y yo lo paso" · "No sé mucho de técnico, soy más funcional". Estas frases invalidan tu candidatura de Senior inmediatamente.
+  </div>
+</div>
+<!-- /Q&A -->
+
+</div><!-- /wrap -->
+
+<div class="footer">
+  Marco Saldarriaga Medina · Analista Funcional Senior
+  &nbsp;·&nbsp;<a href="/repaso-ti-corp.html">Repaso PO</a>
+  &nbsp;·&nbsp;<a href="/">Portfolio</a>
+  &nbsp;·&nbsp; Entrevista Comsatel — Jefe de Desarrollo 2026
+</div>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  if (el) el.classList.add('on');
+  const sel = document.getElementById('nav-select');
+  if (sel) sel.value = id;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showFromSelect(sel) {
+  const id = sel.value;
+  const tab = document.querySelector('.tab[onclick*="\''+id+'\'"]');
+  show(id, tab);
+}
+</script>
+</body>
+</html>
