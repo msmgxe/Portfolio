@@ -1123,22 +1123,75 @@ porPagina   Int     optional  default: 20, max: 100
   <div class="uml-box">
     <div class="uml-title">🏛 Arquitectura 3 Capas — La más común en empresa</div>
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:16px;align-items:start">
-      <div class="uml-diagram" style="text-align:center">
-┌─────────────────┐
-│  PRESENTACIÓN   │  ← HTML/React/Flutter
-│  (Frontend)     │     lo que ve el usuario
-└────────┬────────┘
-         │ HTTP/REST
-┌────────▼────────┐
-│  LÓGICA DE      │  ← Node/Java/.NET/Python
-│  NEGOCIO        │     reglas, validaciones
-│  (Backend/API)  │     cálculos, flujos
-└────────┬────────┘
-         │ SQL/ORM
-┌────────▼────────┐
-│  DATOS          │  ← SQL Server/Oracle
-│  (BD)           │     persistencia
-└─────────────────┘</div>
+      <div style="background:#0f172a;border-radius:12px;padding:16px;overflow:hidden">
+<svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+<defs>
+  <marker id="at-a" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#94a3b8"/></marker>
+</defs>
+<rect width="600" height="320" fill="#0f172a"/>
+
+<!-- Layer 1: PRESENTACIÓN -->
+<rect x="14" y="14" width="380" height="82" rx="12" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2"/>
+<rect x="14" y="14" width="380" height="32" rx="12" fill="#2563eb"/>
+<rect x="14" y="34" width="380" height="12" fill="#2563eb"/>
+<text x="204" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="800" letter-spacing="1">PRESENTACIÓN</text>
+<text x="204" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">Frontend — Lo que ve el usuario</text>
+<text x="204" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#60a5fa">React · Flutter · HTML/CSS · TypeScript</text>
+<!-- Icons row -->
+<text x="30" y="72" font-family="Arial,sans-serif" font-size="22">💻</text>
+<text x="58" y="72" font-family="Arial,sans-serif" font-size="22">📱</text>
+<!-- AF annotation -->
+<rect x="404" y="14" width="182" height="82" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+<text x="412" y="32" font-family="Arial,sans-serif" font-size="8.5" fill="#38bdf8" font-weight="700">👤 AF especifica:</text>
+<text x="412" y="47" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Wireframes y pantallas</text>
+<text x="412" y="60" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Validaciones de campo</text>
+<text x="412" y="73" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Mensajes de error al usuario</text>
+<text x="412" y="86" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Accesibilidad y flujos UX</text>
+
+<!-- Arrow 1: HTTP/REST -->
+<line x1="204" y1="96" x2="204" y2="118" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#at-a)"/>
+<rect x="155" y="100" width="98" height="16" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+<text x="204" y="112" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#f59e0b">HTTP / REST / JSON</text>
+
+<!-- Layer 2: LÓGICA DE NEGOCIO -->
+<rect x="14" y="120" width="380" height="82" rx="12" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+<rect x="14" y="120" width="380" height="32" rx="12" fill="#15803d"/>
+<rect x="14" y="140" width="380" height="12" fill="#15803d"/>
+<text x="204" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="800" letter-spacing="1">LÓGICA DE NEGOCIO</text>
+<text x="204" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#86efac">Backend / API — Las reglas y flujos del sistema</text>
+<text x="204" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#4ade80">Node.js · .NET / C# · Python · Java</text>
+<text x="30" y="178" font-family="Arial,sans-serif" font-size="22">⚙️</text>
+<text x="58" y="178" font-family="Arial,sans-serif" font-size="22">🔐</text>
+<!-- AF annotation -->
+<rect x="404" y="120" width="182" height="82" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+<text x="412" y="138" font-family="Arial,sans-serif" font-size="8.5" fill="#38bdf8" font-weight="700">👤 AF especifica:</text>
+<text x="412" y="153" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Reglas de negocio y flujos</text>
+<text x="412" y="166" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Permisos y roles (Auth)</text>
+<text x="412" y="179" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Contratos de API endpoints</text>
+<text x="412" y="192" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Casos de error y fallbacks</text>
+
+<!-- Arrow 2: SQL/ORM -->
+<line x1="204" y1="202" x2="204" y2="224" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#at-a)"/>
+<rect x="162" y="206" width="84" height="16" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+<text x="204" y="218" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#f59e0b">SQL / ORM</text>
+
+<!-- Layer 3: DATOS -->
+<rect x="14" y="226" width="380" height="82" rx="12" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+<rect x="14" y="226" width="380" height="32" rx="12" fill="#6d28d9"/>
+<rect x="14" y="246" width="380" height="12" fill="#6d28d9"/>
+<text x="204" y="246" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="800" letter-spacing="1">DATOS</text>
+<text x="204" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Base de Datos — Persistencia</text>
+<text x="204" y="286" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#c084fc">SQL Server · Oracle · PostgreSQL · Redis</text>
+<text x="30" y="284" font-family="Arial,sans-serif" font-size="22">🗄</text>
+<text x="58" y="284" font-family="Arial,sans-serif" font-size="22">💾</text>
+<!-- AF annotation -->
+<rect x="404" y="226" width="182" height="82" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+<text x="412" y="244" font-family="Arial,sans-serif" font-size="8.5" fill="#38bdf8" font-weight="700">👤 AF especifica:</text>
+<text x="412" y="259" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Entidades y relaciones (ERD)</text>
+<text x="412" y="272" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Restricciones y constraints</text>
+<text x="412" y="285" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Datos maestros y semilla</text>
+<text x="412" y="298" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Políticas de retención</text>
+</svg></div>
       <div>
         <p style="font-size:.83rem;color:#475569;margin-bottom:12px">El AF <strong>escribe requisitos</strong> para las 3 capas:</p>
         <table class="tbl">
@@ -1166,6 +1219,77 @@ porPagina   Int     optional  default: 20, max: 100
     <div class="alert-blue" style="margin-top:10px">
       <strong>💡 Respuesta segura:</strong> "Para el portal de Comsatel, dado que es un MVP con 1 equipo de desarrollo, empezaría con un monolito bien estructurado en capas. Si el sistema crece en usuarios y equipos, migraríamos gradualmente a microservicios por dominio (líneas, facturación, alertas)."
     </div>
+  </div>
+
+
+  <div class="uml-box" style="margin-top:14px">
+    <div class="uml-title">🏛 Visual: Monolito vs ⚡ Microservicios</div>
+    <div style="background:#0f172a;border-radius:10px;overflow:hidden;padding:4px">
+    <svg viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+    <rect width="680" height="210" fill="#0f172a"/>
+    <!-- MONOLITO title -->
+    <text x="160" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#f59e0b" font-weight="800">🏛 MONOLITO</text>
+    <text x="160" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Portal Comsatel v1 (MVP)</text>
+    <!-- Big monolith box -->
+    <rect x="20" y="42" width="280" height="150" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <!-- Sections inside monolith -->
+    <rect x="34" y="56" width="116" height="38" rx="6" fill="#1d4ed8" opacity="0.8"/>
+    <text x="92" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="white" font-weight="700">🔐 Auth</text>
+    <text x="92" y="86" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#93c5fd">login/session</text>
+    <rect x="158" y="56" width="116" height="38" rx="6" fill="#15803d" opacity="0.8"/>
+    <text x="216" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="white" font-weight="700">📱 Líneas</text>
+    <text x="216" y="86" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#86efac">gestión líneas</text>
+    <rect x="34" y="104" width="116" height="38" rx="6" fill="#7c3aed" opacity="0.8"/>
+    <text x="92" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="white" font-weight="700">💰 Facturación</text>
+    <text x="92" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#d8b4fe">pagos/facturas</text>
+    <rect x="158" y="104" width="116" height="38" rx="6" fill="#b45309" opacity="0.8"/>
+    <text x="216" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="white" font-weight="700">🔔 Alertas</text>
+    <text x="216" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fde68a">notificaciones</text>
+    <!-- Shared DB -->
+    <rect x="34" y="152" width="240" height="26" rx="6" fill="#334155"/>
+    <text x="154" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">🗄 BD Compartida (SQL Server)</text>
+    <!-- Monolith labels -->
+    <text x="160" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#64748b">✅ Simple · Rápido de construir · 1 deploy</text>
+
+    <!-- VS divider -->
+    <text x="340" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#475569" font-weight="900">VS</text>
+    <line x1="340" y1="42" x2="340" y2="192" stroke="#334155" stroke-width="1" stroke-dasharray="6,4"/>
+
+    <!-- MICROSERVICIOS title -->
+    <text x="520" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#38bdf8" font-weight="800">⚡ MICROSERVICIOS</text>
+    <text x="520" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Netflix · Amazon (escala masiva)</text>
+    <!-- API Gateway -->
+    <rect x="468" y="44" width="104" height="28" rx="6" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="520" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#38bdf8" font-weight="700">🔀 API Gateway</text>
+    <!-- Services -->
+    <rect x="362" y="88" width="74" height="46" rx="6" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="399" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="white" font-weight="700">🔐 Auth</text>
+    <text x="399" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#93c5fd">:3001</text>
+    <rect x="446" y="88" width="74" height="46" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="483" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="white" font-weight="700">📱 Líneas</text>
+    <text x="483" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#86efac">:3002</text>
+    <rect x="530" y="88" width="74" height="46" rx="6" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="567" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="white" font-weight="700">💰 Factura</text>
+    <text x="567" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#d8b4fe">:3003</text>
+    <rect x="614" y="88" width="60" height="46" rx="6" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+    <text x="644" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="white" font-weight="700">🔔 Alert</text>
+    <text x="644" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#fed7aa">:3004</text>
+    <!-- Gateway arrows to services -->
+    <line x1="500" y1="72" x2="430" y2="88" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+    <line x1="510" y1="72" x2="480" y2="88" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+    <line x1="530" y1="72" x2="554" y2="88" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+    <line x1="540" y1="72" x2="630" y2="88" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+    <!-- Individual DBs -->
+    <rect x="362" y="148" width="74" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="399" y="161" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#94a3b8">🗄 auth-db</text>
+    <rect x="446" y="148" width="74" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="483" y="161" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#94a3b8">🗄 lineas-db</text>
+    <rect x="530" y="148" width="74" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="567" y="161" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#94a3b8">🗄 fact-db</text>
+    <rect x="614" y="148" width="60" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="644" y="161" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#94a3b8">🗄 alert</text>
+    <text x="520" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#64748b">⚡ Escala independiente · Alta complejidad · Múltiples equipos</text>
+    </svg></div>
   </div>
 
   <!-- Conceptos adicionales -->
@@ -1324,100 +1448,202 @@ porPagina   Int     optional  default: 20, max: 100
     <strong>🎯 Pregunta típica:</strong> "¿Cómo escribes un caso de prueba? Dame un ejemplo para la funcionalidad de alerta de consumo."
   </div>
 
-  <!-- Pirámide -->
   <div class="uml-box">
     <div class="uml-title">🔺 Pirámide de Testing — Dónde actúa el AF</div>
-    <div class="pyramid">
-      <div class="pyr-row" style="width:120px;background:#ef4444">E2E / UAT</div>
-      <div class="pyr-row" style="width:220px;background:#f59e0b">Integración</div>
-      <div class="pyr-row" style="width:320px;background:#22c55e">Unit Tests</div>
-      <div style="font-size:.75rem;color:#64748b;margin-top:8px">
-        ↑ El AF diseña y ejecuta los <strong>E2E y UAT</strong><br>
-        Revisa pero no ejecuta unit e integración (eso es el dev/QA)
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center">
+      <div>
+      <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <defs>
+        <clipPath id="tri"><polygon points="160,10 310,270 10,270"/></clipPath>
+      </defs>
+      <!-- Pyramid layers using clipped rects -->
+      <polygon points="160,10 310,270 10,270" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+      <!-- Unit (base) -->
+      <rect x="10" y="210" width="300" height="60" clip-path="url(#tri)" fill="#16a34a"/>
+      <!-- Integration -->
+      <rect x="10" y="155" width="300" height="60" clip-path="url(#tri)" fill="#2563eb"/>
+      <!-- E2E/System -->
+      <rect x="10" y="100" width="300" height="60" clip-path="url(#tri)" fill="#d97706"/>
+      <!-- UAT top -->
+      <rect x="10" y="10" width="300" height="95" clip-path="url(#tri)" fill="#dc2626"/>
+      <!-- Dividers -->
+      <line x1="60" y1="210" x2="260" y2="210" stroke="#0f172a" stroke-width="2"/>
+      <line x1="84" y1="155" x2="236" y2="155" stroke="#0f172a" stroke-width="2"/>
+      <line x1="110" y1="100" x2="210" y2="100" stroke="#0f172a" stroke-width="2"/>
+      <!-- Labels inside pyramid -->
+      <text x="160" y="246" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="800">Unit Tests</text>
+      <text x="160" y="258" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#bbf7d0">Devs · Muchos · Rápidos</text>
+      <text x="160" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="800">Integración</text>
+      <text x="160" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#bfdbfe">Dev/QA · Moderados</text>
+      <text x="160" y="127" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="white" font-weight="800">E2E / Sistema</text>
+      <text x="160" y="139" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#fde68a">QA · Pocos · Lentos</text>
+      <text x="160" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-size="11.5" fill="white" font-weight="800">UAT</text>
+      <text x="160" y="84" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fecaca">AF + Usuario</text>
+      <!-- Axis labels -->
+      <text x="5" y="270" font-family="Arial,sans-serif" font-size="8" fill="#64748b" transform="rotate(-90,5,270)" text-anchor="end">← CANTIDAD</text>
+      <text x="316" y="270" font-family="Arial,sans-serif" font-size="8" fill="#64748b" transform="rotate(-90,316,270)" text-anchor="end">COSTO →</text>
+      <!-- "Tu zona" marker -->
+      <rect x="230" y="48" width="72" height="20" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="266" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#78350f" font-weight="700">👤 Tu zona</text>
+      <line x1="228" y1="58" x2="196" y2="65" stroke="#f59e0b" stroke-width="1.2"/>
+      </svg>
+      </div>
+      <div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#dcfce7;border-left:4px solid #16a34a;border-radius:6px;padding:10px">
+            <div style="font-size:.82rem;font-weight:800;color:#14532d">🟢 Unit Tests</div>
+            <div style="font-size:.78rem;color:#166534;margin-top:3px">Los escribe el <strong>desarrollador</strong>. Prueban funciones individuales. Rápidos, baratos, masivos. Ej: pytest, JUnit, xUnit.</div>
+          </div>
+          <div style="background:#dbeafe;border-left:4px solid #2563eb;border-radius:6px;padding:10px">
+            <div style="font-size:.82rem;font-weight:800;color:#1e3a8a">🔵 Integración</div>
+            <div style="font-size:.78rem;color:#1e40af;margin-top:3px"><strong>Dev / QA</strong>. Valida que módulos trabajen juntos. Ej: llamada real a la API, inserción en BD. Herramientas: Postman, REST Assured.</div>
+          </div>
+          <div style="background:#fef3c7;border-left:4px solid #d97706;border-radius:6px;padding:10px">
+            <div style="font-size:.82rem;font-weight:800;color:#78350f">🟡 E2E / Sistema</div>
+            <div style="font-size:.78rem;color:#92400e;margin-top:3px"><strong>QA / AF</strong>. Simula el usuario real de inicio a fin. Costosos, lentos. Ej: Selenium, Cypress, prueba manual.</div>
+          </div>
+          <div style="background:#fee2e2;border-left:4px solid #dc2626;border-radius:6px;padding:10px">
+            <div style="font-size:.82rem;font-weight:800;color:#7f1d1d">🔴 UAT ← TÚ</div>
+            <div style="font-size:.78rem;color:#991b1b;margin-top:3px"><strong>AF + Usuario Final</strong>. Valida que el sistema cumple los requisitos de negocio. Casos de prueba manuales. Sign-off formal.</div>
+          </div>
+        </div>
       </div>
     </div>
-    <table class="tbl" style="margin-top:14px">
-      <tr><th>Tipo</th><th>Quién lo hace</th><th>Qué prueba</th><th>Herramienta</th></tr>
-      <tr><td><span class="chip chip-green">Unit</span></td><td>Desarrollador</td><td>Función o método individual</td><td>JUnit, pytest, xUnit</td></tr>
-      <tr><td><span class="chip chip-blue">Integración</span></td><td>Dev / QA</td><td>Módulos interactuando entre sí</td><td>Postman, REST Assured</td></tr>
-      <tr><td><span class="chip chip-amber">Sistema / E2E</span></td><td>QA / AF</td><td>Flujo completo de usuario</td><td>Selenium, Cypress, manual</td></tr>
-      <tr><td><span class="chip chip-red">UAT</span></td><td>AF + Usuario</td><td>Requisitos de negocio cumplidos</td><td>Casos de prueba manuales</td></tr>
-      <tr><td><span class="chip chip-purple">Regresión</span></td><td>QA</td><td>Que lo nuevo no rompe lo existente</td><td>Suite automatizada</td></tr>
-      <tr><td><span class="chip chip-slate">Performance</span></td><td>QA especializado</td><td>Carga, estrés, volumen</td><td>JMeter, Gatling</td></tr>
-    </table>
   </div>
 
-  <!-- Caso de prueba -->
+
+
   <div class="uml-box">
-    <div class="uml-title">📝 Caso de Prueba — Estructura completa</div>
-    <div class="code">
-<span class="cm">══════════════════════════════════════════════════</span>
-ID:          TC-015
-Historia:    US-009 — Alerta cuando línea supera 80%
-Prioridad:   Alta
-Tipo:        Funcional / UAT
-Ambiente:    QA (datos de prueba cargados)
-<span class="cm">──────────────────────────────────────────────────</span>
-PRECONDICIONES:
-  ✓ Usuario autenticado como Admin Corporativo
-  ✓ Empresa "Test SA" con RUC 20123456789
-  ✓ Línea 987654321 con plan 10GB (10,240 MB)
-  ✓ Consumo actual: 8,500 MB (83%)
-<span class="cm">──────────────────────────────────────────────────</span>
-PASOS:
-  1. Ingresar al portal → "Mis Líneas"
-  2. Seleccionar línea 987654321
-  3. Observar la barra de consumo
-  4. Revisar bandeja de notificaciones
-<span class="cm">──────────────────────────────────────────────────</span>
-RESULTADO ESPERADO:
-  ✓ Barra de consumo muestra 83% en color ROJO
-  ✓ Ícono de alerta (⚠️) visible en la línea
-  ✓ Notificación en bandeja: "Línea 987654321 ha
-    superado el 80% de su plan — 8.5/10 GB"
-  ✓ El administrador recibe email de alerta
-<span class="cm">──────────────────────────────────────────────────</span>
-RESULTADO ACTUAL:  _____________ (llenar en ejecución)
-ESTADO:           PASS ✅ / FAIL ❌ / BLOQUEADO ⛔
-EVIDENCIA:        [screenshot] [log de BD]
-DEFECTO (si falla): DEF-xxx — descripción
+    <div class="uml-title">📝 Caso de Prueba — Formato visual (estilo Jira/TestRail)</div>
+    <div style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);border:1px solid #e2e8f0">
+      <!-- Header -->
+      <div style="background:#1e293b;padding:12px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+        <div style="background:#38bdf8;color:#0f172a;border-radius:6px;padding:4px 10px;font-size:.78rem;font-weight:900;font-family:monospace">TC-015</div>
+        <div style="color:#e2e8f0;font-size:.85rem;font-weight:700;flex:1">US-009 — Alerta cuando línea supera 80% de consumo</div>
+        <span class="chip chip-red" style="font-size:.72rem">🔥 Alta Prioridad</span>
+        <span class="chip chip-blue" style="font-size:.72rem">Funcional · UAT</span>
+      </div>
+      <!-- Meta row -->
+      <div style="background:#f8fafc;padding:8px 16px;display:flex;gap:24px;flex-wrap:wrap;border-bottom:1px solid #e2e8f0">
+        <div style="font-size:.76rem;color:#64748b"><strong>Ambiente:</strong> QA</div>
+        <div style="font-size:.76rem;color:#64748b"><strong>Sprint:</strong> Sprint 4</div>
+        <div style="font-size:.76rem;color:#64748b"><strong>Tipo:</strong> Manual</div>
+        <div style="font-size:.76rem;color:#64748b"><strong>Asignado a:</strong> Marco S. (AF)</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+        <!-- Left: Precondiciones + Pasos -->
+        <div style="padding:14px 16px;border-right:1px solid #f1f5f9">
+          <div style="font-size:.8rem;font-weight:800;color:#475569;margin-bottom:8px;display:flex;align-items:center;gap:6px">⚙️ PRECONDICIONES</div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px">
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a;font-weight:900">✓</span> Usuario autenticado como Admin Corporativo</div>
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a;font-weight:900">✓</span> Empresa "Test SA" · RUC 20123456789</div>
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a;font-weight:900">✓</span> Línea 987654321 con plan 10GB (10,240 MB)</div>
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a;font-weight:900">✓</span> Consumo actual: 8,500 MB = <strong>83%</strong></div>
+          </div>
+          <div style="font-size:.8rem;font-weight:800;color:#475569;margin-bottom:8px">📋 PASOS</div>
+          <ol style="padding-left:18px;font-size:.78rem;color:#374151;line-height:2">
+            <li>Ingresar al portal → sección "Mis Líneas"</li>
+            <li>Seleccionar la línea <code style="background:#f1f5f9;padding:1px 4px;border-radius:3px">987654321</code></li>
+            <li>Observar la barra de consumo visual</li>
+            <li>Revisar bandeja de notificaciones del portal</li>
+            <li>Verificar email del administrador</li>
+          </ol>
+        </div>
+        <!-- Right: Resultados -->
+        <div style="padding:14px 16px">
+          <div style="font-size:.8rem;font-weight:800;color:#475569;margin-bottom:8px">✅ RESULTADO ESPERADO</div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px">
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a">●</span> Barra de consumo muestra <strong>83% en ROJO</strong></div>
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a">●</span> Ícono ⚠️ visible en la fila de la línea</div>
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a">●</span> Notificación: "Línea 987654321 — 8.5/10 GB"</div>
+            <div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:#374151"><span style="color:#16a34a">●</span> Email enviado al admin en &lt;5 minutos</div>
+          </div>
+          <!-- Status selector -->
+          <div style="font-size:.8rem;font-weight:800;color:#475569;margin-bottom:8px">🚦 ESTADO (clic para seleccionar)</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap" id="tc-status-row">
+            <button onclick="setTC('pass',this)" style="flex:1;min-width:80px;padding:10px 6px;border-radius:8px;border:2px solid #16a34a;background:#f0fdf4;cursor:pointer;font-size:.8rem;font-weight:800;color:#14532d;transition:.2s">✅ PASS</button>
+            <button onclick="setTC('fail',this)" style="flex:1;min-width:80px;padding:10px 6px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.8rem;font-weight:700;color:#94a3b8;transition:.2s">❌ FAIL</button>
+            <button onclick="setTC('blocked',this)" style="flex:1;min-width:80px;padding:10px 6px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.8rem;font-weight:700;color:#94a3b8;transition:.2s">⛔ BLOQUEADO</button>
+          </div>
+          <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:8px;margin-top:10px;font-size:.76rem;color:#14532d" id="tc-result-msg">
+            Estado actual: <strong>PASS</strong> — Criterios cumplidos ✅
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Bug Report -->
+
+
   <div class="uml-box">
-    <div class="uml-title">🐛 Reporte de Bug — Cómo lo documenta el AF</div>
-    <div class="code">
-Título:    Portal muestra consumo desactualizado (>1 hora de desfase)
-ID:        DEF-042
-Severidad: <span class="op">Alta</span>  (impide cumplir RF-001)
-Prioridad: <span class="op">Alta</span>
-Historia:  US-007 / TC-012
+    <div class="uml-title">🐛 Reporte de Bug — Tarjeta estilo Jira</div>
 
-Ambiente:  QA · Chrome 124 · Windows 11
-Fecha:     2026-05-27
+    <!-- Bug Lifecycle flow -->
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:16px;padding:10px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
+      <span style="font-size:.72rem;color:#64748b;font-weight:700;margin-right:4px">CICLO:</span>
+      <span style="background:#dbeafe;color:#1e3a8a;padding:4px 10px;border-radius:20px;font-size:.74rem;font-weight:700">🆕 NUEVO</span>
+      <span style="color:#94a3b8;font-size:.9rem">→</span>
+      <span style="background:#fef3c7;color:#78350f;padding:4px 10px;border-radius:20px;font-size:.74rem;font-weight:700">👤 ASIGNADO</span>
+      <span style="color:#94a3b8;font-size:.9rem">→</span>
+      <span style="background:#e0f2fe;color:#0c4a6e;padding:4px 10px;border-radius:20px;font-size:.74rem;font-weight:700">🔧 EN PROGRESO</span>
+      <span style="color:#94a3b8;font-size:.9rem">→</span>
+      <span style="background:#dcfce7;color:#14532d;padding:4px 10px;border-radius:20px;font-size:.74rem;font-weight:700">✅ RESUELTO</span>
+      <span style="color:#94a3b8;font-size:.9rem">→</span>
+      <span style="background:#f0fdf4;color:#15803d;padding:4px 10px;border-radius:20px;font-size:.74rem;font-weight:700;border:2px solid #22c55e">🔍 VERIFICADO</span>
+      <span style="color:#94a3b8;font-size:.9rem">→</span>
+      <span style="background:#e2e8f0;color:#475569;padding:4px 10px;border-radius:20px;font-size:.74rem;font-weight:700">🔒 CERRADO</span>
+      <div style="width:100%;font-size:.7rem;color:#94a3b8;margin-top:4px">⚠️ Si falla la verificación → vuelve a ASIGNADO (reopen)</div>
+    </div>
 
-Pasos para reproducir:
-  1. Login como Admin Corporativo
-  2. Ir a Mis Líneas → Línea 987654321
-  3. Comparar timestamp de "Última actualización"
-
-Resultado ESPERADO:
-  Timestamp de actualización ≤ 15 minutos antes de ahora
-
-Resultado ACTUAL:
-  Timestamp muestra "2026-05-27 08:30" siendo las 10:15
-  Desfase: 105 minutos (viola RF-001)
-
-Evidencia:
-  [screenshot-defecto-042.png]
-  [log API: GET /consumo devuelve cache de 2 horas]
-
-Posible causa raíz (sugerencia del AF):
-  El TTL del cache parece estar configurado en 2h
-  en lugar de 15min. Revisar config de Redis.
+    <!-- Jira-style bug card -->
+    <div style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);border:1px solid #e2e8f0">
+      <div style="background:#fee2e2;padding:12px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;border-bottom:2px solid #ef4444">
+        <div style="background:#ef4444;color:white;border-radius:6px;padding:4px 10px;font-size:.78rem;font-weight:900;font-family:monospace">DEF-042</div>
+        <div style="flex:1;font-size:.85rem;font-weight:700;color:#7f1d1d">Portal muestra consumo desactualizado — desfase &gt;1 hora</div>
+        <div style="display:flex;gap:6px">
+          <span style="background:#ef4444;color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800">🔴 Alta Severidad</span>
+          <span style="background:#f97316;color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800">⚡ Alta Prioridad</span>
+        </div>
+      </div>
+      <div style="padding:14px 16px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:14px;padding:10px;background:#f8fafc;border-radius:8px;font-size:.76rem">
+          <div><strong>Historia:</strong> US-007 / TC-012</div>
+          <div><strong>Ambiente:</strong> QA</div>
+          <div><strong>Navegador:</strong> Chrome 124</div>
+          <div><strong>SO:</strong> Windows 11</div>
+          <div><strong>Fecha:</strong> 2026-05-27</div>
+          <div><strong>Reportado por:</strong> Marco S.</div>
+        </div>
+        <!-- Steps -->
+        <div style="font-size:.8rem;font-weight:800;color:#475569;margin-bottom:6px">📋 Pasos para Reproducir</div>
+        <ol style="font-size:.78rem;color:#374151;padding-left:18px;line-height:2;margin-bottom:14px">
+          <li>Login como Admin Corporativo → portal</li>
+          <li>Ir a "Mis Líneas" → seleccionar línea 987654321</li>
+          <li>Anotar el timestamp "Última actualización"</li>
+          <li>Comparar con la hora actual del sistema</li>
+        </ol>
+        <!-- Expected vs Actual comparison -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+          <div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:8px;padding:12px">
+            <div style="font-size:.78rem;font-weight:800;color:#15803d;margin-bottom:6px">✅ ESPERADO</div>
+            <div style="font-size:.8rem;color:#166534">Timestamp ≤ 15 minutos antes de la hora actual</div>
+            <div style="font-size:.75rem;color:#16a34a;margin-top:4px">Ej: 10:15 → mostrar "10:00" max</div>
+          </div>
+          <div style="background:#fef2f2;border:1.5px solid #ef4444;border-radius:8px;padding:12px">
+            <div style="font-size:.78rem;font-weight:800;color:#dc2626;margin-bottom:6px">❌ ACTUAL</div>
+            <div style="font-size:.8rem;color:#991b1b">Timestamp muestra "08:30" siendo las 10:15</div>
+            <div style="font-size:.75rem;color:#ef4444;margin-top:4px;font-weight:700">Desfase: 105 minutos ⚠️</div>
+          </div>
+        </div>
+        <!-- Impact + Root cause -->
+        <div style="background:#fff7ed;border:1.5px solid #f97316;border-radius:8px;padding:12px">
+          <div style="font-size:.78rem;font-weight:800;color:#c2410c;margin-bottom:4px">💡 Hipótesis de Causa Raíz (del AF)</div>
+          <div style="font-size:.78rem;color:#9a3412">El TTL (tiempo de expiración) del cache Redis está configurado en 2 horas en lugar de 15 minutos. Viola RF-001. Revisar configuración en <code style="background:#fef3c7;padding:1px 4px;border-radius:3px">cache.config.js → CONSUMO_TTL</code></div>
+        </div>
+      </div>
     </div>
   </div>
+
 
   <div class="alert-green">
     <strong>✅ Tu experiencia:</strong> En Oncosalud validaste el proceso de tokenización con casos de prueba específicos de PCI-DSS (escenarios de pago exitoso, pago rechazado, timeout, duplicado). Ese tipo de testing exhaustivo es exactamente lo que busca un Jefe de Desarrollo.
@@ -1989,6 +2215,28 @@ function updateBtnState(tabId, playing) {
 window.addEventListener('load', () => {
   if ('speechSynthesis' in window) window.speechSynthesis.getVoices();
 });
+
+// ── TEST CASE STATUS SELECTOR ────────────────────────────────────────────────
+const tcMessages = {
+  pass: {msg:'Estado: <strong>PASS</strong> — Criterios cumplidos ✅', bg:'#f0fdf4', bc:'#86efac', cl:'#14532d'},
+  fail: {msg:'Estado: <strong>FAIL</strong> — Abrir defecto DEF-xxx ❌', bg:'#fef2f2', bc:'#fca5a5', cl:'#7f1d1d'},
+  blocked: {msg:'Estado: <strong>BLOQUEADO</strong> — Dependencia no resuelta ⛔', bg:'#fffbeb', bc:'#fcd34d', cl:'#78350f'}
+};
+function setTC(status, btn) {
+  const row = document.getElementById('tc-status-row');
+  if (!row) return;
+  row.querySelectorAll('button').forEach(b => {
+    b.style.borderColor = '#e2e8f0';
+    b.style.background = '#fff';
+    b.style.color = '#94a3b8';
+  });
+  const colors = {pass:['#16a34a','#f0fdf4','#14532d'], fail:['#dc2626','#fef2f2','#7f1d1d'], blocked:['#d97706','#fffbeb','#78350f']};
+  const [bc,bg,cl] = colors[status];
+  btn.style.borderColor = bc; btn.style.background = bg; btn.style.color = cl;
+  const r = tcMessages[status];
+  const msg = document.getElementById('tc-result-msg');
+  if (msg) { msg.innerHTML = r.msg; msg.style.background=r.bg; msg.style.borderColor=r.bc; msg.style.color=r.cl; }
+}
 
 </script>
 
