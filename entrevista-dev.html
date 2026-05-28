@@ -2160,121 +2160,119 @@ function showFromSelect(sel) {
 }
 // ── WEB SPEECH API — NARRATIONS ─────────────────────────────────────────────
 const narrations = {
-  uml: `¡Bienvenido al repaso de UML! Los diagramas UML, o Lenguaje Unificado de Modelado, son el lenguaje universal que usan los equipos de desarrollo para comunicarse sin ambigüedades. Como Analista Funcional Senior, dominar UML te permite traducir el negocio al lenguaje técnico y viceversa.
+  uml: `Bueno, empecemos con UML. Mira, si el jefe de desarrollo te pregunta por diagramas y tú solo recitas definiciones del libro... malo. Lo que quiere ver es si realmente los usas, y con ejemplos. Así que vamos al grano con los cinco que más importan.
 
-El Diagrama de Casos de Uso es tu primer entregable al inicio de cualquier proyecto. Muestra QUÉ puede hacer el sistema desde la perspectiva de los actores, sin entrar en detalles técnicos. Es perfecto para validar el alcance con el cliente y el equipo técnico.
+El primero, y el que más vas a usar al arrancar cualquier proyecto, es el Diagrama de Casos de Uso. Básicamente es un mapa visual de qué puede hacer el sistema... y quién lo usa. Sin código, sin tecnicismos. Solo el qué y el quién. En Comsatel sería algo así: el actor es el Administrador Corporativo, y los casos de uso son "Ver Líneas", "Cambiar Plan", "Generar Reporte". Limpio, claro, fácil de validar con el cliente.
 
-El Diagrama de Secuencia es el más valorado por los desarrolladores. Muestra cómo fluyen los mensajes entre componentes a lo largo del tiempo. Si necesitas documentar una integración de APIs o un flujo de autenticación, este es tu diagrama.
+El segundo, y este es el que los devs más valoran, es el Diagrama de Secuencia. Muestra cómo fluye una operación en el tiempo... quién le habla a quién, en qué orden, qué respuesta llega. Si tienes que documentar el flujo de login, o cómo el portal consulta una API externa, este es tu herramienta.
 
-El Diagrama de Actividad es similar al BPMN pero más técnico. Modela flujos con decisiones, bifurcaciones y paralelismo. Úsalo para flujos de negocio complejos que el equipo de desarrollo necesita implementar.
+El Diagrama de Actividad es como el BPMN pero más técnico. Lo usas para flujos con decisiones. Si el usuario está autenticado va por acá, si no va por allá. Muy útil para procesos complejos con múltiples caminos.
 
-El Diagrama de Clases comunica la estructura de datos del dominio. Muestra entidades, atributos, métodos y relaciones. El AF lo crea en colaboración con el arquitecto.
+El Diagrama de Clases muestra las entidades del sistema, sus atributos y cómo se relacionan. Y el Diagrama de Estados modela el ciclo de vida de algo... una línea móvil, por ejemplo, puede estar Activa, Suspendida, o Cancelada, y cada estado tiene sus propias reglas.
 
-Finalmente, el Diagrama de Estados modela el ciclo de vida de una entidad del negocio, como una línea móvil o una orden de compra. Cada estado tiene reglas de negocio distintas que debes especificar claramente.
+Para la entrevista: no repitas definiciones. Mejor di cuándo usarías cada uno y da un ejemplo del portal de Comsatel. Eso es lo que convence a un jefe técnico.`,
 
-Recuerda para la entrevista: un Jefe de Desarrollo espera que sepas cuándo usar cada diagrama, no solo que los conozcas de nombre.`,
+  reqs: `Perfecto, ahora hablemos de requisitos, que es básicamente el corazón del trabajo del Analista Funcional. Y mira, la razón número uno de retrasos en proyectos y conflictos con el cliente... es una especificación ambigua o incompleta. O sea, esto no es relleno, es lo más importante que haces.
 
-  reqs: `Los requisitos son el corazón del trabajo del Analista Funcional. Una especificación ambigua o incompleta es la causa número uno de retrasos en el desarrollo, errores en producción y conflictos con el cliente.
+Los Requisitos Funcionales son el qué hace el sistema. Comportamiento observable por el usuario. Por ejemplo: el portal debe mostrar el consumo de datos de cada línea, actualizado cada quince minutos. Directo, medible, concreto.
 
-Los Requisitos Funcionales describen QUÉ hace el sistema, el comportamiento observable desde el usuario. Por ejemplo: el portal debe mostrar el consumo de datos de cada línea actualizado cada 15 minutos.
+Los Requisitos No Funcionales son el cómo lo hace. Velocidad, seguridad, disponibilidad. Ojo acá: nunca digas que el sistema debe ser rápido. Eso no significa nada. Di: el sistema debe responder en menos de dos segundos para el noventa y cinco por ciento de las solicitudes, con hasta quinientos usuarios concurrentes. Eso sí es un requisito.
 
-Los Requisitos No Funcionales describen CÓMO lo hace: velocidad, seguridad, disponibilidad, escalabilidad. La clave es siempre ser medible. Nunca digas que el sistema debe ser rápido. Di: el sistema debe responder en menos de 2 segundos para el percentil 95 de requests con hasta 500 usuarios concurrentes.
+La Definition of Ready es tu filtro de calidad antes de que una historia entre al sprint. Si no tiene criterios de aceptación claros, si hay dependencias sin resolver, o si el equipo no la puede estimar... no entra. Y eso no es ser difícil, es proteger al equipo.
 
-La Definition of Ready es tu estándar de calidad para una historia de usuario. Si una historia no cumple los criterios de DoR, no entra al sprint. Esto protege al equipo de comenzar trabajo sin información suficiente.
+La Matriz de Trazabilidad conecta cada requisito con su caso de prueba y su historia de usuario. Es el artefacto que más les gusta a los jefes de desarrollo porque garantiza que nada se implementa sin respaldo de negocio.
 
-La Definition of Done te dice cuándo el trabajo está realmente terminado: código revisado, tests pasando, UAT aprobado y documentación actualizada.
+Para la entrevista, prepara dos historias concretas: una de un requisito bien especificado que aceleró el desarrollo, y otra de un requisito ambiguo que causó problemas. Con eso tienes resuelto el setenta por ciento de las preguntas sobre requisitos.`,
 
-La Matriz de Trazabilidad es el artefacto que más valoran los Jefes de Desarrollo. Garantiza que cada requisito tiene un caso de prueba y que ningún código se escribe sin respaldo de negocio.
+  api: `Bueno, APIs REST. Este tema siempre aparece en entrevistas técnicas, y lo bueno es que no necesitas programarlas para entenderlas. Solo necesitas poder especificarlas con suficiente detalle.
 
-Para la entrevista: prepara un ejemplo concreto de un requisito bien especificado que aceleró el desarrollo, y otro de un requisito ambiguo que causó problemas. Esos dos historias responden el setenta por ciento de las preguntas sobre requisitos.`,
+Las APIs REST usan el protocolo HTTP. Cada operación tiene un método específico. GET es para consultar datos, sin modificar nada. POST es para crear un recurso nuevo. PUT y PATCH son para actualizar, con la diferencia de que PUT reemplaza todo y PATCH solo cambia los campos que indiques. Y DELETE es para eliminar o desactivar.
 
-  api: `Las APIs REST son el sistema nervioso de las aplicaciones modernas. Como Analista Funcional Senior, no necesitas programarlas, pero sí especificarlas con suficiente detalle para que el equipo las implemente sin ambigüedades.
+Los códigos de respuesta son el idioma de las APIs. El doscientos es éxito. Doscientos uno, recurso creado. El cuatrocientos es que mandaste datos inválidos. Cuatrocientos uno, el usuario no está autenticado o su token expiró. Cuatrocientos tres, está autenticado pero no tiene permiso para eso. Cuatrocientos cuatro, el recurso no existe. Y quinientos es un error interno del servidor, o sea, algo se rompió en el backend.
 
-REST usa el protocolo HTTP para comunicar sistemas. Cada operación tiene un método: GET para consultar sin modificar, POST para crear nuevos recursos, PUT y PATCH para actualizar, y DELETE para eliminar o desactivar.
+Cuando especificas un endpoint para el equipo, tienes que incluir: la URL completa con sus parámetros, el método HTTP, los datos que se envían en el cuerpo, la estructura del JSON de respuesta exitosa, y todos los errores posibles con el mensaje que verá el usuario.
 
-Los códigos de respuesta HTTP son el idioma de las APIs. Doscientos significa éxito. Doscientos uno, recurso creado. Cuatrocientos, datos inválidos enviados. Cuatrocientos uno, el usuario no está autenticado. Cuatrocientos tres, autenticado pero sin permiso. Cuatrocientos cuatro, el recurso no existe. Y quinientos, error interno del servidor.
+Un analista funcional senior puede leer y escribir estas especificaciones. Eso es lo que te diferencia de un analista junior que solo levanta requisitos en Word.
 
-Cuando especificas un endpoint para el equipo técnico, debes incluir: la URL completa con los parámetros, el método HTTP, el formato del cuerpo de la solicitud, la estructura del JSON de respuesta, y todos los posibles errores con su mensaje al usuario.
+REST es moderno y liviano. SOAP es más formal, lo usaban en banca y gobierno. En Comsatel, para el portal de autogestión, van a estar usando REST con toda seguridad.`,
 
-Esto se documenta en una Especificación de Endpoint, o en Swagger u OpenAPI. Un AF Senior puede leer y escribir estas especificaciones, y eso lo diferencia enormemente de un analista junior.
+  sql: `Bueno, SQL. Mira, sé que a veces los analistas funcionales dicen que no necesitan saber SQL porque hay DBAs para eso. Pero un AF Senior que puede consultar la base de datos directamente... vale el doble. Porque no tiene que esperar a que alguien le valide los datos. Él mismo los valida.
 
-REST es más moderno y ligero. SOAP es más formal y seguro, usado en banca y gobierno. En Comsatel probablemente uses REST para el portal de autogestión.`,
+Lo más básico es el SELECT. Le dices a la base qué columnas quieres, de qué tabla, y con qué filtros. El WHERE filtra las filas, el ORDER BY las ordena, y el LIMIT controla cuántas te devuelve. Con eso ya puedes hacer el ochenta por ciento de las validaciones del día a día.
 
-  sql: `SQL, o Structured Query Language, es el lenguaje de las bases de datos relacionales. Como Analista Funcional, usas SQL para validar datos, verificar que los reportes sean correctos, y crear consultas rápidas sin depender del equipo de desarrollo.
+Los JOINs son lo que más preguntan en entrevistas. INNER JOIN devuelve solo las filas que existen en ambas tablas. Si una empresa no tiene líneas, no aparece. LEFT JOIN devuelve todas las filas de la tabla izquierda, tengan o no coincidencia en la otra. Así sí aparecen las empresas sin líneas.
 
-El SELECT básico es tu herramienta más usada. Con WHERE filtras filas, con ORDER BY ordenas resultados, y con LIMIT controlas la cantidad de filas retornadas.
+GROUP BY es para agrupar y sacar estadísticas. COUNT cuenta filas, SUM suma, AVG promedia, MAX y MIN dan los extremos. Y HAVING filtra esos grupos, que es diferente al WHERE que filtra filas individuales.
 
-Los JOINs son la habilidad SQL más preguntada en entrevistas. INNER JOIN devuelve solo las filas que coinciden en ambas tablas. LEFT JOIN devuelve todas las filas de la tabla izquierda más las coincidencias. Úsalos para combinar datos de múltiples tablas relacionadas.
+Las subconsultas te permiten hacer preguntas más complejas. Como: dame todas las empresas cuyas líneas tienen en promedio más del setenta por ciento de consumo. Eso es un SELECT dentro de otro SELECT.
 
-GROUP BY agrupa los resultados y te permite usar funciones de agregación: COUNT para contar, SUM para sumar, AVG para promediar, MAX y MIN para extremos. Con HAVING filtras los grupos, no las filas individuales.
+Para la entrevista, si te ponen un problema en papel, empieza simple. Escribe el SELECT básico primero, luego agrega el JOIN, luego el filtro, luego la agregación. Ese proceso paso a paso le demuestra al jefe de desarrollo que tienes metodología, no solo que memorizaste la sintaxis.`,
 
-Las subconsultas te permiten hacer preguntas complejas: dame todas las empresas cuyas líneas tienen en promedio más del setenta por ciento de consumo. Eso se hace con un SELECT dentro de otro SELECT.
+  data: `Bien, modelado de datos. Esto conecta directamente el negocio con cómo se guardan los datos en la base. Y el Diagrama Entidad Relación, el ERD, es el mapa de ese modelo.
 
-En la entrevista, si te piden escribir una consulta, empieza por el caso más simple: SELECT las columnas que necesitas, FROM la tabla principal, WHERE la condición clave. Luego agrega complejidad gradualmente. Ese proceso muestra metodología, no solo resultado.`,
+Como analista funcional, tú diseñas el modelo conceptual. Básicamente piensas: ¿qué cosas existen en este negocio? En Comsatel: empresas, líneas, planes, usuarios, consumos. Esas son tus entidades. El DBA después lo convierte en tablas físicas con índices y todo eso técnico. Pero la estructura de negocio la defines tú.
 
-  data: `El Modelado de Datos es la habilidad que conecta el negocio con la base de datos. El Diagrama Entidad-Relación, o ERD, muestra cómo se estructuran y relacionan los datos de un sistema.
+Las relaciones tienen cardinalidad. Uno a uno, como un usuario con su perfil. Uno a muchos, que es la más común: una empresa tiene muchas líneas, una línea pertenece a un plan. Y muchos a muchos, como usuarios que pueden administrar múltiples líneas de múltiples empresas, que requiere una tabla intermedia.
 
-Como Analista Funcional, diseñas el modelo conceptual, que es el modelo de negocio sin preocuparte por detalles técnicos. Luego trabajas con el DBA para traducirlo al modelo físico, que es la estructura real de tablas.
+La clave primaria, o PK, identifica de forma única cada registro de la tabla. La clave foránea, o FK, apunta a la PK de otra tabla y crea la relación entre ellas. Cuando ves un campo que se llama ruc_empresa en la tabla de líneas... eso es una FK apuntando a la tabla de empresas.
 
-Las relaciones tienen cardinalidad: uno a uno, como un usuario con su perfil; uno a muchos, como una empresa con muchas líneas; y muchos a muchos, como usuarios que administran múltiples líneas, que requiere una tabla intermedia.
+La normalización es el proceso de organizar los datos para evitar redundancia. Primera Forma Normal: cada celda tiene un único valor, no listas. Segunda Forma Normal: todo depende de la clave primaria completa. Tercera Forma Normal: no hay dependencias entre columnas que no sean la clave.
 
-La clave primaria, o PK, identifica de forma única cada fila de la tabla. La clave foránea, o FK, es una referencia a la PK de otra tabla y crea la relación entre tablas.
+Para la entrevista, practica dibujar en papel el ERD del portal de Comsatel. Empresa, Línea, Plan, Usuario, Consumo. Con sus relaciones y sus campos principales. Si lo puedes dibujar de memoria, ya tienes esa pregunta en el bolsillo.`,
 
-La normalización es el proceso de organizar los datos para eliminar redundancia. La Primera Forma Normal requiere que cada celda tenga un único valor. La Segunda, que todo dependa de la clave primaria completa. La Tercera, que no haya dependencias transitivas.
+  arch: `Arquitectura de software. Mira, no necesitas ser arquitecto para entender esto. Necesitas entender los patrones suficiente como para escribir requisitos técnicos que tengan sentido, y para hablar con el equipo sin que te miren raro.
 
-Para la entrevista: dibuja el ERD del portal de Comsatel en papel. Las entidades son Empresa, Línea, Plan, Usuario y Consumo. Practica explicar las relaciones: una empresa tiene muchas líneas, cada línea pertenece a un plan, un usuario pertenece a una empresa.`,
+La arquitectura de tres capas es la más común en aplicaciones de empresa. Capa de Presentación: lo que ve el usuario, el portal web, la app móvil. Capa de Lógica de Negocio: el backend, donde viven las reglas del sistema, los flujos, los permisos. Y Capa de Datos: la base de datos, donde todo se persiste.
 
-  arch: `La Arquitectura de Software define cómo están organizados los componentes de un sistema. Como Analista Funcional, necesitas entender los patrones arquitectónicos para escribir requisitos técnicos que tengan sentido y colaborar fluidamente con el equipo.
+Como analista funcional, escribes requisitos para las tres capas. En Presentación especificas pantallas, validaciones de campo, mensajes de error, accesibilidad. En Lógica de Negocio defines las reglas del negocio, los flujos, los permisos, los endpoints. En Datos diseñas las entidades, las relaciones, las restricciones.
 
-La arquitectura de tres capas es la más común en aplicaciones empresariales. La capa de Presentación es lo que ve el usuario: el portal web, la app móvil. La capa de Lógica de Negocio contiene las reglas y procesos del sistema. Y la capa de Datos gestiona la persistencia en la base de datos.
+Monolito versus microservicios. El monolito pone toda la aplicación en un solo despegue. Es más simple al inicio, perfecto para un MVP o un equipo chico. Los microservicios dividen todo en servicios pequeños e independientes, cada uno con su propia base de datos. Son para sistemas grandes con múltiples equipos, como Netflix o Amazon.
 
-Como AF, escribes requisitos para las tres capas: en Presentación, especificas pantallas, validaciones y mensajes de error. En Lógica de Negocio, defines las reglas de negocio y flujos. En Datos, diseñas las entidades y restricciones.
+Para la entrevista, cuando te pregunten qué arquitectura usarías para el portal de Comsatel, la respuesta correcta es: empezaría con un monolito bien estructurado en capas para el MVP. Si el sistema crece en usuarios y equipos, migro gradualmente a microservicios por dominio: líneas, facturación, alertas. Eso muestra criterio técnico sin sobrediseñar. Y eso es exactamente lo que quiere escuchar un jefe de desarrollo.`,
 
-La arquitectura Monolítica pone toda la aplicación en un solo despliegue. Es simple al inicio, ideal para un MVP o un equipo pequeño como el proyecto de Comsatel. Los Microservicios dividen el sistema en servicios pequeños e independientes, cada uno con su propia base de datos. Son ideales para sistemas de gran escala con múltiples equipos, como Netflix o Amazon.
+  sdlc: `Bueno, el ciclo de vida del desarrollo de software. SDLC. Y más concretamente, cómo funciona Scrum y cuál es tu rol como analista funcional en cada ceremonia.
 
-Para la entrevista, tu respuesta sobre arquitectura para Comsatel debería ser: empezaría con un monolito bien estructurado en capas para el MVP. Si el sistema crece en usuarios y equipos, migraríamos gradualmente a microservicios por dominio: líneas, facturación y alertas. Eso demuestra criterio técnico sin sobrediseñar.`,
+Scrum organiza el trabajo en sprints de dos semanas. Hay cinco ceremonias. El Sprint Planning donde presentas las historias del tope del backlog al equipo, respondes preguntas, y el equipo las estima. El Daily Standup, que es la reunión diaria de quince minutos donde cada uno dice qué hizo, qué va a hacer, y si tiene algún bloqueo. El Refinement, que es la reunión donde preparas las próximas historias antes de que entren a Sprint Planning, para que lleguen listas. El Sprint Review, donde el equipo presenta el incremento y tú lo validas como representante del negocio. Y la Retrospectiva, donde el equipo revisa qué funcionó y qué mejorar.
 
-  sdlc: `El Ciclo de Vida del Desarrollo de Software, SDLC, define cómo se planifica, construye y entrega el software. Como Analista Funcional Senior, tu rol es clave en cada etapa.
+Tu flujo como AF va así: primero levantas requerimientos con entrevistas o talleres. Los analizas y modelas. Los especificas como historias de usuario con criterios de aceptación en formato dado, cuando, entonces. En Refinement los presentas al equipo y se estiman. Y en el Sprint Review los validas contra los criterios que tú mismo escribiste.
 
-En la metodología Ágil con Scrum, el trabajo se organiza en sprints de dos semanas. Hay cinco ceremonias clave: el Sprint Planning donde presentas las historias del backlog al equipo; el Daily Standup donde reportas bloqueos; el Refinement donde preparas las próximas historias; el Sprint Review donde validas el incremento como representante del negocio; y la Retrospectiva donde el equipo mejora su proceso.
+Lo que distingue a un senior de un junior en este proceso es la anticipación. Un senior escribe historias tan claras que el desarrollador puede arrancar sin necesitar tres reuniones de aclaración. Detecta los casos borde antes de que el equipo los encuentre en el código. Y cuando llega el Sprint Review, ya ejecutó los casos de prueba antes de la reunión, para no hacer validaciones en vivo que pueden ser incómodas.
 
-Tu flujo como AF va de la mano con este ciclo. Primero levantas requerimientos con entrevistas y talleres. Luego los analizas modelando procesos en BPMN. Después los especificas como historias de usuario con criterios de aceptación medibles. En el Refinement los presentas al equipo para estimación. Y en el Sprint Review los validas contra los criterios de aceptación.
+Para la entrevista: cuando te pregunten por tu proceso ágil, menciona los artefactos concretos. No basta con decir que usas Scrum. Demuestra que entiendes el rol del analista funcional en cada ceremonia.`,
 
-Lo que diferencia a un AF Senior de uno junior es la anticipación. Un Senior escribe historias que el equipo puede implementar sin tres rondas de aclaraciones. Detecta los casos borde antes de que el equipo llegue a ellos. Y gestiona el cambio de alcance con respeto pero con firmeza.
+  test: `Testing. Pruebas. Y mira, esto es una de las cosas donde un analista funcional puede marcar una diferencia enorme en la calidad del producto.
 
-Para la entrevista: cuando te pregunten por tu proceso, menciona los artefactos concretos que produces en cada etapa. No basta con decir que usas Scrum; demuestra que entiendes el rol del AF en cada ceremonia.`,
+La pirámide de testing tiene cuatro niveles. En la base están los Unit Tests, que los escriben los propios desarrolladores para probar funciones individuales. Rápidos, baratos, muchos. En el siguiente nivel están las pruebas de Integración, que verifican que los módulos funcionan juntos correctamente. Después están los tests End-to-End, que simulan el flujo completo como lo haría el usuario. Y en la cima está el UAT, User Acceptance Testing, que es tuyo. Ahí validas que el sistema cumple los requisitos de negocio, no desde el código sino desde la perspectiva del usuario final.
 
-  test: `El Testing o Pruebas de Software garantiza que el sistema cumple los requisitos antes de llegar al usuario. Como Analista Funcional, eres responsable del UAT, las Pruebas de Aceptación del Usuario.
+Un caso de prueba bien escrito tiene cinco partes. Las precondiciones: el estado del sistema antes de ejecutar la prueba. Los pasos numerados para reproducirla. El resultado esperado, medible y específico. El resultado actual que obtuviste. Y el estado: pasa, falla, o bloqueado.
 
-La pirámide de testing tiene tres niveles. En la base están los Unit Tests, escritos por los desarrolladores para probar funciones individuales. En el medio están las Pruebas de Integración, que verifican que los módulos funcionan juntos. Y en la cima están los End-to-End y el UAT, donde el AF valida que el sistema cumple los requisitos de negocio.
+Ojo, un resultado esperado como "el sistema funciona correctamente" no sirve. Tiene que ser algo como: "el sistema muestra el consumo actual en MB con barra de progreso, actualizado al momento de la consulta, con respuesta en menos de dos segundos". Eso sí se puede verificar.
 
-Un caso de prueba bien escrito tiene cinco partes: la precondición, que describe el estado del sistema antes de ejecutar la prueba; los pasos numerados para reproducirla; el resultado esperado medible; el resultado actual obtenido; y el estado final: pasa, falla o está bloqueado.
+Un buen reporte de bug incluye: título descriptivo del problema, severidad, pasos exactos para reproducirlo, resultado esperado versus resultado actual, ambiente y versión donde ocurre, y si puedes, una hipótesis de la causa raíz. Ese último punto demuestra madurez técnica y le ahorra tiempo al desarrollador.
 
-Un buen reporte de bug incluye: un título descriptivo del problema, la severidad, los pasos para reproducirlo, el resultado esperado versus el actual, y si es posible, una hipótesis de la causa raíz. Ese último punto demuestra madurez técnica.
+Para la entrevista: menciona que antes del Sprint Review ejecutas los casos de prueba en el ambiente de QA. Así llegas a la reunión con evidencia de qué funciona y qué no, en lugar de validar en vivo. Eso impresiona a cualquier jefe de desarrollo.`,
 
-Para la entrevista: menciona que antes del Sprint Review pasas dos horas ejecutando los casos de prueba en ambiente de QA. Así llegas con evidencia concreta de qué funciona y qué no, en lugar de hacer la validación en vivo durante la reunión. Eso impresiona a cualquier Jefe de Desarrollo.`,
+  git: `Git. Mira, como analista funcional no necesitas ser experto en Git. Pero sí necesitas entender el flujo lo suficiente para colaborar con el equipo, versionar tus documentos, y no romper el repositorio cuando tocas algo.
 
-  git: `Git es el sistema de control de versiones más usado en el mundo. Como Analista Funcional, no necesitas ser experto en Git, pero sí entender el flujo para colaborar con el equipo sin fricción.
+El flujo básico de Git se llama Git Flow. La rama main tiene el código que está en producción, el que usa el cliente real. La rama develop es donde se integran las nuevas funcionalidades antes de ir a producción. Las ramas feature son donde cada desarrollador trabaja en una historia específica. Y las ramas hotfix son para correcciones urgentes que van directo a producción.
 
-El Git Flow organiza el trabajo en ramas o branches. La rama main contiene el código en producción, el que usa el cliente real. La rama develop es donde se integran las nuevas funcionalidades antes de ir a producción. Las ramas feature son donde cada desarrollador trabaja en una historia de usuario específica. Y las ramas hotfix son para correcciones urgentes que van directamente a producción.
+Como analista, interactúas con Git principalmente para tres cosas. Primero, versionar tu documentación de requisitos en el repositorio, para que el equipo siempre tenga la última versión a mano. Segundo, revisar Pull Requests, que son las solicitudes de mezcla de código, validando que los cambios implementan los criterios que tú especificaste. Y tercero, actualizar tu copia local con git pull antes de editar cualquier cosa.
 
-Como AF, interactúas con Git principalmente para tres cosas. Primero, versionar la documentación de requisitos en el repositorio, para que el equipo siempre tenga acceso a la última versión. Segundo, revisar Pull Requests cuando un desarrollador termina una feature, validando que el cambio implementa los criterios de aceptación correctamente. Tercero, usar git pull para actualizar tu copia local con los últimos cambios del equipo.
+Los comandos básicos que sí debes saber: git clone para clonar el repo la primera vez. Git pull para actualizar. Git checkout guión b para crear una rama nueva. Git add y git commit para guardar cambios en la documentación. Y git push para subirlos al servidor.
 
-Los comandos básicos que debes conocer son: git clone para clonar el repositorio, git pull para actualizar tu copia, git add y git commit para guardar cambios en la documentación, y git push para subirlos al servidor.
+Para la entrevista: menciona que en tus proyectos anteriores versionabas los documentos de requisitos en el repositorio junto con el código. Eso muestra visión de trabajo en equipo, buenas prácticas, y que no vives en un silo. Es un detalle que muchos analistas omiten y que diferencia a los seniors.`,
 
-Para la entrevista: menciona que en tus proyectos anteriores versionabas los documentos de requisitos en el repositorio junto con el código. Eso muestra visión de equipo y buenas prácticas.`,
+  qa: `Muy bien, llegamos a lo más importante de todo este repaso. Las diez preguntas que más hace un jefe de desarrollo en una entrevista con un analista funcional senior. Así que pon atención, porque esto es lo que tienes que tener claro mañana.
 
-  qa: `Llegamos a la parte más importante de este repaso: las preguntas reales que hace un Jefe de Desarrollo en una entrevista con un Analista Funcional Senior.
+La pregunta más frecuente es: ¿cómo es tu proceso desde que recibes un requerimiento hasta que el desarrollador empieza a codear? Responde con las etapas concretas: levantamiento, análisis, especificación, refinement, y validación. Y menciona qué artefacto produces en cada etapa. Casos de uso, diagramas de flujo, historias de usuario con criterios de aceptación. Eso muestra proceso.
 
-La pregunta más frecuente es sobre tu proceso: cómo vas desde un requerimiento hasta que el desarrollador empieza a codear. Responde describiendo las cinco etapas: levantamiento, análisis, especificación, refinement y validación. Menciona los artefactos concretos que produces en cada etapa.
+También te van a preguntar cómo manejas requisitos ambiguos o técnicamente imposibles. La respuesta correcta no es rechazar ni aceptar. Es negociar. Cuando un desarrollador dice que algo es imposible, primero entiendes la restricción técnica real, luego buscas si el objetivo de negocio se puede lograr de otra manera. Eso es lo que hace un senior.
 
-También te preguntarán sobre cómo manejas requisitos ambiguos o imposibles. La respuesta correcta demuestra que negocias, no que simplemente rechazas o aceptas. Cuando un desarrollador dice que algo es imposible, primero entiendes la restricción técnica, luego buscas si el objetivo de negocio se puede lograr de otra forma.
+El scope creep, o cambios de alcance en mitad del sprint, es otra pregunta clásica. Demuestra que tienes un proceso: registras el pedido, evalúas prioridad, y si es urgente, negocias un intercambio, sacas algo del sprint para meter lo nuevo, en lugar de solo agregar trabajo.
 
-El manejo del scope creep, o cambios de alcance en mitad del sprint, es otra pregunta clásica. Demuestra que tienes un proceso: registras el nuevo pedido, evalúas su prioridad, y si es urgente, negocias un intercambio en lugar de simplemente agregar trabajo al sprint.
+Cuando te pregunten qué diferencia a un analista funcional senior de uno junior, la respuesta está en la anticipación. El senior detecta los casos borde antes de que el equipo los encuentre. Escribe historias que el desarrollador puede implementar sin aclaraciones adicionales. Y llega al Sprint Review con los casos de prueba ya ejecutados.
 
-Para cerrar la entrevista, cuando pregunten por qué quieres trabajar en Comsatel, conecta tu experiencia en sectores como banca, salud y gobierno con el contexto de la empresa. Menciona que tu fortaleza es ser el puente entre el negocio y el código: requisitos tan claros que el desarrollador puede arrancar sin necesitar reuniones de aclaración.
-
-Tienes 28 años de experiencia, certificación en Scrum y habilidades en análisis de datos. Eso es un perfil diferenciador. Comunícalo con confianza mañana. ¡Mucho éxito!`
+Y cuando cierres la entrevista, cuando pregunten por qué Comsatel, conecta tu experiencia. Banca, salud, gobierno. Veintiocho años viendo proyectos de distintos sectores, certificación en Scrum, habilidades en análisis de datos con Python. Eres el puente entre el negocio y el código. Comunícalo con calma, con confianza. Mañana lo vas a clavar.`
 };
 
 let currentUtterance = null;
@@ -2283,11 +2281,19 @@ let isSpeaking = false;
 
 function getSpanishVoice() {
   const voices = window.speechSynthesis.getVoices();
-  // Try to find a Spanish voice - prefer ES variants
-  return voices.find(v => v.lang === 'es-US') ||
-         voices.find(v => v.lang === 'es-MX') ||
-         voices.find(v => v.lang === 'es-419') ||
-         voices.find(v => v.lang.startsWith('es')) ||
+  const spanishVoices = voices.filter(v => v.lang.startsWith('es'));
+  // Nombres masculinos comunes en macOS / Windows / Chrome / Android
+  const maleNames = ['jorge', 'juan', 'carlos', 'diego', 'pablo', 'miguel',
+                     'antonio', 'alejandro', 'alvaro', 'raul', 'male', 'hombre'];
+  const maleVoice = spanishVoices.find(v =>
+    maleNames.some(n => v.name.toLowerCase().includes(n))
+  );
+  if (maleVoice) return maleVoice;
+  // Fallback: es-ES tiene más probabilidad de ser Jorge en macOS
+  return spanishVoices.find(v => v.lang === 'es-ES') ||
+         spanishVoices.find(v => v.lang === 'es-MX') ||
+         spanishVoices.find(v => v.lang === 'es-US') ||
+         spanishVoices[0] ||
          voices[0];
 }
 
@@ -2319,9 +2325,9 @@ function playTab(tabId) {
   };
 
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'es-419';
-  utterance.rate = 0.88;
-  utterance.pitch = 1.05;
+  utterance.lang = 'es-ES';
+  utterance.rate = 0.86;
+  utterance.pitch = 0.82;
   utterance.volume = 1;
 
   // Set voice after voices load
