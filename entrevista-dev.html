@@ -31,19 +31,105 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .countdown{background:#dc2626;color:#fff;text-align:center;padding:10px;font-weight:700;font-size:.85rem;letter-spacing:.05em}
 .countdown span{font-size:1.1rem;margin:0 4px}
 
-/* ── NAV ── */
+/* ── NAV DESKTOP ── */
 .nav{background:#1e293b;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .nav-inner{display:grid;grid-template-columns:repeat(5,1fr);max-width:1100px;margin:0 auto}
 .nav-cat{font-size:.55rem;color:#475569;font-weight:800;text-transform:uppercase;letter-spacing:.09em;padding:4px 10px;background:#192435;border-top:2px solid #2d3f55;grid-column:1/-1}
 .tab{padding:9px 4px;font-size:.65rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;text-align:center;transition:.2s;white-space:normal;line-height:1.3}
 .tab:hover{color:#e2e8f0;background:rgba(255,255,255,.05)}
 .tab.on{color:var(--sky);border-color:var(--sky);background:rgba(56,189,248,.08)}
-@media(max-width:680px){.nav{display:none}.nav-mob{display:block}}
 
-/* ── MOBILE NAV ── */
-.nav-mob{display:none;background:#1e293b;padding:10px 14px}
-.nav-mob-label{font-size:.7rem;color:#64748b;font-weight:700;margin-bottom:6px;text-transform:uppercase}
-.nav-sel{width:100%;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:10px 12px;font-size:.85rem;appearance:none;-webkit-appearance:none;cursor:pointer}
+/* ── HAMBURGER BAR (mobile only) ── */
+.mob-bar{display:none;background:#1e293b;position:sticky;top:0;z-index:200;height:56px;flex-shrink:0;align-items:center;padding:0 16px;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.mob-bar-inner{flex:1;min-width:0}
+.mob-bar-cat{font-size:.6rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1}
+.mob-bar-cur{color:#e2e8f0;font-size:.92rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.hbg{background:none;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;justify-content:center;gap:5px;flex-shrink:0;border-radius:8px;transition:background .2s}
+.hbg:hover{background:rgba(255,255,255,.08)}
+.hbg span{display:block;width:22px;height:2px;background:#e2e8f0;border-radius:2px;transition:transform .3s,opacity .3s}
+.hbg.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hbg.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* ── MOBILE DRAWER ── */
+.mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;backdrop-filter:blur(2px)}
+.mob-overlay.open{display:block}
+.mob-drawer{position:fixed;top:0;left:0;width:82%;max-width:300px;height:100dvh;height:100vh;background:#fff;z-index:400;transform:translateX(-105%);transition:transform .28s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column;box-shadow:6px 0 24px rgba(0,0,0,.25)}
+.mob-drawer.open{transform:translateX(0)}
+.mob-drw-hdr{background:#0f172a;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:1}
+.mob-drw-title{color:#e2e8f0;font-weight:800;font-size:1rem;display:flex;align-items:center;gap:8px}
+.mob-drw-close{background:rgba(255,255,255,.1);border:none;color:#e2e8f0;font-size:1.1rem;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.mob-drw-close:hover{background:rgba(255,255,255,.2)}
+.mob-drw-cat{background:#192435;padding:9px 20px;font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#475569;border-top:1px solid #1e293b}
+.mob-drw-item{padding:13px 20px;border-bottom:1px solid #f1f5f9;font-size:.88rem;font-weight:600;color:#374151;cursor:pointer;display:flex;align-items:center;gap:12px;min-height:52px;transition:background .15s;-webkit-tap-highlight-color:rgba(29,78,216,.1)}
+.mob-drw-item:active{background:#e0efff}
+.mob-drw-item.active{background:#eff6ff;color:#1d4ed8;border-left:3px solid #1d4ed8;padding-left:17px}
+.mob-drw-item .di{font-size:1.2rem;flex-shrink:0}
+.mob-drw-item .dt{flex:1}
+.mob-drw-item .ck{color:#1d4ed8;font-size:.8rem;opacity:0}
+.mob-drw-item.active .ck{opacity:1}
+
+/* ── RESPONSIVE 2-COL GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ── MOBILE GLOBAL ── */
+@media(max-width:680px){
+  .nav{display:none !important}
+  .mob-bar{display:flex}
+  body{font-size:16px}
+  .wrap{padding:14px 12px}
+  .hero{padding:20px 14px 16px}
+  .hero h1{font-size:1.3rem}
+  .sec-hdr{padding:14px 16px}
+  .sec-hdr h2{font-size:1.15rem}
+  .uml-box{padding:14px 12px}
+  .card{padding:14px}
+  .card-grid{grid-template-columns:1fr}
+  /* Responsive 2-col grids → 1 col */
+  .g2{grid-template-columns:1fr;gap:12px}
+  /* Catch remaining inline 2-col grids */
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+  /* Tables scroll horizontally */
+  .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  .tbl td,.tbl th{white-space:normal;min-width:80px}
+  /* Code */
+  .code{font-size:.73rem;padding:12px;word-break:break-word}
+  /* BDD list indent mobile */
+  .bdd-list{margin-left:0;padding-left:10px}
+  .bdd-row{flex-wrap:wrap;gap:5px}
+  /* EP params row */
+  .ep-p-row{grid-template-columns:100px 45px 1fr;font-size:.75rem}
+  .ep-p-row .ep-p-type{display:none}
+  /* Git steps */
+  .gs-tag{display:none}
+  /* Audio bar */
+  .audio-bar{padding:8px 12px;gap:8px}
+  /* QA */
+  .qa-q{font-size:.84rem;padding:12px 14px}
+  .qa-a{padding:14px 16px;font-size:.82rem}
+  /* Flow arrows */
+  .flow-arrow{display:none}
+  /* Zoom wrap hint */
+  .zoom-hint{font-size:.62rem;padding:3px 8px}
+  /* Section header */
+  .sec-hdr h2{font-size:1.1rem}
+  .sec-hdr p{font-size:.83rem}
+  /* Entrevista tip */
+  .entrevista-tip{font-size:.82rem;padding:10px 14px}
+  /* Alerts */
+  .alert-green,.alert-blue,.alert-red{font-size:.82rem;padding:10px 14px}
+  /* Restrict items */
+  .restrict-item{font-size:.8rem;padding:7px 10px}
+  /* Req card */
+  .req-sec{padding:12px 14px}
+  .req-hdr{padding:12px 14px}
+  .bdd-list li{font-size:.8rem}
+  /* Endpoint card */
+  .ep-bar{padding:12px 14px}
+  .ep-sec{padding:12px 14px}
+  /* Scrollable SVG wrapper in UML */
+  .uml-box > div[style*="display:grid"]{display:flex;flex-direction:column}
+}
 
 /* ── MAIN WRAP ── */
 .wrap{max-width:1100px;margin:0 auto;padding:20px 14px}
@@ -270,25 +356,60 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- NAV MOBILE -->
-<div class="nav-mob" id="nav-mob">
-  <div class="nav-mob-label">📌 Selecciona un tema</div>
-  <select class="nav-sel" id="nav-select" onchange="showFromSelect(this)">
-    <optgroup label="📐 Documentación Técnica">
-      <option value="uml">📐 UML — Los 5 diagramas clave</option>
-      <option value="reqs">📋 Requisitos Funcionales vs No Funcionales</option>
-      <option value="api">🔌 APIs REST — Conceptos esenciales</option>
-      <option value="sql">🗄 SQL — Consultas que todo AF debe saber</option>
-      <option value="data">🔷 Modelado de Datos — ERD y normalización</option>
-    </optgroup>
-    <optgroup label="⚙️ Proceso & Desarrollo">
-      <option value="arch">🏗 Arquitectura de Software</option>
-      <option value="sdlc">🔄 SDLC & Agile — Tu rol en el equipo</option>
-      <option value="test">🧪 Testing & UAT — Casos de prueba</option>
-      <option value="git">🐙 Git para Analistas</option>
-      <option value="qa">💬 Las 10 Preguntas del Jefe de Dev</option>
-    </optgroup>
-  </select>
+<!-- ── HAMBURGER BAR (mobile) ── -->
+<div class="mob-bar" id="mob-bar">
+  <div class="mob-bar-inner">
+    <div class="mob-bar-cat">Tema actual</div>
+    <div class="mob-bar-cur" id="mob-cur">📐 UML</div>
+  </div>
+  <button class="hbg" id="hamburger" onclick="toggleMobMenu()" aria-label="Abrir menú de temas" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- ── MOBILE OVERLAY ── -->
+<div class="mob-overlay" id="mob-overlay" onclick="closeMobMenu()"></div>
+
+<!-- ── MOBILE DRAWER ── -->
+<div class="mob-drawer" id="mob-drawer" role="navigation" aria-label="Menú de temas">
+  <div class="mob-drw-hdr">
+    <span class="mob-drw-title">📚 Temas de Repaso</span>
+    <button class="mob-drw-close" onclick="closeMobMenu()" aria-label="Cerrar menú">✕</button>
+  </div>
+
+  <div class="mob-drw-cat">📐 Documentación Técnica</div>
+  <div class="mob-drw-item active" id="mob-item-uml" onclick="mobShow('uml')">
+    <span class="di">📐</span><span class="dt">UML — Los 5 Diagramas</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-reqs" onclick="mobShow('reqs')">
+    <span class="di">📋</span><span class="dt">Requisitos Funcionales</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-api" onclick="mobShow('api')">
+    <span class="di">🔌</span><span class="dt">APIs REST</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-sql" onclick="mobShow('sql')">
+    <span class="di">🗄</span><span class="dt">SQL — Consultas esenciales</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-data" onclick="mobShow('data')">
+    <span class="di">🔷</span><span class="dt">Modelo de Datos — ERD</span><span class="ck">✓</span>
+  </div>
+
+  <div class="mob-drw-cat">⚙️ Proceso &amp; Desarrollo</div>
+  <div class="mob-drw-item" id="mob-item-arch" onclick="mobShow('arch')">
+    <span class="di">🏗</span><span class="dt">Arquitectura de Software</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-sdlc" onclick="mobShow('sdlc')">
+    <span class="di">🔄</span><span class="dt">SDLC &amp; Agile</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-test" onclick="mobShow('test')">
+    <span class="di">🧪</span><span class="dt">Testing &amp; UAT</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-git" onclick="mobShow('git')">
+    <span class="di">🐙</span><span class="dt">Git para Analistas</span><span class="ck">✓</span>
+  </div>
+  <div class="mob-drw-item" id="mob-item-qa" onclick="mobShow('qa')">
+    <span class="di">💬</span><span class="dt">Las 10 Preguntas Clave</span><span class="ck">✓</span>
+  </div>
 </div>
 
 <div class="wrap">
@@ -308,7 +429,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <!-- Diagrama 1: Casos de Uso -->
   <div class="uml-box">
     <div class="uml-title">1️⃣ Diagrama de Casos de Uso — ¿Qué puede hacer el sistema?</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="g2">
       <div>
         <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Al inicio del proyecto para mostrar las funcionalidades al cliente y al equipo técnico sin entrar en detalles.</p>
         <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
@@ -377,7 +498,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <!-- Diagrama 2: Secuencia -->
   <div class="uml-box">
     <div class="uml-title">2️⃣ Diagrama de Secuencia — ¿Cómo fluye el mensaje?</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="g2">
       <div>
         <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para explicar al equipo técnico el flujo de llamadas entre componentes. Esencial para diseñar APIs e integraciones.</p>
         <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
@@ -459,7 +580,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <!-- Diagrama 3: Actividad -->
   <div class="uml-box">
     <div class="uml-title">3️⃣ Diagrama de Actividad — ¿Cómo fluye el proceso?</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="g2">
       <div>
         <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para modelar flujos de negocio complejos con decisiones. Similar al BPMN pero más técnico.</p>
         <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
@@ -532,7 +653,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <!-- Diagrama 4: Clases -->
   <div class="uml-box">
     <div class="uml-title">4️⃣ Diagrama de Clases — ¿Cómo está estructurado el sistema?</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="g2">
       <div>
         <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para comunicar al equipo la estructura de datos del dominio. El AF lo crea con el arquitecto.</p>
         <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
@@ -610,7 +731,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <!-- Diagrama 5: Estado -->
   <div class="uml-box">
     <div class="uml-title">5️⃣ Diagrama de Estados — ¿Cómo cambia el estado de un objeto?</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="g2">
       <div>
         <p style="font-size:.83rem;color:#475569;margin-bottom:10px"><strong>Cuándo usarlo:</strong> Para modelar el ciclo de vida de una entidad del negocio (tickets, órdenes, líneas móviles).</p>
         <ul style="font-size:.82rem;color:#475569;padding-left:16px;line-height:1.8">
@@ -731,7 +852,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </tr>
   </table>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+  <div class="g2" style="margin:16px 0">
     <div class="card" style="border-color:#3b82f6">
       <h4>✅ Definition of Ready (DoR)</h4>
       <p>Una historia está lista para el sprint si:</p>
@@ -1208,7 +1329,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </svg></div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+  <div class="g2" style="margin:16px 0">
     <div class="card" style="border-color:#3b82f6">
       <h4>📐 Tipos de Relación</h4>
       <ul>
@@ -1547,7 +1668,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </table>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+  <div class="g2" style="margin:16px 0">
     <div class="card" style="border-color:#f97316">
       <h4>⚠️ Lo que diferencia un AF Senior</h4>
       <ul>
@@ -1589,7 +1710,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   <div class="uml-box">
     <div class="uml-title">🔺 Pirámide de Testing — Dónde actúa el AF</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center">
+    <div class="g2" style="align-items:center">
       <div>
       <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
       <defs>
@@ -1669,7 +1790,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div style="font-size:.76rem;color:#64748b"><strong>Tipo:</strong> Manual</div>
         <div style="font-size:.76rem;color:#64748b"><strong>Asignado a:</strong> Marco S. (AF)</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+      <div class="g2" style="gap:0">
         <!-- Left: Precondiciones + Pasos -->
         <div style="padding:14px 16px;border-right:1px solid #f1f5f9">
           <div style="font-size:.8rem;font-weight:800;color:#475569;margin-bottom:8px;display:flex;align-items:center;gap:6px">⚙️ PRECONDICIONES</div>
@@ -1762,7 +1883,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <li>Comparar con la hora actual del sistema</li>
         </ol>
         <!-- Expected vs Actual comparison -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+        <div class="g2" style="margin-bottom:14px">
           <div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:8px;padding:12px">
             <div style="font-size:.78rem;font-weight:800;color:#15803d;margin-bottom:6px">✅ ESPERADO</div>
             <div style="font-size:.8rem;color:#166534">Timestamp ≤ 15 minutos antes de la hora actual</div>
@@ -1993,7 +2114,7 @@ git blame docs/RF-001.md</div>
     </div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+  <div class="g2" style="margin:16px 0">
     <div class="card" style="border-color:#22c55e">
       <h4>✅ Pull Request — Rol del AF como revisor</h4>
       <ul>
@@ -2143,21 +2264,57 @@ git blame docs/RF-001.md</div>
 </div>
 
 <script>
+const MOB_TAB_NAMES = {
+  uml:'📐 UML', reqs:'📋 Requisitos', api:'🔌 APIs REST',
+  sql:'🗄 SQL', data:'🔷 Modelo de Datos', arch:'🏗 Arquitectura',
+  sdlc:'🔄 SDLC & Agile', test:'🧪 Testing & UAT',
+  git:'🐙 Git', qa:'💬 Preguntas Clave'
+};
+
 function show(id, el) {
   document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   document.getElementById(id).classList.add('on');
   if (el) el.classList.add('on');
-  const sel = document.getElementById('nav-select');
-  if (sel) sel.value = id;
+  // Sync mobile header label
+  const curEl = document.getElementById('mob-cur');
+  if (curEl && MOB_TAB_NAMES[id]) curEl.textContent = MOB_TAB_NAMES[id];
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function showFromSelect(sel) {
   const id = sel.value;
-  const tab = document.querySelector('.tab[onclick*="\''+id+'\'"]');
+  const tab = document.querySelector('.tab[onclick*="\'"+id+"\'"]');
   show(id, tab);
 }
+
+/* ── HAMBURGER MENU ── */
+function toggleMobMenu() {
+  const isOpen = document.getElementById('mob-drawer').classList.contains('open');
+  isOpen ? closeMobMenu() : openMobMenu();
+}
+function openMobMenu() {
+  document.getElementById('mob-drawer').classList.add('open');
+  document.getElementById('mob-overlay').classList.add('open');
+  document.getElementById('hamburger').classList.add('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobMenu() {
+  document.getElementById('mob-drawer').classList.remove('open');
+  document.getElementById('mob-overlay').classList.remove('open');
+  const hbg = document.getElementById('hamburger');
+  if (hbg) { hbg.classList.remove('open'); hbg.setAttribute('aria-expanded','false'); }
+  document.body.style.overflow = '';
+}
+function mobShow(id) {
+  show(id, null);
+  document.querySelectorAll('.mob-drw-item').forEach(el => el.classList.remove('active'));
+  const activeEl = document.getElementById('mob-item-' + id);
+  if (activeEl) activeEl.classList.add('active');
+  closeMobMenu();
+}
+
 // ── WEB SPEECH API — NARRATIONS ─────────────────────────────────────────────
 const narrations = {
   uml: `Bueno, empecemos con UML. Mira, si el jefe de desarrollo te pregunta por diagramas y tú solo recitas definiciones del libro... malo. Lo que quiere ver es si realmente los usas, y con ejemplos. Así que vamos al grano con los cinco que más importan.
