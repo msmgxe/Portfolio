@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Experiencia vs Conceptos | Marco Saldarriaga — Entrevista Comsatel 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f38;--blue:#2563eb;--sky:#0284c7;--slate:#5b7491;
+  --green:#15803d;--amber:#b45309;--red:#b91c1c;--purple:#6d28d9;
+  --orange:#c2410c;--teal:#0d9488;--bg:#f4f6fb;--white:#ffffff;
+  --border:#dce3ef;--text:#1e2a3d;
+}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.66}
+
+/* ── HEADER ── */
+.hdr{background:var(--navy);color:#f8fafc;padding:18px 16px 14px;position:sticky;top:0;z-index:200;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+.hdr-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hdr h1{font-size:1.1rem;font-weight:800;letter-spacing:-.02em}
+.hdr p{font-size:.72rem;color:#94a3b8;margin-top:2px}
+.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0}
+.hdr-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:.65rem;font-family:monospace;font-weight:700;padding:3px 9px;border-radius:3px;white-space:nowrap}
+.badge-blue{background:#1e40af;color:#bfdbfe}
+.badge-green{background:#166534;color:#bbf7d0}
+.badge-amber{background:#78350f;color:#fde68a}
+.hdr-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.hdr-crosslink{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 12px;color:#e2e8f0;font-size:.7rem;font-weight:600;text-decoration:none;transition:.2s;white-space:nowrap}
+.hdr-crosslink:hover{background:rgba(37,99,235,.35);border-color:rgba(37,99,235,.6);color:#fff}
+
+/* ── WRAP ── */
+.wrap{max-width:1160px;margin:0 auto;padding:28px 16px 80px}
+
+/* ── INTRO STATS ── */
+.stats-bar{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.stat-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:14px;flex:1;min-width:160px;box-shadow:0 2px 8px rgba(15,31,56,.05)}
+.stat-num{font-size:1.6rem;font-weight:900;font-family:monospace;line-height:1}
+.stat-lbl{font-size:.75rem;color:var(--slate);line-height:1.4}
+.s1 .stat-num{color:var(--blue)}.s2 .stat-num{color:var(--green)}.s3 .stat-num{color:var(--amber)}.s4 .stat-num{color:var(--purple)}
+
+/* ── INTRO ALERT ── */
+.intro-tip{background:#fff8f0;border:1.5px solid var(--amber);border-radius:10px;padding:14px 20px;margin-bottom:24px;font-size:.86rem;line-height:1.7}
+.intro-tip strong{color:var(--amber);display:block;margin-bottom:4px}
+
+/* ── JOB CARDS ── */
+.job-card{background:var(--white);border:1px solid var(--border);border-radius:14px;margin-bottom:28px;overflow:hidden;box-shadow:0 2px 12px rgba(15,31,56,.07)}
+.job-hdr{padding:20px 24px;display:flex;align-items:flex-start;gap:18px;cursor:pointer;user-select:none}
+.job-hdr:hover{background:#f8fafc}
+.job-badge{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#fff;flex-shrink:0;line-height:1}
+.job-meta{flex:1}
+.job-num{font-size:.62rem;font-family:monospace;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-bottom:2px}
+.job-title{font-size:1.05rem;font-weight:800;color:var(--navy);line-height:1.2}
+.job-company{font-size:.82rem;font-weight:600;margin-top:3px}
+.job-sector{display:inline-block;font-size:.65rem;font-family:monospace;font-weight:700;padding:2px 8px;border-radius:3px;margin-top:5px}
+.job-date{font-size:.75rem;font-family:monospace;color:var(--slate);white-space:nowrap;padding-top:4px}
+.job-toggle{font-size:1.1rem;color:var(--slate);flex-shrink:0;padding-top:4px;transition:transform .25s}
+.job-card.open .job-toggle{transform:rotate(180deg)}
+
+/* ── JOB BODY ── */
+.job-body{display:none;padding:0 24px 24px;border-top:1px solid var(--border)}
+.job-card.open .job-body{display:block}
+.job-desc{margin-top:16px;font-size:.84rem;color:var(--slate);line-height:1.6;padding:12px 16px;background:#f8fafc;border-radius:8px;border-left:4px solid var(--border)}
+
+/* ── CONCEPT SECTIONS ── */
+.concept-section{margin-top:20px}
+.concept-section-title{font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.concepts-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.concept-item{display:flex;align-items:flex-start;gap:10px;background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 14px}
+.concept-item.highlight{background:#eff6ff;border-color:#bfdbfe}
+.ci-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.ci-name{font-weight:700;font-size:.82rem;color:var(--navy);line-height:1.2}
+.ci-applied{font-size:.75rem;color:var(--slate);margin-top:3px;line-height:1.4}
+
+/* ── FRASE ENTREVISTA ── */
+.interview-phrase{margin-top:18px;background:linear-gradient(135deg,#0f1f38,#1e3a5f);border-radius:10px;padding:18px 20px}
+.ip-label{font-size:.65rem;font-family:monospace;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#64748b;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.ip-label::before{content:"";display:block;width:16px;height:2px;background:#2563eb;border-radius:2px}
+.ip-text{font-size:.86rem;color:#e2e8f0;line-height:1.75;font-style:italic}
+.ip-text strong{color:#7dd3fc;font-style:normal}
+
+/* ── CONCEPT TAGS (inline) ── */
+.tag{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:4px;margin:2px;font-family:monospace}
+.tag-blue{background:#dbeafe;color:#1e40af}
+.tag-green{background:#dcfce7;color:#15803d}
+.tag-amber{background:#fef3c7;color:#b45309}
+.tag-purple{background:#f3e8ff;color:#6d28d9}
+.tag-slate{background:#f1f5f9;color:#475569}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-teal{background:#ccfbf1;color:#0d9488}
+
+/* ── MATRIX ── */
+.matrix-wrap{overflow-x:auto;margin-top:10px}
+.matrix{min-width:700px;border-radius:10px;overflow:hidden;font-size:.72rem}
+.matrix-head{display:grid;background:var(--navy);color:#f8fafc;font-weight:700;text-align:center}
+.matrix-row{display:grid;border-bottom:1px solid var(--border);align-items:center}
+.matrix-row:nth-child(even){background:#f8fafc}
+.matrix-row:hover{background:#eff6ff}
+.m-concept{font-weight:700;color:var(--navy);background:var(--white);padding:9px 12px;border-right:2px solid var(--border);text-align:left}
+.matrix-row:nth-child(even) .m-concept{background:#f8fafc}
+.m-cell{text-align:center;padding:9px 4px}
+.m-yes{font-size:1rem;color:var(--blue)}
+.m-str{font-size:1rem;color:var(--green)}
+.m-no{color:#dce3ef;font-size:.7rem}
+
+/* ── SECTION HDR ── */
+.sec-hdr{margin-bottom:20px;padding:20px 0 8px}
+.sec-hdr h2{font-size:1.35rem;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.sec-hdr p{color:var(--slate);margin-top:5px;font-size:.88rem}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:32px 16px;font-size:.75rem;color:#94a3b8;border-top:1px solid var(--border);margin-top:30px}
+.footer a{color:var(--blue);text-decoration:none}
+
+/* ── MOBILE ── */
+.mob-bar{display:none;background:var(--navy);position:sticky;top:0;z-index:200;height:56px;align-items:center;padding:0 16px;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.mob-bar-inner{flex:1;min-width:0}
+.mob-bar-title{color:#e2e8f0;font-size:.9rem;font-weight:800}
+.mob-bar-sub{font-size:.62rem;color:#64748b;margin-top:1px}
+@media(max-width:680px){
+  .mob-bar{display:flex}
+  .hdr{display:none}
+  .wrap{padding:14px 12px 60px}
+  .stats-bar{gap:8px}
+  .stat-box{min-width:140px;padding:12px 14px}
+  .stat-num{font-size:1.3rem}
+  .concepts-grid{grid-template-columns:1fr}
+  .job-hdr{padding:14px 16px;gap:12px}
+  .job-badge{width:44px;height:44px;font-size:1rem}
+  .job-title{font-size:.95rem}
+  .job-body{padding:0 16px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER (desktop) -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div>
+      <h1>🗂 Experiencia Laboral → Conceptos Aplicados</h1>
+      <p>Marco Saldarriaga · Mapa de preparación para la entrevista con Comsatel · 2026</p>
+    </div>
+    <div class="hdr-right">
+      <div class="hdr-badges">
+        <span class="badge badge-blue">5 empresas · 28 años TI</span>
+        <span class="badge badge-green">22 conceptos mapeados</span>
+        <span class="badge badge-amber">Listo para la entrevista</span>
+      </div>
+      <div class="hdr-links">
+        <a href="/entrevista-dev.html" class="hdr-crosslink">🖥 Repaso Dev</a>
+        <a href="/repaso-ti-corp.html" class="hdr-crosslink">🛠 Toolkit PO</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER MOBILE -->
+<div class="mob-bar">
+  <div class="mob-bar-inner">
+    <div class="mob-bar-title">🗂 Experiencia → Conceptos</div>
+    <div class="mob-bar-sub">Marco Saldarriaga · Entrevista Comsatel 2026</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-box s1">
+    <div class="stat-num">5</div>
+    <div class="stat-lbl">Empresas<br>últimos 15 años</div>
+  </div>
+  <div class="stat-box s2">
+    <div class="stat-num">22</div>
+    <div class="stat-lbl">Conceptos del repaso<br>aplicados en empresa real</div>
+  </div>
+  <div class="stat-box s3">
+    <div class="stat-num">28+</div>
+    <div class="stat-lbl">Años de experiencia<br>en TI</div>
+  </div>
+  <div class="stat-box s4">
+    <div class="stat-num">5+</div>
+    <div class="stat-lbl">Sectores distintos<br>Banca · Salud · Edu · Turismo</div>
+  </div>
+</div>
+
+<div class="intro-tip">
+  <strong>💡 Cómo usar esta página antes de la entrevista</strong>
+  Para cada empresa, memoriza la frase de entrevista al final de la tarjeta. Cuando te pregunten "¿Cómo aplicaste X?",
+  conecta con el trabajo específico. Que tu respuesta siempre tenga: <strong>contexto → acción → resultado medible</strong>.
+</div>
+
+<!-- ══════════════ 1. UPC ══════════════ -->
+<div class="job-card open" id="job1">
+  <div class="job-hdr" onclick="toggleJob('job1')">
+    <div class="job-badge" style="background:linear-gradient(135deg,#dc2626,#991b1b)">UPC</div>
+    <div class="job-meta">
+      <div class="job-num">Trabajo 1 de 5 · Más reciente</div>
+      <div class="job-title">Project Manager / Scrum Master</div>
+      <div class="job-company" style="color:#dc2626">Universidad Peruana de Ciencias Aplicadas — IP InfoOut</div>
+      <div>
+        <span class="job-sector" style="background:#fee2e2;color:#dc2626">🎓 Educación</span>
+      </div>
+    </div>
+    <div class="job-date">Dic 2021 — Jul 2023</div>
+    <div class="job-toggle">▼</div>
+  </div>
+  <div class="job-body">
+    <div class="job-desc">
+      Gestión de 25 requerimientos funcionales en metodología ágil con 2 sprints paralelos. Lideré 3 proyectos PMI:
+      WeTalk continuidad, GEMA evaluaciones y nueva arquitectura WeTalk. Presupuesto CAPEX/OPEX mayor a USD 5 MM.
+    </div>
+
+    <div class="concept-section">
+      <div class="concept-section-title">🔥 Conceptos del repaso aplicados directamente</div>
+      <div class="concepts-grid">
+        <div class="concept-item highlight">
+          <div class="ci-icon">🔄</div>
+          <div>
+            <div class="ci-name">SDLC & Agile — Scrum</div>
+            <div class="ci-applied">Rol de Scrum Master activo. Facilité Sprint Planning, Daily, Refinement, Review y Retrospectiva. 2 sprints paralelos = gestión simultánea de 2 equipos.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🏗</div>
+          <div>
+            <div class="ci-name">PMI / PMBOK</div>
+            <div class="ci-applied">3 proyectos con ciclo completo: Project Charter, WBS, cronograma, gestión de cambios y cierre formal. Presupuesto de USD 5MM+ con gestión CAPEX/OPEX.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">💰</div>
+          <div>
+            <div class="ci-name">Análisis Financiero — CAPEX/OPEX</div>
+            <div class="ci-applied">Gestión real de presupuesto CAPEX/OPEX superior a USD 5 millones. Justificación de inversiones ante stakeholders y reportes al comité directivo.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">📋</div>
+          <div>
+            <div class="ci-name">Requisitos Funcionales</div>
+            <div class="ci-applied">Levantamiento y especificación de 25 requerimientos funcionales. Definition of Ready aplicado antes de cada Sprint Planning.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">📋</div>
+          <div>
+            <div class="ci-name">Matriz de Trazabilidad</div>
+            <div class="ci-applied">Seguimiento de los 25 requerimientos desde levantamiento hasta pruebas y aceptación del cliente interno (UPC).</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">⚠️</div>
+          <div>
+            <div class="ci-name">Matriz de Riesgos</div>
+            <div class="ci-applied">Gestión de riesgos de proyectos de alta envergadura (USD 5MM). Riesgos técnicos, de adopción y de stakeholders mapeados por proyecto.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🎛</div>
+          <div>
+            <div class="ci-name">BSC / OKRs</div>
+            <div class="ci-applied">Reporte de KPIs de avance al comité directivo de UPC. Métricas de proyecto alineadas a los objetivos estratégicos del área de tecnología.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🏢</div>
+          <div>
+            <div class="ci-name">Organigrama del Equipo Ágil</div>
+            <div class="ci-applied">Operé como Scrum Master: coordiné PO (cliente interno), equipo de desarrollo e infraestructura. Gestión del equipo ágil en entorno universitario.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-phrase">
+      <div class="ip-label">Frase de entrevista</div>
+      <div class="ip-text">
+        "En UPC gestioné <strong>3 proyectos PMI en paralelo</strong> con metodología ágil, incluyendo 2 sprints simultáneos. Manejé un presupuesto de más de <strong>USD 5 millones CAPEX/OPEX</strong> y apliqué Scrum como Scrum Master certificado. Eso me dio la base para entender qué necesita el equipo de desarrollo del analista funcional: historias claras, criterios sin ambigüedad y presencia activa en las ceremonias."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 2. PERURAIL ══════════════ -->
+<div class="job-card open" id="job2">
+  <div class="job-hdr" onclick="toggleJob('job2')">
+    <div class="job-badge" style="background:linear-gradient(135deg,#f59e0b,#b45309)">PR</div>
+    <div class="job-meta">
+      <div class="job-num">Trabajo 2 de 5 · Rol PO directo</div>
+      <div class="job-title">Analista Funcional / Product Owner</div>
+      <div class="job-company" style="color:#b45309">Belmond Perurail — MDP Consulting</div>
+      <div>
+        <span class="job-sector" style="background:#fef3c7;color:#b45309">🚂 Turismo / Comercial</span>
+      </div>
+    </div>
+    <div class="job-date">Jun 2020 — May 2021</div>
+    <div class="job-toggle">▼</div>
+  </div>
+  <div class="job-body">
+    <div class="job-desc">
+      AS-IS / TO-BE de requerimientos comerciales del sistema de reservas y experiencia del viajero.
+      Diseño de prototipos, especificación de casos de uso, creación de casos de prueba y backlog del producto.
+    </div>
+
+    <div class="concept-section">
+      <div class="concept-section-title">🔥 Conceptos del repaso aplicados directamente</div>
+      <div class="concepts-grid">
+        <div class="concept-item highlight">
+          <div class="ci-icon">📦</div>
+          <div>
+            <div class="ci-name">Épicas & Product Backlog</div>
+            <div class="ci-applied">Rol de PO directo: gestión del backlog priorizado del sistema de reservas. Épicas como "Proceso de Compra de Ticket", "Historial de Reservas", "Gestión de Itinerarios".</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🔄</div>
+          <div>
+            <div class="ci-name">BPM — AS-IS / TO-BE</div>
+            <div class="ci-applied">Modelado BPMN del proceso de reservas turísticas. Diagramas AS-IS del proceso actual vs. TO-BE con las mejoras propuestas. Swimlanes por actor (cliente, agente, sistema).</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">📐</div>
+          <div>
+            <div class="ci-name">UML — Casos de Uso</div>
+            <div class="ci-applied">Especificación formal de casos de uso del sistema de reservas. Actores: viajero, agente, administrador. Flujo normal + flujos alternativos + excepciones.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">📝</div>
+          <div>
+            <div class="ci-name">User Stories + Criterios de Aceptación</div>
+            <div class="ci-applied">Escritura de historias en formato As a / I want / So that. Criterios Given/When/Then para cada historia del backlog del sistema de reservas de Perurail.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🧪</div>
+          <div>
+            <div class="ci-name">Testing & UAT</div>
+            <div class="ci-applied">Diseño de casos de prueba para validar el sistema de reservas. UAT con usuarios finales (agentes de viaje) verificando criterios de aceptación definidos.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🎯</div>
+          <div>
+            <div class="ci-name">MoSCoW — Priorización</div>
+            <div class="ci-applied">Priorización del backlog: proceso de compra (Must), historial (Should), exportar PDF (Could), gamificación viajero frecuente (Won't this version).</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🚀</div>
+          <div>
+            <div class="ci-name">MVP</div>
+            <div class="ci-applied">Definición del mínimo viable del sistema comercial: solo las funciones críticas para el proceso de venta directa. Resto diferido para versiones siguientes.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🗓</div>
+          <div>
+            <div class="ci-name">Roadmap del Producto</div>
+            <div class="ci-applied">Plan de entregas por trimestre para el sistema de reservas. Visión de producto alineada a los objetivos comerciales de Belmond Perurail.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-phrase">
+      <div class="ip-label">Frase de entrevista</div>
+      <div class="ip-text">
+        "En Belmond Perurail ejercí como <strong>Product Owner directo</strong> del sistema de reservas turísticas. Gestioné el backlog priorizado con MoSCoW, modelé los procesos AS-IS/TO-BE con BPMN, escribí historias de usuario con criterios de aceptación Given/When/Then, y diseñé los casos de prueba para el UAT con los agentes de viaje. Ese rol me demostró que el PO necesita dominar tanto el negocio como el lenguaje del equipo técnico."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 3. ONCOSALUD ══════════════ -->
+<div class="job-card open" id="job3">
+  <div class="job-hdr" onclick="toggleJob('job3')">
+    <div class="job-badge" style="background:linear-gradient(135deg,#10b981,#047857)">OS</div>
+    <div class="job-meta">
+      <div class="job-num">Trabajo 3 de 5</div>
+      <div class="job-title">Jefe de Proyecto</div>
+      <div class="job-company" style="color:#047857">Oncosalud — Evol / MDP Consulting</div>
+      <div>
+        <span class="job-sector" style="background:#d1fae5;color:#065f46">🏥 Salud</span>
+      </div>
+    </div>
+    <div class="job-date">Nov 2018 — May 2020</div>
+    <div class="job-toggle">▼</div>
+  </div>
+  <div class="job-body">
+    <div class="job-desc">
+      Proyecto PCI-DSS / Certificación VISA — implementación de seguridad, enmascaramiento y tokenización de datos de pago.
+      Gestión de presupuesto CAPEX/OPEX con reportes al comité directivo del proyecto.
+    </div>
+
+    <div class="concept-section">
+      <div class="concept-section-title">🔥 Conceptos del repaso aplicados directamente</div>
+      <div class="concepts-grid">
+        <div class="concept-item highlight">
+          <div class="ci-icon">🏗</div>
+          <div>
+            <div class="ci-name">PMI / PMBOK — Gestión de Proyecto</div>
+            <div class="ci-applied">Gestión completa del proyecto PCI-DSS: Project Charter, WBS de seguridad, gestión de proveedores externos, control de cambios y cierre con auditoría VISA.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">⚠️</div>
+          <div>
+            <div class="ci-name">Matriz de Riesgos</div>
+            <div class="ci-applied">PCI-DSS es 100% gestión de riesgos de seguridad. Cada control del estándar mapeado como riesgo: probabilidad de brecha, impacto regulatorio (multa VISA), plan de mitigación técnica.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🔌</div>
+          <div>
+            <div class="ci-name">APIs REST — Tokenización de Pagos</div>
+            <div class="ci-applied">Tokenización = integración de API de pasarela de pago. Especificación de endpoints POST /tokenize y PUT /payment con esquemas de seguridad (HTTPS, OAuth, datos enmascarados).</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">💰</div>
+          <div>
+            <div class="ci-name">Análisis Financiero — CAPEX/OPEX</div>
+            <div class="ci-applied">Presupuesto de seguridad justificado: comparativa costo de implementación PCI-DSS vs. costo potencial de una brecha (multas VISA + daño reputacional).</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🔷</div>
+          <div>
+            <div class="ci-name">Modelo de Datos — Enmascaramiento</div>
+            <div class="ci-applied">El enmascaramiento de datos de tarjeta requiere rediseñar el modelo de datos: qué campos se almacenan, cuáles se tokenizán, cuáles se enmascaran en la UI.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">📋</div>
+          <div>
+            <div class="ci-name">Requisitos Funcionales y No Funcionales</div>
+            <div class="ci-applied">RNF de seguridad críticos: cifrado AES-256, respuesta en &lt;200ms para tokenización, disponibilidad 99.9%, logs de auditoría de cada transacción. Todos medibles y verificables.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🎛</div>
+          <div>
+            <div class="ci-name">BSC / OKRs — Reporte al Comité</div>
+            <div class="ci-applied">Reportes ejecutivos al comité directivo de Oncosalud con dashboards de avance del proyecto: % de controles PCI-DSS implementados, riesgos mitigados, presupuesto ejecutado.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">📈</div>
+          <div>
+            <div class="ci-name">KPIs del Proyecto</div>
+            <div class="ci-applied">KPI principal: 100% de controles PCI-DSS aprobados en auditoría VISA. KPI secundario: cero chargebacks por fraude tras implementación de tokenización.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-phrase">
+      <div class="ip-label">Frase de entrevista</div>
+      <div class="ip-text">
+        "En Oncosalud lideré el proyecto de certificación <strong>PCI-DSS con VISA</strong>, que implicó tokenización de pagos, enmascaramiento de datos sensibles y gestión de riesgos de seguridad con impacto regulatorio directo. Aprendí a especificar requisitos no funcionales que no se pueden negociar — velocidad, cifrado, trazabilidad — y a justificar el presupuesto de seguridad en términos de ROI frente al costo de una brecha."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 4. AFP PROFUTURO ══════════════ -->
+<div class="job-card open" id="job4">
+  <div class="job-hdr" onclick="toggleJob('job4')">
+    <div class="job-badge" style="background:linear-gradient(135deg,#f97316,#c2410c)">AFP</div>
+    <div class="job-meta">
+      <div class="job-num">Trabajo 4 de 5</div>
+      <div class="job-title">Jefe de Proyecto / Analista Funcional</div>
+      <div class="job-company" style="color:#c2410c">AFP Profuturo — MDP Consulting</div>
+      <div>
+        <span class="job-sector" style="background:#ffedd5;color:#c2410c">🏦 Banca / Finanzas</span>
+      </div>
+    </div>
+    <div class="job-date">Sep 2013 — May 2014</div>
+    <div class="job-toggle">▼</div>
+  </div>
+  <div class="job-body">
+    <div class="job-desc">
+      Business Intelligence en Oracle — implementación de Data Warehouse y reportes con MicroStrategy.
+      Diagramas UML del sistema. Cumplimiento de reglas SBS (Superintendencia de Banca) y Sunat.
+    </div>
+
+    <div class="concept-section">
+      <div class="concept-section-title">🔥 Conceptos del repaso aplicados directamente</div>
+      <div class="concepts-grid">
+        <div class="concept-item highlight">
+          <div class="ci-icon">📐</div>
+          <div>
+            <div class="ci-name">UML — Diagramas de Sistema</div>
+            <div class="ci-applied">Especificación formal del sistema BI con UML: diagramas de casos de uso para los reportes, diagramas de secuencia para los procesos ETL, diagrama de clases del modelo de datos del DW.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🗄</div>
+          <div>
+            <div class="ci-name">SQL — Data Warehouse Oracle</div>
+            <div class="ci-applied">Consultas SQL complejas sobre Oracle DW: JOINs de múltiples tablas dimensionales, GROUP BY con HAVING para reportes SBS, subconsultas para cálculos de indicadores de AFP.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🔷</div>
+          <div>
+            <div class="ci-name">Modelo de Datos — Data Warehouse</div>
+            <div class="ci-applied">Diseño del modelo dimensional (estrella/copo de nieve) para el DW de AFP: hechos (transacciones de fondo), dimensiones (afiliado, fondo, período, agencia).</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">💰</div>
+          <div>
+            <div class="ci-name">Análisis Financiero — Sector AFP</div>
+            <div class="ci-applied">Dominio de indicadores financieros específicos de AFP: rentabilidad del fondo, volatilidad, valor cuota, proyección de pensión. Reglas SBS que rigen los reportes regulatorios.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">📋</div>
+          <div>
+            <div class="ci-name">Requisitos Funcionales (sector regulado)</div>
+            <div class="ci-applied">Especificación de requisitos bajo marco regulatorio SBS/Sunat. Requisitos no negociables: formatos exactos, plazos de entrega de reportes, trazabilidad de datos para auditoría.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🛠</div>
+          <div>
+            <div class="ci-name">Herramientas de BI y Analytics</div>
+            <div class="ci-applied">MicroStrategy como herramienta de reporte y dashboards. Equivalente moderno: Power BI / Tableau. La experiencia es directamente aplicable a los dashboards analíticos del portal TI Corp.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-phrase">
+      <div class="ip-label">Frase de entrevista</div>
+      <div class="ip-text">
+        "En AFP Profuturo trabajé con <strong>Business Intelligence sobre Oracle DW</strong> en un entorno altamente regulado por la SBS. Usé UML para especificar el sistema, SQL complejo para construir los reportes, y aprendí a manejar requisitos no negociables en sectores regulados: cuando la SBS define el formato de un reporte, no hay margen para negociar. Esa experiencia me enseñó que los requisitos no funcionales de cumplimiento legal son tan críticos como los funcionales."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 5. CITIBANK ══════════════ -->
+<div class="job-card open" id="job5">
+  <div class="job-hdr" onclick="toggleJob('job5')">
+    <div class="job-badge" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)">CB</div>
+    <div class="job-meta">
+      <div class="job-num">Trabajo 5 de 5</div>
+      <div class="job-title">Analista de Procesos Técnicos</div>
+      <div class="job-company" style="color:#0369a1">Banco Citibank del Perú</div>
+      <div>
+        <span class="job-sector" style="background:#e0f2fe;color:#0369a1">🏦 Banca</span>
+      </div>
+    </div>
+    <div class="job-date">Jun 2010 — May 2011</div>
+    <div class="job-toggle">▼</div>
+  </div>
+  <div class="job-body">
+    <div class="job-desc">
+      Proyecto Web Paylink Back End — sistema de transferencias interbancarias B2B.
+      Diagramas UML, metodología RUP, diseño de prototipos de interfaz. Integración con sistemas bancarios core.
+    </div>
+
+    <div class="concept-section">
+      <div class="concept-section-title">🔥 Conceptos del repaso aplicados directamente</div>
+      <div class="concepts-grid">
+        <div class="concept-item highlight">
+          <div class="ci-icon">📐</div>
+          <div>
+            <div class="ci-name">UML — Proyecto Bancario B2B</div>
+            <div class="ci-applied">Diagramas UML completos para Paylink: casos de uso del flujo de pago B2B, diagramas de secuencia entre cliente-backend-banco destino, diagrama de estados de la transacción (Pendiente → Procesando → Confirmado → Rechazado).</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🔌</div>
+          <div>
+            <div class="ci-name">APIs REST / Servicios Web B2B</div>
+            <div class="ci-applied">Paylink Back End = servicios web de transferencias. Especificación de endpoints de pago B2B: autenticación, validación del destinatario, ejecución de transferencia, confirmación y manejo de errores bancarios.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🔄</div>
+          <div>
+            <div class="ci-name">BPM — Flujo de Transferencias Bancarias</div>
+            <div class="ci-applied">Modelado del proceso de transferencia interbancaria con swimlanes: empresa originante → Citibank → sistema SWIFT/LBTR → banco destino. Identificación de puntos de falla y planes de contingencia.</div>
+          </div>
+        </div>
+        <div class="concept-item highlight">
+          <div class="ci-icon">🔷</div>
+          <div>
+            <div class="ci-name">Modelo de Datos — Sistema Bancario</div>
+            <div class="ci-applied">Entidades del sistema bancario: Empresa, Cuenta, Transacción, Beneficiario, Banco. Relaciones de alto volumen (millones de transacciones). Normalización para garantizar integridad financiera.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">📋</div>
+          <div>
+            <div class="ci-name">Requisitos Funcionales — RUP</div>
+            <div class="ci-applied">Metodología RUP (precursor de los métodos ágiles actuales): levantamiento formal de requerimientos, especificación de casos de uso detallados, revisión iterativa con el equipo técnico.</div>
+          </div>
+        </div>
+        <div class="concept-item">
+          <div class="ci-icon">🏗</div>
+          <div>
+            <div class="ci-name">Arquitectura — Sistema Bancario N-Tier</div>
+            <div class="ci-applied">Sistema bancario B2B en arquitectura de N capas: interfaz empresarial, backend Paylink, middleware de integración, core bancario. Comprensión de arquitecturas complejas de alta disponibilidad.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-phrase">
+      <div class="ip-label">Frase de entrevista</div>
+      <div class="ip-text">
+        "En el <strong>Banco Citibank</strong> especifiqué un sistema de transferencias interbancarias B2B con UML completo, modelé el flujo con swimlanes mostrando la interacción entre 4 actores, y definí los servicios web de pago con todos sus estados posibles. En banca no hay margen para ambigüedad: un requerimiento mal especificado puede resultar en una pérdida financiera real. Esa presión me formó como analista funcional riguroso."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ MATRIZ RESUMEN ══════════════ -->
+<div class="sec-hdr">
+  <h2>📊 Matriz de Cobertura — Conceptos × Empresa</h2>
+  <p>Cuántas veces has aplicado cada concepto en empresa real. <strong>●</strong> = aplicado · <strong>★</strong> = experiencia profunda</p>
+</div>
+
+<div class="matrix-wrap">
+  <div class="matrix">
+    <div class="matrix-head" style="grid-template-columns:180px repeat(5,1fr)">
+      <div style="padding:9px 12px;text-align:left">Concepto</div>
+      <div style="padding:9px 6px;font-size:.62rem;line-height:1.3">UPC<br>2021–23</div>
+      <div style="padding:9px 6px;font-size:.62rem;line-height:1.3">Perurail<br>2020–21</div>
+      <div style="padding:9px 6px;font-size:.62rem;line-height:1.3">Oncosalud<br>2018–20</div>
+      <div style="padding:9px 6px;font-size:.62rem;line-height:1.3">AFP<br>2013–14</div>
+      <div style="padding:9px 6px;font-size:.62rem;line-height:1.3">Citibank<br>2010–11</div>
+    </div>
+
+    <!-- UML -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">📐 UML</div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+    </div>
+    <!-- Requisitos -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">📋 Requisitos</div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+    <!-- APIs REST -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🔌 APIs REST</div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+    </div>
+    <!-- SQL -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🗄 SQL</div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+    <!-- Modelo Datos -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🔷 Modelo de Datos</div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+    <!-- Arquitectura -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🏗 Arquitectura</div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+    </div>
+    <!-- SDLC Agile -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🔄 SDLC & Agile</div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+    <!-- Testing UAT -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🧪 Testing & UAT</div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+    <!-- PMI PMBOK -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🏛 PMI / PMBOK</div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+    </div>
+    <!-- BPM -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🔄 BPM / BPMN</div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+    </div>
+    <!-- User Stories -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">📝 User Stories</div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+    </div>
+    <!-- Backlog -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">📦 Épicas & Backlog</div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+    </div>
+    <!-- MoSCoW -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">🎯 MoSCoW</div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+      <div class="m-cell"><span class="m-no">—</span></div>
+    </div>
+    <!-- Análisis Financiero -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">💰 Análisis Financiero</div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+    <!-- Matriz Riesgos -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">⚠️ Matriz de Riesgos</div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+    <!-- KPIs -->
+    <div class="matrix-row" style="grid-template-columns:180px repeat(5,1fr)">
+      <div class="m-concept">📈 KPIs</div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-str">★</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+      <div class="m-cell"><span class="m-yes">●</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:.78rem;color:var(--slate)">
+  <span><span style="color:var(--green);font-size:1rem">★</span> = Experiencia profunda / rol principal</span>
+  <span><span style="color:var(--blue);font-size:1rem">●</span> = Aplicado como parte del trabajo</span>
+  <span><span style="color:#dce3ef">—</span> = No aplicado en ese rol específico</span>
+</div>
+
+</div><!-- end .wrap -->
+
+<div class="footer">
+  Marco Saldarriaga Medina · Analista Funcional Senior · Product Owner · Comsatel 2026
+  &nbsp;·&nbsp;<a href="/entrevista-dev.html">🖥 Repaso Dev</a>
+  &nbsp;·&nbsp;<a href="/repaso-ti-corp.html">🛠 Toolkit PO</a>
+  &nbsp;·&nbsp;<a href="/">Portfolio</a>
+</div>
+
+<script>
+function toggleJob(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+
+// Highlight matrix rows on hover for readability
+document.querySelectorAll('.matrix-row').forEach(row => {
+  row.addEventListener('mouseenter', () => {
+    const cells = row.querySelectorAll('.m-cell');
+    cells.forEach(c => c.style.background = 'rgba(37,99,235,.06)');
+  });
+  row.addEventListener('mouseleave', () => {
+    const cells = row.querySelectorAll('.m-cell');
+    cells.forEach(c => c.style.background = '');
+  });
+});
+</script>
+</body>
+</html>
