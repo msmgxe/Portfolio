@@ -14,28 +14,24 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.66}
 
-/* ── HERO ── */
-.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#1d4ed8 100%);padding:28px 20px 20px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-.hero h1{font-size:1.6rem;font-weight:900;color:#fff;position:relative;line-height:1.2}
-.hero h1 span{color:var(--sky)}
-.hero p{color:#94a3b8;font-size:.85rem;margin-top:8px;position:relative}
-.badge-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;position:relative}
-.badge{padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.04em}
-.badge-red{background:#fee2e2;color:#dc2626}
-.badge-blue{background:#dbeafe;color:#1d4ed8}
-.badge-green{background:#dcfce7;color:#16a34a}
-.badge-amber{background:#fef3c7;color:#b45309}
-.badge-purple{background:#f3e8ff;color:#7e22ce}
-
-/* ── COUNTDOWN ── */
-.countdown{background:linear-gradient(135deg,#0f1f38 0%,#1e3a5f 100%);color:#93c5fd;text-align:center;padding:10px;font-weight:700;font-size:.85rem;letter-spacing:.05em;border-bottom:1px solid #1d4ed8}
-.countdown span{font-size:1.1rem;margin:0 4px}
+/* ── HEADER ── */
+.hdr{background:var(--navy);color:#f8fafc;padding:18px 16px 14px;position:sticky;top:0;z-index:200;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+.hdr-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hdr h1{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;color:#f8fafc}
+.hdr p{font-size:.72rem;color:#94a3b8;margin-top:2px}
+.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.hdr-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:.65rem;font-family:monospace;font-weight:700;padding:3px 9px;border-radius:3px;white-space:nowrap}
+.badge-blue{background:#1e40af;color:#bfdbfe}
+.badge-green{background:#166534;color:#bbf7d0}
+.badge-amber{background:#78350f;color:#fde68a}
+.badge-red{background:#7f1d1d;color:#fecaca}
+.badge-purple{background:#4c1d95;color:#ddd6fe}
 
 /* ── NAV DESKTOP ── */
-.nav{background:#1e293b;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.nav{background:#1e293b;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .nav-inner{display:grid;grid-template-columns:repeat(5,1fr);max-width:1100px;margin:0 auto}
-.nav-cat{font-size:.55rem;color:#475569;font-weight:800;text-transform:uppercase;letter-spacing:.09em;padding:4px 10px;background:#192435;border-top:2px solid #2d3f55;grid-column:1/-1}
+.nav-cat{font-size:.55rem;color:#475569;font-weight:800;text-transform:uppercase;letter-spacing:.09em;padding:4px 10px;background:#192435;border-top:1px solid #2d3f55;grid-column:1/-1}
 .tab{padding:9px 4px;font-size:.65rem;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;text-align:center;transition:.2s;white-space:normal;line-height:1.3}
 .tab:hover{color:#e2e8f0;background:rgba(255,255,255,.05)}
 .tab.on{color:var(--sky);border-color:var(--sky);background:rgba(56,189,248,.08)}
@@ -76,6 +72,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 /* ── MOBILE GLOBAL ── */
 @media(max-width:680px){
   .nav{display:none !important}
+  .hdr{display:none !important}
   .mob-bar{display:flex}
   body{font-size:16px}
   .wrap{padding:14px 12px}
@@ -138,9 +135,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .sec.on{display:block}
 
 /* ── SECTION HEADER ── */
-.sec-hdr{margin-bottom:20px;padding:18px 20px;background:linear-gradient(135deg,#fff 60%,#f4f7ff 100%);border-radius:12px;border-left:5px solid var(--blue);box-shadow:0 2px 8px rgba(15,31,56,.07)}
-.sec-hdr h2{font-size:1.4rem;font-weight:800;color:var(--navy);letter-spacing:-.02em}
-.sec-hdr p{color:var(--slate);margin-top:4px;font-size:.88rem}
+.sec-hdr{margin-bottom:24px;padding:20px 0 8px}
+.sec-hdr h2{font-size:1.45rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2}
+.sec-hdr p{color:var(--slate);margin-top:5px;font-size:.9rem}
 .entrevista-tip{background:#fff8f0;border:1.5px solid var(--orange);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
 .entrevista-tip strong{color:var(--orange)}
 .alert-green{background:#f0fdf4;border:1.5px solid var(--green);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
@@ -219,7 +216,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pyr-row{margin:0 auto;display:flex;align-items:center;justify-content:center;height:40px;border-radius:4px;margin-bottom:3px;font-size:.78rem;font-weight:700;color:#fff}
 
 /* ── Footer ── */
-.footer{text-align:center;padding:24px;color:#94a3b8;font-size:.78rem;background:#1e293b;margin-top:40px}
+.footer{text-align:center;padding:32px 16px;font-size:.75rem;color:#94a3b8;border-top:1px solid var(--border);margin-top:30px;background:transparent}
 .footer a{color:var(--sky);text-decoration:none}
 
 /* ── AUDIO PLAYER ── */
@@ -328,21 +325,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>⚡ Repaso Técnico<br><span>Entrevista Jefe de Desarrollo</span></h1>
-  <p>Marco Saldarriaga · Analista Funcional Senior · Comsatel · 2026</p>
-  <div class="badge-row">
-    <span class="badge badge-red">🔥 Entrevista Mañana 3:00 PM</span>
-    <span class="badge badge-blue">UML · SQL · APIs · Git</span>
-    <span class="badge badge-green">Testing · Arquitectura · SDLC</span>
-    <span class="badge badge-purple">10 Preguntas Clave</span>
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div>
+      <h1>⚡ Repaso Técnico — Jefe de Desarrollo</h1>
+      <p>Marco Saldarriaga · Analista Funcional Senior · Comsatel · 2026</p>
+    </div>
+    <div class="hdr-right">
+      <div class="hdr-badges">
+        <span class="badge badge-blue">UML · SQL · APIs</span>
+        <span class="badge badge-green">Arch · Testing · SDLC</span>
+        <span class="badge badge-amber">Git · Preguntas Clave</span>
+      </div>
+      <a href="/repaso-ti-corp.html" class="hdr-crosslink">🛠 Ver Toolkit PO →</a>
+    </div>
   </div>
-  <a href="/repaso-ti-corp.html" class="hdr-crosslink" style="margin-top:12px">🛠 Ver Toolkit PO →</a>
-</div>
-
-<div class="countdown">
-  🎯 Enfocado en lo que pregunta un <span>Jefe de Desarrollo</span> a un Analista Funcional Senior
 </div>
 
 <!-- NAV DESKTOP -->
@@ -417,6 +415,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="mob-drw-item" id="mob-item-qa" onclick="mobShow('qa')">
     <span class="di">💬</span><span class="dt">Las 10 Preguntas Clave</span><span class="ck">✓</span>
   </div>
+
+  <div class="mob-drw-cat">🔗 Otras páginas</div>
+  <a href="/repaso-ti-corp.html" style="display:flex;align-items:center;gap:12px;padding:13px 20px;border-bottom:1px solid #f1f5f9;font-size:.86rem;font-weight:600;color:#2563eb;text-decoration:none;background:#eff6ff">
+    <span style="font-size:1.15rem">🛠</span><span>Ver Toolkit PO →</span>
+  </a>
 </div>
 
 <div class="wrap">
