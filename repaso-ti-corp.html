@@ -307,6 +307,81 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
   .toolmap-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .toolmap-head,.toolmap-row{min-width:600px}
 }
+
+/* ── AUDIO PLAYER ── */
+.audio-bar{position:fixed;bottom:0;left:0;right:0;background:#1e293b;border-top:2px solid #334155;padding:10px 16px;display:flex;align-items:center;gap:12px;z-index:600;transform:translateY(100%);transition:transform .3s ease;box-shadow:0 -4px 20px rgba(0,0,0,.4)}
+.audio-bar.visible{transform:translateY(0)}
+.audio-play-btn{background:var(--sky);color:#0f172a;border:none;border-radius:50%;width:38px;height:38px;font-size:1.1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.2s}
+.audio-play-btn:hover{background:#7dd3fc;transform:scale(1.1)}
+.audio-stop-btn{background:#ef4444;color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:.8rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.2s}
+.audio-stop-btn:hover{background:#dc2626}
+.audio-info{flex:1;min-width:0}
+.audio-title{font-size:.78rem;font-weight:700;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.audio-status{font-size:.7rem;color:#64748b;margin-top:2px}
+.audio-progress{flex-shrink:0;display:flex;align-items:center;gap:6px}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+.audio-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse-dot 1.5s infinite}
+.audio-dot.paused{animation:none;background:#94a3b8}
+.tab-audio-btn{background:rgba(37,99,235,.12);color:var(--blue);border:1.5px solid rgba(37,99,235,.35);border-radius:20px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s;margin-bottom:16px}
+.tab-audio-btn:hover{background:rgba(37,99,235,.22)}
+@keyframes pulse-border{0%,100%{border-color:rgba(37,99,235,.35)}50%{border-color:rgba(37,99,235,.8)}}
+.tab-audio-btn.playing{background:rgba(37,99,235,.2);animation:pulse-border 2s infinite}
+.voice-note{font-size:.7rem;color:#5b7491;margin-left:6px;font-style:italic}
+
+/* ── CROSS-NAV LINK ── */
+.hdr-crosslink{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:5px 14px;color:#e2e8f0;font-size:.72rem;font-weight:600;text-decoration:none;transition:.2s;white-space:nowrap;margin-top:6px}
+.hdr-crosslink:hover{background:rgba(37,99,235,.35);border-color:rgba(37,99,235,.6);color:#fff}
+
+/* ── HIERARCHY DIAGRAM ── */
+.hier-wrap{overflow-x:auto;padding-bottom:8px}
+.hier{display:flex;flex-direction:column;align-items:center;gap:0;min-width:320px}
+.hier-row{display:flex;flex-direction:column;align-items:center;width:100%}
+.hier-connector{width:2px;height:24px;background:linear-gradient(180deg,var(--blue),var(--sky));margin:0 auto}
+.hier-block{display:flex;align-items:center;gap:14px;width:100%;max-width:640px;padding:14px 20px;border-radius:10px;border-left:5px solid;margin:0 auto;transition:transform .2s,box-shadow .2s}
+.hier-block:hover{transform:translateX(4px);box-shadow:0 4px 18px rgba(0,0,0,.1)}
+.hb1{background:#fff7ed;border-color:var(--orange)}
+.hb2{background:#f0fdf4;border-color:var(--green)}
+.hb3{background:#eff6ff;border-color:var(--blue)}
+.hb4{background:#faf5ff;border-color:var(--purple)}
+.hb5{background:#f0fdfa;border-color:var(--teal)}
+.hb6{background:#fffbeb;border-color:var(--amber)}
+.hb7{background:#fef2f2;border-color:var(--red)}
+.hier-icon{font-size:2rem;flex-shrink:0;width:44px;text-align:center}
+.hier-label{font-weight:800;font-size:.95rem;color:var(--navy)}
+.hier-sublabel{font-size:.78rem;color:var(--slate);margin-top:3px}
+.hier-example{font-size:.76rem;background:rgba(0,0,0,.04);border-radius:6px;padding:6px 10px;margin-top:8px;font-style:italic;color:#374151;line-height:1.5}
+.hier-scope{font-size:.65rem;font-family:monospace;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;margin-left:auto;flex-shrink:0}
+.hs1{background:#fff7ed;color:#c2410c}.hs2{background:#f0fdf4;color:#15803d}
+.hs3{background:#eff6ff;color:#1e40af}.hs4{background:#faf5ff;color:#6d28d9}
+.hs5{background:#f0fdfa;color:#0d9488}.hs6{background:#fffbeb;color:#b45309}.hs7{background:#fef2f2;color:#b91c1c}
+
+/* ── BACKLOG CARDS ── */
+.bl-grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media(max-width:640px){.bl-grid{grid-template-columns:1fr}}
+.bl-card{border-radius:10px;padding:18px;border-top:5px solid}
+.bl-prod{background:#eff6ff;border-color:var(--blue)}
+.bl-sprint{background:#faf5ff;border-color:var(--purple)}
+.bl-card h4{font-weight:800;margin-bottom:12px;font-size:.95rem}
+.bl-prod h4{color:var(--blue)}.bl-sprint h4{color:#6d28d9}
+.bl-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed #e5e7eb;font-size:.8rem}
+.bl-item:last-child{border:none}
+.bl-rank{font-family:monospace;font-weight:700;font-size:.68rem;background:var(--navy);color:#fff;padding:1px 6px;border-radius:4px;flex-shrink:0}
+.bl-must{background:#b91c1c}.bl-should{background:#b45309}.bl-could{background:#15803d}.bl-wont{background:#475569}
+.bl-pts{font-family:monospace;font-size:.68rem;background:#f1f5f9;color:#374151;padding:1px 7px;border-radius:10px;margin-left:auto;flex-shrink:0}
+
+/* ── EPIC CARDS ── */
+.epic-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.epic-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.epic-card-hdr{padding:12px 16px;color:#fff;display:flex;align-items:center;gap:10px}
+.ec1 .epic-card-hdr{background:var(--blue)}.ec2 .epic-card-hdr{background:#0d9488}
+.ec3 .epic-card-hdr{background:#6d28d9}.ec4 .epic-card-hdr{background:#b45309}
+.epic-card-hdr h4{font-weight:800;font-size:.9rem}
+.epic-card-body{padding:14px 16px}
+.epic-story-item{display:flex;align-items:center;gap:8px;font-size:.78rem;padding:5px 0;border-bottom:1px dashed #f1f5f9;color:#374151}
+.epic-story-item:last-child{border:none}
+.epic-story-item::before{content:"";display:block;width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0}
+.epic-sp{font-size:.65rem;font-family:monospace;background:#eff6ff;color:#1e40af;padding:1px 6px;border-radius:8px;margin-left:auto;flex-shrink:0}
+
 </style>
 </head>
 <body>
@@ -323,6 +398,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
       <span class="badge badge-amber">BSC · IA/RPA · Finanzas</span>
       <span class="badge badge-green">MoSCoW · RICE · Kano · MVP</span>
     </div>
+    <a href="/entrevista-dev.html" class="hdr-crosslink">🖥 Ver Repaso Dev →</a>
   </div>
 </div>
 
@@ -343,6 +419,7 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <div class="tab" onclick="show('moscow',this)">🎯 MoSCoW</div>
     <div class="tab" onclick="show('rice',this)">📊 RICE Scoring</div>
     <div class="tab" onclick="show('kano',this)">🔮 Kano Model</div>
+    <div class="tab" onclick="show('backlog',this)">📦 Épicas & Backlog</div>
     <div class="tab" onclick="show('stories',this)">📝 User Stories</div>
     <div class="tab" onclick="show('mvp',this)">🚀 MVP</div>
     <div class="tab" onclick="show('roadmap',this)">🗓 Roadmap</div>
@@ -400,6 +477,8 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <span class="di">📊</span><span>RICE Scoring</span><span class="ck">✓</span></div>
   <div class="mob-drw-item" id="mob-item-kano"     onclick="mobShow('kano')">
     <span class="di">🔮</span><span>Kano Model</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-backlog"  onclick="mobShow('backlog')">
+    <span class="di">📦</span><span>Épicas &amp; Backlog</span><span class="ck">✓</span></div>
   <div class="mob-drw-item" id="mob-item-stories"  onclick="mobShow('stories')">
     <span class="di">📝</span><span>User Stories</span><span class="ck">✓</span></div>
   <div class="mob-drw-item" id="mob-item-mvp"      onclick="mobShow('mvp')">
@@ -421,6 +500,10 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <h2>🗺 Mapa de Procesos del Análisis Funcional</h2>
     <p>Haz clic en cada etapa para ver qué herramientas se usan y qué produce cada fase</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-mapa" onclick="playTab('mapa')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+
 
   <div class="card">
     <div class="card-body">
@@ -535,6 +618,8 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <h2>🏢 Organigrama del Equipo Ágil</h2>
     <p>Dónde encaja el Product Owner y el Analista Funcional — y cómo se relacionan</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-organig" onclick="playTab('organig')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="card">
     <div class="card-hdr">
@@ -694,6 +779,8 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <p>Técnica para clasificar requerimientos por urgencia e importancia — aplicada al Portal TI Corp</p>
   </div>
 
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-moscow" onclick="playTab('moscow')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
   <div class="card">
     <div class="card-hdr">
       <div class="icon-box" style="background:#fffbeb">🎯</div>
@@ -799,6 +886,8 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <h2>📊 RICE Scoring — Priorización Cuantitativa</h2>
     <p>Decide qué construir primero con números, no con opiniones</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-rice" onclick="playTab('rice')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
   <div class="card">
     <div class="card-body">
       <div class="formula">
@@ -851,6 +940,8 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
     <h2>🔮 Kano Model — Satisfacción del Cliente</h2>
     <p>Clasifica features según su impacto real en la experiencia del usuario</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-kano" onclick="playTab('kano')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
   <div class="card">
     <div class="card-body">
       <div class="formula">
@@ -892,6 +983,10 @@ El Kano responde: <span class="fvar">¿Qué pasa con la satisfacción si NO entr
     <h2>📝 User Stories — Con Criterios de Aceptación</h2>
     <p>Historias de usuario en formato estándar con Gherkin (Given/When/Then)</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-stories" onclick="playTab('stories')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+
 
   <div class="alert alert-blue">
     <strong>Formato INVEST:</strong> Independiente · Negociable · Valiosa · Estimable · Small · Testeable — Toda historia debe cumplir estos 6 criterios antes de entrar al sprint.
@@ -965,12 +1060,328 @@ El Kano responde: <span class="fvar">¿Qué pasa con la satisfacción si NO entr
   </div>
 </div>
 
+
+<!-- ══════════════════════ ÉPICAS & BACKLOG ══════════════════════ -->
+<div class="sec" id="backlog">
+  <div class="sec-hdr">
+    <h2>📦 Épicas, Backlog & Jerarquía Ágil</h2>
+    <p>Cómo se organiza todo el trabajo: desde la visión del producto hasta las tareas del sprint</p>
+  </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-backlog" onclick="playTab('backlog')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+  <div class="alert alert-blue">
+    <strong>La jerarquía ágil responde a una sola pregunta: ¿Qué construimos y en qué orden?</strong>
+    Cada nivel tiene un horizonte de tiempo y un nivel de detalle diferente. El PO vive en todos ellos simultáneamente.
+  </div>
+
+  <!-- DIAGRAMA JERARQUÍA -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff">🏗</div>
+      <div>
+        <h3>Jerarquía Completa del Producto Ágil</h3>
+        <p>De la visión estratégica al trabajo diario — con ejemplos del Portal TI Corp</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="hier-wrap">
+        <div class="hier">
+
+          <div class="hier-row">
+            <div class="hier-block hb1">
+              <div class="hier-icon">🎯</div>
+              <div style="flex:1">
+                <div class="hier-label">VISIÓN DEL PRODUCTO</div>
+                <div class="hier-sublabel">El "por qué" — problema que resolvemos y el cambio que queremos lograr</div>
+                <div class="hier-example">
+                  "Que el cliente corporativo de TI Corp pueda gestionar sus líneas móviles de forma autónoma, sin necesidad de llamar al call center."
+                </div>
+              </div>
+              <div class="hier-scope hs1">1–2 años</div>
+            </div>
+            <div class="hier-connector"></div>
+          </div>
+
+          <div class="hier-row">
+            <div class="hier-block hb2">
+              <div class="hier-icon">🗓</div>
+              <div style="flex:1">
+                <div class="hier-label">ROADMAP</div>
+                <div class="hier-sublabel">Plan trimestral de grandes capacidades — qué entregar y cuándo, orientado a outcomes</div>
+                <div class="hier-example">
+                  Q1: MVP autoservicio · Q2: Analytics y reportes · Q3: Integración con facturación y app móvil
+                </div>
+              </div>
+              <div class="hier-scope hs2">3–6 meses</div>
+            </div>
+            <div class="hier-connector"></div>
+          </div>
+
+          <div class="hier-row">
+            <div class="hier-block hb3">
+              <div class="hier-icon">🏔</div>
+              <div style="flex:1">
+                <div class="hier-label">ÉPICA (EPIC)</div>
+                <div class="hier-sublabel">Feature grande que no cabe en un sprint — se descompone en historias. Tiene objetivo de negocio propio.</div>
+                <div class="hier-example">
+                  Épica: "Gestión de Líneas Corporativas" → cubre ver, filtrar, ordenar y exportar el listado de líneas.
+                  Puede tomar 2–4 sprints completar. Cada sprint entrega un slice de valor.
+                </div>
+              </div>
+              <div class="hier-scope hs3">2–4 sprints</div>
+            </div>
+            <div class="hier-connector"></div>
+          </div>
+
+          <div class="hier-row">
+            <div class="hier-block hb4">
+              <div class="hier-icon">📝</div>
+              <div style="flex:1">
+                <div class="hier-label">HISTORIA DE USUARIO</div>
+                <div class="hier-sublabel">Unidad de valor entregable en un sprint. Formato: Como [rol] quiero [acción] para [beneficio].</div>
+                <div class="hier-example">
+                  "Como admin de TI, quiero ver mis líneas con su estado y consumo, para saber cuáles necesitan atención sin llamar al call center."
+                  → 5 puntos de historia · Sprint 1 de Q1
+                </div>
+              </div>
+              <div class="hier-scope hs4">1 sprint</div>
+            </div>
+            <div class="hier-connector"></div>
+          </div>
+
+          <div class="hier-row">
+            <div class="hier-block hb5">
+              <div class="hier-icon">🔧</div>
+              <div style="flex:1">
+                <div class="hier-label">TAREA (TASK)</div>
+                <div class="hier-sublabel">Trabajo técnico que el equipo descompone de la historia. No visible para el cliente — solo para el equipo.</div>
+                <div class="hier-example">
+                  Historia "ver líneas" → Tareas: (1) Endpoint API GET /lineas · (2) Tabla con paginación frontend · (3) Filtro por estado
+                </div>
+              </div>
+              <div class="hier-scope hs5">1–3 días</div>
+            </div>
+            <div class="hier-connector"></div>
+          </div>
+
+          <div class="hier-row">
+            <div class="hier-block hb6">
+              <div class="hier-icon">📋</div>
+              <div style="flex:1">
+                <div class="hier-label">PRODUCT BACKLOG</div>
+                <div class="hier-sublabel">Lista <strong>ordenada</strong> de todo el trabajo futuro. El PO es el único dueño. Nunca está terminado — evoluciona en cada sprint.</div>
+                <div class="hier-example">
+                  El Product Backlog tiene 60+ ítems. Solo los 15–20 del tope están detallados con criterios de aceptación y estimados.
+                  Los del fondo son rough ideas o épicas sin descomponer.
+                </div>
+              </div>
+              <div class="hier-scope hs6">Continuo</div>
+            </div>
+            <div class="hier-connector"></div>
+          </div>
+
+          <div class="hier-row">
+            <div class="hier-block hb7">
+              <div class="hier-icon">⚡</div>
+              <div style="flex:1">
+                <div class="hier-label">SPRINT BACKLOG</div>
+                <div class="hier-sublabel">Subconjunto del backlog que el equipo <strong>comprometió</strong> para el sprint actual. El equipo lo gestiona, no el PO.</div>
+                <div class="hier-example">
+                  Sprint 1 · 2 semanas: "Ver listado de líneas" (5 pts) + "Login con OTP" (8 pts) + "Dashboard resumen" (5 pts) = 18 pts comprometidos
+                </div>
+              </div>
+              <div class="hier-scope hs7">2 semanas</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉPICAS DEL PORTAL TI CORP -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#eff6ff">🏔</div>
+      <div>
+        <h3>Épicas del Portal TI Corp — Ejemplo Aplicado</h3>
+        <p>Cada épica agrupa varias historias de usuario relacionadas</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="epic-grid">
+        <div class="epic-card ec1">
+          <div class="epic-card-hdr">
+            <span style="font-size:1.4rem">🔑</span>
+            <div>
+              <div style="font-size:.6rem;opacity:.8;font-family:monospace;font-weight:700">ÉPICA 01 · Q1</div>
+              <h4>Acceso y Autenticación</h4>
+            </div>
+          </div>
+          <div class="epic-card-body">
+            <div class="epic-story-item">Login con usuario + contraseña<div class="epic-sp">5 pts</div></div>
+            <div class="epic-story-item">Autenticación por OTP (email)<div class="epic-sp">8 pts</div></div>
+            <div class="epic-story-item">Recuperar contraseña olvidada<div class="epic-sp">5 pts</div></div>
+            <div class="epic-story-item">Cierre de sesión por inactividad<div class="epic-sp">3 pts</div></div>
+            <div style="margin-top:12px;font-size:.72rem;color:var(--slate)"><strong>Total:</strong> 21 pts · ~2 sprints</div>
+          </div>
+        </div>
+        <div class="epic-card ec2">
+          <div class="epic-card-hdr">
+            <span style="font-size:1.4rem">📱</span>
+            <div>
+              <div style="font-size:.6rem;opacity:.8;font-family:monospace;font-weight:700">ÉPICA 02 · Q1</div>
+              <h4>Gestión de Líneas</h4>
+            </div>
+          </div>
+          <div class="epic-card-body">
+            <div class="epic-story-item">Ver listado de líneas corporativas<div class="epic-sp">5 pts</div></div>
+            <div class="epic-story-item">Filtrar y ordenar por estado/consumo<div class="epic-sp">3 pts</div></div>
+            <div class="epic-story-item">Ver detalle de consumo por línea<div class="epic-sp">8 pts</div></div>
+            <div class="epic-story-item">Cambiar plan de una línea<div class="epic-sp">13 pts</div></div>
+            <div style="margin-top:12px;font-size:.72rem;color:var(--slate)"><strong>Total:</strong> 29 pts · ~2–3 sprints</div>
+          </div>
+        </div>
+        <div class="epic-card ec3">
+          <div class="epic-card-hdr">
+            <span style="font-size:1.4rem">🔔</span>
+            <div>
+              <div style="font-size:.6rem;opacity:.8;font-family:monospace;font-weight:700">ÉPICA 03 · Q1–Q2</div>
+              <h4>Alertas de Consumo</h4>
+            </div>
+          </div>
+          <div class="epic-card-body">
+            <div class="epic-story-item">Alerta al 80% de consumo (email)<div class="epic-sp">8 pts</div></div>
+            <div class="epic-story-item">Alerta al 100% (agotamiento)<div class="epic-sp">5 pts</div></div>
+            <div class="epic-story-item">Configurar umbrales personalizados<div class="epic-sp">8 pts</div></div>
+            <div class="epic-story-item">Alertas por WhatsApp (futuro)<div class="epic-sp">13 pts</div></div>
+            <div style="margin-top:12px;font-size:.72rem;color:var(--slate)"><strong>Total:</strong> 34 pts · ~3 sprints</div>
+          </div>
+        </div>
+        <div class="epic-card ec4">
+          <div class="epic-card-hdr">
+            <span style="font-size:1.4rem">📊</span>
+            <div>
+              <div style="font-size:.6rem;opacity:.8;font-family:monospace;font-weight:700">ÉPICA 04 · Q2</div>
+              <h4>Analytics y Reportes</h4>
+            </div>
+          </div>
+          <div class="epic-card-body">
+            <div class="epic-story-item">Histórico de consumo 6 meses<div class="epic-sp">8 pts</div></div>
+            <div class="epic-story-item">Gráfica de consumo por área<div class="epic-sp">8 pts</div></div>
+            <div class="epic-story-item">Reporte PDF mensual por área<div class="epic-sp">13 pts</div></div>
+            <div class="epic-story-item">Dashboard predictivo con IA<div class="epic-sp">21 pts</div></div>
+            <div style="margin-top:12px;font-size:.72rem;color:var(--slate)"><strong>Total:</strong> 50 pts · ~4–5 sprints</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT BACKLOG vs SPRINT BACKLOG -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#faf5ff">📋</div>
+      <div>
+        <h3>Product Backlog vs Sprint Backlog — ¿Cuál es la diferencia?</h3>
+        <p>Dos artefactos distintos, dos horizontes distintos, dos responsables distintos</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="bl-grid">
+        <div class="bl-card bl-prod">
+          <h4>📋 Product Backlog</h4>
+          <p style="font-size:.78rem;color:#1e40af;margin-bottom:14px"><strong>Dueño: Product Owner · Horizonte: Todo el futuro</strong></p>
+          <div class="bl-item"><span class="bl-rank bl-must">M #1</span>Login + OTP seguro<div class="bl-pts">8 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-must">M #2</span>Dashboard líneas corporativas<div class="bl-pts">5 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-must">M #3</span>Ver consumo por línea<div class="bl-pts">8 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-must">M #4</span>Cambiar plan<div class="bl-pts">13 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-should">S #5</span>Alerta 80% consumo por email<div class="bl-pts">8 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-should">S #6</span>Filtrar líneas por estado<div class="bl-pts">3 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-could">C #7</span>Reporte PDF mensual por área<div class="bl-pts">13 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-could">C #8</span>Histórico consumo 6 meses<div class="bl-pts">8 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-wont">W #9</span>Dashboard predictivo con IA<div class="bl-pts">21 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-wont">W #10</span>App móvil nativa<div class="bl-pts">TBD</div></div>
+        </div>
+        <div class="bl-card bl-sprint">
+          <h4>⚡ Sprint Backlog (Sprint 1)</h4>
+          <p style="font-size:.78rem;color:#6d28d9;margin-bottom:14px"><strong>Dueño: Equipo · Horizonte: 2 semanas · Capacidad: 20 pts</strong></p>
+          <div class="bl-item"><span class="bl-rank bl-must">✓ #1</span>Login + OTP seguro<div class="bl-pts">8 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-must">✓ #2</span>Dashboard líneas corporativas<div class="bl-pts">5 pts</div></div>
+          <div class="bl-item"><span class="bl-rank bl-must">✓ #3</span>Ver consumo por línea (parcial)<div class="bl-pts">5 pts</div></div>
+          <div style="margin-top:20px;padding:12px;background:rgba(109,40,217,.08);border-radius:8px">
+            <div style="font-size:.8rem;font-weight:700;color:#6d28d9;margin-bottom:8px">📌 Reglas del Sprint Backlog:</div>
+            <div style="font-size:.77rem;color:#374151;line-height:1.7">
+              ✔ El equipo lo gestiona, no el PO<br>
+              ✔ No se cambia durante el sprint<br>
+              ✔ Puede añadir tareas técnicas nuevas<br>
+              ✔ El PO puede re-priorizar el product backlog pero NO el sprint backlog en curso
+            </div>
+          </div>
+          <div style="margin-top:14px;background:rgba(109,40,217,.06);border-radius:8px;padding:12px">
+            <div style="font-size:.78rem;font-weight:700;color:#6d28d9">Total comprometido: 18/20 pts</div>
+            <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" style="width:90%;background:var(--purple)"></div></div>
+            <div style="font-size:.72rem;color:var(--slate);margin-top:4px">2 pts de buffer para imprevistos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-green" style="margin-top:18px">
+        <strong>💡 Frase de entrevista:</strong> "El Product Backlog es la agenda de todo el producto — es vivo, nunca termina, y solo el PO puede reordenarlo. El Sprint Backlog es el contrato del equipo para las próximas dos semanas — el equipo lo gestiona y el PO no interfiere durante el sprint en curso."
+      </div>
+    </div>
+  </div>
+
+  <!-- DEFINITION OF READY -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="icon-box" style="background:#f0fdf4">✅</div>
+      <div>
+        <h3>Definition of Ready — ¿Cuándo una historia está lista para entrar al sprint?</h3>
+        <p>El filtro de calidad que el PO aplica antes de Sprint Planning</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:14px">
+          <div style="font-weight:700;color:#15803d;margin-bottom:8px;font-size:.85rem">✅ Historia LISTA (DoR cumplida)</div>
+          <div style="font-size:.79rem;color:#166534;line-height:1.9">
+            ✔ Escrita en formato As a / I want / So that<br>
+            ✔ Criterios de aceptación en Given/When/Then<br>
+            ✔ Estimada por el equipo (story points)<br>
+            ✔ Dependencias identificadas y resueltas<br>
+            ✔ Mockup o wireframe adjunto si aplica<br>
+            ✔ Sin ambigüedades abiertas
+          </div>
+        </div>
+        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px">
+          <div style="font-weight:700;color:#b91c1c;margin-bottom:8px;font-size:.85rem">❌ Historia NO lista — vuelve al refinement</div>
+          <div style="font-size:.79rem;color:#991b1b;line-height:1.9">
+            ✗ "El sistema debe ser rápido" (sin medida)<br>
+            ✗ Depende de API que aún no existe<br>
+            ✗ No estimada por el equipo todavía<br>
+            ✗ Criterios de aceptación ausentes<br>
+            ✗ Ambigüedades sin resolver con el negocio<br>
+            ✗ Demasiado grande para un sprint (épica)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 <!-- ══════════════════════ MVP ══════════════════════ -->
 <div class="sec" id="mvp">
   <div class="sec-hdr">
     <h2>🚀 MVP — Minimum Viable Product</h2>
     <p>La versión más pequeña del portal que valida la hipótesis central de negocio</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-mvp" onclick="playTab('mvp')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+
   <div class="card">
     <div class="card-body">
       <div class="formula">
@@ -1017,6 +1428,10 @@ reduciremos las llamadas al call center en un <span class="fvar">40%</span> en l
     <h2>🗓 Product Roadmap — Portal TI Corp</h2>
     <p>Visión de 3 trimestres orientada a valor de negocio, no a fechas exactas</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-roadmap" onclick="playTab('roadmap')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+
   <div class="card">
     <div class="card-body">
       <div class="formula">
@@ -1074,6 +1489,10 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <h2>📈 KPIs — Métricas de Éxito del Portal</h2>
     <p>Cómo mide el PO si el producto está generando valor real</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-kpis" onclick="playTab('kpis')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+
   <div class="card">
     <div class="card-body">
       <div class="formula">
@@ -1120,6 +1539,10 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <h2>🔗 Mapa de Herramientas por Etapa</h2>
     <p>Qué herramienta del PO se aplica en cada fase del análisis funcional</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-toolmap" onclick="playTab('toolmap')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+
   <div class="card">
     <div class="card-body">
       <div class="toolmap-wrap">
@@ -1198,6 +1621,8 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <h2>📋 Matriz de Requerimientos</h2>
     <p>Vincula cada requerimiento con los elementos del sistema y los beneficios de negocio</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-matriz" onclick="playTab('matriz')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <!-- QUÉ ES -->
   <div class="card">
@@ -1580,6 +2005,8 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <p>Identifica, cuantifica y mitiga los riesgos antes de que impacten el cronograma o el presupuesto</p>
   </div>
 
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-riesgos" onclick="playTab('riesgos')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
   <!-- QUÉ ES + FÓRMULA + FASES -->
   <div class="card">
     <div class="card-hdr">
@@ -1916,6 +2343,8 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <p>Disciplina para descubrir, modelar, ejecutar, monitorear y optimizar procesos de negocio</p>
   </div>
 
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-bpm" onclick="playTab('bpm')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
   <div class="card">
     <div class="card-hdr">
       <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">🎯</div>
@@ -2140,6 +2569,10 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <p>Eliminar desperdicios (Lean) + reducir variación y defectos (Six Sigma) = procesos eficientes y predecibles</p>
   </div>
 
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-lean" onclick="playTab('lean')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
+
+
   <div class="card">
     <div class="card-hdr">
       <div class="icon-box" style="background:#fef9c3;font-size:1.3rem">🎯</div>
@@ -2275,6 +2708,8 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <h2>🏗 Gestión de Proyectos — PMI / Ágil / Híbrido</h2>
     <p>Las tres grandes escuelas de gestión de proyectos y cómo combinarlas según el contexto</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-pmi" onclick="playTab('pmi')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="card">
     <div class="card-hdr">
@@ -2414,6 +2849,8 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <p>Marco estratégico que traduce la visión de la empresa en objetivos e indicadores medibles desde 4 ángulos</p>
   </div>
 
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-bsc" onclick="playTab('bsc')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
   <div class="card">
     <div class="card-hdr">
       <div class="icon-box" style="background:#eff6ff;font-size:1.3rem">🎯</div>
@@ -2536,6 +2973,8 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <p>RPA, BPA, API y AI — cuándo usar cada uno y cómo impactan el rol del Analista Funcional</p>
   </div>
 
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-autoIA" onclick="playTab('autoIA')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
+
   <div class="card">
     <div class="card-hdr">
       <div class="icon-box" style="background:#faf5ff;font-size:1.3rem">📊</div>
@@ -2654,6 +3093,8 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
     <h2>💰 Análisis de Procesos Financieros</h2>
     <p>Los procesos financieros clave en TI y cómo el Analista Funcional les agrega valor con métricas reales</p>
   </div>
+
+  <div style="margin-bottom:8px"><button class="tab-audio-btn" id="btn-finanzas" onclick="playTab('finanzas')">🎧 Escuchar explicación<span class="voice-note">(voz IA)</span></button></div>
 
   <div class="card">
     <div class="card-hdr">
@@ -2820,7 +3261,7 @@ const MOB_TAB_NAMES = {
   mapa:'🗺 Mapa de Procesos', organig:'🏢 Organigrama', bpm:'🔄 BPM',
   lean:'⚡ Lean & Mejora', pmi:'📋 PMI / PMBOK', bsc:'🎯 BSC / OKR',
   autoIA:'🤖 Automatización & IA', finanzas:'💰 Finanzas TI', toolmap:'🛠 Herramientas',
-  moscow:'🔵 MoSCoW', rice:'📊 RICE', kano:'🌊 Kano', stories:'📝 User Stories',
+  moscow:'🔵 MoSCoW', rice:'📊 RICE', kano:'🌊 Kano', backlog:'📦 Épicas & Backlog', stories:'📝 User Stories',
   mvp:'🚀 MVP', roadmap:'🗓 Roadmap', kpis:'📈 KPIs', matriz:'⚖ Matriz',
   riesgos:'⚠ Riesgos'
 };
@@ -3295,6 +3736,417 @@ function showRisk(id) {
 
 buildRiskTable();
 
+
+// ── AUDIO NARRATIONS ──────────────────────────────────────
+const narrations = {
+  mapa: `Bien, empecemos con el Mapa de Procesos del Análisis Funcional. Esto es básicamente el GPS del trabajo del AF: muestra las siete etapas que recorre cualquier proyecto, desde que aparece el problema hasta que el equipo lo entrega.
+
+La primera etapa es el Inicio. Aquí defines el problema de negocio, los OKRs, y mapeas a los stakeholders. El artefacto principal es el Project Charter o Vision Board.
+
+En la segunda, Discovery, levantas información real. Entrevistas, talleres, revisión de documentos existentes. Acá es donde el AF vale oro, porque sabe hacer las preguntas correctas.
+
+La tercera etapa es el Análisis. Modelas los procesos con BPMN o UML, identificas brechas entre el proceso actual y el deseado.
+
+En la cuarta, Priorización, usas MoSCoW, RICE o Kano para decidir qué se construye primero. El PO tiene la última palabra, pero el AF prepara la data.
+
+La quinta es Documentación: historias de usuario con criterios de aceptación en formato Dado, Cuando, Entonces. Este es el producto principal del AF.
+
+La sexta es Validación con stakeholders: talleres de revisión, prototipos, UAT preliminar. Y la séptima es la Entrega al sprint con seguimiento post-lanzamiento.
+
+Para la entrevista, menciona en qué etapas has participado y qué artefactos produciste. Eso es lo que diferencia a un senior.`,
+
+  organig: `El Organigrama de un equipo ágil no es el clásico árbol jerárquico de tu empresa. Es un mapa de colaboración que muestra quién hace qué y cómo interactúan los roles.
+
+El Product Owner es el dueño del backlog. Decide qué se construye y en qué orden. Representa al negocio ante el equipo de desarrollo. Tiene la última palabra sobre el alcance.
+
+El Scrum Master facilita el proceso. No gestiona personas, gestiona impedimentos. Protege al equipo de interrupciones y garantiza que las ceremonias ocurran bien.
+
+El Analista Funcional, en muchos equipos, apoya al PO en la especificación detallada. Escribe historias, criterios de aceptación, casos de prueba de aceptación. En algunos equipos el PO y el AF son la misma persona.
+
+Los Desarrolladores son el equipo técnico que estima y ejecuta. El QA valida calidad técnica y funcional. Y el UX Designer asegura que la experiencia del usuario sea coherente con lo especificado.
+
+El Sponsor o Stakeholder está fuera del equipo pero es quien financia y tiene las expectativas de negocio.
+
+La clave para la entrevista: entiende dónde encaja tu rol en este ecosistema. En Comsatel probablemente estarás entre el PO y el AF, siendo el puente entre el cliente corporativo y el equipo técnico.`,
+
+  bpm: `BPM, o Business Process Management, es la disciplina de modelar, analizar y mejorar los procesos de negocio. Y el estándar para documentarlos visualmente se llama BPMN, Business Process Model and Notation.
+
+En BPMN tienes cuatro elementos fundamentales. Los eventos: inicio, intermedio y fin. Las actividades o tareas, que son los pasos del proceso. Las puertas o gateways, que modelan las decisiones y los caminos alternativos. Y los flujos de secuencia, que conectan todo.
+
+Los Swimlanes son los carriles del diagrama. Cada carril representa un actor o sistema responsable de esas actividades. Así ves de un vistazo quién hace qué y dónde pasan las transiciones de responsabilidad.
+
+Para el portal de TI Corp, el proceso de cambio de plan tiene este flujo: el Admin selecciona la línea, elige el nuevo plan, el sistema verifica disponibilidad, hay una decisión: ¿aprobado? Si sí, se actualiza el plan y se notifica. Si no, se muestra el error con las alternativas disponibles.
+
+La diferencia entre un AF junior y un senior en BPM no está en saber dibujar el diagrama. Está en identificar los cuellos de botella, las actividades sin valor agregado, y proponer mejoras concretas con impacto medible.
+
+Para la entrevista, ten un ejemplo de un proceso que mejoraste. Antes: cuántos pasos, cuánto tiempo, cuántos errores. Después: cómo quedó. Los números concretos son lo que convence.`,
+
+  lean: `Lean Six Sigma combina dos metodologías. Lean viene de Toyota y su objetivo es eliminar el desperdicio, todo aquello que no agrega valor. Six Sigma viene de Motorola y su objetivo es reducir la variación y los defectos, llevar los errores a menos de tres punto cuatro por millón de oportunidades.
+
+En Lean hay ocho tipos de desperdicio, conocidos como DOWNTIME. Defectos, sobreproducción, esperas, talento subutilizado, transporte innecesario, inventario excesivo, movimiento innecesario, y procesamiento extra.
+
+Para el portal de TI Corp: el proceso actual de cambio de plan tiene esperas innecesarias porque el cliente llama al call center, espera en cola, le atienden, le explican opciones, esperan aprobación del sistema. Con el portal, ese desperdicio desaparece: el cliente hace el cambio en menos de dos minutos.
+
+Six Sigma usa el ciclo DMAIC: Define el problema y los objetivos. Measure, mide el estado actual con datos reales. Analyze, encuentra las causas raíz con herramientas como el diagrama de Ishikawa o los cinco porqués. Improve, diseña e implementa la solución. Control, establece mecanismos para que la mejora se mantenga en el tiempo.
+
+Para la entrevista: si te preguntan por mejora de procesos, menciona un ejemplo concreto donde aplicaste alguno de estos principios, aunque no lo hayas llamado formalmente Lean o Six Sigma. Lo importante es demostrar pensamiento orientado a la eliminación del desperdicio y la medición del impacto.`,
+
+  pmi: `PMI, el Project Management Institute, y su guía PMBOK son el estándar más reconocido en gestión de proyectos a nivel mundial. Y aunque en entornos ágiles usamos Scrum, el PMBOK te da el marco conceptual para gestionar proyectos complejos con múltiples stakeholders.
+
+El PMBOK organiza el trabajo en cinco grupos de procesos: Inicio, Planificación, Ejecución, Monitoreo y Control, y Cierre.
+
+En Inicio produces el Acta de Constitución del Proyecto, el Project Charter. Define el problema, los objetivos, el alcance preliminar, los stakeholders clave, y la autorización formal para que el proyecto exista.
+
+En Planificación defines el scope detallado con el WBS, Work Breakdown Structure. El cronograma, el presupuesto, el plan de calidad, el plan de gestión de riesgos, y el plan de comunicaciones.
+
+Durante Ejecución gestionas al equipo, comunicas el avance, y te aseguras de que el trabajo se hace según el plan. En Monitoreo y Control comparas lo ejecutado contra el plan, calculas el Earned Value, y tomas acciones correctivas.
+
+Y en Cierre formalizas la aceptación del cliente y liberas al equipo.
+
+La diferencia con Scrum: PMBOK es más formal, con mucha documentación upfront. Scrum es iterativo y adaptable. En la práctica, los mejores PMs combinan ambos: usan el rigor del PMBOK para proyectos con contratos formales y la agilidad de Scrum para el desarrollo del producto.
+
+Para la entrevista, si manejaste proyectos de más de cinco millones de dólares como menciona tu CV, tienes experiencia real de PMBOK. Conéctalo.`,
+
+  bsc: `El Balanced Scorecard, o Cuadro de Mando Integral, es un framework para medir el desempeño de una organización desde cuatro perspectivas equilibradas, no solo las financieras.
+
+La primera perspectiva es la Financiera: ¿Cómo nos ven los accionistas? Indicadores como retorno sobre inversión, margen de ganancia, crecimiento de ingresos.
+
+La segunda es la del Cliente: ¿Cómo nos ven los clientes? NPS, tasa de retención, tiempo de respuesta, satisfacción.
+
+La tercera son los Procesos Internos: ¿En qué debemos ser excelentes? Tiempo de ciclo de proceso, tasa de defectos, eficiencia operativa.
+
+Y la cuarta es Aprendizaje y Crecimiento: ¿Podemos seguir mejorando? Capacitación del equipo, innovación, cultura organizacional.
+
+Los OKRs, Objectives and Key Results, son una alternativa más ágil del BSC. El objetivo es la aspiración ambiciosa y cualitativa. Los Key Results son las métricas concretas que te dicen si lo lograste.
+
+Para el portal de TI Corp: el objetivo podría ser "Empoderar al cliente corporativo con autoservicio digital". Los Key Results: reducir llamadas al call center en cuarenta por ciento en noventa días, NPS del portal mayor a sesenta, y tasa de adopción del sesenta por ciento en el primer mes.
+
+Para la entrevista, muestra que entiendes la diferencia entre outputs, lo que produjo el equipo, y outcomes, el resultado que generó en el negocio. Eso es pensamiento de PO, no de analista junior.`,
+
+  autoIA: `Automatización e Inteligencia Artificial. Este tema ya no es opcional para un analista funcional senior. Los clientes preguntan y el AF tiene que saber qué es posible, qué es realista, y cómo especificarlo.
+
+La Automatización de Procesos Robóticos, o RPA, usa robots de software que imitan las acciones de un humano en interfaces de usuario. Sin cambiar el sistema de fondo. Ideal para procesos repetitivos como conciliación de datos, carga de formularios, extracción de información de correos.
+
+La diferencia clave con AI: RPA sigue reglas predefinidas. AI aprende de los datos. Si el proceso es siempre igual, usa RPA. Si el proceso necesita adaptarse a variaciones y contexto, necesitas AI.
+
+Machine Learning es el subconjunto de AI más común en proyectos empresariales. Supervisado, para clasificar o predecir con datos históricos. No supervisado, para encontrar patrones ocultos. Y por refuerzo, para optimizar decisiones secuenciales.
+
+Para el portal de TI Corp, los casos de uso de AI más inmediatos son: sugerencia automática del plan óptimo según el histórico de consumo del cliente, detección de anomalías en el consumo que podrían indicar fraude, y chatbot de atención que resuelve el ochenta por ciento de consultas sin agente humano.
+
+Como analista funcional, tu rol es especificar el comportamiento esperado del sistema con AI, no implementarla. Defines: qué datos de entrada recibe, qué salida produce, con qué nivel de confianza mínima actúa sola y cuándo escala al humano. Eso es lo que separa un AF senior de uno que solo dice "sí, pongamos AI ahí".`,
+
+  finanzas: `Análisis financiero para analistas. No necesitas ser contador, pero sí necesitas entender los números básicos para hablar con los sponsors y justificar el valor de tus proyectos.
+
+El ROI, Retorno sobre la Inversión, es el indicador más básico. Se calcula como el beneficio neto dividido entre el costo de la inversión, multiplicado por cien. Para el portal de TI Corp: si el portal cuesta ciento veinte mil dólares y reduce el call center en sesenta agentes que valen ochenta mil al mes, en dos meses recuperas la inversión. ROI positivo.
+
+El NPV, Net Present Value o Valor Presente Neto, descuenta los flujos de caja futuros al valor de hoy, porque un dólar hoy vale más que un dólar en el futuro. Si el NPV es positivo, el proyecto crea valor.
+
+El TCO, Total Cost of Ownership, incluye todos los costos: desarrollo, licencias, infraestructura, mantenimiento, capacitación, soporte. Un sistema barato de desarrollar puede tener un TCO altísimo si requiere mucho mantenimiento.
+
+Para el presupuesto de TI: el CAPEX son los gastos de capital, inversiones de largo plazo como desarrollo de software o servidores. El OPEX son los gastos operativos recurrentes como licencias SaaS, hosting, soporte.
+
+En la entrevista, si te preguntan cómo justificas la prioridad de un proyecto o feature, habla en términos financieros. No solo "es importante para el cliente" sino "al reducir el call center en cuarenta por ciento ahorramos X dólares mensuales, el ROI en seis meses es del doscientos por ciento". Eso convence a cualquier sponsor.`,
+
+  toolmap: `El mapa de herramientas muestra qué tecnología usa el analista funcional en cada etapa del proyecto. No necesitas dominarlas todas, pero sí necesitas saber cuándo recomendar cada una.
+
+Para Gestión de Proyectos y Backlog: Jira es el estándar en equipos ágiles. Azure DevOps es fuerte en entornos Microsoft. Trello es más visual y ligero, ideal para equipos chicos. Linear es moderno y muy popular en startups de producto.
+
+Para Modelado de Procesos: Lucidchart y Draw.io para diagramas UML y BPMN. Miro y FigJam para talleres colaborativos remotos donde trabajas con Post-its virtuales.
+
+Para Requisitos y Documentación: Confluence es el estándar de colaboración. Notion es más flexible y moderno. Y muchos equipos siguen usando Google Docs porque es simple y todos lo conocen.
+
+Para Pruebas y QA: Jira tiene módulos de testing. TestRail es especializado. Postman es esencial para probar APIs REST.
+
+Para Analytics y Métricas: Power BI y Tableau para dashboards. Google Analytics para comportamiento de usuario en portales. Mixpanel y Amplitude para análisis de producto.
+
+Para IA y Automatización: UiPath y Automation Anywhere para RPA. Zapier para automatizaciones simples sin código.
+
+La pregunta de entrevista clásica es ¿qué herramientas conoces? No basta con listar. Mejor di: en tal proyecto usé Jira para el backlog, Confluence para los requisitos, y Postman para validar los endpoints antes del UAT. Con ese nivel de detalle demuestras uso real, no conocimiento teórico.`,
+
+  moscow: `MoSCoW es una técnica de priorización que divide los requisitos en cuatro categorías, y es probablemente la herramienta más usada por POs y analistas funcionales en todo el mundo.
+
+Must Have: sin esto el producto no funciona o no cumple su propósito principal. En el portal de TI Corp, el login y ver las líneas son Must Have. Si no están, no hay portal.
+
+Should Have: importante, agrega valor significativo, pero el sistema puede funcionar sin esto en la primera versión. Las alertas al ochenta por ciento de consumo son Should Have: ayudan mucho, pero el admin puede verificar manualmente mientras tanto.
+
+Could Have: deseable, añade una buena experiencia, pero puede esperar. El reporte en PDF por área es Could Have: útil para el gerente de finanzas, pero no es el core del problema.
+
+Won't Have this time: fuera del alcance de esta versión. No es que nunca, es que no ahora. La app móvil nativa y el dashboard predictivo con IA son Won't Have del MVP.
+
+El error más común con MoSCoW es que todos los stakeholders dicen que todo es Must Have. Tu trabajo como PO o AF es forzar la priorización real. Dile al stakeholder: imagina que solo podemos construir la mitad. ¿Qué es lo que no puede faltar?
+
+Para la entrevista, menciona que usas MoSCoW en combinación con RICE para tener tanto una categorización cualitativa como una puntuación numérica. Así tienes más argumentos para defender tus prioridades frente a un sponsor.`,
+
+  rice: `RICE Scoring es la técnica de priorización más objetiva que existe porque convierte las opiniones en números. El score tiene cuatro factores.
+
+Reach, alcance: ¿cuántos usuarios impacta esta feature en un período dado? Si tiene un score de quinientos usuarios por mes, ese es el reach.
+
+Impact, impacto: en escala del uno al tres, ¿cuánto mueve la aguja en el objetivo que estamos midiendo? Tres es transformador, dos es significativo, uno es mínimo. Hay quienes usan punto cinco, uno, dos y tres como escala.
+
+Confidence, confianza: ¿qué tan seguros estamos de nuestras estimaciones de reach e impact? Si es data real, cien por ciento. Si es una hipótesis con algo de evidencia, setenta. Si es una corazonada, cincuenta.
+
+Effort, esfuerzo: ¿cuántos person-months toma implementarlo? Si lo hace un desarrollador en una semana, es un cuarto de persona-mes.
+
+El score final es Reach por Impact por Confidence, dividido entre Effort. El ítem con mayor score va primero.
+
+Para el portal de TI Corp: las alertas de consumo tienen un reach de doscientos admins, un impact de dos, confidence al ochenta por ciento, y esfuerzo de uno punto cinco personas-mes. Score: doscientos por dos por punto ochenta, dividido entre uno punto cinco, igual a doscientos trece. Compara ese número con el reporte PDF que tiene menos reach y más esfuerzo, y la decisión se justifica sola.
+
+Para la entrevista, no necesitas calcular RICE en vivo. Solo explica que usas scoring para objetivar las decisiones de priorización y dar contexto con un ejemplo. Eso basta.`,
+
+  kano: `El Modelo Kano fue creado por el profesor Noriaki Kano y clasifica las funcionalidades de un producto según cómo impactan en la satisfacción del usuario. Y lo interesante es que no todas las features afectan la satisfacción de la misma manera.
+
+Los Must-be, o básicos obligatorios, son los requisitos mínimos que el usuario espera sin negociar. Si no están, el usuario está muy insatisfecho. Pero si están, no generan satisfacción extra, solo evitan la queja. Para el portal de TI Corp, el login seguro y ver las líneas son Must-be.
+
+Los Performance, o de rendimiento lineal, son features donde más es mejor. Más velocidad, más precisión, más datos disponibles. Si el portal carga en un segundo el usuario está contento; si carga en tres, menos; si carga en cinco, frustrado. Aquí la inversión en mejora siempre genera más satisfacción.
+
+Los Delighters, o sorpresivos, son features que el usuario no esperaba pero que lo deleitan. No los pide porque no sabe que existen. Para TI Corp: que el portal sugiera automáticamente el plan óptimo basándose en el histórico de consumo del cliente, o que muestre cuánto dinero se ahorrará si cambia de plan. Eso no lo piden, pero cuando lo ven, lo adoran.
+
+Los Indifferent son features que no mueven la aguja en ninguna dirección. El usuario no las nota si están y no las extraña si no están.
+
+Para la entrevista, usa Kano para explicar por qué algunos requisitos son negociables y otros no. Y menciona que un delighter de hoy se convierte en Must-be mañana, porque las expectativas del usuario suben constantemente. Eso demuestra visión de producto a largo plazo.`,
+
+  stories: `Las Historias de Usuario son la forma en que el PO y el Analista Funcional traducen los requisitos de negocio al lenguaje del equipo de desarrollo. Y la diferencia entre una historia bien escrita y una mal escrita puede costarle al proyecto días o semanas.
+
+El formato estándar es: Como rol del usuario, quiero la acción que necesito, para el beneficio o el por qué de esa necesidad. Ese último elemento, el para qué, es el que más se olvida y es el más importante porque le da contexto al desarrollador para tomar mejores decisiones técnicas.
+
+Los criterios de aceptación en formato Gherkin especifican exactamente qué debe pasar. Dado el contexto inicial, cuando el usuario hace la acción, entonces el sistema produce este resultado. Tienen que ser medibles y verificables. No sirve decir "el sistema responde correctamente". Sí sirve decir "el sistema muestra el consumo en menos de tres segundos".
+
+El criterio INVEST te ayuda a validar la calidad de cada historia. Independiente: no depende de otra historia para entregarse. Negociable: el cómo puede cambiar, el qué debe quedar claro. Valuable: entrega valor real al usuario. Estimable: el equipo puede ponerle puntos de historia. Small: cabe en un sprint. Testeable: los criterios de aceptación son verificables.
+
+Para la entrevista, prepara dos o tres historias de usuario reales de proyectos anteriores. Una de sector bancario, otra de salud o gobierno si las tienes. Con sus criterios de aceptación concretos. Eso demuestra que no solo conoces el formato, sino que lo aplicaste en contextos reales.`,
+
+  mvp: `El Minimum Viable Product, o MVP, es la versión más pequeña del producto que valida la hipótesis central de negocio. Y ojo: mínimo no significa malo. Significa enfocado.
+
+El error más común es confundir MVP con producto incompleto. El MVP es completo en su alcance reducido. Hace pocas cosas pero las hace bien. El objetivo no es construir rápido y barato, es aprender rápido si vamos en la dirección correcta.
+
+Para el portal de TI Corp, la hipótesis del MVP es esta: si el cliente corporativo puede ver y gestionar sus líneas de forma autónoma, reduciremos las llamadas al call center en cuarenta por ciento en los primeros noventa días. Eso es lo que necesitamos validar.
+
+El MVP incluye login seguro, dashboard de líneas, ver consumo, cambiar plan, y alertas básicas. Seis semanas, tres sprints. Todo lo demás, reportes PDF, integración con facturación, app móvil, queda para Q2 o Q3, pero solo si el MVP valida la hipótesis.
+
+Si a los treinta días la reducción de llamadas es menor al diez por ciento, hay un problema de adopción o de diseño. Investigas. Ajustas. Eso es la mentalidad del MVP: no se trata de entregar rápido, se trata de aprender rápido.
+
+Para la entrevista: cuando te pregunten cómo definirías el MVP de un proyecto, responde con la hipótesis de negocio primero, luego el criterio de éxito, luego lo que incluyes y lo que dejas fuera. Ese orden muestra pensamiento de product owner, no de analista que solo ejecuta.`,
+
+  roadmap: `El Roadmap de producto es el mapa de ruta que muestra qué capacidades vamos a construir, en qué orden, y con qué objetivos de negocio. No es un cronograma de Gantt con fechas exactas. Es una declaración de intención estratégica.
+
+Un buen roadmap responde tres preguntas: ¿Qué estamos priorizando? ¿Por qué en ese orden? ¿Qué valor entregamos en cada horizonte de tiempo?
+
+Para el portal de TI Corp, el roadmap se organiza en tres trimestres. En Q1, el MVP: autoservicio básico con login, gestión de líneas y alertas. El objetivo es reducir cuarenta por ciento las llamadas al call center. En Q2, analytics: historial de consumo, gráficas, reportes PDF, múltiples admins. El objetivo es un NPS mayor a setenta. En Q3, integración y escala: facturación, dashboard predictivo con IA, app móvil como PWA. El objetivo es retención de clientes enterprise.
+
+El roadmap se revisa al final de cada sprint, especialmente en la Retrospectiva y el Sprint Review. Si los datos muestran que la hipótesis del Q1 no se está validando, el Q2 puede cambiar.
+
+La trampa del roadmap es tratarlo como una promesa en lugar de una hipótesis. Los stakeholders preguntan: ¿cuándo estará la facturación integrada? La respuesta correcta no es "en Q3". Es: "en Q3 si el MVP de Q1 valida la hipótesis de adopción. Si necesitamos ajustar el rumbo, Q3 puede cambiar". Eso es honestidad de producto.
+
+Para la entrevista, muestra que entiendes la diferencia entre roadmap basado en fechas y roadmap basado en outcomes. El segundo es el que usan los equipos maduros.`,
+
+  kpis: `Los KPIs del portal son las métricas que le dicen al PO si el producto está generando valor real, no si el equipo está ocupado.
+
+La diferencia clave que tienes que dominar para la entrevista es entre output y outcome. El output es lo que produjo el equipo: quince historias completadas en el sprint. El outcome es el resultado que eso generó en el negocio: las llamadas al call center bajaron en treinta y cinco por ciento. El PO reporta en outcomes, no en outputs.
+
+Para el portal de TI Corp hay cuatro KPIs críticos. Primero, reducción de llamadas al call center. Meta del cuarenta por ciento en noventa días. Se mide comparando el volumen de llamadas sobre estado de línea antes y después del portal. Si a treinta días la reducción es menor al diez por ciento, hay problema de adopción.
+
+Segundo, NPS del portal. Meta: mayor a sesenta en treinta días, mayor a setenta en noventa días. Se mide con la pregunta clásica del uno al diez al final de cada interacción.
+
+Tercero, tiempo para completar acción. Meta: cambiar un plan en menos de dos minutos, versus los quince minutos que toma por teléfono. El portal debe ser al menos cuatro veces más rápido.
+
+Cuarto, tasa de adopción. Meta: sesenta por ciento de los clientes con acceso que han iniciado sesión en los últimos treinta días.
+
+Si en la entrevista te preguntan cómo defines el éxito de un proyecto, responde siempre con métricas concretas y medibles. No con "el cliente quedará satisfecho". Eso es lo que distingue al PO senior del analista funcional junior.`,
+
+  matriz: `La Matriz de Trazabilidad de Requisitos es el artefacto que conecta cada requisito de negocio con su historia de usuario, su caso de prueba, y su resultado de implementación. Es el seguro de calidad del proyecto.
+
+¿Para qué sirve? Para garantizar que nada se implemente sin respaldo de negocio, y que ningún requisito de negocio quede sin implementar. En auditorías de proyectos grandes, es el documento que le presentas al cliente para demostrar que entregaste todo lo acordado.
+
+Cada fila de la matriz tiene: el identificador del requisito, la descripción, la historia de usuario asociada, el caso de prueba correspondiente, el estado, y la referencia al resultado de prueba.
+
+Para el portal de TI Corp: el requisito RF-001 es que el sistema muestre el listado de líneas corporativas con consumo actualizado. La historia asociada es H-001. El caso de prueba es CT-001. Estado: implementado y aprobado en Sprint Review del quince de enero. Eso es trazabilidad completa.
+
+Los requisitos no funcionales también van en la matriz. RNF-001: el sistema debe responder en menos de dos segundos para el noventa y cinco por ciento de las solicitudes bajo carga de quinientos usuarios concurrentes. Historia: HT-004 prueba de rendimiento. Caso de prueba: CT-NF-001 con JMeter.
+
+Para la entrevista, si te preguntan cómo garantizas que todo lo acordado se implementa, menciona la matriz de trazabilidad. Eso demuestra rigor metodológico que no todos los analistas tienen.`,
+
+  riesgos: `La Matriz de Riesgos es el mapa de todo lo que puede salir mal en el proyecto, con sus probabilidades, impactos, y planes de mitigación. El analista funcional senior no solo identifica los riesgos técnicos; también identifica los de negocio, los de adopción, y los de stakeholders.
+
+Cada riesgo tiene tres dimensiones. La probabilidad de que ocurra, en escala de baja, media, o alta. El impacto si ocurre, también baja, media, o alta. Y el nivel de exposición que es el resultado de multiplicar ambos: verde si es manejable, amarillo si requiere plan de mitigación, rojo si puede comprometer el proyecto.
+
+Para el portal de TI Corp, los riesgos críticos son cuatro. El primero: baja adopción del portal. Probabilidad media, impacto muy alto. Plan de mitigación: onboarding guiado, tutorial en el primer acceso, campaña de comunicación interna del cliente.
+
+El segundo: la API del sistema de gestión de líneas de TI Corp puede tener limitaciones técnicas no documentadas. Probabilidad alta si el sistema es legacy. Mitigación: hacer un spike técnico en el sprint cero antes de comprometer el roadmap completo.
+
+El tercero: cambios de alcance en mitad del sprint por presión de stakeholders. Probabilidad media, impacto alto en la velocidad del equipo. Mitigación: backlog bien priorizado, proceso de cambio formal con análisis de impacto antes de aceptar cualquier modificación.
+
+El cuarto: dependencia de un proveedor externo para la integración de facturación. Probabilidad alta de retraso. Mitigación: tener un plan B con datos mock para Q3 en caso de que la integración no esté lista.
+
+Para la entrevista, menciona que gestionas riesgos de forma continua, no solo al inicio del proyecto. Cada Sprint Review revisas si los riesgos identificados han cambiado de probabilidad o impacto. Eso demuestra madurez en gestión de proyectos.`,
+
+  backlog: `Muy bien, hablemos de la jerarquía completa del producto ágil. Esto es lo que organiza todo el trabajo del PO, desde la visión estratégica hasta las tareas del día a día del equipo.
+
+En la cima está la Visión del Producto. Es el por qué. El problema que resolvemos y el cambio que queremos generar. Para TI Corp: que el cliente corporativo pueda gestionar sus líneas de forma autónoma sin necesidad de llamar al call center. Todo lo demás debe alinearse a esta visión.
+
+El Roadmap traduce la visión en trimestres. Q1 el MVP, Q2 analytics y reportes, Q3 integración y escala. Es una declaración de intención, no un contrato.
+
+Las Épicas son features grandes que no caben en un sprint. Cada épica tiene un objetivo de negocio propio y se descompone en historias de usuario. Por ejemplo, la Épica de Gestión de Líneas incluye: ver listado, filtrar, ver consumo, cambiar plan. Eso puede tomar dos o tres sprints.
+
+Las Historias de Usuario son la unidad de trabajo que el equipo puede completar en un sprint. Tiene el formato de rol, acción y beneficio, con criterios de aceptación en Dado, Cuando, Entonces.
+
+Las Tareas son la descomposición técnica que hace el equipo a partir de cada historia. Son invisibles para el cliente, solo el equipo las gestiona.
+
+El Product Backlog es la lista ordenada de todo el trabajo futuro. El PO es el único dueño. Nunca está terminado. Los ítems del tope están detallados y estimados; los del fondo son ideas rough o épicas sin descomponer.
+
+El Sprint Backlog es el subconjunto que el equipo comprometió para las próximas dos semanas. El PO no puede interferir una vez que el sprint está en curso.
+
+Para la entrevista, cuando te pregunten cómo organizas el trabajo, empieza desde la visión y baja hasta el sprint. Ese recorrido de arriba hacia abajo demuestra pensamiento estratégico de product owner, no solo gestión táctica de tareas.`
+};
+
+let currentUtterance = null;
+let currentTabId = null;
+let isSpeaking = false;
+
+function getSpanishVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  const spanishVoices = voices.filter(v => v.lang.startsWith('es'));
+  const maleNames = ['jorge','juan','carlos','diego','pablo','miguel',
+                     'antonio','alejandro','alvaro','raul','male','hombre'];
+  const maleVoice = spanishVoices.find(v =>
+    maleNames.some(n => v.name.toLowerCase().includes(n))
+  );
+  if (maleVoice) return maleVoice;
+  return spanishVoices.find(v => v.lang === 'es-ES') ||
+         spanishVoices.find(v => v.lang === 'es-MX') ||
+         spanishVoices.find(v => v.lang === 'es-US') ||
+         spanishVoices[0] || voices[0];
+}
+
+function playTab(tabId) {
+  if (!('speechSynthesis' in window)) {
+    alert('Tu navegador no soporta síntesis de voz. Usa Chrome para mejor experiencia.');
+    return;
+  }
+  const text = narrations[tabId];
+  if (!text) return;
+
+  if (currentTabId === tabId && isSpeaking) { toggleAudio(); return; }
+
+  window.speechSynthesis.cancel();
+  isSpeaking = false;
+  currentTabId = tabId;
+
+  const tabNameMap = {
+    mapa:'🗺 Mapa de Procesos', organig:'🏢 Organigrama', bpm:'🔄 BPM',
+    lean:'⚡ Lean Six Sigma', pmi:'🏗 PMI / PMBOK', bsc:'🎛 Balanced Scorecard',
+    autoIA:'🤖 IA & Automatización', finanzas:'💰 Análisis Financiero',
+    toolmap:'🔗 Herramientas', moscow:'🎯 MoSCoW', rice:'📊 RICE',
+    kano:'🔮 Kano', stories:'📝 User Stories', mvp:'🚀 MVP',
+    roadmap:'🗓 Roadmap', kpis:'📈 KPIs', matriz:'📋 Requisitos',
+    riesgos:'⚠ Riesgos', backlog:'📦 Épicas & Backlog'
+  };
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'es-ES';
+  utterance.rate = 0.86;
+  utterance.pitch = 0.82;
+  utterance.volume = 1;
+
+  const setVoice = () => {
+    const voice = getSpanishVoice();
+    if (voice) utterance.voice = voice;
+  };
+  if (window.speechSynthesis.getVoices().length > 0) { setVoice(); }
+  else { window.speechSynthesis.onvoiceschanged = setVoice; }
+
+  utterance.onstart = () => {
+    isSpeaking = true;
+    updateUI(true, tabNameMap[tabId] || tabId);
+    updateBtnState(tabId, true);
+  };
+  utterance.onpause = () => {
+    isSpeaking = false;
+    const pb = document.getElementById('rt-play-btn');
+    if (pb) pb.textContent = '▶';
+    const dot = document.getElementById('rt-dot');
+    if (dot) dot.classList.add('paused');
+    const st = document.getElementById('rt-status');
+    if (st) st.textContent = 'Pausado — pulsa ▶ para continuar';
+  };
+  utterance.onresume = () => {
+    isSpeaking = true;
+    const pb = document.getElementById('rt-play-btn');
+    if (pb) pb.textContent = '⏸';
+    const dot = document.getElementById('rt-dot');
+    if (dot) dot.classList.remove('paused');
+    const st = document.getElementById('rt-status');
+    if (st) st.textContent = 'Reproduciendo...';
+  };
+  utterance.onend = () => {
+    isSpeaking = false;
+    currentUtterance = null;
+    updateUI(false, tabNameMap[tabId]);
+    updateBtnState(tabId, false);
+  };
+  utterance.onerror = () => {
+    isSpeaking = false;
+    const st = document.getElementById('rt-status');
+    if (st) st.textContent = '⚠ Error — intenta con Chrome';
+  };
+
+  const totalChars = text.length;
+  let charsRead = 0;
+  const progressInterval = setInterval(() => {
+    if (!isSpeaking) { clearInterval(progressInterval); return; }
+    charsRead = Math.min(charsRead + 80, totalChars);
+    const pct = Math.round((charsRead / totalChars) * 100);
+    const el = document.getElementById('rt-pct');
+    if (el) el.textContent = pct + '%';
+    if (pct >= 100) clearInterval(progressInterval);
+  }, 300);
+
+  currentUtterance = utterance;
+  window.speechSynthesis.speak(utterance);
+}
+
+function toggleAudio() {
+  if (!('speechSynthesis' in window)) return;
+  if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); }
+  else if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); }
+  else if (currentTabId) { playTab(currentTabId); }
+}
+
+function stopAudio() {
+  window.speechSynthesis.cancel();
+  isSpeaking = false;
+  currentUtterance = null;
+  if (currentTabId) updateBtnState(currentTabId, false);
+  currentTabId = null;
+  const bar = document.getElementById('rt-audio-bar');
+  if (bar) bar.classList.remove('visible');
+  const pct = document.getElementById('rt-pct');
+  if (pct) pct.textContent = '0%';
+}
+
+function updateUI(playing, title) {
+  const bar = document.getElementById('rt-audio-bar');
+  const btn = document.getElementById('rt-play-btn');
+  const dot = document.getElementById('rt-dot');
+  const status = document.getElementById('rt-status');
+  const titleEl = document.getElementById('rt-title');
+  if (bar) bar.classList.add('visible');
+  if (btn) btn.textContent = playing ? '⏸' : '▶';
+  if (dot) { playing ? dot.classList.remove('paused') : dot.classList.add('paused'); }
+  if (titleEl) titleEl.textContent = title || '';
+  if (status) status.textContent = playing ? 'Reproduciendo · Mejor experiencia en Chrome' : 'Terminado';
+}
+
+function updateBtnState(tabId, playing) {
+  document.querySelectorAll('.tab-audio-btn').forEach(b => b.classList.remove('playing'));
+  const btn = document.getElementById('btn-' + tabId);
+  if (btn) {
+    if (playing) btn.classList.add('playing');
+    btn.innerHTML = playing
+      ? '⏸ Pausar<span class="voice-note">(voz IA)</span>'
+      : '🎧 Escuchar explicación<span class="voice-note">(voz IA)</span>';
+  }
+}
+
 // animate progress bars on scroll
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -3307,5 +4159,20 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:.3});
 document.querySelectorAll('.metrics-grid').forEach(g => observer.observe(g));
 </script>
+
+<!-- ── FLOATING AUDIO PLAYER ── -->
+<div class="audio-bar" id="rt-audio-bar">
+  <button class="audio-play-btn" id="rt-play-btn" onclick="toggleAudio()">▶</button>
+  <div class="audio-info">
+    <div class="audio-title" id="rt-title">Selecciona una sección y pulsa 🎧</div>
+    <div class="audio-status" id="rt-status">Listo para reproducir · Mejor en Chrome</div>
+  </div>
+  <div class="audio-progress">
+    <div class="audio-dot paused" id="rt-dot"></div>
+    <span style="font-size:.7rem;color:#64748b" id="rt-pct">0%</span>
+  </div>
+  <button class="audio-stop-btn" onclick="stopAudio()" title="Detener">■</button>
+</div>
+
 </body>
 </html>
