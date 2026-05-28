@@ -71,7 +71,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .card ul{padding-left:16px;margin-top:6px}
 
 /* ── CODE BLOCKS ── */
-.code{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;overflow-x:auto;margin:12px 0;position:relative}
+.code{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;overflow-x:auto;margin:12px 0;position:relative;white-space:pre-wrap;word-break:break-all}
 .code .kw{color:#38bdf8}  /* keywords */
 .code .str{color:#86efac} /* strings */
 .code .cm{color:#64748b}  /* comments */
@@ -154,6 +154,83 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tab-audio-btn.playing{background:rgba(56,189,248,.25);animation:pulse-border 2s infinite}
 @keyframes pulse-border{0%,100%{border-color:rgba(56,189,248,.4)}50%{border-color:var(--sky)}}
 .voice-note{font-size:.7rem;color:#475569;margin-left:8px;font-style:italic}
+
+
+/* ── LIGHTBOX ── */
+.zoom-wrap{position:relative;cursor:zoom-in}
+.zoom-hint{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);color:#fff;font-size:.68rem;font-weight:700;padding:4px 12px;border-radius:20px;pointer-events:none;letter-spacing:.04em;transition:.2s}
+.zoom-wrap:hover .zoom-hint{background:rgba(56,189,248,.8)}
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.lb-overlay.open{display:flex}
+.lb-close{position:fixed;top:16px;right:20px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.3rem;cursor:pointer;z-index:10001;box-shadow:0 2px 12px rgba(0,0,0,.4);transition:.2s;display:flex;align-items:center;justify-content:center}
+.lb-close:hover{background:#f1f5f9;transform:scale(1.1)}
+.lb-box{background:#0f172a;border-radius:14px;overflow:hidden;max-width:1200px;width:100%;margin-top:60px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb-box svg{width:100%;height:auto;display:block}
+.lb-caption{text-align:center;color:#64748b;font-size:.75rem;margin-top:10px;padding-bottom:4px}
+
+/* ── REQ CARD (IEEE 830) ── */
+.req-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.09);margin:14px 0}
+.req-hdr{background:#1e293b;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.req-id-badge{background:#3b82f6;color:#fff;font-family:monospace;font-weight:900;font-size:.95rem;padding:4px 14px;border-radius:6px;letter-spacing:.04em}
+.req-name-text{color:#e2e8f0;font-weight:700;font-size:.92rem;flex:1}
+.req-sec{padding:14px 20px}
+.req-sec+.req-sec{border-top:1px solid #f1f5f9}
+.req-desc{border-left:4px solid #3b82f6;background:#f8faff}
+.req-ac{border-left:4px solid #22c55e;background:#f0fdf4}
+.req-restrict{border-left:4px solid #ef4444;background:#fef2f2}
+.req-deps{border-left:4px solid #8b5cf6;background:#faf5ff}
+.req-sec-lbl{font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.req-desc .req-sec-lbl{color:#1d4ed8}
+.req-ac .req-sec-lbl{color:#15803d}
+.req-restrict .req-sec-lbl{color:#dc2626}
+.req-deps .req-sec-lbl{color:#7c3aed}
+.bdd-row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;font-size:.84rem;color:#374151;line-height:1.5}
+.bdd-kw{font-family:monospace;font-weight:900;padding:2px 9px;border-radius:4px;font-size:.73rem;flex-shrink:0;letter-spacing:.04em}
+.bdd-dado{background:#dbeafe;color:#1d4ed8}
+.bdd-cuando{background:#fef9c3;color:#92400e}
+.bdd-entonces{background:#dcfce7;color:#15803d}
+.bdd-list{margin:8px 0 0 72px;padding:0;list-style:none}
+.bdd-list li{font-size:.82rem;color:#374151;padding:3px 0;display:flex;align-items:center;gap:7px;line-height:1.4}
+.restrict-grid{display:flex;flex-direction:column;gap:7px}
+.restrict-item{display:flex;align-items:center;gap:10px;font-size:.83rem;color:#374151;background:#fff;border-radius:7px;padding:8px 14px;border:1px solid #fecaca}
+.ri-icon{font-size:1.1rem;flex-shrink:0}
+.dep-chip{display:inline-block;background:#f3e8ff;color:#6d28d9;border:1px solid #c4b5fd;border-radius:6px;font-family:monospace;font-size:.77rem;padding:4px 12px;margin:3px;font-weight:700}
+
+/* ── ENDPOINT CARD ── */
+.ep-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.09);margin:14px 0}
+.ep-bar{background:#0f172a;padding:14px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.meth-get{background:#22c55e;color:#fff;font-family:monospace;font-weight:900;font-size:.88rem;padding:5px 16px;border-radius:6px;flex-shrink:0;letter-spacing:.05em}
+.ep-url{font-family:monospace;font-size:.9rem;color:#e2e8f0;flex:1}
+.path-param{color:#f59e0b;background:rgba(245,158,11,.18);padding:1px 5px;border-radius:3px}
+.ep-ver{background:#334155;color:#94a3b8;font-family:monospace;font-size:.7rem;padding:3px 8px;border-radius:4px;flex-shrink:0}
+.ep-auth{background:#1d4ed8;color:#bfdbfe;font-size:.7rem;font-weight:700;padding:3px 12px;border-radius:4px;flex-shrink:0}
+.ep-sec{padding:14px 20px;border-top:1px solid #f1f5f9}
+.ep-sec-lbl{font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#475569;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.ep-params-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.ep-params-grid{grid-template-columns:1fr}}
+.ep-param-box{background:#f8fafc;border-radius:8px;padding:12px}
+.ep-param-box-lbl{font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#64748b;margin-bottom:8px}
+.ep-p-row{display:grid;grid-template-columns:110px 50px 70px 1fr;gap:6px;align-items:center;font-size:.78rem;padding:4px 0;border-bottom:1px solid #e2e8f0}
+.ep-p-row:last-child{border-bottom:none}
+.ep-p-name{font-family:monospace;color:#1d4ed8;font-weight:700}
+.ep-p-type{color:#64748b}
+.req-tag{background:#fee2e2;color:#dc2626;border-radius:4px;padding:1px 6px;font-size:.65rem;font-weight:700}
+.opt-tag{background:#f1f5f9;color:#64748b;border-radius:4px;padding:1px 6px;font-size:.65rem;font-weight:700}
+.ep-p-desc{color:#374151}
+.ep-errors-grid{display:flex;flex-direction:column;gap:8px}
+.ep-err-row{display:flex;align-items:center;gap:12px;font-size:.82rem;color:#374151;padding:6px 0;border-bottom:1px solid #f1f5f9}
+.ep-err-row:last-child{border-bottom:none}
+.ep-err-msg{color:#64748b;margin-left:auto;font-size:.78rem;font-style:italic}
+
+/* ── GIT STEP CARDS ── */
+.git-flow-steps{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.gs{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.gs-hdr{background:#1e293b;padding:9px 16px;display:flex;align-items:center;gap:10px}
+.gs-num{background:#38bdf8;color:#0f172a;border-radius:50%;width:24px;height:24px;font-size:.78rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gs-title{color:#e2e8f0;font-weight:700;font-size:.85rem;flex:1}
+.gs-tag{color:#64748b;font-size:.72rem;font-family:monospace}
+.gs-body{padding:12px 16px}
+.gs-desc{font-size:.8rem;color:#475569;margin-bottom:8px;line-height:1.5}
 
 </style>
 </head>
@@ -684,34 +761,54 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   <div class="uml-box">
     <div class="uml-title">📑 Especificación de Requisito — Formato IEEE 830 simplificado</div>
-    <div class="code-label">RF-001 — Portal de Autogestión Corporativa</div>
-    <div class="code">
-<span class="cm">/* Identificación */</span>
-ID:          RF-001
-Nombre:      Consulta de consumo por línea
-Prioridad:   ALTA  |  Estado: Aprobado  |  Versión: 1.2
-
-<span class="cm">/* Descripción */</span>
-El sistema <span class="kw">DEBE</span> permitir al Administrador Corporativo
-consultar el consumo de datos (MB/GB), minutos y SMS
-de cada línea activa de su empresa en tiempo real.
-
-<span class="cm">/* Criterios de Aceptación */</span>
-<span class="str">DADO</span> que el usuario está autenticado como Admin Corporativo
-<span class="str">CUANDO</span> accede a "Mis Líneas" y selecciona una línea
-<span class="str">ENTONCES</span> el sistema muestra:
-  - Consumo actual en MB/GB con barra de progreso
-  - Porcentaje usado vs. plan contratado
-  - Datos actualizados con timestamp (≤15 min de desfase)
-  - Alerta visual si consumo ≥ 80%
-
-<span class="cm">/* Restricciones */</span>
-- Tiempo de respuesta: &lt; 2 segundos
-- Solo visible para líneas de SU empresa (RUC validado)
-- No aplica para líneas suspendidas (mostrar estado)
-
-<span class="cm">/* Dependencias */</span>
-Depende de: RF-002 (Autenticación) · API-Comsatel-Consumo-v2
+    <div class="req-card">
+      <div class="req-hdr">
+        <span class="req-id-badge">RF-001</span>
+        <span class="req-name-text">Consulta de consumo por línea</span>
+        <span class="chip chip-red" style="font-size:.7rem;padding:3px 9px">🔥 ALTA</span>
+        <span class="chip chip-green" style="font-size:.7rem;padding:3px 9px">✅ Aprobado</span>
+        <span class="chip chip-slate" style="font-size:.7rem;padding:3px 9px">v1.2</span>
+      </div>
+      <div class="req-sec req-desc">
+        <div class="req-sec-lbl">📋 Descripción</div>
+        <p style="font-size:.85rem;color:#374151;line-height:1.65">
+          El sistema <strong style="color:#1d4ed8;background:#dbeafe;padding:1px 6px;border-radius:3px">DEBE</strong> permitir al <strong>Administrador Corporativo</strong> consultar el consumo de datos (MB/GB), minutos y SMS de cada línea activa de su empresa <strong>en tiempo real</strong>.
+        </p>
+      </div>
+      <div class="req-sec req-ac">
+        <div class="req-sec-lbl">✅ Criterios de Aceptación — BDD</div>
+        <div class="bdd-row">
+          <span class="bdd-kw bdd-dado">DADO</span>
+          <span>que el usuario está autenticado como Admin Corporativo</span>
+        </div>
+        <div class="bdd-row">
+          <span class="bdd-kw bdd-cuando">CUANDO</span>
+          <span>accede a "Mis Líneas" y selecciona una línea</span>
+        </div>
+        <div class="bdd-row">
+          <span class="bdd-kw bdd-entonces">ENTONCES</span>
+          <span>el sistema muestra:</span>
+        </div>
+        <ul class="bdd-list">
+          <li>✅ Consumo actual en MB/GB con <strong>barra de progreso</strong></li>
+          <li>✅ Porcentaje usado vs. plan contratado</li>
+          <li>✅ Datos actualizados con timestamp <strong>(≤15 min de desfase)</strong></li>
+          <li>⚠️ <strong>Alerta visual</strong> si consumo ≥ 80%</li>
+        </ul>
+      </div>
+      <div class="req-sec req-restrict">
+        <div class="req-sec-lbl">🚫 Restricciones</div>
+        <div class="restrict-grid">
+          <div class="restrict-item"><span class="ri-icon">⏱</span><span>Tiempo de respuesta: <strong>&lt;2 segundos</strong></span></div>
+          <div class="restrict-item"><span class="ri-icon">🔒</span><span>Solo visible para líneas de SU empresa (<strong>RUC validado</strong>)</span></div>
+          <div class="restrict-item"><span class="ri-icon">⛔</span><span>No aplica para líneas suspendidas (mostrar estado "SUSPENDIDA")</span></div>
+        </div>
+      </div>
+      <div class="req-sec req-deps">
+        <div class="req-sec-lbl">🔗 Dependencias</div>
+        <span class="dep-chip">RF-002 — Autenticación</span>
+        <span class="dep-chip">API-Comsatel-Consumo-v2</span>
+      </div>
     </div>
   </div>
 
@@ -783,45 +880,88 @@ Depende de: RF-002 (Autenticación) · API-Comsatel-Consumo-v2
     </table>
   </div>
 
-  <div class="uml-box">
-    <div class="uml-title">📝 Especificación de Endpoint — Lo que entregas al equipo técnico</div>
-    <div class="code-label">Ejemplo: GET /api/v1/empresas/{ruc}/lineas</div>
-    <div class="code">
-<span class="cm">────── ENDPOINT SPEC ──────────────────────────────────────</span>
-Método:   <span class="kw">GET</span>
-URL:      /api/v1/empresas/<span class="str">{ruc}</span>/lineas
-Auth:     Bearer JWT  (header: Authorization: Bearer &lt;token&gt;)
-Versión:  v1
-
-<span class="cm">── Path Params ────────────────────────────────────────────</span>
-ruc         String  required  RUC de la empresa (11 dígitos)
-
-<span class="cm">── Query Params ───────────────────────────────────────────</span>
-estado      String  optional  activa | suspendida | todas
-pagina      Int     optional  default: 1
-porPagina   Int     optional  default: 20, max: 100
-
-<span class="cm">── Response 200 OK ────────────────────────────────────────</span>
-{
+  <div class="ep-card">
+    <!-- Top bar -->
+    <div class="ep-bar">
+      <span class="meth-get">GET</span>
+      <code class="ep-url">/api/v1/empresas/<span class="path-param">{ruc}</span>/lineas</code>
+      <span class="ep-ver">v1</span>
+      <span class="ep-auth">🔐 Bearer JWT</span>
+    </div>
+    <!-- Params -->
+    <div class="ep-sec">
+      <div class="ep-params-grid">
+        <div class="ep-param-box">
+          <div class="ep-param-box-lbl">📌 Path Parameters</div>
+          <div class="ep-p-row">
+            <span class="ep-p-name">ruc</span>
+            <span class="ep-p-type">String</span>
+            <span class="req-tag">required</span>
+            <span class="ep-p-desc">RUC de la empresa (11 dígitos)</span>
+          </div>
+        </div>
+        <div class="ep-param-box">
+          <div class="ep-param-box-lbl">🔍 Query Parameters</div>
+          <div class="ep-p-row">
+            <span class="ep-p-name">estado</span>
+            <span class="ep-p-type">String</span>
+            <span class="opt-tag">optional</span>
+            <span class="ep-p-desc">activa | suspendida | todas</span>
+          </div>
+          <div class="ep-p-row">
+            <span class="ep-p-name">pagina</span>
+            <span class="ep-p-type">Int</span>
+            <span class="opt-tag">optional</span>
+            <span class="ep-p-desc">default: 1</span>
+          </div>
+          <div class="ep-p-row">
+            <span class="ep-p-name">porPagina</span>
+            <span class="ep-p-type">Int</span>
+            <span class="opt-tag">optional</span>
+            <span class="ep-p-desc">default: 20, max: 100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Response -->
+    <div class="ep-sec" style="border-top:1px solid #f1f5f9">
+      <div class="ep-sec-lbl"><span class="chip chip-green" style="font-size:.65rem">200 OK</span> Response Body</div>
+      <div class="code" style="white-space:pre;font-size:.77rem">{
   <span class="str">"total"</span>: <span class="num">48</span>,
   <span class="str">"pagina"</span>: <span class="num">1</span>,
   <span class="str">"lineas"</span>: [
     {
-      <span class="str">"numero"</span>:   <span class="str">"987654321"</span>,
-      <span class="str">"plan"</span>:     <span class="str">"Empresarial 10GB"</span>,
-      <span class="str">"estado"</span>:   <span class="str">"activa"</span>,
-      <span class="str">"consumoMB"</span>: <span class="num">7680</span>,
-      <span class="str">"limiteMB"</span>:  <span class="num">10240</span>,
-      <span class="str">"porcentaje"</span>:<span class="num">75.0</span>,
+      <span class="str">"numero"</span>:              <span class="str">"987654321"</span>,
+      <span class="str">"plan"</span>:                <span class="str">"Empresarial 10GB"</span>,
+      <span class="str">"estado"</span>:              <span class="str">"activa"</span>,
+      <span class="str">"consumoMB"</span>:           <span class="num">7680</span>,
+      <span class="str">"limiteMB"</span>:            <span class="num">10240</span>,
+      <span class="str">"porcentaje"</span>:          <span class="num">75.0</span>,
       <span class="str">"ultimaActualizacion"</span>: <span class="str">"2026-05-27T14:30:00Z"</span>
     }
   ]
-}
-
-<span class="cm">── Errores posibles ───────────────────────────────────────</span>
-401 → Token expirado → Redirigir a login
-403 → RUC no corresponde al usuario → "Sin acceso"
-404 → Empresa no encontrada → "RUC no registrado"
+}</div>
+    </div>
+    <!-- Errors -->
+    <div class="ep-sec" style="border-top:1px solid #f1f5f9">
+      <div class="ep-sec-lbl">⚠️ Errores posibles</div>
+      <div class="ep-errors-grid">
+        <div class="ep-err-row">
+          <span class="chip chip-amber">401</span>
+          <span>Token expirado</span>
+          <span class="ep-err-msg">→ Redirigir a pantalla de login</span>
+        </div>
+        <div class="ep-err-row">
+          <span class="chip chip-red">403</span>
+          <span>RUC no corresponde al usuario autenticado</span>
+          <span class="ep-err-msg">→ Mostrar "Sin acceso"</span>
+        </div>
+        <div class="ep-err-row">
+          <span class="chip chip-red">404</span>
+          <span>Empresa no encontrada en el sistema</span>
+          <span class="ep-err-msg">→ Mostrar "RUC no registrado"</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1122,9 +1262,10 @@ porPagina   Int     optional  default: 20, max: 100
   <!-- 3 capas -->
   <div class="uml-box">
     <div class="uml-title">🏛 Arquitectura 3 Capas — La más común en empresa</div>
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:16px;align-items:start">
-      <div style="background:#0f172a;border-radius:12px;padding:16px;overflow:hidden">
-<svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+    <!-- Full-width SVG + zoom -->
+    <div class="zoom-wrap" onclick="openLB('lb-arch3tier')" style="background:#0f172a;border-radius:12px;padding:12px;overflow:hidden;margin-bottom:14px">
+      <span class="zoom-hint">🔍 Clic para ampliar</span>
+<svg id="lb-arch3tier" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
 <defs>
   <marker id="at-a" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#94a3b8"/></marker>
 </defs>
@@ -1192,16 +1333,13 @@ porPagina   Int     optional  default: 20, max: 100
 <text x="412" y="285" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Datos maestros y semilla</text>
 <text x="412" y="298" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">• Políticas de retención</text>
 </svg></div>
-      <div>
-        <p style="font-size:.83rem;color:#475569;margin-bottom:12px">El AF <strong>escribe requisitos</strong> para las 3 capas:</p>
-        <table class="tbl">
-          <tr><th>Capa</th><th>Qué especifica el AF</th></tr>
-          <tr><td><strong>Frontend</strong></td><td>Wireframes, validaciones de campo, mensajes de error, accesibilidad</td></tr>
-          <tr><td><strong>Backend</strong></td><td>Reglas de negocio, flujos, permisos, APIs, casos de error</td></tr>
-          <tr><td><strong>BD</strong></td><td>Entidades, relaciones, restricciones, datos maestros</td></tr>
-        </table>
-      </div>
-    </div>
+    <p style="font-size:.82rem;color:#475569;margin-bottom:10px">El AF <strong>escribe requisitos</strong> para las 3 capas — cada capa requiere un tipo diferente de especificación:</p>
+    <table class="tbl">
+      <tr><th>Capa</th><th>Tecnologías</th><th>Qué especifica el AF</th></tr>
+      <tr><td><strong style="color:#1d4ed8">🖥 Presentación</strong></td><td>React · Flutter · HTML</td><td>Wireframes, validaciones de campo, mensajes de error, accesibilidad</td></tr>
+      <tr><td><strong style="color:#15803d">⚙️ Negocio</strong></td><td>Node.js · .NET · Python</td><td>Reglas de negocio, flujos, permisos, APIs, casos de error y fallbacks</td></tr>
+      <tr><td><strong style="color:#7c3aed">🗄 Datos</strong></td><td>SQL Server · Oracle · PostgreSQL</td><td>Entidades, relaciones, restricciones, datos maestros y retención</td></tr>
+    </table>
   </div>
 
   <!-- Monolito vs Microservicios -->
@@ -1224,8 +1362,9 @@ porPagina   Int     optional  default: 20, max: 100
 
   <div class="uml-box" style="margin-top:14px">
     <div class="uml-title">🏛 Visual: Monolito vs ⚡ Microservicios</div>
-    <div style="background:#0f172a;border-radius:10px;overflow:hidden;padding:4px">
-    <svg viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+    <div class="zoom-wrap" onclick="openLB('lb-mono-micro')" style="background:#0f172a;border-radius:10px;overflow:hidden;padding:4px">
+      <span class="zoom-hint">🔍 Clic para ampliar</span>
+    <svg id="lb-mono-micro" viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
     <rect width="680" height="210" fill="#0f172a"/>
     <!-- MONOLITO title -->
     <text x="160" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#f59e0b" font-weight="800">🏛 MONOLITO</text>
@@ -1751,34 +1890,106 @@ porPagina   Int     optional  default: 20, max: 100
   </div>
 
   <div class="uml-box">
-    <div class="uml-title">⌨️ Comandos Git que el AF debe conocer</div>
-    <div class="code">
-<span class="sql-cm"># Clonar el repositorio del proyecto</span>
+    <div class="uml-title">⌨️ Flujo de trabajo Git del AF — Paso a Paso</div>
+    <div class="git-flow-steps">
+
+      <div class="gs">
+        <div class="gs-hdr">
+          <span class="gs-num">1</span>
+          <span class="gs-title">🔽 Obtener el repositorio del proyecto</span>
+          <span class="gs-tag">solo la primera vez</span>
+        </div>
+        <div class="gs-body">
+          <p class="gs-desc">Clona el repositorio en tu máquina. Solo se hace una vez por proyecto.</p>
+          <div class="code" style="white-space:pre;font-size:.78rem"><span class="sql-cm"># Clonar el repositorio completo</span>
 git clone https://github.com/empresa/portal-comsatel.git
+cd portal-comsatel</div>
+        </div>
+      </div>
 
-<span class="sql-cm"># Ver el estado de los cambios</span>
-git status
-
-<span class="sql-cm"># Actualizar tu copia local con los últimos cambios</span>
+      <div class="gs">
+        <div class="gs-hdr">
+          <span class="gs-num">2</span>
+          <span class="gs-title">🔄 Actualizar tu copia local</span>
+          <span class="gs-tag">antes de empezar a trabajar</span>
+        </div>
+        <div class="gs-body">
+          <p class="gs-desc">Sincroniza con los últimos cambios del equipo. Hazlo <strong>siempre</strong> antes de editar archivos.</p>
+          <div class="code" style="white-space:pre;font-size:.78rem"><span class="sql-cm"># Traer cambios de la rama develop (la más actualizada)</span>
 git pull origin develop
 
-<span class="sql-cm"># Crear rama para documentación</span>
+<span class="sql-cm"># Ver el estado de tus archivos</span>
+git status</div>
+        </div>
+      </div>
+
+      <div class="gs">
+        <div class="gs-hdr">
+          <span class="gs-num">3</span>
+          <span class="gs-title">🌿 Crear una rama para tu documentación</span>
+          <span class="gs-tag">nunca trabajes en main o develop directamente</span>
+        </div>
+        <div class="gs-body">
+          <p class="gs-desc">Crea tu propia rama para no interferir con el trabajo del equipo de desarrollo.</p>
+          <div class="code" style="white-space:pre;font-size:.78rem"><span class="sql-cm"># Crear rama y moverse a ella (-b = branch nuevo)</span>
 git checkout -b <span class="kw">docs/</span>requisitos-modulo-lineas
 
-<span class="sql-cm"># Agregar archivos modificados al commit</span>
+<span class="sql-cm"># Verificar en qué rama estás</span>
+git branch</div>
+        </div>
+      </div>
+
+      <div class="gs">
+        <div class="gs-hdr">
+          <span class="gs-num">4</span>
+          <span class="gs-title">💾 Guardar tus cambios (commit)</span>
+          <span class="gs-tag">al terminar de editar</span>
+        </div>
+        <div class="gs-body">
+          <p class="gs-desc">Primero <em>agrega</em> los archivos modificados al staging, luego <em>guarda</em> con un mensaje descriptivo.</p>
+          <div class="code" style="white-space:pre;font-size:.78rem"><span class="sql-cm"># Agregar el archivo modificado</span>
 git add docs/RF-001-consulta-consumo.md
 
-<span class="sql-cm"># Guardar los cambios con mensaje descriptivo</span>
-git commit -m <span class="str">"docs: actualiza criterios RF-001 según reunión 27-may"</span>
+<span class="sql-cm"># Guardar con mensaje claro (convención: tipo: descripción)</span>
+git commit -m <span class="str">"docs: actualiza criterios RF-001 según reunión 27-may"</span></div>
+        </div>
+      </div>
 
-<span class="sql-cm"># Subir la rama al servidor</span>
+      <div class="gs">
+        <div class="gs-hdr">
+          <span class="gs-num">5</span>
+          <span class="gs-title">📤 Subir al repositorio remoto</span>
+          <span class="gs-tag">para que el equipo vea tus cambios</span>
+        </div>
+        <div class="gs-body">
+          <p class="gs-desc">Sube tu rama al servidor (GitHub/GitLab/Azure DevOps) y crea un Pull Request para revisión.</p>
+          <div class="code" style="white-space:pre;font-size:.78rem"><span class="sql-cm"># Subir la rama al servidor</span>
 git push origin docs/requisitos-modulo-lineas
 
-<span class="sql-cm"># Ver el historial de cambios</span>
+<span class="sql-cm"># En GitHub/GitLab: crea un Pull Request desde esta rama</span>
+<span class="sql-cm"># → el equipo de dev revisa y aprueba los cambios</span></div>
+        </div>
+      </div>
+
+      <div class="gs">
+        <div class="gs-hdr">
+          <span class="gs-num">6</span>
+          <span class="gs-title">🔍 Inspeccionar el historial y cambios</span>
+          <span class="gs-tag">para auditoría y revisión</span>
+        </div>
+        <div class="gs-body">
+          <p class="gs-desc">Revisar el historial para entender qué cambió, cuándo y por quién — útil en revisiones de sprint y auditorías.</p>
+          <div class="code" style="white-space:pre;font-size:.78rem"><span class="sql-cm"># Ver historial resumido</span>
 git log --oneline -10
 
-<span class="sql-cm"># Ver qué cambió en un archivo</span>
+<span class="sql-cm"># Ver exactamente qué cambió en un archivo</span>
 git diff docs/RF-001.md
+
+<span class="sql-cm"># Ver quién cambió cada línea</span>
+git blame docs/RF-001.md</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1913,6 +2124,16 @@ git diff docs/RF-001.md
 <!-- /Q&A -->
 
 </div><!-- /wrap -->
+
+
+<!-- ── LIGHTBOX MODAL ── -->
+<div class="lb-overlay" id="lb-overlay" onclick="lbOutsideClick(event)">
+  <button class="lb-close" onclick="closeLB()" title="Cerrar">✕</button>
+  <div class="lb-box" id="lb-box" onclick="event.stopPropagation()">
+    <div id="lb-inner"></div>
+    <div class="lb-caption" id="lb-caption"></div>
+  </div>
+</div>
 
 <div class="footer">
   Marco Saldarriaga Medina · Analista Funcional Senior
@@ -2237,6 +2458,37 @@ function setTC(status, btn) {
   const msg = document.getElementById('tc-result-msg');
   if (msg) { msg.innerHTML = r.msg; msg.style.background=r.bg; msg.style.borderColor=r.bc; msg.style.color=r.cl; }
 }
+
+
+/* ── LIGHTBOX ── */
+function openLB(svgId) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const inner = document.getElementById('lb-inner');
+  const caption = document.getElementById('lb-caption');
+  // Clone the SVG so we can display it at full size
+  const clone = svg.cloneNode(true);
+  clone.removeAttribute('id');
+  clone.style.width = '100%';
+  clone.style.height = 'auto';
+  inner.innerHTML = '';
+  inner.appendChild(clone);
+  const titles = {
+    'lb-arch3tier': '🏛 Arquitectura 3 Capas — Presentación · Lógica · Datos',
+    'lb-mono-micro': '⚖️ Monolito vs Microservicios — Comparación visual'
+  };
+  caption.textContent = titles[svgId] || '';
+  document.getElementById('lb-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() {
+  document.getElementById('lb-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbOutsideClick(e) {
+  if (e.target === document.getElementById('lb-overlay')) closeLB();
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLB(); });
 
 </script>
 
