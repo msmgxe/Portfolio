@@ -6,12 +6,13 @@
 <title>Repaso Técnico — Entrevista Jefe de Desarrollo | Marco Saldarriaga</title>
 <style>
 :root{
-  --navy:#0f172a;--blue:#1d4ed8;--sky:#38bdf8;--slate:#64748b;
-  --green:#22c55e;--amber:#f59e0b;--red:#ef4444;--purple:#a855f7;
-  --orange:#f97316;--teal:#14b8a6;--bg:#f1f5f9;--white:#ffffff;--border:#e2e8f0;
+  --navy:#0f1f38;--blue:#2563eb;--sky:#0284c7;--slate:#5b7491;
+  --green:#15803d;--amber:#b45309;--red:#b91c1c;--purple:#6d28d9;
+  --orange:#c2410c;--teal:#0d9488;--bg:#f4f6fb;--white:#ffffff;--border:#dce3ef;
+  --text:#1e2a3d;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:#1e293b;font-size:15px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.66}
 
 /* ── HERO ── */
 .hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#1d4ed8 100%);padding:28px 20px 20px;text-align:center;position:relative;overflow:hidden}
@@ -28,7 +29,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .badge-purple{background:#f3e8ff;color:#7e22ce}
 
 /* ── COUNTDOWN ── */
-.countdown{background:#dc2626;color:#fff;text-align:center;padding:10px;font-weight:700;font-size:.85rem;letter-spacing:.05em}
+.countdown{background:linear-gradient(135deg,#0f1f38 0%,#1e3a5f 100%);color:#93c5fd;text-align:center;padding:10px;font-weight:700;font-size:.85rem;letter-spacing:.05em;border-bottom:1px solid #1d4ed8}
 .countdown span{font-size:1.1rem;margin:0 4px}
 
 /* ── NAV DESKTOP ── */
@@ -137,27 +138,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .sec.on{display:block}
 
 /* ── SECTION HEADER ── */
-.sec-hdr{margin-bottom:20px;padding:18px 20px;background:#fff;border-radius:12px;border-left:5px solid var(--blue);box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.sec-hdr h2{font-size:1.4rem;font-weight:800;color:var(--navy)}
+.sec-hdr{margin-bottom:20px;padding:18px 20px;background:linear-gradient(135deg,#fff 60%,#f4f7ff 100%);border-radius:12px;border-left:5px solid var(--blue);box-shadow:0 2px 8px rgba(15,31,56,.07)}
+.sec-hdr h2{font-size:1.4rem;font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .sec-hdr p{color:var(--slate);margin-top:4px;font-size:.88rem}
-.entrevista-tip{background:#fff7ed;border:1.5px solid #f97316;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
-.entrevista-tip strong{color:#ea580c}
-.alert-green{background:#f0fdf4;border:1.5px solid #22c55e;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
-.alert-green strong{color:#15803d}
-.alert-blue{background:#eff6ff;border:1.5px solid #3b82f6;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
-.alert-blue strong{color:#1d4ed8}
-.alert-red{background:#fef2f2;border:1.5px solid #ef4444;border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
-.alert-red strong{color:#dc2626}
+.entrevista-tip{background:#fff8f0;border:1.5px solid var(--orange);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.entrevista-tip strong{color:var(--orange)}
+.alert-green{background:#f0fdf4;border:1.5px solid var(--green);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.alert-green strong{color:var(--green)}
+.alert-blue{background:#eff6ff;border:1.5px solid var(--blue);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.alert-blue strong{color:var(--blue)}
+.alert-red{background:#fef2f2;border:1.5px solid var(--red);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.85rem}
+.alert-red strong{color:var(--red)}
 
 /* ── CARDS ── */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:16px 0}
-.card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-top:4px solid}
+.card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(15,31,56,.08);border:1px solid var(--border);border-top:4px solid}
 .card h4{font-size:.95rem;font-weight:800;margin-bottom:8px}
 .card p,.card li{font-size:.82rem;color:#475569;line-height:1.5}
 .card ul{padding-left:16px;margin-top:6px}
 
 /* ── CODE BLOCKS ── */
-.code{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;overflow-x:auto;margin:12px 0;position:relative;white-space:pre-wrap;word-break:break-all}
+.code{background:#111827;color:#e2e8f0;border-radius:10px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;overflow-x:auto;margin:12px 0;position:relative;white-space:pre-wrap;word-break:break-word}
 .code .kw{color:#38bdf8}  /* keywords */
 .code .str{color:#86efac} /* strings */
 .code .cm{color:#64748b}  /* comments */
@@ -168,7 +169,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 /* ── TABLES ── */
 .tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:14px 0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.tbl th{background:#1e293b;color:#e2e8f0;padding:10px 12px;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+.tbl th{background:var(--navy);color:#e2e8f0;padding:10px 12px;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
 .tbl td{padding:9px 12px;border-bottom:1px solid #f1f5f9;vertical-align:top}
 .tbl tr:last-child td{border-bottom:none}
 .tbl tr:nth-child(even) td{background:#f8fafc}
@@ -181,7 +182,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .chip-slate{background:#f1f5f9;color:#475569}
 
 /* ── UML Visual ── */
-.uml-box{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.07);margin:12px 0}
+.uml-box{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(15,31,56,.08);border:1px solid var(--border);margin:12px 0}
 .uml-title{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:10px}
 .uml-diagram{background:#f8fafc;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.8;color:#1e293b;overflow-x:auto;white-space:pre;border:1px solid #e2e8f0}
 

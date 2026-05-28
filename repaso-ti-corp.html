@@ -7,12 +7,12 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0f172a;--blue:#1d4ed8;--sky:#38bdf8;--slate:#64748b;
-  --green:#22c55e;--amber:#f59e0b;--red:#ef4444;--purple:#a855f7;
-  --orange:#f97316;--teal:#14b8a6;
-  --bg:#f8f7f4;--white:#ffffff;--border:#e2e8f0;
+  --navy:#0f1f38;--blue:#2563eb;--sky:#0284c7;--slate:#5b7491;
+  --green:#15803d;--amber:#b45309;--red:#b91c1c;--purple:#6d28d9;
+  --orange:#c2410c;--teal:#0d9488;
+  --bg:#f4f6fb;--white:#ffffff;--border:#dce3ef;--text:#1e2a3d;
 }
-body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--navy);font-size:15px;line-height:1.6}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.66}
 
 /* ── HEADER ── */
 .hdr{background:var(--navy);color:#f8fafc;padding:18px 16px 14px;position:sticky;top:0;z-index:200;box-shadow:0 3px 12px rgba(0,0,0,.4)}
@@ -48,12 +48,12 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:v
 .sec{display:none}.sec.on{display:block}
 
 /* ── SECTION HEADER ── */
-.sec-hdr{margin-bottom:24px}
-.sec-hdr h2{font-size:1.5rem;font-weight:800;color:var(--navy)}
+.sec-hdr{margin-bottom:24px;padding:16px 0 8px}
+.sec-hdr h2{font-size:1.5rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2}
 .sec-hdr p{color:var(--slate);margin-top:4px;font-size:.9rem}
 
 /* ── CARD ── */
-.card{background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:22px;overflow:hidden}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:22px;overflow:hidden;box-shadow:0 2px 10px rgba(15,31,56,.06)}
 .card-hdr{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
 .card-hdr h3{font-size:1rem;font-weight:700;color:var(--navy)}
 .card-hdr p{font-size:.8rem;color:var(--slate);margin-top:2px}
@@ -255,6 +255,58 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
   .pstep-num{width:60px;height:60px;font-size:.65rem}
   .toolmap-head,.toolmap-row{font-size:.62rem}
 }
+
+/* ── HAMBURGER BAR (mobile) ── */
+.mob-bar{display:none;background:#0f1f38;position:sticky;top:0;z-index:300;height:56px;align-items:center;padding:0 16px;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.mob-bar-inner{flex:1;min-width:0}
+.mob-bar-cat{font-size:.6rem;color:#5b7491;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1}
+.mob-bar-cur{color:#e2e8f0;font-size:.92rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.hbg{background:none;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;justify-content:center;gap:5px;flex-shrink:0;border-radius:8px;transition:background .2s}
+.hbg:hover{background:rgba(255,255,255,.08)}
+.hbg span{display:block;width:22px;height:2px;background:#e2e8f0;border-radius:2px;transition:transform .3s,opacity .3s}
+.hbg.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hbg.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;backdrop-filter:blur(2px)}
+.mob-overlay.open{display:block}
+.mob-drawer{position:fixed;top:0;left:0;width:82%;max-width:300px;height:100dvh;height:100vh;background:#fff;z-index:500;transform:translateX(-105%);transition:transform .28s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column;box-shadow:6px 0 24px rgba(0,0,0,.25)}
+.mob-drawer.open{transform:translateX(0)}
+.mob-drw-hdr{background:#0f1f38;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:1}
+.mob-drw-title{color:#e2e8f0;font-weight:800;font-size:1rem}
+.mob-drw-close{background:rgba(255,255,255,.1);border:none;color:#e2e8f0;font-size:1.1rem;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.mob-drw-close:hover{background:rgba(255,255,255,.2)}
+.mob-drw-cat{background:#192435;padding:9px 20px;font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#475569;border-top:1px solid #1e293b}
+.mob-drw-item{padding:13px 20px;border-bottom:1px solid #f1f5f9;font-size:.86rem;font-weight:600;color:#1e2a3d;cursor:pointer;display:flex;align-items:center;gap:12px;min-height:52px;transition:background .15s;-webkit-tap-highlight-color:rgba(37,99,235,.1)}
+.mob-drw-item:active{background:#e0efff}
+.mob-drw-item.active{background:#eff6ff;color:#2563eb;border-left:3px solid #2563eb;padding-left:17px}
+.mob-drw-item .di{font-size:1.15rem;flex-shrink:0}
+.mob-drw-item .ck{color:#2563eb;font-size:.8rem;margin-left:auto;opacity:0}
+.mob-drw-item.active .ck{opacity:1}
+
+/* ── MOBILE GLOBAL ── */
+@media(max-width:680px){
+  .nav{display:none !important}
+  .nav-mob{display:none !important}
+  .mob-bar{display:flex}
+  body{font-size:16px}
+  .wrap{padding:14px 12px 60px}
+  .hdr{padding:12px 14px}
+  .hdr h1{font-size:1rem}
+  .sec-hdr h2{font-size:1.25rem}
+  .sec-hdr{margin-bottom:16px}
+  .card-body{padding:14px}
+  .card-hdr{padding:12px 14px}
+  /* Tables scroll */
+  .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  /* Formula/code */
+  .formula{font-size:.78rem;padding:12px 14px}
+  .gh-box{font-size:.74rem;padding:10px 12px}
+  /* Step map */
+  .step-blocks{flex-direction:column}
+  /* Toolmap scroll */
+  .toolmap-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .toolmap-head,.toolmap-row{min-width:600px}
+}
 </style>
 </head>
 <body>
@@ -300,33 +352,66 @@ hr{border:none;border-top:1px solid var(--border);margin:18px 0}
   </div>
 </div>
 
-<!-- NAVIGATION — MÓVIL: select nativo con optgroups -->
-<div class="nav-mob" id="nav-mob">
-  <div class="nav-mob-label">📌 Selecciona una sección</div>
-  <select class="nav-sel" id="nav-select" onchange="showFromSelect(this)">
-    <optgroup label="🔬 Análisis Funcional &amp; Metodologías">
-      <option value="mapa">🗺 Mapa de Procesos del Análisis Funcional</option>
-      <option value="organig">🏢 Organigrama y Roles del Equipo</option>
-      <option value="bpm">🔄 BPM — Business Process Management</option>
-      <option value="lean">⚡ Lean Six Sigma — DMAIC</option>
-      <option value="pmi">🏗 Gestión de Proyectos — PMI / Ágil</option>
-      <option value="bsc">🎛 Balanced Scorecard — 4 Perspectivas</option>
-      <option value="autoIA">🤖 IA y Automatización de Procesos</option>
-      <option value="finanzas">💰 Análisis de Procesos Financieros</option>
-      <option value="toolmap">🔗 Mapa de Herramientas por Etapa</option>
-    </optgroup>
-    <optgroup label="🛠 Herramientas PO &amp; Entregables">
-      <option value="moscow">🎯 MoSCoW — Priorización</option>
-      <option value="rice">📊 RICE Scoring</option>
-      <option value="kano">🔮 Kano Model</option>
-      <option value="stories">📝 User Stories con Criterios de Aceptación</option>
-      <option value="mvp">🚀 MVP — Producto Mínimo Viable</option>
-      <option value="roadmap">🗓 Roadmap Q1–Q3 2026</option>
-      <option value="kpis">📈 KPIs y Métricas de Éxito</option>
-      <option value="matriz">📋 Matriz de Requerimientos</option>
-      <option value="riesgos">⚠️ Matriz de Riesgos del Proyecto</option>
-    </optgroup>
-  </select>
+<!-- ── HAMBURGER BAR (mobile) ── -->
+<div class="mob-bar" id="mob-bar">
+  <div class="mob-bar-inner">
+    <div class="mob-bar-cat">Sección actual</div>
+    <div class="mob-bar-cur" id="mob-cur">🗺 Mapa de Procesos</div>
+  </div>
+  <button class="hbg" id="hamburger" onclick="toggleMobMenu()" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- ── OVERLAY ── -->
+<div class="mob-overlay" id="mob-overlay" onclick="closeMobMenu()"></div>
+
+<!-- ── DRAWER ── -->
+<div class="mob-drawer" id="mob-drawer" role="navigation">
+  <div class="mob-drw-hdr">
+    <span class="mob-drw-title">📚 Secciones del Repaso</span>
+    <button class="mob-drw-close" onclick="closeMobMenu()">✕</button>
+  </div>
+
+  <div class="mob-drw-cat">🔬 Análisis Funcional &amp; Metodologías</div>
+  <div class="mob-drw-item active" id="mob-item-mapa"     onclick="mobShow('mapa')">
+    <span class="di">🗺</span><span>Mapa de Procesos AF</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-organig"  onclick="mobShow('organig')">
+    <span class="di">🏢</span><span>Organigrama y Roles</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-bpm"      onclick="mobShow('bpm')">
+    <span class="di">🔄</span><span>BPM — Gestión de Procesos</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-lean"     onclick="mobShow('lean')">
+    <span class="di">⚡</span><span>Lean Six Sigma</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-pmi"      onclick="mobShow('pmi')">
+    <span class="di">🏗</span><span>PMI / Ágil</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-bsc"      onclick="mobShow('bsc')">
+    <span class="di">🎛</span><span>Balanced Scorecard</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-autoIA"   onclick="mobShow('autoIA')">
+    <span class="di">🤖</span><span>IA &amp; Automatización</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-finanzas" onclick="mobShow('finanzas')">
+    <span class="di">💰</span><span>Análisis Financiero</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-toolmap"  onclick="mobShow('toolmap')">
+    <span class="di">🔗</span><span>Mapa de Herramientas</span><span class="ck">✓</span></div>
+
+  <div class="mob-drw-cat">🛠 Herramientas PO &amp; Entregables</div>
+  <div class="mob-drw-item" id="mob-item-moscow"   onclick="mobShow('moscow')">
+    <span class="di">🎯</span><span>MoSCoW</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-rice"     onclick="mobShow('rice')">
+    <span class="di">📊</span><span>RICE Scoring</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-kano"     onclick="mobShow('kano')">
+    <span class="di">🔮</span><span>Kano Model</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-stories"  onclick="mobShow('stories')">
+    <span class="di">📝</span><span>User Stories</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-mvp"      onclick="mobShow('mvp')">
+    <span class="di">🚀</span><span>MVP</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-roadmap"  onclick="mobShow('roadmap')">
+    <span class="di">🗓</span><span>Roadmap Q1–Q3</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-kpis"     onclick="mobShow('kpis')">
+    <span class="di">📈</span><span>KPIs &amp; Métricas</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-matriz"   onclick="mobShow('matriz')">
+    <span class="di">📋</span><span>Matriz de Requisitos</span><span class="ck">✓</span></div>
+  <div class="mob-drw-item" id="mob-item-riesgos"  onclick="mobShow('riesgos')">
+    <span class="di">⚠️</span><span>Matriz de Riesgos</span><span class="ck">✓</span></div>
 </div>
 <div class="wrap">
 
@@ -2731,22 +2816,58 @@ No es un cronograma — es una <span class="feq">declaración de intención estr
 
 <script>
 // ── TABS ──
+const MOB_TAB_NAMES = {
+  mapa:'🗺 Mapa de Procesos', organig:'🏢 Organigrama', bpm:'🔄 BPM',
+  lean:'⚡ Lean & Mejora', pmi:'📋 PMI / PMBOK', bsc:'🎯 BSC / OKR',
+  autoIA:'🤖 Automatización & IA', finanzas:'💰 Finanzas TI', toolmap:'🛠 Herramientas',
+  moscow:'🔵 MoSCoW', rice:'📊 RICE', kano:'🌊 Kano', stories:'📝 User Stories',
+  mvp:'🚀 MVP', roadmap:'🗓 Roadmap', kpis:'📈 KPIs', matriz:'⚖ Matriz',
+  riesgos:'⚠ Riesgos'
+};
+
 function show(id, el) {
   document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   document.getElementById(id).classList.add('on');
   if (el) el.classList.add('on');
-  // Sincroniza el select del móvil
-  const sel = document.getElementById('nav-select');
-  if (sel) sel.value = id;
+  // Sync hamburger current label
+  const cur = document.getElementById('mob-cur');
+  if (cur && MOB_TAB_NAMES[id]) cur.textContent = MOB_TAB_NAMES[id];
+  // Sync active item in drawer
+  document.querySelectorAll('.mob-drw-item').forEach(it => it.classList.remove('active'));
+  const mi = document.getElementById('mob-item-' + id);
+  if (mi) mi.classList.add('active');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function showFromSelect(sel) {
   const id = sel.value;
-  // Activa el tab correspondiente en el nav de escritorio (para mantener estado)
   const tab = document.querySelector('.tab[onclick*="\''+id+'\'"]');
   show(id, tab);
+}
+
+function toggleMobMenu() {
+  const drawer = document.getElementById('mob-drawer');
+  if (drawer.classList.contains('open')) { closeMobMenu(); } else { openMobMenu(); }
+}
+function openMobMenu() {
+  document.getElementById('mob-drawer').classList.add('open');
+  document.getElementById('mob-overlay').classList.add('open');
+  document.getElementById('hamburger').classList.add('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobMenu() {
+  document.getElementById('mob-drawer').classList.remove('open');
+  document.getElementById('mob-overlay').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+function mobShow(id) {
+  const tab = document.querySelector('.tab[onclick*="\''+id+'\'"]');
+  show(id, tab);
+  closeMobMenu();
 }
 
 // ── PROCESS MAP STEPS ──
