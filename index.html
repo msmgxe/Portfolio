@@ -3,31 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marco Saldarriaga Medina — Portfolio</title>
-  <meta name="description" content="Portfolio profesional de Marco Saldarriaga Medina — Project Manager, Data Scientist, Desarrollador de Apps" />
+  <title>Marco Saldarriaga — AI Developer & Product Builder</title>
+  <meta name="description" content="AI Developer & Product Builder. Especialista en Vibe Coding con Claude Code, Gemini y ChatGPT. Desarrollo acelerado de MVPs y aplicaciones web en tiempo récord." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0f1e;
-      --bg2: #0f172a;
-      --surface: #1e293b;
-      --surface2: #263348;
-      --accent: #38bdf8;
-      --accent2: #818cf8;
-      --accent3: #34d399;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --border: #1e3a5f;
-      --border2: #334155;
-      --radius: 14px;
-      --radius-sm: 8px;
+      /* Paleta inspirada en Claude Code */
+      --bg:           #0D0D0D;
+      --bg2:          #111111;
+      --surface:      #1C1C1C;
+      --surface2:     #252525;
+      --accent:       #CF7A54;
+      --accent-light: #E8A07A;
+      --accent2:      #7AB5A0;
+      --text:         #EDE8E3;
+      --muted:        #8A847E;
+      --border:       #262626;
+      --border2:      #383530;
+      --radius:       12px;
+      --radius-sm:    7px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background: var(--bg2);
       color: var(--text);
       line-height: 1.6;
@@ -35,132 +39,169 @@
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(10,15,30,0.92);
+      padding: 0.9rem 2rem;
+      background: rgba(13,13,13,0.96);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(56,189,248,0.1);
+      border-bottom: 1px solid rgba(207,122,84,0.12);
     }
-    .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--accent); letter-spacing: -0.5px; }
+    .nav-logo { font-weight: 800; font-size: 1rem; color: var(--accent); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--text); }
     .nav-right { display: flex; align-items: center; gap: 1.5rem; }
     .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-linkedin {
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.84rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent-light); }
+    .nav-cta {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 600;
-      padding: 0.35rem 0.85rem;
-      border: 1px solid var(--border2); border-radius: 999px;
-      transition: all 0.2s;
+      color: #0D0D0D; text-decoration: none; font-size: 0.82rem; font-weight: 700;
+      padding: 0.4rem 1rem; background: var(--accent);
+      border-radius: 999px; transition: all 0.2s;
     }
-    .nav-linkedin:hover { color: #0ea5e9; border-color: #0ea5e9; }
-    .nav-linkedin svg { width: 13px; height: 13px; }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-drawer {
+      position: fixed; top: 0; right: 0; bottom: 0; width: 265px;
+      background: var(--surface); z-index: 199;
+      flex-direction: column; padding: 5rem 1.5rem 2rem;
+      border-left: 1px solid var(--border2);
+      transform: translateX(100%); transition: transform 0.3s ease;
+      display: flex;
+    }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer ul { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
+    .mobile-drawer a { display: block; padding: 0.65rem 0.5rem; color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 500; border-radius: 8px; transition: all 0.15s; }
+    .mobile-drawer a:hover { background: var(--surface2); color: var(--accent-light); }
+    .mobile-drawer-divider { height: 1px; background: var(--border2); margin: 1rem 0; }
+    .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 198; }
+    .drawer-overlay.open { display: block; }
+
+    /* ── CONTACT BANNER ── */
+    .contact-banner {
+      position: sticky; top: 57px; z-index: 150;
+      background: rgba(28,18,12,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(207,122,84,0.18);
+      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+      padding: 0.6rem 2rem; flex-wrap: wrap;
+    }
+    .contact-banner p { font-size: 0.82rem; color: var(--muted); }
+    .contact-banner p strong { color: var(--text); }
+    .banner-btns { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+    .banner-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.9rem; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700; text-decoration: none;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .banner-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .banner-btn-primary { background: var(--accent); color: #0D0D0D; }
+    .banner-btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .banner-btn-linkedin { background: #0A66C2; color: white; }
+    .banner-btn-linkedin:hover { background: #0856a5; transform: translateY(-1px); }
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      padding: 8rem 2rem 5rem;
+      padding: 9rem 2rem 5rem;
       position: relative; overflow: hidden;
       background:
-        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(56,189,248,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(129,140,248,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 60% 80%, rgba(52,211,153,0.04) 0%, transparent 70%);
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(207,122,84,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(122,181,160,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 60% 80%, rgba(207,122,84,0.04) 0%, transparent 70%);
     }
     #hero::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: radial-gradient(rgba(56,189,248,0.1) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 0%, transparent 100%);
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(207,122,84,0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
     }
+    .hero-inner { max-width: 800px; text-align: center; position: relative; z-index: 1; }
 
-    .hero-inner { max-width: 760px; text-align: center; position: relative; z-index: 1; }
-
-    /* Avatar */
     .avatar {
-      width: 110px; height: 110px; border-radius: 50%;
+      width: 112px; height: 112px; border-radius: 50%;
       margin: 0 auto 1.5rem;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; font-weight: 900; color: #0f172a;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
       animation: avatar-pulse 3s ease-in-out infinite;
-      flex-shrink: 0;
-      overflow: hidden;
+      flex-shrink: 0; overflow: hidden;
     }
-    .avatar img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-      border-radius: 50%;
-      display: block;
-    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 50%; display: block; }
     @keyframes avatar-pulse {
-      0%, 100% { box-shadow: 0 0 0 5px rgba(56,189,248,0.2), 0 0 0 10px rgba(56,189,248,0.05), 0 0 30px rgba(56,189,248,0.1); }
-      50%       { box-shadow: 0 0 0 7px rgba(56,189,248,0.3), 0 0 0 16px rgba(56,189,248,0.08), 0 0 40px rgba(56,189,248,0.15); }
+      0%,100% { box-shadow: 0 0 0 5px rgba(207,122,84,0.2), 0 0 0 10px rgba(207,122,84,0.05), 0 0 30px rgba(207,122,84,0.1); }
+      50%      { box-shadow: 0 0 0 7px rgba(207,122,84,0.3), 0 0 0 16px rgba(207,122,84,0.08), 0 0 40px rgba(207,122,84,0.18); }
     }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.35rem 1rem; margin-bottom: 1.25rem;
-      background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.3);
-      border-radius: 999px; font-size: 0.77rem; font-weight: 600; color: var(--accent3);
+      background: rgba(122,181,160,0.08); border: 1px solid rgba(122,181,160,0.3);
+      border-radius: 999px; font-size: 0.77rem; font-weight: 600; color: var(--accent2);
       letter-spacing: 0.04em;
     }
-    .hero-badge-dot {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--accent3);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
 
     h1 {
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 900; letter-spacing: -2.5px; line-height: 1.03; margin-bottom: 1rem;
-      background: linear-gradient(135deg, #f1f5f9 15%, var(--accent) 55%, var(--accent2) 100%);
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      font-weight: 900; letter-spacing: -2px; line-height: 1.06; margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, var(--text) 10%, var(--accent) 55%, var(--accent-light) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-subtitle {
-      font-size: 1.05rem; color: var(--muted);
-      max-width: 540px; margin: 0 auto 2rem; line-height: 1.75;
+    .hero-role {
+      font-size: clamp(0.95rem, 2.2vw, 1.15rem); font-weight: 700;
+      color: var(--accent); margin-bottom: 1.25rem; letter-spacing: -0.2px;
     }
+    .hero-subtitle {
+      font-size: 0.98rem; color: var(--muted);
+      max-width: 620px; margin: 0 auto 1.75rem; line-height: 1.8;
+    }
+    .hero-subtitle strong { color: var(--text); font-weight: 600; }
 
-    /* Stats */
-    .hero-stats {
-      display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+    .hero-ai-pills {
+      display: flex; gap: 0.45rem; justify-content: center; flex-wrap: wrap;
       margin-bottom: 1.75rem;
     }
+    .ai-pill {
+      display: inline-flex; align-items: center; gap: 0.32rem;
+      padding: 0.28rem 0.72rem;
+      background: rgba(207,122,84,0.08); border: 1px solid rgba(207,122,84,0.22);
+      border-radius: 999px; font-size: 0.77rem; font-weight: 600; color: var(--accent-light);
+      transition: all 0.2s; cursor: default;
+    }
+    .ai-pill:hover { background: rgba(207,122,84,0.14); border-color: rgba(207,122,84,0.4); }
+
+    .hero-stats { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
     .stat {
       background: var(--surface); border: 1px solid var(--border2);
       border-radius: var(--radius-sm); padding: 0.65rem 1.2rem; text-align: center;
       transition: border-color 0.2s;
     }
-    .stat:hover { border-color: rgba(56,189,248,0.4); }
+    .stat:hover { border-color: rgba(207,122,84,0.4); }
     .stat-value { font-size: 1.5rem; font-weight: 900; color: var(--accent); line-height: 1; }
-    .stat-label { font-size: 0.68rem; color: var(--muted); margin-top: 0.15rem; letter-spacing: 0.03em; }
+    .stat-label { font-size: 0.67rem; color: var(--muted); margin-top: 0.15rem; letter-spacing: 0.03em; }
 
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: center; margin-bottom: 2.25rem; }
-    .tag {
-      padding: 0.28rem 0.72rem;
-      background: rgba(30,41,59,0.8); border: 1px solid var(--border2);
-      border-radius: 999px; font-size: 0.77rem; color: var(--muted);
-      transition: all 0.2s; cursor: default;
-    }
-    .tag:hover { border-color: var(--accent); color: var(--accent); }
-
-    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.72rem 1.5rem; border-radius: 10px;
+      padding: 0.75rem 1.5rem; border-radius: 10px;
       font-size: 0.9rem; font-weight: 700; text-decoration: none;
-      transition: all 0.2s; cursor: pointer; border: none; letter-spacing: 0.01em;
+      transition: all 0.2s; cursor: pointer; border: none;
     }
     .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .btn-primary { background: var(--accent); color: #0f172a; }
-    .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(56,189,248,0.3); }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+    .btn-primary  { background: var(--accent); color: #0D0D0D; }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(207,122,84,0.3); }
+    .btn-linkedin { background: #0A66C2; color: white; }
+    .btn-linkedin:hover { background: #0856a5; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(10,102,194,0.3); }
+    .btn-outline  { background: transparent; color: var(--text); border: 1px solid var(--border2); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    /* ── SECCIONES GENERALES ── */
+    /* ── SECTIONS ── */
     section { padding: 5rem 2rem; }
     .container { max-width: 980px; margin: 0 auto; }
     .section-label {
@@ -168,80 +209,46 @@
       font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 0.65rem;
       padding: 0.22rem 0.75rem;
-      background: rgba(56,189,248,0.07); border: 1px solid rgba(56,189,248,0.18);
+      background: rgba(207,122,84,0.07); border: 1px solid rgba(207,122,84,0.18);
       border-radius: 999px;
     }
-    h2 {
-      font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 900;
-      letter-spacing: -1px; margin-bottom: 2.5rem; color: var(--text);
-    }
+    h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 2.5rem; color: var(--text); }
 
-    /* ── SKILLS ── */
-    #skills { background: linear-gradient(180deg, var(--bg2) 0%, rgba(30,41,59,0.4) 100%); }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
-    .skill-group {
+    /* ── AI WORKFLOW ── */
+    #workflow { background: linear-gradient(180deg, var(--bg2) 0%, rgba(28,18,12,0.6) 100%); }
+    .workflow-intro { color: var(--muted); max-width: 600px; margin-bottom: 2.5rem; font-size: 0.94rem; line-height: 1.75; }
+    .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .workflow-card {
       background: var(--surface); border: 1px solid var(--border2);
-      border-radius: var(--radius); padding: 1.25rem;
-      transition: border-color 0.2s, transform 0.2s;
+      border-radius: var(--radius); padding: 1.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
     }
-    .skill-group:hover { border-color: rgba(56,189,248,0.35); transform: translateY(-3px); }
-    .skill-group-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.9rem; }
-    .skill-group-icon { font-size: 1rem; }
-    .skill-group h3 { font-size: 0.76rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.09em; }
-    .skill-chips { display: flex; flex-wrap: wrap; gap: 0.38rem; }
-    .chip {
-      padding: 0.22rem 0.58rem;
-      background: rgba(15,23,42,0.9); border: 1px solid var(--border2);
-      border-radius: 6px; font-size: 0.76rem; color: var(--text);
+    .workflow-card:hover { transform: translateY(-4px); }
+    .workflow-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; }
+    .wc1::before { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+    .wc1:hover { border-color: rgba(207,122,84,0.5); }
+    .wc2::before { background: linear-gradient(90deg, #4A90D9, var(--accent2)); }
+    .wc2:hover { border-color: rgba(74,144,217,0.5); }
+    .wc3::before { background: linear-gradient(90deg, var(--accent2), #5B9DBF); }
+    .wc3:hover { border-color: rgba(122,181,160,0.5); }
+    .workflow-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+    .workflow-title { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 0.25rem; }
+    .workflow-sub { font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .workflow-desc { font-size: 0.83rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.65; }
+    .wchips { display: flex; flex-wrap: wrap; gap: 0.38rem; }
+    .wchip {
+      padding: 0.23rem 0.6rem;
+      background: rgba(13,13,13,0.85); border: 1px solid var(--border2);
+      border-radius: 6px; font-size: 0.76rem; color: var(--text); font-weight: 500;
       transition: all 0.15s;
     }
-    .chip:hover { border-color: var(--accent2); color: var(--accent2); }
+    .wchip:hover { border-color: var(--accent); color: var(--accent); }
+    .wchip.hl { background: rgba(207,122,84,0.08); border-color: rgba(207,122,84,0.28); color: var(--accent-light); font-weight: 600; }
 
-    /* ── TIMELINE (Experiencia) ── */
-    #experience { background: var(--bg2); }
-    .timeline { position: relative; padding-left: 1.5rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0.6rem; bottom: 0.6rem; width: 2px;
-      background: linear-gradient(to bottom, var(--accent), var(--accent2), rgba(56,189,248,0.08));
-    }
-    .timeline-item { position: relative; margin-bottom: 1.75rem; padding-left: 1.5rem; }
-    .timeline-dot {
-      position: absolute; left: -2.15rem; top: 1.3rem;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--accent); border: 2px solid var(--bg2);
-      box-shadow: 0 0 0 3px rgba(56,189,248,0.2);
-      transition: box-shadow 0.2s;
-    }
-    .timeline-item:hover .timeline-dot { box-shadow: 0 0 0 6px rgba(56,189,248,0.25); }
-    .timeline-card {
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: var(--radius); padding: 1.1rem 1.4rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .timeline-card:hover { border-color: rgba(56,189,248,0.3); transform: translateX(5px); }
-    .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
-    .timeline-header-left { display: flex; align-items: center; gap: 0.7rem; }
-    .company-badge {
-      width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; font-weight: 900; color: white; letter-spacing: -0.3px;
-      overflow: hidden;
-    }
-    .company-badge img { width: 100%; height: 100%; object-fit: contain; padding: 3px; background: white; border-radius: 7px; }
-    .timeline-role { font-weight: 700; font-size: 0.95rem; color: var(--text); }
-    .timeline-company { font-size: 0.8rem; color: var(--accent2); font-weight: 600; margin-top: 0.12rem; }
-    .timeline-sector { font-size: 0.65rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.1rem; }
-    .timeline-date {
-      font-size: 0.72rem; color: var(--muted);
-      background: var(--surface2); padding: 0.2rem 0.65rem;
-      border-radius: 999px; white-space: nowrap; flex-shrink: 0;
-    }
-    .timeline-desc { font-size: 0.82rem; color: var(--muted); }
-    .timeline-desc ul { padding-left: 1.1rem; margin-top: 0.3rem; }
-    .timeline-desc li { margin-bottom: 0.18rem; line-height: 1.55; }
-
-    /* ── PROYECTOS ── */
-    #projects { background: linear-gradient(180deg, rgba(30,41,59,0.25) 0%, var(--bg2) 100%); }
+    /* ── PROJECTS ── */
+    #projects { background: linear-gradient(180deg, rgba(28,18,12,0.4) 0%, var(--bg2) 100%); }
+    .projects-intro { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.92rem; }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .project-card {
       background: var(--surface); border: 1px solid var(--border2);
@@ -249,189 +256,211 @@
       display: flex; flex-direction: column;
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
-    .project-card:hover {
-      border-color: rgba(56,189,248,0.4); transform: translateY(-6px);
-      box-shadow: 0 24px 48px rgba(0,0,0,0.35);
-    }
-
-    /* Visual header de proyecto */
+    .project-card:hover { border-color: rgba(207,122,84,0.5); transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.45); }
     .project-visual {
-      height: 118px; position: relative;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+      height: 108px; position: relative;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-    .project-visual::after {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-      background-size: 22px 22px;
+    .project-visual::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; }
+    .project-visual::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to bottom, transparent, rgba(28,28,28,0.65)); z-index: 1; }
+    .project-icon-big { font-size: 2.8rem; position: relative; z-index: 2; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); }
+    .vibe-badge {
+      position: absolute; top: 0.55rem; right: 0.55rem; z-index: 3;
+      display: inline-flex; align-items: center; gap: 0.28rem;
+      padding: 0.18rem 0.52rem;
+      background: rgba(13,13,13,0.7); border: 1px solid rgba(207,122,84,0.5);
+      border-radius: 999px; font-size: 0.63rem; font-weight: 700; color: var(--accent-light);
+      backdrop-filter: blur(8px);
     }
-    .project-visual::before {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 50%; background: linear-gradient(to bottom, transparent, rgba(30,41,59,0.6));
-      z-index: 1;
-    }
-    .project-icon-big { font-size: 2.8rem; position: relative; z-index: 2; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); }
-
-    .project-body { padding: 1.2rem 1.3rem; flex: 1; display: flex; flex-direction: column; }
+    .project-body { padding: 1.15rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
+    .project-problem { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .project-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.45rem; color: var(--text); }
     .project-card p { font-size: 0.81rem; color: var(--muted); flex: 1; margin-bottom: 1rem; line-height: 1.65; }
-    .project-footer { display: flex; flex-direction: column; gap: 0.7rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.32rem; }
-    .project-tag {
-      font-size: 0.67rem; padding: 0.17rem 0.48rem;
-      background: rgba(15,23,42,0.9); border: 1px solid var(--border2);
-      border-radius: 4px; color: var(--muted);
-    }
-    .project-tag.accent { background: rgba(56,189,248,0.07); border-color: rgba(56,189,248,0.22); color: var(--accent); }
-    .project-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .project-footer { display: flex; flex-direction: column; gap: 0.65rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .project-tag { font-size: 0.67rem; padding: 0.16rem 0.46rem; background: rgba(13,13,13,0.9); border: 1px solid var(--border2); border-radius: 4px; color: var(--muted); }
+    .project-tag.accent { background: rgba(207,122,84,0.07); border-color: rgba(207,122,84,0.22); color: var(--accent); }
     .project-link {
       display: inline-flex; align-items: center; gap: 0.35rem;
-      font-size: 0.74rem; font-weight: 600; padding: 0.3rem 0.7rem;
+      font-size: 0.74rem; font-weight: 600; padding: 0.32rem 0.75rem;
       border: 1px solid var(--border2); border-radius: 6px;
-      color: var(--muted); text-decoration: none; transition: all 0.15s;
+      color: var(--muted); text-decoration: none; transition: all 0.15s; width: fit-content;
     }
-    .project-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(56,189,248,0.06); }
+    .project-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(207,122,84,0.06); }
     .project-link svg { width: 11px; height: 11px; flex-shrink: 0; }
+    .project-link.live { border-color: rgba(207,122,84,0.3); color: var(--accent); background: rgba(207,122,84,0.07); }
+    .project-link.live:hover { background: rgba(207,122,84,0.15); }
 
-    /* ── EDUCACIÓN ── */
-    #education { background: var(--bg2); }
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg2); }
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0.6rem; bottom: 0.6rem; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), rgba(207,122,84,0.08)); }
+    .timeline-item { position: relative; margin-bottom: 1.75rem; padding-left: 1.5rem; }
+    .timeline-dot { position: absolute; left: -2.15rem; top: 1.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg2); box-shadow: 0 0 0 3px rgba(207,122,84,0.2); transition: box-shadow 0.2s; }
+    .timeline-item:hover .timeline-dot { box-shadow: 0 0 0 6px rgba(207,122,84,0.25); }
+    .timeline-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 1.1rem 1.4rem; transition: border-color 0.2s, transform 0.2s; }
+    .timeline-card:hover { border-color: rgba(207,122,84,0.3); transform: translateX(5px); }
+    .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+    .timeline-header-left { display: flex; align-items: center; gap: 0.7rem; }
+    .company-badge { width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 900; color: white; letter-spacing: -0.3px; overflow: hidden; }
+    .company-badge img { width: 100%; height: 100%; object-fit: contain; padding: 3px; background: white; border-radius: 7px; }
+    .timeline-role { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+    .timeline-company { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-top: 0.12rem; }
+    .timeline-sector { font-size: 0.65rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.1rem; }
+    .timeline-date { font-size: 0.72rem; color: var(--muted); background: var(--surface2); padding: 0.2rem 0.65rem; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+    .timeline-desc { font-size: 0.82rem; color: var(--muted); }
+    .timeline-desc ul { padding-left: 1.1rem; margin-top: 0.3rem; }
+    .timeline-desc li { margin-bottom: 0.18rem; line-height: 1.55; }
+
+    /* ── EDUCATION ── */
+    #education { background: linear-gradient(180deg, var(--bg2), rgba(28,18,12,0.5)); }
     .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.15rem; }
-    .edu-card {
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: var(--radius); padding: 1.2rem 1.4rem;
-      display: flex; flex-direction: column; gap: 0.22rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .edu-card:hover { border-color: rgba(129,140,248,0.4); transform: translateY(-2px); }
+    .edu-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 0.22rem; transition: border-color 0.2s, transform 0.2s; }
+    .edu-card:hover { border-color: rgba(122,181,160,0.4); transform: translateY(-2px); }
     .edu-card h3 { font-size: 0.93rem; font-weight: 700; color: var(--text); }
-    .edu-card .school { font-size: 0.8rem; color: var(--accent2); font-weight: 600; }
+    .edu-card .school { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
     .edu-card .period { font-size: 0.72rem; color: var(--muted); }
-    .edu-link {
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      font-size: 0.74rem; font-weight: 600; color: var(--accent);
-      text-decoration: none; margin-top: 0.4rem;
-      transition: gap 0.15s, opacity 0.15s;
-    }
+    .edu-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.74rem; font-weight: 600; color: var(--accent-light); text-decoration: none; margin-top: 0.4rem; transition: gap 0.15s, opacity 0.15s; }
     .edu-link:hover { gap: 0.5rem; opacity: 0.8; }
     .edu-link svg { width: 11px; height: 11px; }
 
-    /* ── CONTACTO ── */
-    #contact { background: linear-gradient(180deg, var(--bg2), rgba(56,189,248,0.02)); text-align: center; }
-    .contact-intro { color: var(--muted); max-width: 460px; margin: 0 auto 2.5rem; font-size: 0.93rem; line-height: 1.7; }
-    .contact-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    .contact-item {
-      display: flex; align-items: center; gap: 0.65rem;
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: 12px; padding: 0.85rem 1.3rem;
-      font-size: 0.87rem; color: var(--text); text-decoration: none;
-      transition: all 0.2s;
+    /* ── CONTACT ── */
+    #contact { background: linear-gradient(180deg, var(--bg2), rgba(207,122,84,0.03)); text-align: center; }
+    .contact-intro { color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; font-size: 0.95rem; line-height: 1.75; }
+    .contact-cta-grid { display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; margin-bottom: 2rem; }
+    .contact-big {
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      background: var(--surface); border: 1.5px solid var(--border2);
+      border-radius: var(--radius); padding: 1.5rem 2rem;
+      text-decoration: none; color: var(--text); min-width: 195px;
+      transition: all 0.25s;
     }
-    .contact-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
-    .contact-item svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
-    .contact-item.linkedin svg { color: #0ea5e9; }
-    .contact-item.linkedin:hover { border-color: #0ea5e9; color: #0ea5e9; box-shadow: 0 10px 24px rgba(14,165,233,0.15); }
+    .contact-big:hover { transform: translateY(-4px); }
+    .contact-big.lk { border-color: rgba(10,102,194,0.25); }
+    .contact-big.lk:hover { border-color: #0A66C2; box-shadow: 0 16px 40px rgba(10,102,194,0.2); }
+    .contact-big.em { border-color: rgba(207,122,84,0.25); }
+    .contact-big.em:hover { border-color: var(--accent); box-shadow: 0 16px 40px rgba(207,122,84,0.2); }
+    .contact-big svg { width: 30px; height: 30px; }
+    .contact-big .clabel { font-size: 0.72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .contact-big .cval { font-size: 0.9rem; font-weight: 700; }
+    .contact-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    .contact-item { display: flex; align-items: center; gap: 0.65rem; background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 0.75rem 1.2rem; font-size: 0.87rem; color: var(--text); text-decoration: none; transition: all 0.2s; }
+    .contact-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .contact-item svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
 
     /* ── DOCS ── */
-    #docs { background: linear-gradient(180deg, var(--bg2) 0%, rgba(30,41,59,0.3) 100%); }
+    #docs { background: linear-gradient(180deg, var(--bg2) 0%, rgba(28,18,12,0.3) 100%); }
     .doc-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .doc-tab {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.65rem 1.3rem; border-radius: 10px;
-      font-size: 0.88rem; font-weight: 700; cursor: pointer;
-      border: 1px solid var(--border2);
-      background: var(--surface); color: var(--muted);
-      transition: all 0.2s;
-    }
+    .doc-tab { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1.3rem; border-radius: 10px; font-size: 0.88rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); transition: all 0.2s; }
     .doc-tab:hover { border-color: var(--accent); color: var(--text); }
-    .doc-tab.active { background: rgba(56,189,248,0.1); border-color: var(--accent); color: var(--accent); }
-    .tab-count {
-      background: rgba(56,189,248,0.15); color: var(--accent);
-      font-size: 0.7rem; font-weight: 800; padding: 0.1rem 0.45rem;
-      border-radius: 999px; letter-spacing: 0.02em;
-    }
-    .doc-tab.active .tab-count { background: rgba(56,189,248,0.25); }
+    .doc-tab.active { background: rgba(207,122,84,0.1); border-color: var(--accent); color: var(--accent); }
+    .tab-count { background: rgba(207,122,84,0.15); color: var(--accent); font-size: 0.7rem; font-weight: 800; padding: 0.1rem 0.45rem; border-radius: 999px; }
     .doc-list { display: none; flex-direction: column; gap: 0.6rem; }
     .doc-list.active { display: flex; }
-    .doc-item {
-      display: flex; align-items: center; gap: 1rem;
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: var(--radius-sm); padding: 0.9rem 1.2rem;
-      transition: border-color 0.2s, transform 0.15s;
-    }
-    .doc-item:hover { border-color: rgba(56,189,248,0.3); transform: translateX(4px); }
-    .doc-year {
-      font-size: 0.72rem; font-weight: 800; color: var(--accent);
-      background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.18);
-      padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap;
-      min-width: 68px; text-align: center;
-    }
+    .doc-item { display: flex; align-items: center; gap: 1rem; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius-sm); padding: 0.9rem 1.2rem; transition: border-color 0.2s, transform 0.15s; }
+    .doc-item:hover { border-color: rgba(207,122,84,0.3); transform: translateX(4px); }
+    .doc-year { font-size: 0.72rem; font-weight: 800; color: var(--accent); background: rgba(207,122,84,0.08); border: 1px solid rgba(207,122,84,0.18); padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap; min-width: 68px; text-align: center; }
     .doc-icon-pdf { font-size: 1.3rem; flex-shrink: 0; }
     .doc-info { flex: 1; min-width: 0; }
     .doc-name { font-size: 0.88rem; font-weight: 600; color: var(--text); display: block; }
     .doc-sub { font-size: 0.73rem; color: var(--muted); margin-top: 0.1rem; }
-    .doc-btn {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      font-size: 0.75rem; font-weight: 700; padding: 0.38rem 0.9rem;
-      border: 1px solid var(--border2); border-radius: 7px;
-      color: var(--muted); text-decoration: none;
-      transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
-    }
-    .doc-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(56,189,248,0.05); }
+    .doc-btn { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 700; padding: 0.38rem 0.9rem; border: 1px solid var(--border2); border-radius: 7px; color: var(--muted); text-decoration: none; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; }
+    .doc-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(207,122,84,0.05); }
     .doc-btn svg { width: 12px; height: 12px; }
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 2rem;
-      font-size: 0.77rem; color: var(--muted);
-      border-top: 1px solid var(--border2);
-    }
-    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
-    .back-top {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      color: var(--muted); text-decoration: none; font-size: 0.77rem;
-      padding: 0.35rem 0.85rem; border: 1px solid var(--border2);
-      border-radius: 999px; transition: all 0.2s; margin-bottom: 0.5rem;
-    }
+    footer { text-align: center; padding: 2.5rem 2rem; font-size: 0.77rem; color: var(--muted); border-top: 1px solid var(--border2); }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+    .footer-contact { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .back-top { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); text-decoration: none; font-size: 0.77rem; padding: 0.35rem 0.85rem; border: 1px solid var(--border2); border-radius: 999px; transition: all 0.2s; }
     .back-top:hover { color: var(--accent); border-color: var(--accent); }
     .back-top svg { width: 12px; height: 12px; }
 
-    /* ── ANIMACIONES ── */
-    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.52s ease, transform 0.52s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 0.75rem 1rem; }
-      .nav-links { display: none; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
       section { padding: 3.5rem 1rem; }
+      .contact-banner { top: 52px; gap: 0.75rem; padding: 0.55rem 1rem; }
       .timeline { padding-left: 1rem; }
       .timeline-dot { left: -1.85rem; }
       .hero-stats { gap: 0.5rem; }
       .stat-value { font-size: 1.25rem; }
+      .contact-big { min-width: 155px; padding: 1.2rem 1.3rem; }
+    }
+    @media (max-width: 480px) {
+      .contact-banner p { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="drawer">
+  <ul>
+    <li><a href="#hero" onclick="closeDrawer()">Inicio</a></li>
+    <li><a href="#workflow" onclick="closeDrawer()">AI Stack</a></li>
+    <li><a href="#projects" onclick="closeDrawer()">Proyectos</a></li>
+    <li><a href="#experience" onclick="closeDrawer()">Experiencia</a></li>
+    <li><a href="#education" onclick="closeDrawer()">Educación</a></li>
+    <li><a href="#contact" onclick="closeDrawer()">Contacto</a></li>
+    <li><a href="#docs" onclick="closeDrawer()">Documentos</a></li>
+  </ul>
+  <div class="mobile-drawer-divider"></div>
+  <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-linkedin" style="justify-content:center; font-size:0.85rem;">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    LinkedIn
+  </a>
+  <a href="mailto:msmgxe@gmail.com" class="btn btn-primary" style="justify-content:center; font-size:0.85rem; margin-top:0.5rem;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    Contáctame
+  </a>
+</div>
+
 <!-- NAV -->
 <nav>
-  <span class="nav-logo">MSM</span>
+  <span class="nav-logo">MSM <span>— AI Builder</span></span>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#hero">Inicio</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experiencia</a></li>
+      <li><a href="#workflow">AI Stack</a></li>
       <li><a href="#projects">Proyectos</a></li>
-      <li><a href="#education">Educación</a></li>
+      <li><a href="#experience">Experiencia</a></li>
       <li><a href="#contact">Contacto</a></li>
-      <li><a href="#docs">Documentos</a></li>
+      <li><a href="#docs">Docs</a></li>
     </ul>
-    <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="nav-linkedin">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       LinkedIn
     </a>
+    <div class="hamburger" id="hamburger" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
+
+<!-- CONTACT BANNER -->
+<div class="contact-banner">
+  <p><strong>Disponible para proyectos y colaboraciones.</strong> Especialista en desarrollo acelerado con IA.</p>
+  <div class="banner-btns">
+    <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="banner-btn banner-btn-linkedin">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      Mi LinkedIn
+    </a>
+    <a href="mailto:msmgxe@gmail.com" class="banner-btn banner-btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Contáctame por Correo
+    </a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -442,42 +471,47 @@
       Disponible para nuevos proyectos
     </div>
     <h1>Marco Saldarriaga<br>Medina</h1>
+    <p class="hero-role">AI Developer &amp; Product Builder | Vibe Coding Specialist</p>
     <p class="hero-subtitle">
-      Project Manager · Data Scientist · Desarrollador de Apps Móviles<br>
-      Más de 28 años liderando proyectos TI en banca, salud, educación y sector estatal.
+      Combino una <strong>sólida lógica de programación</strong> y abstracción con herramientas avanzadas de IA
+      (<strong>Claude Code, Gemini, ChatGPT</strong>) para conceptualizar, estructurar y desplegar
+      aplicaciones web y prototipos funcionales (MVPs) <strong>en tiempo récord</strong>.<br>
+      Más de 28 años de experiencia en TI respaldan cada decisión de arquitectura.
     </p>
+    <div class="hero-ai-pills">
+      <span class="ai-pill">⚡ Vibe Coding</span>
+      <span class="ai-pill">🤖 Claude Code</span>
+      <span class="ai-pill">✨ Gemini</span>
+      <span class="ai-pill">💬 ChatGPT</span>
+      <span class="ai-pill">🚀 MVP Rápido</span>
+      <span class="ai-pill">☁️ Vercel Deploy</span>
+    </div>
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-value">+28</div>
-        <div class="stat-label">Años de experiencia</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">+15</div>
-        <div class="stat-label">Proyectos gestionados</div>
+        <div class="stat-label">Años en TI</div>
       </div>
       <div class="stat">
         <div class="stat-value">6</div>
-        <div class="stat-label">Sectores</div>
+        <div class="stat-label">Apps desplegadas</div>
       </div>
       <div class="stat">
-        <div class="stat-value">USD 5M+</div>
-        <div class="stat-label">Presupuesto gestionado</div>
+        <div class="stat-value">3x</div>
+        <div class="stat-label">Velocidad con IA</div>
       </div>
-    </div>
-    <div class="hero-tags">
-      <span class="tag">Scrum Master</span>
-      <span class="tag">Python</span>
-      <span class="tag">Flutter</span>
-      <span class="tag">Power BI</span>
-      <span class="tag">SQL Server</span>
-      <span class="tag">Supabase</span>
-      <span class="tag">PMI / PMP</span>
-      <span class="tag">Análisis Funcional</span>
+      <div class="stat">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">En producción</div>
+      </div>
     </div>
     <div class="hero-actions">
       <a href="#projects" class="btn btn-primary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4M12 17v4"/></svg>
-        Ver proyectos
+        Ver mis proyectos
+      </a>
+      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-linkedin">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        Mi LinkedIn
       </a>
       <a href="mailto:msmgxe@gmail.com" class="btn btn-outline">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -487,82 +521,225 @@
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
+<!-- AI WORKFLOW -->
+<section id="workflow">
   <div class="container">
-    <div class="section-label">Habilidades</div>
-    <h2>Stack técnico y metodologías</h2>
-    <div class="skills-grid fade-in">
-      <div class="skill-group">
-        <div class="skill-group-header">
-          <span class="skill-group-icon">📋</span>
-          <h3>Gestión de Proyectos</h3>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">Scrum / Agile</span><span class="chip">Waterfall</span>
-          <span class="chip">Metodologías Mixtas</span><span class="chip">PMI / PMP</span>
-          <span class="chip">MS Project</span><span class="chip">Jira</span>
-          <span class="chip">Monday</span><span class="chip">CAPEX / OPEX</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-header">
-          <span class="skill-group-icon">🔄</span>
-          <h3>Análisis y Procesos</h3>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">Análisis Funcional</span><span class="chip">BPM / BPMN</span>
-          <span class="chip">Bizagi</span><span class="chip">Visio</span>
-          <span class="chip">UML / RUP</span><span class="chip">AS-IS / TO-BE</span>
-          <span class="chip">Casos de Uso</span>
+    <div class="section-label">Mi Superpotencia</div>
+    <h2>Mi Flujo de Trabajo (AI Stack)</h2>
+    <p class="workflow-intro">
+      No reemplazo la lógica — la <strong style="color:var(--text)">amplifico</strong>.
+      Combino experiencia sólida en arquitectura de software con las mejores herramientas de IA
+      para entregar soluciones funcionales que antes tomaban semanas, ahora en días.
+    </p>
+    <div class="workflow-grid">
+
+      <div class="workflow-card wc1 fade-in">
+        <span class="workflow-icon">🧠</span>
+        <div class="workflow-title">Lógica de Programación</div>
+        <div class="workflow-sub">Base sólida · Arquitectura</div>
+        <p class="workflow-desc">28+ años de experiencia en análisis funcional, arquitectura multicapa y diseño de sistemas respaldan cada decisión de código.</p>
+        <div class="wchips">
+          <span class="wchip hl">C# / .NET</span>
+          <span class="wchip hl">Arquitectura Web</span>
+          <span class="wchip">SQL Server</span>
+          <span class="wchip">Patrones de diseño</span>
+          <span class="wchip">APIs REST</span>
+          <span class="wchip">Scrum / Agile</span>
         </div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-header">
-          <span class="skill-group-icon">📊</span>
-          <h3>Data Science</h3>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">Python</span><span class="chip">pandas</span>
-          <span class="chip">NumPy</span><span class="chip">Matplotlib</span>
-          <span class="chip">SciPy</span><span class="chip">Machine Learning</span>
-          <span class="chip">Power BI</span><span class="chip">MicroStrategy</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-header">
-          <span class="skill-group-icon">💻</span>
-          <h3>Desarrollo</h3>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">Flutter</span><span class="chip">Dart</span>
-          <span class="chip">C# / .NET</span><span class="chip">SQL Server</span>
-          <span class="chip">Oracle</span><span class="chip">Supabase</span>
-          <span class="chip">ASP.NET</span><span class="chip">JavaScript</span>
+
+      <div class="workflow-card wc2 fade-in">
+        <span class="workflow-icon">🤖</span>
+        <div class="workflow-title">Herramientas de IA</div>
+        <div class="workflow-sub">Aceleración · Vibe Coding</div>
+        <p class="workflow-desc">Uso IA no como sustituto del pensamiento, sino como multiplicador. Prompt engineering preciso produce código funcional al primer intento.</p>
+        <div class="wchips">
+          <span class="wchip hl">Claude Code</span>
+          <span class="wchip hl">Gemini</span>
+          <span class="wchip hl">ChatGPT</span>
+          <span class="wchip">Prompt Engineering</span>
+          <span class="wchip">Vibe Coding</span>
+          <span class="wchip">Cursor / Copilot</span>
         </div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-header">
-          <span class="skill-group-icon">🛠️</span>
-          <h3>Herramientas</h3>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">SAP</span><span class="chip">Salesforce</span>
-          <span class="chip">Erwin</span><span class="chip">Toad / Aqua Studio</span>
-          <span class="chip">Discord</span><span class="chip">Git / GitHub</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-header">
-          <span class="skill-group-icon">🏢</span>
-          <h3>Sectores</h3>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">Banca</span><span class="chip">Salud</span>
-          <span class="chip">Educación</span><span class="chip">Sector Estatal</span>
-          <span class="chip">Comercial</span><span class="chip">RRHH</span>
+
+      <div class="workflow-card wc3 fade-in">
+        <span class="workflow-icon">🚀</span>
+        <div class="workflow-title">Frontend &amp; Despliegue</div>
+        <div class="workflow-sub">Producción · Tiempo récord</div>
+        <p class="workflow-desc">Del prototipo a producción en horas. Stack moderno enfocado en performance, experiencia de usuario y despliegue continuo.</p>
+        <div class="wchips">
+          <span class="wchip hl">React / Next.js</span>
+          <span class="wchip hl">Vercel</span>
+          <span class="wchip">TypeScript</span>
+          <span class="wchip">Tailwind CSS</span>
+          <span class="wchip">Supabase</span>
+          <span class="wchip">Git / GitHub</span>
         </div>
       </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Portafolio</div>
+    <h2>Proyectos desplegados en producción</h2>
+    <p class="projects-intro">Cada proyecto fue construido aplicando <strong style="color:var(--text)">Vibe Coding</strong>: IA + lógica sólida = resultados reales a velocidad de startup.</p>
+    <div class="projects-grid">
+
+      <!-- P1: Entrevistas técnicas -->
+      <div class="project-card fade-in">
+        <div class="project-visual" style="background: linear-gradient(135deg, #1A3A6B 0%, #2D5AA0 100%);">
+          <span class="project-icon-big">🎯</span>
+          <span class="vibe-badge">⚡ Vibe Coding</span>
+        </div>
+        <div class="project-body">
+          <div class="project-problem">Problema resuelto: Preparación técnica</div>
+          <h3>Simulador de Entrevistas Técnicas</h3>
+          <p>Herramienta de preparación para entrevistas técnicas de desarrollo. Simulaciones interactivas, banco de preguntas y feedback inmediato para candidatos dev.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag accent">React</span>
+              <span class="project-tag accent">Next.js</span>
+              <span class="project-tag">Vercel</span>
+              <span class="project-tag">IA-asistido</span>
+            </div>
+            <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ver proyecto
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2: Cotizador construcción -->
+      <div class="project-card fade-in">
+        <div class="project-visual" style="background: linear-gradient(135deg, #3D2000 0%, #7A4A00 100%);">
+          <span class="project-icon-big">🏗️</span>
+          <span class="vibe-badge">⚡ Vibe Coding</span>
+        </div>
+        <div class="project-body">
+          <div class="project-problem">Problema resuelto: Optimización de presupuestos</div>
+          <h3>Cotizador Inteligente de Construcción</h3>
+          <p>Cotizador de servicios en construcción para optimización de presupuestos de negocio. Automatiza cálculos complejos y genera propuestas profesionales al instante.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag accent">React</span>
+              <span class="project-tag accent">Next.js</span>
+              <span class="project-tag">Vercel</span>
+              <span class="project-tag">Business Tool</span>
+            </div>
+            <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ver proyecto
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3: Panel educativo -->
+      <div class="project-card fade-in">
+        <div class="project-visual" style="background: linear-gradient(135deg, #1A3A2A 0%, #2D7A50 100%);">
+          <span class="project-icon-big">📚</span>
+          <span class="vibe-badge">⚡ Vibe Coding</span>
+        </div>
+        <div class="project-body">
+          <div class="project-problem">Problema resuelto: Gestión educativa</div>
+          <h3>Panel Admin para Plataformas Educativas</h3>
+          <p>Dashboard de administración y gestión de usuarios para plataformas educativas. Control total de alumnos, contenidos y métricas en una sola interfaz.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag accent">React</span>
+              <span class="project-tag accent">Supabase</span>
+              <span class="project-tag">Vercel</span>
+              <span class="project-tag">Dashboard</span>
+            </div>
+            <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ver proyecto
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- P4: Codebit -->
+      <div class="project-card fade-in">
+        <div class="project-visual" style="background: linear-gradient(135deg, #1A1A3A 0%, #3A3A8A 100%);">
+          <span class="project-icon-big">💻</span>
+          <span class="vibe-badge">⚡ Vibe Coding</span>
+        </div>
+        <div class="project-body">
+          <div class="project-problem">Problema resuelto: Aprendizaje interactivo</div>
+          <h3>CodeBit — App Web Interactiva</h3>
+          <p>Aplicación funcional web interactiva construida y desplegada en producción. Demuestra la capacidad de llevar ideas complejas a producto funcional rápidamente.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag accent">React</span>
+              <span class="project-tag accent">JavaScript</span>
+              <span class="project-tag">Vercel</span>
+              <span class="project-tag">Web App</span>
+            </div>
+            <a href="https://codebit-two.vercel.app/" target="_blank" rel="noopener" class="project-link live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ver en vivo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- P5: Mundial 2026 -->
+      <div class="project-card fade-in">
+        <div class="project-visual" style="background: linear-gradient(135deg, #1A2A10 0%, #3A6A20 60%, #5A9A30 100%);">
+          <span class="project-icon-big">⚽</span>
+          <span class="vibe-badge">⚡ Vibe Coding</span>
+        </div>
+        <div class="project-body">
+          <div class="project-problem">Problema resuelto: UX en tiempo real</div>
+          <h3>Fixture Mundial 2026</h3>
+          <p>Fixture dinámico e interactivo para el Mundial 2026. Enfocado en experiencia de usuario fluida y manejo de datos en tiempo real. Diseño responsive y visualmente atractivo.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag accent">React</span>
+              <span class="project-tag accent">Next.js</span>
+              <span class="project-tag">Vercel</span>
+              <span class="project-tag">Real-time</span>
+            </div>
+            <a href="https://mundial-2026-fixture.vercel.app/" target="_blank" rel="noopener" class="project-link live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ver en vivo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- P6: Este portafolio -->
+      <div class="project-card fade-in">
+        <div class="project-visual" style="background: linear-gradient(135deg, #2A1000 0%, var(--accent) 100%);">
+          <span class="project-icon-big">🌐</span>
+          <span class="vibe-badge">⚡ Vibe Coding</span>
+        </div>
+        <div class="project-body">
+          <div class="project-problem">Problema resuelto: Presencia digital profesional</div>
+          <h3>Este Portafolio — SPA Optimizada</h3>
+          <p>SPA optimizada y desplegada en Vercel. Diseño moderno inspirado en Claude Code, responsive, con animaciones suaves y carga instantánea. 100% HTML/CSS/JS puro.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag accent">HTML / CSS</span>
+              <span class="project-tag accent">JavaScript</span>
+              <span class="project-tag">Vercel</span>
+              <span class="project-tag">SPA</span>
+            </div>
+            <a href="https://cvmsaldarriaga.vercel.app/" target="_blank" rel="noopener" class="project-link live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ver en vivo
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -574,15 +751,13 @@
     <h2>Trayectoria profesional</h2>
     <div class="timeline">
 
-      <!-- Enotria -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-header">
             <div class="timeline-header-left">
               <div class="company-badge" style="background:#f8fafc" data-text="EN">
-                <img src="assets/logo-enotria.png" alt="Enotria"
-                     onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1d4ed8,#1e40af)'; this.parentNode.textContent=this.parentNode.dataset.text">
+                <img src="assets/logo-enotria.png" alt="Enotria" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1d4ed8,#1e40af)'; this.parentNode.textContent=this.parentNode.dataset.text">
               </div>
               <div>
                 <div class="timeline-role">Analista de Proyectos</div>
@@ -602,15 +777,13 @@
         </div>
       </div>
 
-      <!-- Formativa 2024 -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-header">
             <div class="timeline-header-left">
               <div class="company-badge" style="background:#fff" data-text="FO">
-                <img src="assets/logo-formativa.png" alt="Formativa SAC"
-                     onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#0d9488,#065f46)'; this.parentNode.textContent=this.parentNode.dataset.text">
+                <img src="assets/logo-formativa.png" alt="Formativa SAC" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#0d9488,#065f46)'; this.parentNode.textContent=this.parentNode.dataset.text">
               </div>
               <div>
                 <div class="timeline-role">Consultor Externo / Gestión de RRHH</div>
@@ -630,7 +803,6 @@
         </div>
       </div>
 
-      <!-- QDS -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
@@ -645,21 +817,17 @@
             </div>
             <span class="timeline-date">Dic 2023 — Feb 2024</span>
           </div>
-          <div class="timeline-desc">
-            Gestión de solicitudes de 100 trabajadores en distintos clientes. Renovaciones, contratos, inducciones y feedback mensual.
-          </div>
+          <div class="timeline-desc">Gestión de solicitudes de 100 trabajadores en distintos clientes. Renovaciones, contratos, inducciones y feedback mensual.</div>
         </div>
       </div>
 
-      <!-- UPC -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-header">
             <div class="timeline-header-left">
               <div class="company-badge" style="background:#fff" data-text="UPC">
-                <img src="assets/upc-logo.png" alt="UPC"
-                     onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#dc2626,#991b1b)'; this.parentNode.textContent=this.parentNode.dataset.text">
+                <img src="assets/upc-logo.png" alt="UPC" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#dc2626,#991b1b)'; this.parentNode.textContent=this.parentNode.dataset.text">
               </div>
               <div>
                 <div class="timeline-role">Project Manager / Scrum Master</div>
@@ -679,7 +847,6 @@
         </div>
       </div>
 
-      <!-- Belmond Perurail -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
@@ -694,13 +861,10 @@
             </div>
             <span class="timeline-date">Jun 2020 — May 2021</span>
           </div>
-          <div class="timeline-desc">
-            AS-IS / TO-BE de requerimientos comerciales. Diseño de prototipos, casos de uso y casos de prueba.
-          </div>
+          <div class="timeline-desc">AS-IS / TO-BE de requerimientos comerciales. Diseño de prototipos, casos de uso y casos de prueba.</div>
         </div>
       </div>
 
-      <!-- Oncosalud -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
@@ -724,7 +888,6 @@
         </div>
       </div>
 
-      <!-- AFP Profuturo -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
@@ -739,13 +902,10 @@
             </div>
             <span class="timeline-date">Sep 2013 — May 2014</span>
           </div>
-          <div class="timeline-desc">
-            Business Intelligence en Oracle · reportes DW con MicroStrategy · Diagramas UML · reglas SBS y Sunat.
-          </div>
+          <div class="timeline-desc">Business Intelligence en Oracle · reportes DW con MicroStrategy · Diagramas UML · reglas SBS y Sunat.</div>
         </div>
       </div>
 
-      <!-- Citibank -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
@@ -760,13 +920,10 @@
             </div>
             <span class="timeline-date">Jun 2010 — May 2011</span>
           </div>
-          <div class="timeline-desc">
-            Proyecto Web Paylink Back End (transferencias interbancarias B2B). Diagramas UML, metodología RUP, prototipos de interfaz.
-          </div>
+          <div class="timeline-desc">Proyecto Web Paylink Back End (transferencias interbancarias B2B). Diagramas UML, metodología RUP, prototipos de interfaz.</div>
         </div>
       </div>
 
-      <!-- Lee Filter -->
       <div class="timeline-item fade-in">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
@@ -781,169 +938,7 @@
             </div>
             <span class="timeline-date">Jul 2006 — Dic 2008</span>
           </div>
-          <div class="timeline-desc">
-            Desarrollo de catálogo web de productos (búsqueda por aplicaciones y equivalencias) y módulo de pedidos web intranet con C# .NET, ASP.NET y SQL Server 2005.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="section-label">Proyectos</div>
-    <h2>Desarrollos destacados</h2>
-    <div class="projects-grid">
-
-      <!-- Pep Education -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);">
-          <span class="project-icon-big">📱</span>
-        </div>
-        <div class="project-body">
-          <h3>Pep Education — App de Salud</h3>
-          <p>App móvil multiplataforma (iOS / Android) para gestión de peso y salud. Panel web administrativo para profesionales de salud. Backend en Supabase con RLS y gestión de pacientes. Internacionalización en Español, Inglés y Portugués.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">Flutter</span>
-              <span class="project-tag accent">Dart</span>
-              <span class="project-tag">Supabase</span>
-              <span class="project-tag">TypeScript</span>
-              <span class="project-tag">React</span>
-              <span class="project-tag">i18n</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Megaline -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #10b981 0%, #0891b2 100%);">
-          <span class="project-icon-big">📊</span>
-        </div>
-        <div class="project-body">
-          <h3>Análisis Megaline — TripleTen Sprint 5</h3>
-          <p>Análisis estadístico de datos de telecomunicaciones para determinar cuál plan genera mayor ingreso. Pruebas de hipótesis con SciPy, visualizaciones con Matplotlib.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">Python</span>
-              <span class="project-tag accent">pandas</span>
-              <span class="project-tag">SciPy</span>
-              <span class="project-tag">Matplotlib</span>
-              <span class="project-tag">Estadística</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Videojuegos ICE -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);">
-          <span class="project-icon-big">🎮</span>
-        </div>
-        <div class="project-body">
-          <h3>Análisis Videojuegos ICE — TripleTen Sprint 6</h3>
-          <p>Análisis de ventas globales de videojuegos por plataforma, género y región (NA, EU, JP). Identificación de patrones de éxito y pruebas de hipótesis sobre calificaciones y ventas por consola.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">Python</span>
-              <span class="project-tag accent">pandas</span>
-              <span class="project-tag">Análisis Regional</span>
-              <span class="project-tag">Hipótesis</span>
-              <span class="project-tag">Data Viz</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PCI-DSS -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);">
-          <span class="project-icon-big">🔐</span>
-        </div>
-        <div class="project-body">
-          <h3>Proyecto PCI-DSS — Oncosalud</h3>
-          <p>Certificación Visa / Seguridad de pagos. Implementación de enmascaramiento y tokenización de tarjetas VISA en producción. Coordinación multi-área con stakeholders externos y comité de dirección.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag">PCI-DSS</span>
-              <span class="project-tag">Seguridad</span>
-              <span class="project-tag">Tokenización</span>
-              <span class="project-tag">PMI</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- WeTalk & GEMA -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #f59e0b 0%, #34d399 100%);">
-          <span class="project-icon-big">🎓</span>
-        </div>
-        <div class="project-body">
-          <h3>WeTalk &amp; GEMA — UPC</h3>
-          <p>Tres proyectos simultáneos: continuidad de negocio para la plataforma WeTalk, sistema GEMA de programación de evaluaciones y rediseño de la arquitectura de WeTalk. Presupuesto mayor a USD 5 MM.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag">Scrum</span>
-              <span class="project-tag">PMI</span>
-              <span class="project-tag">CAPEX/OPEX</span>
-              <span class="project-tag">Educación</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- App Comercial Ventas -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #0ea5e9 0%, #34d399 100%);">
-          <span class="project-icon-big">🚚</span>
-        </div>
-        <div class="project-body">
-          <h3>App Comercial Ventas — Purolator</h3>
-          <p>App móvil para vendedores en campo: consulta de estados de cuenta, rutas geolocalizadas con optimización TSP (≥10 puntos), catálogo de productos, pedidos y cobros. Sistema legado Android en proceso de modernización.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">Android</span>
-              <span class="project-tag accent">C# .NET</span>
-              <span class="project-tag">ASP.NET MVC</span>
-              <span class="project-tag">SQL Server</span>
-              <span class="project-tag">Geolocalización</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Lee Filter Catálogo Web -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #475569 0%, #1e293b 100%);">
-          <span class="project-icon-big">🌐</span>
-        </div>
-        <div class="project-body">
-          <h3>Catálogo Web — Purolator / Lee Filter</h3>
-          <p>Análisis, diseño e implementación de módulos de catálogo web con búsqueda por aplicaciones y equivalencias, más sistema de pedidos web intranet. Arquitectura .NET multicapa con 13 proyectos en solución Visual Studio.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">C# .NET</span>
-              <span class="project-tag accent">ASP.NET</span>
-              <span class="project-tag">SQL Server</span>
-              <span class="project-tag">Erwin</span>
-              <span class="project-tag">Web Admin</span>
-            </div>
-            <div class="project-links">
-              <a href="http://www.purolator.com.pe/Catalogo/Aplicaciones.aspx" target="_blank" rel="noopener" class="project-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Búsqueda por Aplicaciones
-              </a>
-              <a href="http://www.purolator.com.pe/Catalogo/equivalencias.aspx" target="_blank" rel="noopener" class="project-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Búsqueda por Equivalencias
-              </a>
-            </div>
-          </div>
+          <div class="timeline-desc">Catálogo web de productos con C# .NET, ASP.NET y SQL Server 2005. Módulo de pedidos web intranet con arquitectura multicapa.</div>
         </div>
       </div>
 
@@ -998,22 +993,26 @@
 <section id="contact">
   <div class="container">
     <div class="section-label">Contacto</div>
-    <h2>Hablemos</h2>
+    <h2>Hablemos de tu proyecto</h2>
     <p class="contact-intro">
-      Disponible para proyectos de tecnología, gestión, análisis de datos y desarrollo de aplicaciones.
+      ¿Tienes una idea o un problema por resolver? Puedo ayudarte a convertirlo en un producto funcional en tiempo récord usando IA + experiencia técnica sólida.
     </p>
-    <div class="contact-grid fade-in">
-      <a href="mailto:msmgxe@gmail.com" class="contact-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        msmgxe@gmail.com
+    <div class="contact-cta-grid fade-in">
+      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="contact-big lk">
+        <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <span class="clabel">Conectar en</span>
+        <span class="cval">Mi LinkedIn</span>
       </a>
+      <a href="mailto:msmgxe@gmail.com" class="contact-big em">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span class="clabel">Escríbeme a</span>
+        <span class="cval">msmgxe@gmail.com</span>
+      </a>
+    </div>
+    <div class="contact-row fade-in">
       <a href="tel:+51984368710" class="contact-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.6 4.48 2 2 0 0 1 3.58 2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.82a16 16 0 0 0 6 6l1.92-1.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         +51 984 368 710
-      </a>
-      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="contact-item linkedin">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
       </a>
       <span class="contact-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1039,380 +1038,73 @@
       </button>
     </div>
 
-    <!-- TRABAJO -->
     <div class="doc-list active fade-in" id="tab-trabajo">
-
-      <div class="doc-item">
-        <span class="doc-year">Oct 2024</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Certificado Único Laboral</span>
-          <span class="doc-sub">Registro oficial de historial laboral</span>
-        </div>
-        <a href="assets/docs/trabajo/CUL-MSM-102024.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Oct 2023</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Certificado Único Laboral</span>
-          <span class="doc-sub">Registro oficial de historial laboral</span>
-        </div>
-        <a href="assets/docs/trabajo/CUL-MDE_MSaldarriaga102023.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Ago 2022</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista Senior de Gestión (II)</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2022-08-01-AnalistaSeniorGestion2.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Dic 2021</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista Senior de Gestión (I)</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2021-12-01-AnalistaSeniorGestion1.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Feb 2020</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista de Calidad</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2020-02-14-AnalistaCalidad.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Abr 2019</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Líder de Proyectos</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2019-04-01-LiderProyectos.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Nov 2018</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista de Calidad</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2018-11-19-AnalistaCalidad.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Sep 2017</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Jefe de Proyecto</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2017-09-30-JefeProyecto.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Ene 2016</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Líder de Proyectos y Analista Funcional</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2016-01-15-LiderProyectos_y_AF.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">May 2014</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Líder de Proyectos y Analista Funcional</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2014-05-01-LiderProyectosyAF.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Ene 2014</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Jefe de Proyecto</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2014-01-01-JefeProyecto.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Oct 2013</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista de Calidad</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2013-10-18-AnalistaCalidad.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Oct 2013</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista Funcional</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2013-10-13-AnalistaFuncional.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Jul 2012</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista Funcional</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2012-07-23-AnalistaFuncional.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Jun 2010</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Analista Programador</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/2010-06-24-AnalistaProgramador.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Jul 1996</span>
-        <span class="doc-icon-pdf">📄</span>
-        <div class="doc-info">
-          <span class="doc-name">Coordinador de Proyectos</span>
-          <span class="doc-sub">Constancia de trabajo</span>
-        </div>
-        <a href="assets/docs/trabajo/1996-07-22-CoordinadorProyectos.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
+      <div class="doc-item"><span class="doc-year">Oct 2024</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Certificado Único Laboral</span><span class="doc-sub">Registro oficial de historial laboral</span></div><a href="assets/docs/trabajo/CUL-MSM-102024.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2023</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Certificado Único Laboral</span><span class="doc-sub">Registro oficial de historial laboral</span></div><a href="assets/docs/trabajo/CUL-MDE_MSaldarriaga102023.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Ago 2022</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Senior de Gestión (II)</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2022-08-01-AnalistaSeniorGestion2.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Dic 2021</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Senior de Gestión (I)</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2021-12-01-AnalistaSeniorGestion1.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Feb 2020</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2020-02-14-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Abr 2019</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2019-04-01-LiderProyectos.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Nov 2018</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2018-11-19-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Sep 2017</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Jefe de Proyecto</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2017-09-30-JefeProyecto.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Ene 2016</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos y Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2016-01-15-LiderProyectos_y_AF.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">May 2014</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos y Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2014-05-01-LiderProyectosyAF.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Ene 2014</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Jefe de Proyecto</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2014-01-01-JefeProyecto.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2013</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2013-10-18-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2013</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2013-10-13-AnalistaFuncional.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Jul 2012</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2012-07-23-AnalistaFuncional.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Jun 2010</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Programador</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2010-06-24-AnalistaProgramador.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Jul 1996</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Coordinador de Proyectos</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/1996-07-22-CoordinadorProyectos.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
     </div>
 
-    <!-- ESTUDIOS -->
     <div class="doc-list" id="tab-estudios">
-
-      <div class="doc-item">
-        <span class="doc-year">Abr 2024</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">Curso Preparación PMP</span>
-          <span class="doc-sub">CGI — Gestión e Innovación · PMI</span>
-        </div>
-        <a href="assets/docs/estudios/2024-04-29-Curso-Preparacion-PMP.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">2023</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">Bachiller en Ingeniería de Sistemas</span>
-          <span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span>
-        </div>
-        <a href="assets/docs/estudios/2023-BachillerIngenieriaSistemas-A.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Oct 2021</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">International Scrum Master (ISM)</span>
-          <span class="doc-sub">International Scrum Assembly</span>
-        </div>
-        <a href="assets/docs/estudios/2021-10-31-Certificado-Scrum-Master.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Oct 2021</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">Egresado Ingeniería de Sistemas</span>
-          <span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span>
-        </div>
-        <a href="assets/docs/estudios/2021-10-21-Egresado_Ingenieria_Informatica.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">May 2015</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">PMI Member — Core Web Application</span>
-          <span class="doc-sub">Project Management Institute</span>
-        </div>
-        <a href="assets/docs/estudios/2015-05-01-PMIMember_Core_Web_Application.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Mar 2012</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">ASP.NET MVC 3</span>
-          <span class="doc-sub">Certificado técnico</span>
-        </div>
-        <a href="assets/docs/estudios/2012-03-04-AspNetMvc3.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Feb 2006</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">.NET Remoting</span>
-          <span class="doc-sub">Certificado técnico</span>
-        </div>
-        <a href="assets/docs/estudios/2006-02-04-NetRemoting.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Ene 2006</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">XML Web Services</span>
-          <span class="doc-sub">Certificado técnico</span>
-        </div>
-        <a href="assets/docs/estudios/2006-01-21-XML_Web_Services.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Oct 2002</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">Título Computación e Informática</span>
-          <span class="doc-sub">I.S.T. San Ignacio de Loyola — ISIL</span>
-        </div>
-        <a href="assets/docs/estudios/2002-10-04-TituloComputacionInformatica.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Sep 2002</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">Oracle Developer</span>
-          <span class="doc-sub">Certificado técnico</span>
-        </div>
-        <a href="assets/docs/estudios/2002-09-29-OracleDeveloper.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
-      <div class="doc-item">
-        <span class="doc-year">Sep 2002</span>
-        <span class="doc-icon-pdf">🎓</span>
-        <div class="doc-info">
-          <span class="doc-name">Oracle PL/SQL</span>
-          <span class="doc-sub">Certificado técnico</span>
-        </div>
-        <a href="assets/docs/estudios/2002-09-07-Oracle-PLSQL.pdf" target="_blank" class="doc-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver PDF
-        </a>
-      </div>
-
+      <div class="doc-item"><span class="doc-year">Abr 2024</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Curso Preparación PMP</span><span class="doc-sub">CGI — Gestión e Innovación · PMI</span></div><a href="assets/docs/estudios/2024-04-29-Curso-Preparacion-PMP.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">2023</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Bachiller en Ingeniería de Sistemas</span><span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span></div><a href="assets/docs/estudios/2023-BachillerIngenieriaSistemas-A.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2021</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">International Scrum Master (ISM)</span><span class="doc-sub">International Scrum Assembly</span></div><a href="assets/docs/estudios/2021-10-31-Certificado-Scrum-Master.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2021</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Egresado Ingeniería de Sistemas</span><span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span></div><a href="assets/docs/estudios/2021-10-21-Egresado_Ingenieria_Informatica.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">May 2015</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">PMI Member — Core Web Application</span><span class="doc-sub">Project Management Institute</span></div><a href="assets/docs/estudios/2015-05-01-PMIMember_Core_Web_Application.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Mar 2012</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">ASP.NET MVC 3</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2012-03-04-AspNetMvc3.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Feb 2006</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">.NET Remoting</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2006-02-04-NetRemoting.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Ene 2006</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">XML Web Services</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2006-01-21-XML_Web_Services.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Título Computación e Informática</span><span class="doc-sub">I.S.T. San Ignacio de Loyola — ISIL</span></div><a href="assets/docs/estudios/2002-10-04-TituloComputacionInformatica.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Sep 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Oracle Developer</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2002-09-29-OracleDeveloper.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Sep 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Oracle PL/SQL</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2002-09-07-Oracle-PLSQL.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-inner">
+    <div class="footer-contact">
+      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="banner-btn banner-btn-linkedin">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        Mi LinkedIn
+      </a>
+      <a href="mailto:msmgxe@gmail.com" class="banner-btn banner-btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Contáctame por Correo
+      </a>
+    </div>
     <a href="#hero" class="back-top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
       Volver arriba
     </a>
-    <p>© 2026 Marco Saldarriaga Medina · HTML puro · Alojado en Vercel</p>
+    <p>© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Desplegado en Vercel</p>
   </div>
 </footer>
 
 <script>
+  function toggleDrawer() {
+    document.getElementById('drawer').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+  function closeDrawer() {
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
   function switchTab(tab, btn) {
     document.querySelectorAll('.doc-list').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.doc-tab').forEach(el => el.classList.remove('active'));
@@ -1424,7 +1116,7 @@
     entries => entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     }),
-    { threshold: 0.08 }
+    { threshold: 0.07 }
   );
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
