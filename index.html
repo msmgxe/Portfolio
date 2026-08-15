@@ -80,6 +80,41 @@
     .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 198; }
     .drawer-overlay.open { display: block; }
 
+    /* ── SELECTOR DE IDIOMA ── */
+    .lang-switch { position: relative; flex-shrink: 0; }
+    .lang-btn {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.36rem 0.6rem; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border2);
+      color: var(--text); font-family: inherit; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .lang-btn .globe { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-btn .chev { width: 10px; height: 10px; opacity: 0.65; transition: transform 0.2s; }
+    .lang-switch.open .lang-btn { border-color: var(--accent); color: var(--accent); }
+    .lang-switch.open .lang-btn .chev { transform: rotate(180deg); }
+    .lang-menu {
+      position: absolute; top: calc(100% + 0.55rem); right: 0;
+      min-width: 172px; padding: 0.3rem;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 10px; box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+      display: none; flex-direction: column; gap: 0.1rem;
+    }
+    .lang-switch.open .lang-menu { display: flex; }
+    .lang-option {
+      display: flex; align-items: center; gap: 0.6rem; width: 100%;
+      padding: 0.5rem 0.65rem; border-radius: 7px;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text); font-family: inherit; font-size: 0.85rem; font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-option:hover { background: var(--surface2); color: var(--accent-light); }
+    .lang-option .flag { font-size: 1.05rem; line-height: 1; }
+    .lang-option .code { margin-left: auto; font-size: 0.68rem; font-weight: 800; color: var(--muted); letter-spacing: 0.05em; }
+    .lang-option[aria-selected="true"] { background: rgba(207,122,84,0.1); color: var(--accent); }
+    .lang-option[aria-selected="true"] .code { color: var(--accent); }
+
     /* ── CONTACT BANNER ── */
     .contact-banner {
       position: sticky; top: 57px; z-index: 150;
@@ -384,6 +419,7 @@
     @media (max-width: 768px) {
       nav { padding: 0.75rem 1rem; }
       .nav-links, .nav-cta { display: none; }
+      .nav-right { gap: 0.8rem; }
       .hamburger { display: flex; }
       section { padding: 3.5rem 1rem; }
       .contact-banner { top: 52px; gap: 0.75rem; padding: 0.55rem 1rem; }
@@ -406,13 +442,13 @@
 <!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="drawer">
   <ul>
-    <li><a href="#hero" onclick="closeDrawer()">Inicio</a></li>
-    <li><a href="#workflow" onclick="closeDrawer()">AI Stack</a></li>
-    <li><a href="#projects" onclick="closeDrawer()">Proyectos</a></li>
-    <li><a href="#experience" onclick="closeDrawer()">Experiencia</a></li>
-    <li><a href="#education" onclick="closeDrawer()">Educación</a></li>
-    <li><a href="#contact" onclick="closeDrawer()">Contacto</a></li>
-    <li><a href="#docs" onclick="closeDrawer()">Documentos</a></li>
+    <li><a href="#hero" onclick="closeDrawer()" data-i18n="nav.home">Inicio</a></li>
+    <li><a href="#workflow" onclick="closeDrawer()" data-i18n="nav.stack">AI Stack</a></li>
+    <li><a href="#projects" onclick="closeDrawer()" data-i18n="nav.projects">Proyectos</a></li>
+    <li><a href="#experience" onclick="closeDrawer()" data-i18n="nav.experience">Experiencia</a></li>
+    <li><a href="#education" onclick="closeDrawer()" data-i18n="nav.education">Educación</a></li>
+    <li><a href="#contact" onclick="closeDrawer()" data-i18n="nav.contact">Contacto</a></li>
+    <li><a href="#docs" onclick="closeDrawer()" data-i18n="nav.documents">Documentos</a></li>
   </ul>
   <div class="mobile-drawer-divider"></div>
   <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-linkedin" style="justify-content:center; font-size:0.85rem;">
@@ -421,7 +457,7 @@
   </a>
   <a href="mailto:msmgxe@gmail.com" class="btn btn-primary" style="justify-content:center; font-size:0.85rem; margin-top:0.5rem;">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-    Contáctame
+    <span data-i18n="cta.contact">Contáctame</span>
   </a>
 </div>
 
@@ -430,13 +466,28 @@
   <span class="nav-logo">MSM <span>— AI Builder</span></span>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#hero">Inicio</a></li>
-      <li><a href="#workflow">AI Stack</a></li>
-      <li><a href="#projects">Proyectos</a></li>
-      <li><a href="#experience">Experiencia</a></li>
-      <li><a href="#contact">Contacto</a></li>
-      <li><a href="#docs">Docs</a></li>
+      <li><a href="#hero" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="#workflow" data-i18n="nav.stack">AI Stack</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+      <li><a href="#docs" data-i18n="nav.docs">Docs</a></li>
     </ul>
+
+    <!-- SELECTOR DE IDIOMA -->
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false" aria-label="Cambiar idioma" data-i18n-aria="lang.aria">
+        <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langCurrent">ES</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-menu" id="langMenu" role="listbox">
+        <button class="lang-option" role="option" data-lang="es" onclick="setLang('es')"><span class="flag">🇪🇸</span>Español<span class="code">ES</span></button>
+        <button class="lang-option" role="option" data-lang="en" onclick="setLang('en')"><span class="flag">🇺🇸</span>English<span class="code">EN</span></button>
+        <button class="lang-option" role="option" data-lang="pt" onclick="setLang('pt')"><span class="flag">🇧🇷</span>Português<span class="code">PT</span></button>
+      </div>
+    </div>
+
     <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="nav-cta">
       <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       LinkedIn
@@ -449,15 +500,15 @@
 
 <!-- CONTACT BANNER -->
 <div class="contact-banner">
-  <p><strong>Disponible para proyectos y colaboraciones.</strong> Especialista en desarrollo acelerado con IA.</p>
+  <p data-i18n="banner.text"><strong>Disponible para proyectos y colaboraciones.</strong> Especialista en desarrollo acelerado con IA.</p>
   <div class="banner-btns">
     <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="banner-btn banner-btn-linkedin">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      Mi LinkedIn
+      <span data-i18n="cta.mylinkedin">Mi LinkedIn</span>
     </a>
     <a href="mailto:msmgxe@gmail.com" class="banner-btn banner-btn-primary">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      Contáctame por Correo
+      <span data-i18n="cta.emailme">Contáctame por Correo</span>
     </a>
   </div>
 </div>
@@ -468,11 +519,11 @@
     <div class="avatar"><img src="assets/profile.png" alt="Marco Saldarriaga Medina"></div>
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
-      Disponible para nuevos proyectos
+      <span data-i18n="hero.badge">Disponible para nuevos proyectos</span>
     </div>
     <h1>Marco Saldarriaga<br>Medina</h1>
     <p class="hero-role">AI Developer &amp; Product Builder | Vibe Coding Specialist</p>
-    <p class="hero-subtitle">
+    <p class="hero-subtitle" data-i18n="hero.subtitle">
       Combino una <strong>sólida lógica de programación</strong> y abstracción con herramientas avanzadas de IA
       (<strong>Claude Code, Gemini, ChatGPT</strong>) para conceptualizar, estructurar y desplegar
       aplicaciones web y prototipos funcionales (MVPs) <strong>en tiempo récord</strong>.<br>
@@ -483,39 +534,39 @@
       <span class="ai-pill">🤖 Claude Code</span>
       <span class="ai-pill">✨ Gemini</span>
       <span class="ai-pill">💬 ChatGPT</span>
-      <span class="ai-pill">🚀 MVP Rápido</span>
+      <span class="ai-pill" data-i18n="pill.mvp">🚀 MVP Rápido</span>
       <span class="ai-pill">☁️ Vercel Deploy</span>
     </div>
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-value">+28</div>
-        <div class="stat-label">Años en TI</div>
+        <div class="stat-label" data-i18n="stat.years">Años en TI</div>
       </div>
       <div class="stat">
         <div class="stat-value">6</div>
-        <div class="stat-label">Apps desplegadas</div>
+        <div class="stat-label" data-i18n="stat.apps">Apps desplegadas</div>
       </div>
       <div class="stat">
         <div class="stat-value">3x</div>
-        <div class="stat-label">Velocidad con IA</div>
+        <div class="stat-label" data-i18n="stat.speed">Velocidad con IA</div>
       </div>
       <div class="stat">
         <div class="stat-value">100%</div>
-        <div class="stat-label">En producción</div>
+        <div class="stat-label" data-i18n="stat.prod">En producción</div>
       </div>
     </div>
     <div class="hero-actions">
       <a href="#projects" class="btn btn-primary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4M12 17v4"/></svg>
-        Ver mis proyectos
+        <span data-i18n="hero.cta.projects">Ver mis proyectos</span>
       </a>
       <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-linkedin">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        Mi LinkedIn
+        <span data-i18n="cta.mylinkedin">Mi LinkedIn</span>
       </a>
       <a href="mailto:msmgxe@gmail.com" class="btn btn-outline">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Contáctame
+        <span data-i18n="cta.contact">Contáctame</span>
       </a>
     </div>
   </div>
@@ -524,9 +575,9 @@
 <!-- AI WORKFLOW -->
 <section id="workflow">
   <div class="container">
-    <div class="section-label">Mi Superpotencia</div>
-    <h2>Mi Flujo de Trabajo (AI Stack)</h2>
-    <p class="workflow-intro">
+    <div class="section-label" data-i18n="wf.label">Mi Superpotencia</div>
+    <h2 data-i18n="wf.title">Mi Flujo de Trabajo (AI Stack)</h2>
+    <p class="workflow-intro" data-i18n="wf.intro">
       No reemplazo la lógica — la <strong style="color:var(--text)">amplifico</strong>.
       Combino experiencia sólida en arquitectura de software con las mejores herramientas de IA
       para entregar soluciones funcionales que antes tomaban semanas, ahora en días.
@@ -535,14 +586,14 @@
 
       <div class="workflow-card wc1 fade-in">
         <span class="workflow-icon">🧠</span>
-        <div class="workflow-title">Lógica de Programación</div>
-        <div class="workflow-sub">Base sólida · Arquitectura</div>
-        <p class="workflow-desc">28+ años de experiencia en análisis funcional, arquitectura multicapa y diseño de sistemas respaldan cada decisión de código.</p>
+        <div class="workflow-title" data-i18n="wf1.title">Lógica de Programación</div>
+        <div class="workflow-sub" data-i18n="wf1.sub">Base sólida · Arquitectura</div>
+        <p class="workflow-desc" data-i18n="wf1.desc">28+ años de experiencia en análisis funcional, arquitectura multicapa y diseño de sistemas respaldan cada decisión de código.</p>
         <div class="wchips">
           <span class="wchip hl">C# / .NET</span>
-          <span class="wchip hl">Arquitectura Web</span>
+          <span class="wchip hl" data-i18n="wf1.chip.arch">Arquitectura Web</span>
           <span class="wchip">SQL Server</span>
-          <span class="wchip">Patrones de diseño</span>
+          <span class="wchip" data-i18n="wf1.chip.patterns">Patrones de diseño</span>
           <span class="wchip">APIs REST</span>
           <span class="wchip">Scrum / Agile</span>
         </div>
@@ -550,9 +601,9 @@
 
       <div class="workflow-card wc2 fade-in">
         <span class="workflow-icon">🤖</span>
-        <div class="workflow-title">Herramientas de IA</div>
-        <div class="workflow-sub">Aceleración · Vibe Coding</div>
-        <p class="workflow-desc">Uso IA no como sustituto del pensamiento, sino como multiplicador. Prompt engineering preciso produce código funcional al primer intento.</p>
+        <div class="workflow-title" data-i18n="wf2.title">Herramientas de IA</div>
+        <div class="workflow-sub" data-i18n="wf2.sub">Aceleración · Vibe Coding</div>
+        <p class="workflow-desc" data-i18n="wf2.desc">Uso IA no como sustituto del pensamiento, sino como multiplicador. Prompt engineering preciso produce código funcional al primer intento.</p>
         <div class="wchips">
           <span class="wchip hl">Claude Code</span>
           <span class="wchip hl">Gemini</span>
@@ -565,9 +616,9 @@
 
       <div class="workflow-card wc3 fade-in">
         <span class="workflow-icon">🚀</span>
-        <div class="workflow-title">Frontend &amp; Despliegue</div>
-        <div class="workflow-sub">Producción · Tiempo récord</div>
-        <p class="workflow-desc">Del prototipo a producción en horas. Stack moderno enfocado en performance, experiencia de usuario y despliegue continuo.</p>
+        <div class="workflow-title" data-i18n="wf3.title">Frontend &amp; Despliegue</div>
+        <div class="workflow-sub" data-i18n="wf3.sub">Producción · Tiempo récord</div>
+        <p class="workflow-desc" data-i18n="wf3.desc">Del prototipo a producción en horas. Stack moderno enfocado en performance, experiencia de usuario y despliegue continuo.</p>
         <div class="wchips">
           <span class="wchip hl">React / Next.js</span>
           <span class="wchip hl">Vercel</span>
@@ -585,9 +636,9 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <div class="section-label">Portafolio</div>
-    <h2>Proyectos desplegados en producción</h2>
-    <p class="projects-intro">Cada proyecto fue construido aplicando <strong style="color:var(--text)">Vibe Coding</strong>: IA + lógica sólida = resultados reales a velocidad de startup.</p>
+    <div class="section-label" data-i18n="pr.label">Portafolio</div>
+    <h2 data-i18n="pr.title">Proyectos desplegados en producción</h2>
+    <p class="projects-intro" data-i18n="pr.intro">Cada proyecto fue construido aplicando <strong style="color:var(--text)">Vibe Coding</strong>: IA + lógica sólida = resultados reales a velocidad de startup.</p>
     <div class="projects-grid">
 
       <!-- P1: Entrevistas técnicas -->
@@ -597,19 +648,19 @@
           <span class="vibe-badge">⚡ Vibe Coding</span>
         </div>
         <div class="project-body">
-          <div class="project-problem">Problema resuelto: Preparación técnica</div>
-          <h3>Simulador de Entrevistas Técnicas</h3>
-          <p>Herramienta de preparación para entrevistas técnicas de desarrollo. Simulaciones interactivas, banco de preguntas y feedback inmediato para candidatos dev.</p>
+          <div class="project-problem" data-i18n="p1.problem">Problema resuelto: Preparación técnica</div>
+          <h3 data-i18n="p1.title">Simulador de Entrevistas Técnicas</h3>
+          <p data-i18n="p1.desc">Herramienta de preparación para entrevistas técnicas de desarrollo. Simulaciones interactivas, banco de preguntas y feedback inmediato para candidatos dev.</p>
           <div class="project-footer">
             <div class="project-tags">
               <span class="project-tag accent">React</span>
               <span class="project-tag accent">Next.js</span>
               <span class="project-tag">Vercel</span>
-              <span class="project-tag">IA-asistido</span>
+              <span class="project-tag" data-i18n="tag.ai">IA-asistido</span>
             </div>
             <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Ver proyecto
+              <span data-i18n="link.view">Ver proyecto</span>
             </a>
           </div>
         </div>
@@ -622,9 +673,9 @@
           <span class="vibe-badge">⚡ Vibe Coding</span>
         </div>
         <div class="project-body">
-          <div class="project-problem">Problema resuelto: Optimización de presupuestos</div>
-          <h3>Cotizador Inteligente de Construcción</h3>
-          <p>Cotizador de servicios en construcción para optimización de presupuestos de negocio. Automatiza cálculos complejos y genera propuestas profesionales al instante.</p>
+          <div class="project-problem" data-i18n="p2.problem">Problema resuelto: Optimización de presupuestos</div>
+          <h3 data-i18n="p2.title">Cotizador Inteligente de Construcción</h3>
+          <p data-i18n="p2.desc">Cotizador de servicios en construcción para optimización de presupuestos de negocio. Automatiza cálculos complejos y genera propuestas profesionales al instante.</p>
           <div class="project-footer">
             <div class="project-tags">
               <span class="project-tag accent">React</span>
@@ -634,7 +685,7 @@
             </div>
             <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Ver proyecto
+              <span data-i18n="link.view">Ver proyecto</span>
             </a>
           </div>
         </div>
@@ -647,9 +698,9 @@
           <span class="vibe-badge">⚡ Vibe Coding</span>
         </div>
         <div class="project-body">
-          <div class="project-problem">Problema resuelto: Gestión educativa</div>
-          <h3>Panel Admin para Plataformas Educativas</h3>
-          <p>Dashboard de administración y gestión de usuarios para plataformas educativas. Control total de alumnos, contenidos y métricas en una sola interfaz.</p>
+          <div class="project-problem" data-i18n="p3.problem">Problema resuelto: Gestión educativa</div>
+          <h3 data-i18n="p3.title">Panel Admin para Plataformas Educativas</h3>
+          <p data-i18n="p3.desc">Dashboard de administración y gestión de usuarios para plataformas educativas. Control total de alumnos, contenidos y métricas en una sola interfaz.</p>
           <div class="project-footer">
             <div class="project-tags">
               <span class="project-tag accent">React</span>
@@ -659,7 +710,7 @@
             </div>
             <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Ver proyecto
+              <span data-i18n="link.view">Ver proyecto</span>
             </a>
           </div>
         </div>
@@ -672,9 +723,9 @@
           <span class="vibe-badge">⚡ Vibe Coding</span>
         </div>
         <div class="project-body">
-          <div class="project-problem">Problema resuelto: Aprendizaje interactivo</div>
-          <h3>CodeBit — App Web Interactiva</h3>
-          <p>Aplicación funcional web interactiva construida y desplegada en producción. Demuestra la capacidad de llevar ideas complejas a producto funcional rápidamente.</p>
+          <div class="project-problem" data-i18n="p4.problem">Problema resuelto: Aprendizaje interactivo</div>
+          <h3 data-i18n="p4.title">CodeBit — App Web Interactiva</h3>
+          <p data-i18n="p4.desc">Aplicación funcional web interactiva construida y desplegada en producción. Demuestra la capacidad de llevar ideas complejas a producto funcional rápidamente.</p>
           <div class="project-footer">
             <div class="project-tags">
               <span class="project-tag accent">React</span>
@@ -684,7 +735,7 @@
             </div>
             <a href="https://codebit-two.vercel.app/" target="_blank" rel="noopener" class="project-link live">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Ver en vivo
+              <span data-i18n="link.live">Ver en vivo</span>
             </a>
           </div>
         </div>
@@ -697,9 +748,9 @@
           <span class="vibe-badge">⚡ Vibe Coding</span>
         </div>
         <div class="project-body">
-          <div class="project-problem">Problema resuelto: UX en tiempo real</div>
-          <h3>Fixture Mundial 2026</h3>
-          <p>Fixture dinámico e interactivo para el Mundial 2026. Enfocado en experiencia de usuario fluida y manejo de datos en tiempo real. Diseño responsive y visualmente atractivo.</p>
+          <div class="project-problem" data-i18n="p5.problem">Problema resuelto: UX en tiempo real</div>
+          <h3 data-i18n="p5.title">Fixture Mundial 2026</h3>
+          <p data-i18n="p5.desc">Fixture dinámico e interactivo para el Mundial 2026. Enfocado en experiencia de usuario fluida y manejo de datos en tiempo real. Diseño responsive y visualmente atractivo.</p>
           <div class="project-footer">
             <div class="project-tags">
               <span class="project-tag accent">React</span>
@@ -709,7 +760,7 @@
             </div>
             <a href="https://mundial-2026-fixture.vercel.app/" target="_blank" rel="noopener" class="project-link live">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Ver en vivo
+              <span data-i18n="link.live">Ver en vivo</span>
             </a>
           </div>
         </div>
@@ -722,9 +773,9 @@
           <span class="vibe-badge">⚡ Vibe Coding</span>
         </div>
         <div class="project-body">
-          <div class="project-problem">Problema resuelto: Presencia digital profesional</div>
-          <h3>Este Portafolio — SPA Optimizada</h3>
-          <p>SPA optimizada y desplegada en Vercel. Diseño moderno inspirado en Claude Code, responsive, con animaciones suaves y carga instantánea. 100% HTML/CSS/JS puro.</p>
+          <div class="project-problem" data-i18n="p6.problem">Problema resuelto: Presencia digital profesional</div>
+          <h3 data-i18n="p6.title">Este Portafolio — SPA Optimizada</h3>
+          <p data-i18n="p6.desc">SPA optimizada y desplegada en Vercel. Diseño moderno inspirado en Claude Code, responsive, con animaciones suaves y carga instantánea. 100% HTML/CSS/JS puro.</p>
           <div class="project-footer">
             <div class="project-tags">
               <span class="project-tag accent">HTML / CSS</span>
@@ -734,7 +785,7 @@
             </div>
             <a href="https://cvmsaldarriaga.vercel.app/" target="_blank" rel="noopener" class="project-link live">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Ver en vivo
+              <span data-i18n="link.live">Ver en vivo</span>
             </a>
           </div>
         </div>
@@ -747,8 +798,8 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
-    <div class="section-label">Experiencia</div>
-    <h2>Trayectoria profesional</h2>
+    <div class="section-label" data-i18n="ex.label">Experiencia</div>
+    <h2 data-i18n="ex.title">Trayectoria profesional</h2>
     <div class="timeline">
 
       <div class="timeline-item fade-in">
@@ -760,14 +811,14 @@
                 <img src="assets/logo-enotria.png" alt="Enotria" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1d4ed8,#1e40af)'; this.parentNode.textContent=this.parentNode.dataset.text">
               </div>
               <div>
-                <div class="timeline-role">Analista de Proyectos</div>
+                <div class="timeline-role" data-i18n="e1.role">Analista de Proyectos</div>
                 <div class="timeline-company">Enotria</div>
-                <div class="timeline-sector">Comercial / Administración</div>
+                <div class="timeline-sector" data-i18n="e1.sector">Comercial / Administración</div>
               </div>
             </div>
             <span class="timeline-date">Nov 2025 — Actualidad</span>
           </div>
-          <div class="timeline-desc">
+          <div class="timeline-desc" data-i18n="e1.desc">
             <ul>
               <li>Coordinación global del proyecto — requerimientos del área de Administración.</li>
               <li>Supervisión del análisis funcional y orgánico, implementación y desarrollo.</li>
@@ -786,14 +837,14 @@
                 <img src="assets/logo-formativa.png" alt="Formativa SAC" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#0d9488,#065f46)'; this.parentNode.textContent=this.parentNode.dataset.text">
               </div>
               <div>
-                <div class="timeline-role">Consultor Externo / Gestión de RRHH</div>
+                <div class="timeline-role" data-i18n="e2.role">Consultor Externo / Gestión de RRHH</div>
                 <div class="timeline-company">Formativa SAC</div>
-                <div class="timeline-sector">RRHH / Sector Estatal</div>
+                <div class="timeline-sector" data-i18n="e2.sector">RRHH / Sector Estatal</div>
               </div>
             </div>
             <span class="timeline-date">Mar 2024 — Oct 2025</span>
           </div>
-          <div class="timeline-desc">
+          <div class="timeline-desc" data-i18n="e2.desc">
             <ul>
               <li>Gestión de RRHH para nuevas propuestas con el Estado y clientes comerciales.</li>
               <li>Elaboración de propuestas técnicas y económicas para la cartera de clientes.</li>
@@ -810,14 +861,14 @@
             <div class="timeline-header-left">
               <div class="company-badge" style="background:linear-gradient(135deg,#6366f1,#4338ca)">QDS</div>
               <div>
-                <div class="timeline-role">Coordinador de Servicios TI</div>
+                <div class="timeline-role" data-i18n="e3.role">Coordinador de Servicios TI</div>
                 <div class="timeline-company">QDS Group</div>
-                <div class="timeline-sector">RRHH / TI</div>
+                <div class="timeline-sector" data-i18n="e3.sector">RRHH / TI</div>
               </div>
             </div>
             <span class="timeline-date">Dic 2023 — Feb 2024</span>
           </div>
-          <div class="timeline-desc">Gestión de solicitudes de 100 trabajadores en distintos clientes. Renovaciones, contratos, inducciones y feedback mensual.</div>
+          <div class="timeline-desc" data-i18n="e3.desc">Gestión de solicitudes de 100 trabajadores en distintos clientes. Renovaciones, contratos, inducciones y feedback mensual.</div>
         </div>
       </div>
 
@@ -832,12 +883,12 @@
               <div>
                 <div class="timeline-role">Project Manager / Scrum Master</div>
                 <div class="timeline-company">Universidad de Ciencias Aplicadas — IP InfoOut</div>
-                <div class="timeline-sector">Educación</div>
+                <div class="timeline-sector" data-i18n="e4.sector">Educación</div>
               </div>
             </div>
             <span class="timeline-date">Dic 2021 — Jul 2023</span>
           </div>
-          <div class="timeline-desc">
+          <div class="timeline-desc" data-i18n="e4.desc">
             <ul>
               <li>Gestión de 25 requerimientos funcionales en metodología ágil (2 Sprints paralelos).</li>
               <li>Lideré 3 proyectos PMI: WeTalk continuidad, GEMA evaluaciones, nueva arquitectura WeTalk.</li>
@@ -854,14 +905,14 @@
             <div class="timeline-header-left">
               <div class="company-badge" style="background:linear-gradient(135deg,#f59e0b,#b45309)">PR</div>
               <div>
-                <div class="timeline-role">Analista Funcional / Product Owner</div>
+                <div class="timeline-role" data-i18n="e5.role">Analista Funcional / Product Owner</div>
                 <div class="timeline-company">Belmond Perurail — MDP Consulting</div>
-                <div class="timeline-sector">Comercial / Turismo</div>
+                <div class="timeline-sector" data-i18n="e5.sector">Comercial / Turismo</div>
               </div>
             </div>
             <span class="timeline-date">Jun 2020 — May 2021</span>
           </div>
-          <div class="timeline-desc">AS-IS / TO-BE de requerimientos comerciales. Diseño de prototipos, casos de uso y casos de prueba.</div>
+          <div class="timeline-desc" data-i18n="e5.desc">AS-IS / TO-BE de requerimientos comerciales. Diseño de prototipos, casos de uso y casos de prueba.</div>
         </div>
       </div>
 
@@ -872,14 +923,14 @@
             <div class="timeline-header-left">
               <div class="company-badge" style="background:linear-gradient(135deg,#10b981,#047857)">OS</div>
               <div>
-                <div class="timeline-role">Jefe de Proyecto — Sector Salud</div>
+                <div class="timeline-role" data-i18n="e6.role">Jefe de Proyecto — Sector Salud</div>
                 <div class="timeline-company">Oncosalud — Evol / MDP Consulting</div>
-                <div class="timeline-sector">Salud</div>
+                <div class="timeline-sector" data-i18n="e6.sector">Salud</div>
               </div>
             </div>
             <span class="timeline-date">Nov 2018 — May 2020</span>
           </div>
-          <div class="timeline-desc">
+          <div class="timeline-desc" data-i18n="e6.desc">
             <ul>
               <li>Proyecto PCI-DSS / certificación Visa — seguridad, enmascaramiento y tokenización.</li>
               <li>Gestión de presupuesto CAPEX/OPEX y reporte al comité de proyecto.</li>
@@ -895,14 +946,14 @@
             <div class="timeline-header-left">
               <div class="company-badge" style="background:linear-gradient(135deg,#f97316,#c2410c)">AFP</div>
               <div>
-                <div class="timeline-role">Jefe de Proyecto / Analista Funcional</div>
+                <div class="timeline-role" data-i18n="e7.role">Jefe de Proyecto / Analista Funcional</div>
                 <div class="timeline-company">AFP Profuturo — MDP Consulting</div>
-                <div class="timeline-sector">Banca / Finanzas</div>
+                <div class="timeline-sector" data-i18n="e7.sector">Banca / Finanzas</div>
               </div>
             </div>
             <span class="timeline-date">Sep 2013 — May 2014</span>
           </div>
-          <div class="timeline-desc">Business Intelligence en Oracle · reportes DW con MicroStrategy · Diagramas UML · reglas SBS y Sunat.</div>
+          <div class="timeline-desc" data-i18n="e7.desc">Business Intelligence en Oracle · reportes DW con MicroStrategy · Diagramas UML · reglas SBS y Sunat.</div>
         </div>
       </div>
 
@@ -913,14 +964,14 @@
             <div class="timeline-header-left">
               <div class="company-badge" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)">CB</div>
               <div>
-                <div class="timeline-role">Analista de Procesos Técnicos — Banca</div>
+                <div class="timeline-role" data-i18n="e8.role">Analista de Procesos Técnicos — Banca</div>
                 <div class="timeline-company">Banco Citibank</div>
-                <div class="timeline-sector">Banca</div>
+                <div class="timeline-sector" data-i18n="e8.sector">Banca</div>
               </div>
             </div>
             <span class="timeline-date">Jun 2010 — May 2011</span>
           </div>
-          <div class="timeline-desc">Proyecto Web Paylink Back End (transferencias interbancarias B2B). Diagramas UML, metodología RUP, prototipos de interfaz.</div>
+          <div class="timeline-desc" data-i18n="e8.desc">Proyecto Web Paylink Back End (transferencias interbancarias B2B). Diagramas UML, metodología RUP, prototipos de interfaz.</div>
         </div>
       </div>
 
@@ -931,14 +982,14 @@
             <div class="timeline-header-left">
               <div class="company-badge" style="background:linear-gradient(135deg,#8b5cf6,#5b21b6)">LF</div>
               <div>
-                <div class="timeline-role">Analista Programador</div>
+                <div class="timeline-role" data-i18n="e9.role">Analista Programador</div>
                 <div class="timeline-company">Lee Filter del Perú S.A.</div>
-                <div class="timeline-sector">Comercial</div>
+                <div class="timeline-sector" data-i18n="e9.sector">Comercial</div>
               </div>
             </div>
             <span class="timeline-date">Jul 2006 — Dic 2008</span>
           </div>
-          <div class="timeline-desc">Catálogo web de productos con C# .NET, ASP.NET y SQL Server 2005. Módulo de pedidos web intranet con arquitectura multicapa.</div>
+          <div class="timeline-desc" data-i18n="e9.desc">Catálogo web de productos con C# .NET, ASP.NET y SQL Server 2005. Módulo de pedidos web intranet con arquitectura multicapa.</div>
         </div>
       </div>
 
@@ -949,40 +1000,40 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="container">
-    <div class="section-label">Educación &amp; Certificaciones</div>
-    <h2>Formación académica</h2>
+    <div class="section-label" data-i18n="ed.label">Educación &amp; Certificaciones</div>
+    <h2 data-i18n="ed.title">Formación académica</h2>
     <div class="edu-grid fade-in">
       <div class="edu-card">
         <h3>Data Scientist</h3>
         <div class="school">TripleTen</div>
-        <div class="period">Agosto 2023 — En curso</div>
+        <div class="period" data-i18n="ed1.period">Agosto 2023 — En curso</div>
       </div>
       <div class="edu-card">
-        <h3>Ingeniería de Sistemas</h3>
+        <h3 data-i18n="ed2.title">Ingeniería de Sistemas</h3>
         <div class="school">Universidad Peruana de Ciencias Aplicadas — UPC</div>
-        <div class="period">Dic 2016 — Jul 2021 · Bachiller</div>
+        <div class="period" data-i18n="ed2.period">Dic 2016 — Jul 2021 · Bachiller</div>
       </div>
       <div class="edu-card">
-        <h3>Computación e Informática</h3>
+        <h3 data-i18n="ed3.title">Computación e Informática</h3>
         <div class="school">I.S.T. San Ignacio de Loyola — ISIL</div>
-        <div class="period">Mar 1999 — Feb 2002 · Titulado Técnico</div>
+        <div class="period" data-i18n="ed3.period">Mar 1999 — Feb 2002 · Titulado Técnico</div>
       </div>
       <div class="edu-card">
         <h3>International Scrum Master (ISM)</h3>
         <div class="school">International Scrum Assembly</div>
-        <div class="period">Octubre 2021</div>
+        <div class="period" data-i18n="ed4.period">Octubre 2021</div>
         <a href="https://bit.ly/3ExtpJv" target="_blank" rel="noopener" class="edu-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver certificado →
+          <span data-i18n="ed.cert">Ver certificado →</span>
         </a>
       </div>
       <div class="edu-card">
-        <h3>Preparación Certificación PMP</h3>
+        <h3 data-i18n="ed5.title">Preparación Certificación PMP</h3>
         <div class="school">CGI — Gestión e Innovación</div>
-        <div class="period">Mar 2024 — Abr 2024</div>
+        <div class="period" data-i18n="ed5.period">Mar 2024 — Abr 2024</div>
         <a href="https://cgi-digital.net/" target="_blank" rel="noopener" class="edu-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Ver institución →
+          <span data-i18n="ed.inst">Ver institución →</span>
         </a>
       </div>
     </div>
@@ -992,20 +1043,20 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="section-label">Contacto</div>
-    <h2>Hablemos de tu proyecto</h2>
-    <p class="contact-intro">
+    <div class="section-label" data-i18n="ct.label">Contacto</div>
+    <h2 data-i18n="ct.title">Hablemos de tu proyecto</h2>
+    <p class="contact-intro" data-i18n="ct.intro">
       ¿Tienes una idea o un problema por resolver? Puedo ayudarte a convertirlo en un producto funcional en tiempo récord usando IA + experiencia técnica sólida.
     </p>
     <div class="contact-cta-grid fade-in">
       <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="contact-big lk">
         <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        <span class="clabel">Conectar en</span>
-        <span class="cval">Mi LinkedIn</span>
+        <span class="clabel" data-i18n="ct.connect">Conectar en</span>
+        <span class="cval" data-i18n="cta.mylinkedin">Mi LinkedIn</span>
       </a>
       <a href="mailto:msmgxe@gmail.com" class="contact-big em">
         <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        <span class="clabel">Escríbeme a</span>
+        <span class="clabel" data-i18n="ct.write">Escríbeme a</span>
         <span class="cval">msmgxe@gmail.com</span>
       </a>
     </div>
@@ -1016,7 +1067,7 @@
       </a>
       <span class="contact-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        Lima, Perú
+        <span data-i18n="ct.location">Lima, Perú</span>
       </span>
     </div>
   </div>
@@ -1025,50 +1076,50 @@
 <!-- DOCS -->
 <section id="docs">
   <div class="container">
-    <div class="section-label">Documentación</div>
-    <h2>Certificados y constancias</h2>
+    <div class="section-label" data-i18n="dc.label">Documentación</div>
+    <h2 data-i18n="dc.title">Certificados y constancias</h2>
     <div class="doc-tabs">
       <button class="doc-tab active" onclick="switchTab('trabajo', this)">
-        💼 Experiencia Laboral
-        <span class="tab-count">16</span>
+        <span data-i18n="dc.tab.work">💼 Experiencia Laboral</span>
+        <span class="tab-count" data-count-for="trabajo">16</span>
       </button>
       <button class="doc-tab" onclick="switchTab('estudios', this)">
-        🎓 Estudios y Certificaciones
-        <span class="tab-count">11</span>
+        <span data-i18n="dc.tab.edu">🎓 Estudios y Certificaciones</span>
+        <span class="tab-count" data-count-for="estudios">11</span>
       </button>
     </div>
 
     <div class="doc-list active fade-in" id="tab-trabajo">
-      <div class="doc-item"><span class="doc-year">Oct 2024</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Certificado Único Laboral</span><span class="doc-sub">Registro oficial de historial laboral</span></div><a href="assets/docs/trabajo/CUL-MSM-102024.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Oct 2023</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Certificado Único Laboral</span><span class="doc-sub">Registro oficial de historial laboral</span></div><a href="assets/docs/trabajo/CUL-MDE_MSaldarriaga102023.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Ago 2022</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Senior de Gestión (II)</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2022-08-01-AnalistaSeniorGestion2.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Dic 2021</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Senior de Gestión (I)</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2021-12-01-AnalistaSeniorGestion1.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Feb 2020</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2020-02-14-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Abr 2019</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2019-04-01-LiderProyectos.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Nov 2018</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2018-11-19-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Sep 2017</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Jefe de Proyecto</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2017-09-30-JefeProyecto.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Ene 2016</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos y Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2016-01-15-LiderProyectos_y_AF.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">May 2014</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos y Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2014-05-01-LiderProyectosyAF.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Ene 2014</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Jefe de Proyecto</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2014-01-01-JefeProyecto.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Oct 2013</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2013-10-18-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Oct 2013</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2013-10-13-AnalistaFuncional.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Jul 2012</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2012-07-23-AnalistaFuncional.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Jun 2010</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Programador</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2010-06-24-AnalistaProgramador.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Jul 1996</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Coordinador de Proyectos</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/1996-07-22-CoordinadorProyectos.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2024</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Certificado Único Laboral</span><span class="doc-sub">Registro oficial de historial laboral</span></div><a href="assets/docs/trabajo/CUL-MSM-102024.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2023</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Certificado Único Laboral</span><span class="doc-sub">Registro oficial de historial laboral</span></div><a href="assets/docs/trabajo/CUL-MDE_MSaldarriaga102023.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Ago 2022</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Senior de Gestión (II)</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2022-08-01-AnalistaSeniorGestion2.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Dic 2021</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Senior de Gestión (I)</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2021-12-01-AnalistaSeniorGestion1.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Feb 2020</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2020-02-14-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Abr 2019</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2019-04-01-LiderProyectos.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Nov 2018</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2018-11-19-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Sep 2017</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Jefe de Proyecto</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2017-09-30-JefeProyecto.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Ene 2016</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos y Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2016-01-15-LiderProyectos_y_AF.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">May 2014</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Líder de Proyectos y Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2014-05-01-LiderProyectosyAF.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Ene 2014</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Jefe de Proyecto</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2014-01-01-JefeProyecto.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2013</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista de Calidad</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2013-10-18-AnalistaCalidad.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2013</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2013-10-13-AnalistaFuncional.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Jul 2012</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Funcional</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2012-07-23-AnalistaFuncional.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Jun 2010</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Analista Programador</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/2010-06-24-AnalistaProgramador.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Jul 1996</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Coordinador de Proyectos</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/1996-07-22-CoordinadorProyectos.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
     </div>
 
     <div class="doc-list" id="tab-estudios">
-      <div class="doc-item"><span class="doc-year">Abr 2024</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Curso Preparación PMP</span><span class="doc-sub">CGI — Gestión e Innovación · PMI</span></div><a href="assets/docs/estudios/2024-04-29-Curso-Preparacion-PMP.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">2023</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Bachiller en Ingeniería de Sistemas</span><span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span></div><a href="assets/docs/estudios/2023-BachillerIngenieriaSistemas-A.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Oct 2021</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">International Scrum Master (ISM)</span><span class="doc-sub">International Scrum Assembly</span></div><a href="assets/docs/estudios/2021-10-31-Certificado-Scrum-Master.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Oct 2021</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Egresado Ingeniería de Sistemas</span><span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span></div><a href="assets/docs/estudios/2021-10-21-Egresado_Ingenieria_Informatica.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">May 2015</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">PMI Member — Core Web Application</span><span class="doc-sub">Project Management Institute</span></div><a href="assets/docs/estudios/2015-05-01-PMIMember_Core_Web_Application.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Mar 2012</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">ASP.NET MVC 3</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2012-03-04-AspNetMvc3.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Feb 2006</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">.NET Remoting</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2006-02-04-NetRemoting.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Ene 2006</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">XML Web Services</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2006-01-21-XML_Web_Services.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Oct 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Título Computación e Informática</span><span class="doc-sub">I.S.T. San Ignacio de Loyola — ISIL</span></div><a href="assets/docs/estudios/2002-10-04-TituloComputacionInformatica.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Sep 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Oracle Developer</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2002-09-29-OracleDeveloper.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
-      <div class="doc-item"><span class="doc-year">Sep 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Oracle PL/SQL</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2002-09-07-Oracle-PLSQL.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver PDF</a></div>
+      <div class="doc-item"><span class="doc-year">Abr 2024</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Curso Preparación PMP</span><span class="doc-sub">CGI — Gestión e Innovación · PMI</span></div><a href="assets/docs/estudios/2024-04-29-Curso-Preparacion-PMP.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">2023</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Bachiller en Ingeniería de Sistemas</span><span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span></div><a href="assets/docs/estudios/2023-BachillerIngenieriaSistemas-A.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2021</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">International Scrum Master (ISM)</span><span class="doc-sub">International Scrum Assembly</span></div><a href="assets/docs/estudios/2021-10-31-Certificado-Scrum-Master.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2021</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Egresado Ingeniería de Sistemas</span><span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span></div><a href="assets/docs/estudios/2021-10-21-Egresado_Ingenieria_Informatica.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">May 2015</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">PMI Member — Core Web Application</span><span class="doc-sub">Project Management Institute</span></div><a href="assets/docs/estudios/2015-05-01-PMIMember_Core_Web_Application.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Mar 2012</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">ASP.NET MVC 3</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2012-03-04-AspNetMvc3.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Feb 2006</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">.NET Remoting</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2006-02-04-NetRemoting.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Ene 2006</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">XML Web Services</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2006-01-21-XML_Web_Services.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Oct 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Título Computación e Informática</span><span class="doc-sub">I.S.T. San Ignacio de Loyola — ISIL</span></div><a href="assets/docs/estudios/2002-10-04-TituloComputacionInformatica.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Sep 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Oracle Developer</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2002-09-29-OracleDeveloper.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
+      <div class="doc-item"><span class="doc-year">Sep 2002</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Oracle PL/SQL</span><span class="doc-sub">Certificado técnico</span></div><a href="assets/docs/estudios/2002-09-07-Oracle-PLSQL.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
     </div>
   </div>
 </section>
@@ -1078,18 +1129,18 @@
     <div class="footer-contact">
       <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="banner-btn banner-btn-linkedin">
         <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        Mi LinkedIn
+        <span data-i18n="cta.mylinkedin">Mi LinkedIn</span>
       </a>
       <a href="mailto:msmgxe@gmail.com" class="banner-btn banner-btn-primary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Contáctame por Correo
+        <span data-i18n="cta.emailme">Contáctame por Correo</span>
       </a>
     </div>
     <a href="#hero" class="back-top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-      Volver arriba
+      <span data-i18n="ft.backtop">Volver arriba</span>
     </a>
-    <p>© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Desplegado en Vercel</p>
+    <p data-i18n="ft.copy">© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Desplegado en Vercel</p>
   </div>
 </footer>
 
@@ -1112,6 +1163,13 @@
     btn.classList.add('active');
   }
 
+  // Los contadores de las pestañas se derivan de los documentos reales,
+  // así no quedan desfasados al añadir o quitar una entrada.
+  document.querySelectorAll('.tab-count[data-count-for]').forEach(el => {
+    const list = document.getElementById('tab-' + el.dataset.countFor);
+    if (list) el.textContent = list.querySelectorAll('.doc-item').length;
+  });
+
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
@@ -1119,6 +1177,386 @@
     { threshold: 0.07 }
   );
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  /* ═══════════════════════════════════════════════════════════
+     i18n — ES (base, tomada del propio HTML) · EN · PT
+     ═══════════════════════════════════════════════════════════ */
+
+  const LANG_CODES = { es: 'ES', en: 'EN', pt: 'PT' };
+
+  const META = {
+    es: {
+      title: 'Marco Saldarriaga — AI Developer & Product Builder',
+      desc: 'AI Developer & Product Builder. Especialista en Vibe Coding con Claude Code, Gemini y ChatGPT. Desarrollo acelerado de MVPs y aplicaciones web en tiempo récord.'
+    },
+    en: {
+      title: 'Marco Saldarriaga — AI Developer & Product Builder',
+      desc: 'AI Developer & Product Builder. Vibe Coding specialist with Claude Code, Gemini and ChatGPT. Accelerated development of MVPs and web applications in record time.'
+    },
+    pt: {
+      title: 'Marco Saldarriaga — AI Developer & Product Builder',
+      desc: 'AI Developer & Product Builder. Especialista em Vibe Coding com Claude Code, Gemini e ChatGPT. Desenvolvimento acelerado de MVPs e aplicações web em tempo recorde.'
+    }
+  };
+
+  const I18N = {
+    en: {
+      'lang.aria': 'Change language',
+      'nav.home': 'Home',
+      'nav.stack': 'AI Stack',
+      'nav.projects': 'Projects',
+      'nav.experience': 'Experience',
+      'nav.education': 'Education',
+      'nav.contact': 'Contact',
+      'nav.docs': 'Docs',
+      'nav.documents': 'Documents',
+      'cta.contact': 'Contact me',
+      'cta.mylinkedin': 'My LinkedIn',
+      'cta.emailme': 'Email me',
+      'banner.text': '<strong>Available for projects and collaborations.</strong> Specialist in AI-accelerated development.',
+      'hero.badge': 'Available for new projects',
+      'hero.subtitle': 'I combine <strong>solid programming logic</strong> and abstraction with advanced AI tools (<strong>Claude Code, Gemini, ChatGPT</strong>) to conceptualize, structure and deploy web applications and functional prototypes (MVPs) <strong>in record time</strong>.<br>More than 28 years of IT experience back every architecture decision.',
+      'pill.mvp': '🚀 Fast MVP',
+      'stat.years': 'Years in IT',
+      'stat.apps': 'Apps deployed',
+      'stat.speed': 'Speed with AI',
+      'stat.prod': 'In production',
+      'hero.cta.projects': 'View my projects',
+      'wf.label': 'My Superpower',
+      'wf.title': 'My Workflow (AI Stack)',
+      'wf.intro': `I do not replace logic — I <strong style="color:var(--text)">amplify</strong> it. I combine solid software architecture experience with the best AI tools to deliver working solutions that used to take weeks, now in days.`,
+      'wf1.title': 'Programming Logic',
+      'wf1.sub': 'Solid foundation · Architecture',
+      'wf1.desc': '28+ years of experience in functional analysis, multi-layer architecture and systems design back every coding decision.',
+      'wf1.chip.arch': 'Web Architecture',
+      'wf1.chip.patterns': 'Design Patterns',
+      'wf2.title': 'AI Tools',
+      'wf2.sub': 'Acceleration · Vibe Coding',
+      'wf2.desc': 'I use AI not as a substitute for thinking, but as a multiplier. Precise prompt engineering produces working code on the first attempt.',
+      'wf3.title': 'Frontend &amp; Deployment',
+      'wf3.sub': 'Production · Record time',
+      'wf3.desc': 'From prototype to production in hours. Modern stack focused on performance, user experience and continuous deployment.',
+      'pr.label': 'Portfolio',
+      'pr.title': 'Projects deployed to production',
+      'pr.intro': `Every project was built applying <strong style="color:var(--text)">Vibe Coding</strong>: AI + solid logic = real results at startup speed.`,
+      'p1.problem': 'Problem solved: Technical preparation',
+      'p1.title': 'Technical Interview Simulator',
+      'p1.desc': 'Preparation tool for technical development interviews. Interactive simulations, question bank and instant feedback for dev candidates.',
+      'p2.problem': 'Problem solved: Budget optimization',
+      'p2.title': 'Smart Construction Quoting Tool',
+      'p2.desc': 'Construction services quoting tool for business budget optimization. Automates complex calculations and generates professional proposals instantly.',
+      'p3.problem': 'Problem solved: Education management',
+      'p3.title': 'Admin Panel for Education Platforms',
+      'p3.desc': 'Administration and user management dashboard for education platforms. Full control of students, content and metrics in a single interface.',
+      'p4.problem': 'Problem solved: Interactive learning',
+      'p4.title': 'CodeBit — Interactive Web App',
+      'p4.desc': 'Interactive web application built and deployed to production. Demonstrates the ability to turn complex ideas into a working product quickly.',
+      'p5.problem': 'Problem solved: Real-time UX',
+      'p5.title': '2026 World Cup Fixture',
+      'p5.desc': 'Dynamic and interactive fixture for the 2026 World Cup. Focused on smooth user experience and real-time data handling. Responsive and visually appealing design.',
+      'p6.problem': 'Problem solved: Professional digital presence',
+      'p6.title': 'This Portfolio — Optimized SPA',
+      'p6.desc': 'Optimized SPA deployed on Vercel. Modern design inspired by Claude Code, responsive, with smooth animations and instant loading. 100% pure HTML/CSS/JS.',
+      'link.view': 'View project',
+      'link.live': 'View live',
+      'tag.ai': 'AI-assisted',
+      'ex.label': 'Experience',
+      'ex.title': 'Professional background',
+      'e1.role': 'Project Analyst',
+      'e1.sector': 'Commercial / Administration',
+      'e1.desc': '<ul><li>Overall project coordination — requirements from the Administration area.</li><li>Supervision of functional and technical analysis, implementation and development.</li><li>Troubleshooting and quality assurance of the delivered software.</li></ul>',
+      'e2.role': 'External Consultant / HR Management',
+      'e2.sector': 'HR / Public Sector',
+      'e2.desc': '<ul><li>HR management for new proposals with government and commercial clients.</li><li>Preparation of technical and financial proposals for the client portfolio.</li><li>Management of 100 workers: renewals, hiring, onboarding, safety.</li></ul>',
+      'e3.role': 'IT Services Coordinator',
+      'e3.sector': 'HR / IT',
+      'e3.desc': 'Management of requests from 100 workers across different clients. Renewals, contracts, onboarding and monthly feedback.',
+      'e4.sector': 'Education',
+      'e4.desc': '<ul><li>Management of 25 functional requirements under agile methodology (2 parallel Sprints).</li><li>Led 3 PMI projects: WeTalk continuity, GEMA assessments, new WeTalk architecture.</li><li>CAPEX/OPEX budget of over USD 5 MM. Stakeholder coordination.</li></ul>',
+      'e5.role': 'Functional Analyst / Product Owner',
+      'e5.sector': 'Commercial / Tourism',
+      'e5.desc': 'AS-IS / TO-BE of commercial requirements. Design of prototypes, use cases and test cases.',
+      'e6.role': 'Project Manager — Healthcare',
+      'e6.sector': 'Healthcare',
+      'e6.desc': '<ul><li>PCI-DSS project / Visa certification — security, masking and tokenization.</li><li>CAPEX/OPEX budget management and reporting to the project committee.</li></ul>',
+      'e7.role': 'Project Manager / Functional Analyst',
+      'e7.sector': 'Banking / Finance',
+      'e7.desc': 'Business Intelligence on Oracle · DW reports with MicroStrategy · UML diagrams · SBS and Sunat regulations.',
+      'e8.role': 'Technical Process Analyst — Banking',
+      'e8.sector': 'Banking',
+      'e8.desc': 'Paylink Back End web project (B2B interbank transfers). UML diagrams, RUP methodology, interface prototypes.',
+      'e9.role': 'Analyst Programmer',
+      'e9.sector': 'Commercial',
+      'e9.desc': 'Web product catalog with C# .NET, ASP.NET and SQL Server 2005. Intranet web ordering module with multi-layer architecture.',
+      'ed.label': 'Education &amp; Certifications',
+      'ed.title': 'Academic background',
+      'ed1.period': 'August 2023 — In progress',
+      'ed2.title': 'Systems Engineering',
+      'ed2.period': "Dec 2016 — Jul 2021 · Bachelor's degree",
+      'ed3.title': 'Computing &amp; Information Technology',
+      'ed3.period': 'Mar 1999 — Feb 2002 · Technical degree',
+      'ed4.period': 'October 2021',
+      'ed5.title': 'PMP Certification Preparation',
+      'ed5.period': 'Mar 2024 — Apr 2024',
+      'ed.cert': 'View certificate →',
+      'ed.inst': 'View institution →',
+      'ct.label': 'Contact',
+      'ct.title': `Let's talk about your project`,
+      'ct.intro': 'Do you have an idea or a problem to solve? I can help you turn it into a working product in record time using AI + solid technical experience.',
+      'ct.connect': 'Connect on',
+      'ct.write': 'Email me at',
+      'ct.location': 'Lima, Peru',
+      'dc.label': 'Documentation',
+      'dc.title': 'Certificates and records',
+      'dc.tab.work': '💼 Work Experience',
+      'dc.tab.edu': '🎓 Education &amp; Certifications',
+      'dc.viewpdf': 'View PDF',
+      'ft.backtop': 'Back to top',
+      'ft.copy': '© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Deployed on Vercel'
+    },
+
+    pt: {
+      'lang.aria': 'Mudar idioma',
+      'nav.home': 'Início',
+      'nav.stack': 'AI Stack',
+      'nav.projects': 'Projetos',
+      'nav.experience': 'Experiência',
+      'nav.education': 'Educação',
+      'nav.contact': 'Contato',
+      'nav.docs': 'Docs',
+      'nav.documents': 'Documentos',
+      'cta.contact': 'Fale comigo',
+      'cta.mylinkedin': 'Meu LinkedIn',
+      'cta.emailme': 'Fale comigo por e-mail',
+      'banner.text': '<strong>Disponível para projetos e colaborações.</strong> Especialista em desenvolvimento acelerado com IA.',
+      'hero.badge': 'Disponível para novos projetos',
+      'hero.subtitle': 'Combino uma <strong>sólida lógica de programação</strong> e abstração com ferramentas avançadas de IA (<strong>Claude Code, Gemini, ChatGPT</strong>) para conceituar, estruturar e publicar aplicações web e protótipos funcionais (MVPs) <strong>em tempo recorde</strong>.<br>Mais de 28 anos de experiência em TI respaldam cada decisão de arquitetura.',
+      'pill.mvp': '🚀 MVP Rápido',
+      'stat.years': 'Anos em TI',
+      'stat.apps': 'Apps publicados',
+      'stat.speed': 'Velocidade com IA',
+      'stat.prod': 'Em produção',
+      'hero.cta.projects': 'Ver meus projetos',
+      'wf.label': 'Meu Superpoder',
+      'wf.title': 'Meu Fluxo de Trabalho (AI Stack)',
+      'wf.intro': `Não substituo a lógica — eu a <strong style="color:var(--text)">amplifico</strong>. Combino sólida experiência em arquitetura de software com as melhores ferramentas de IA para entregar soluções funcionais que antes levavam semanas, agora em dias.`,
+      'wf1.title': 'Lógica de Programação',
+      'wf1.sub': 'Base sólida · Arquitetura',
+      'wf1.desc': 'Mais de 28 anos de experiência em análise funcional, arquitetura multicamadas e design de sistemas respaldam cada decisão de código.',
+      'wf1.chip.arch': 'Arquitetura Web',
+      'wf1.chip.patterns': 'Padrões de Projeto',
+      'wf2.title': 'Ferramentas de IA',
+      'wf2.sub': 'Aceleração · Vibe Coding',
+      'wf2.desc': 'Uso IA não como substituto do pensamento, mas como multiplicador. Prompt engineering preciso produz código funcional na primeira tentativa.',
+      'wf3.title': 'Frontend &amp; Implantação',
+      'wf3.sub': 'Produção · Tempo recorde',
+      'wf3.desc': 'Do protótipo à produção em horas. Stack moderna focada em performance, experiência do usuário e implantação contínua.',
+      'pr.label': 'Portfólio',
+      'pr.title': 'Projetos publicados em produção',
+      'pr.intro': `Cada projeto foi construído aplicando <strong style="color:var(--text)">Vibe Coding</strong>: IA + lógica sólida = resultados reais na velocidade de uma startup.`,
+      'p1.problem': 'Problema resolvido: Preparação técnica',
+      'p1.title': 'Simulador de Entrevistas Técnicas',
+      'p1.desc': 'Ferramenta de preparação para entrevistas técnicas de desenvolvimento. Simulações interativas, banco de perguntas e feedback imediato para candidatos dev.',
+      'p2.problem': 'Problema resolvido: Otimização de orçamentos',
+      'p2.title': 'Orçamentador Inteligente de Construção',
+      'p2.desc': 'Orçamentador de serviços de construção para otimização de orçamentos de negócio. Automatiza cálculos complexos e gera propostas profissionais na hora.',
+      'p3.problem': 'Problema resolvido: Gestão educacional',
+      'p3.title': 'Painel Admin para Plataformas Educacionais',
+      'p3.desc': 'Dashboard de administração e gestão de usuários para plataformas educacionais. Controle total de alunos, conteúdos e métricas em uma única interface.',
+      'p4.problem': 'Problema resolvido: Aprendizagem interativa',
+      'p4.title': 'CodeBit — App Web Interativo',
+      'p4.desc': 'Aplicação web interativa construída e publicada em produção. Demonstra a capacidade de transformar ideias complexas em produto funcional rapidamente.',
+      'p5.problem': 'Problema resolvido: UX em tempo real',
+      'p5.title': 'Tabela da Copa do Mundo 2026',
+      'p5.desc': 'Tabela dinâmica e interativa para a Copa do Mundo 2026. Focada em experiência de usuário fluida e manipulação de dados em tempo real. Design responsivo e visualmente atraente.',
+      'p6.problem': 'Problema resolvido: Presença digital profissional',
+      'p6.title': 'Este Portfólio — SPA Otimizada',
+      'p6.desc': 'SPA otimizada e publicada na Vercel. Design moderno inspirado no Claude Code, responsivo, com animações suaves e carregamento instantâneo. 100% HTML/CSS/JS puro.',
+      'link.view': 'Ver projeto',
+      'link.live': 'Ver ao vivo',
+      'tag.ai': 'Assistido por IA',
+      'ex.label': 'Experiência',
+      'ex.title': 'Trajetória profissional',
+      'e1.role': 'Analista de Projetos',
+      'e1.sector': 'Comercial / Administração',
+      'e1.desc': '<ul><li>Coordenação global do projeto — requisitos da área de Administração.</li><li>Supervisão da análise funcional e orgânica, implementação e desenvolvimento.</li><li>Resolução de problemas técnicos e garantia de qualidade do software entregue.</li></ul>',
+      'e2.role': 'Consultor Externo / Gestão de RH',
+      'e2.sector': 'RH / Setor Público',
+      'e2.desc': '<ul><li>Gestão de RH para novas propostas com o Estado e clientes comerciais.</li><li>Elaboração de propostas técnicas e econômicas para a carteira de clientes.</li><li>Gestão de 100 trabalhadores: renovações, admissões, integrações, segurança.</li></ul>',
+      'e3.role': 'Coordenador de Serviços de TI',
+      'e3.sector': 'RH / TI',
+      'e3.desc': 'Gestão de solicitações de 100 trabalhadores em diferentes clientes. Renovações, contratos, integrações e feedback mensal.',
+      'e4.sector': 'Educação',
+      'e4.desc': '<ul><li>Gestão de 25 requisitos funcionais em metodologia ágil (2 Sprints paralelos).</li><li>Liderei 3 projetos PMI: continuidade do WeTalk, avaliações GEMA, nova arquitetura WeTalk.</li><li>Orçamento CAPEX/OPEX de mais de USD 5 MM. Coordenação de stakeholders.</li></ul>',
+      'e5.role': 'Analista Funcional / Product Owner',
+      'e5.sector': 'Comercial / Turismo',
+      'e5.desc': 'AS-IS / TO-BE de requisitos comerciais. Design de protótipos, casos de uso e casos de teste.',
+      'e6.role': 'Gerente de Projeto — Setor Saúde',
+      'e6.sector': 'Saúde',
+      'e6.desc': '<ul><li>Projeto PCI-DSS / certificação Visa — segurança, mascaramento e tokenização.</li><li>Gestão de orçamento CAPEX/OPEX e reporte ao comitê de projeto.</li></ul>',
+      'e7.role': 'Gerente de Projeto / Analista Funcional',
+      'e7.sector': 'Bancos / Finanças',
+      'e7.desc': 'Business Intelligence em Oracle · relatórios DW com MicroStrategy · Diagramas UML · regras SBS e Sunat.',
+      'e8.role': 'Analista de Processos Técnicos — Bancos',
+      'e8.sector': 'Bancos',
+      'e8.desc': 'Projeto Web Paylink Back End (transferências interbancárias B2B). Diagramas UML, metodologia RUP, protótipos de interface.',
+      'e9.role': 'Analista Programador',
+      'e9.sector': 'Comercial',
+      'e9.desc': 'Catálogo web de produtos com C# .NET, ASP.NET e SQL Server 2005. Módulo de pedidos web intranet com arquitetura multicamadas.',
+      'ed.label': 'Educação &amp; Certificações',
+      'ed.title': 'Formação acadêmica',
+      'ed1.period': 'Agosto 2023 — Em andamento',
+      'ed2.title': 'Engenharia de Sistemas',
+      'ed2.period': 'Dez 2016 — Jul 2021 · Bacharelado',
+      'ed3.title': 'Computação e Informática',
+      'ed3.period': 'Mar 1999 — Fev 2002 · Título Técnico',
+      'ed4.period': 'Outubro 2021',
+      'ed5.title': 'Preparação para Certificação PMP',
+      'ed5.period': 'Mar 2024 — Abr 2024',
+      'ed.cert': 'Ver certificado →',
+      'ed.inst': 'Ver instituição →',
+      'ct.label': 'Contato',
+      'ct.title': 'Vamos falar do seu projeto',
+      'ct.intro': 'Tem uma ideia ou um problema para resolver? Posso ajudá-lo a transformá-la em um produto funcional em tempo recorde usando IA + sólida experiência técnica.',
+      'ct.connect': 'Conectar no',
+      'ct.write': 'Escreva para',
+      'ct.location': 'Lima, Peru',
+      'dc.label': 'Documentação',
+      'dc.title': 'Certificados e comprovantes',
+      'dc.tab.work': '💼 Experiência Profissional',
+      'dc.tab.edu': '🎓 Estudos e Certificações',
+      'dc.viewpdf': 'Ver PDF',
+      'ft.backtop': 'Voltar ao topo',
+      'ft.copy': '© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Publicado na Vercel'
+    }
+  };
+
+  /* Textos repetidos de la sección Documentos — clave = texto original en español.
+     Lo que no está aquí (nombres propios de instituciones) se deja tal cual. */
+  const DOC_TEXT = {
+    en: {
+      'Certificado Único Laboral': 'Official Employment Certificate (CUL)',
+      'Analista Senior de Gestión (II)': 'Senior Management Analyst (II)',
+      'Analista Senior de Gestión (I)': 'Senior Management Analyst (I)',
+      'Analista de Calidad': 'Quality Analyst',
+      'Líder de Proyectos': 'Project Lead',
+      'Jefe de Proyecto': 'Project Manager',
+      'Líder de Proyectos y Analista Funcional': 'Project Lead and Functional Analyst',
+      'Analista Funcional': 'Functional Analyst',
+      'Analista Programador': 'Analyst Programmer',
+      'Coordinador de Proyectos': 'Project Coordinator',
+      'Curso Preparación PMP': 'PMP Preparation Course',
+      'Bachiller en Ingeniería de Sistemas': "Bachelor's Degree in Systems Engineering",
+      'Egresado Ingeniería de Sistemas': 'Systems Engineering Graduate',
+      'Título Computación e Informática': 'Technical Degree in Computing & IT',
+      'Registro oficial de historial laboral': 'Official employment history record',
+      'Constancia de trabajo': 'Employment certificate',
+      'Certificado técnico': 'Technical certificate'
+    },
+    pt: {
+      'Certificado Único Laboral': 'Certificado Único de Trabalho (CUL)',
+      'Analista Senior de Gestión (II)': 'Analista Sênior de Gestão (II)',
+      'Analista Senior de Gestión (I)': 'Analista Sênior de Gestão (I)',
+      'Analista de Calidad': 'Analista de Qualidade',
+      'Líder de Proyectos': 'Líder de Projetos',
+      'Jefe de Proyecto': 'Gerente de Projeto',
+      'Líder de Proyectos y Analista Funcional': 'Líder de Projetos e Analista Funcional',
+      'Analista Funcional': 'Analista Funcional',
+      'Analista Programador': 'Analista Programador',
+      'Coordinador de Proyectos': 'Coordenador de Projetos',
+      'Curso Preparación PMP': 'Curso de Preparação PMP',
+      'Bachiller en Ingeniería de Sistemas': 'Bacharelado em Engenharia de Sistemas',
+      'Egresado Ingeniería de Sistemas': 'Graduado em Engenharia de Sistemas',
+      'Título Computación e Informática': 'Título em Computação e Informática',
+      'Registro oficial de historial laboral': 'Registro oficial de histórico profissional',
+      'Constancia de trabajo': 'Comprovante de trabalho',
+      'Certificado técnico': 'Certificado técnico'
+    }
+  };
+
+  /* Meses y palabras sueltas de las fechas (.doc-year y .timeline-date) */
+  const MONTHS = {
+    en: { Ene:'Jan', Feb:'Feb', Mar:'Mar', Abr:'Apr', May:'May', Jun:'Jun', Jul:'Jul',
+          Ago:'Aug', Sep:'Sep', Set:'Sep', Oct:'Oct', Nov:'Nov', Dic:'Dec', Actualidad:'Present' },
+    pt: { Ene:'Jan', Feb:'Fev', Mar:'Mar', Abr:'Abr', May:'Mai', Jun:'Jun', Jul:'Jul',
+          Ago:'Ago', Sep:'Set', Set:'Set', Oct:'Out', Nov:'Nov', Dic:'Dez', Actualidad:'Atual' }
+  };
+
+  const i18nNodes = Array.from(document.querySelectorAll('[data-i18n]'));
+  const ariaNodes = Array.from(document.querySelectorAll('[data-i18n-aria]'));
+  const docNodes  = Array.from(document.querySelectorAll('.doc-name, .doc-sub'));
+  const dateNodes = Array.from(document.querySelectorAll('.doc-year, .timeline-date'));
+
+  // El español vive en el HTML: lo guardamos como base antes de traducir nada.
+  i18nNodes.forEach(el => el.dataset.esBase = el.innerHTML);
+  ariaNodes.forEach(el => el.dataset.esAria = el.getAttribute('aria-label') || '');
+  docNodes.forEach(el  => el.dataset.esBase = el.textContent);
+  dateNodes.forEach(el => el.dataset.esBase = el.textContent.trim());
+
+  function applyLang(lang) {
+    const dict     = I18N[lang];
+    const docDict  = DOC_TEXT[lang];
+    const months   = MONTHS[lang];
+
+    i18nNodes.forEach(el => {
+      const t = dict && dict[el.dataset.i18n];
+      el.innerHTML = t !== undefined && t !== null ? t : el.dataset.esBase;
+    });
+    ariaNodes.forEach(el => {
+      const t = dict && dict[el.dataset.i18nAria];
+      el.setAttribute('aria-label', t || el.dataset.esAria);
+    });
+    docNodes.forEach(el => {
+      const src = el.dataset.esBase;
+      el.textContent = (docDict && docDict[src]) || src;
+    });
+    dateNodes.forEach(el => {
+      const src = el.dataset.esBase;
+      el.textContent = months ? src.replace(/[A-Za-z]+/g, w => months[w] || w) : src;
+    });
+
+    document.documentElement.lang = lang;
+    document.title = META[lang].title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', META[lang].desc);
+
+    document.getElementById('langCurrent').textContent = LANG_CODES[lang];
+    document.querySelectorAll('.lang-option').forEach(opt =>
+      opt.setAttribute('aria-selected', String(opt.dataset.lang === lang))
+    );
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+
+  function closeLangMenu() {
+    document.getElementById('langSwitch').classList.remove('open');
+    document.getElementById('langBtn').setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleLangMenu(e) {
+    e.stopPropagation();
+    const open = document.getElementById('langSwitch').classList.toggle('open');
+    document.getElementById('langBtn').setAttribute('aria-expanded', String(open));
+  }
+
+  function setLang(lang) {
+    applyLang(lang);
+    closeLangMenu();
+  }
+
+  document.addEventListener('click', e => {
+    if (!document.getElementById('langSwitch').contains(e.target)) closeLangMenu();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLangMenu();
+  });
+
+  // Idioma inicial: preferencia guardada → idioma del navegador → español
+  (function initLang() {
+    let saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    const browser = (navigator.language || 'es').slice(0, 2).toLowerCase();
+    applyLang(LANG_CODES[saved] ? saved : (LANG_CODES[browser] ? browser : 'es'));
+  })();
 </script>
 
 </body>
