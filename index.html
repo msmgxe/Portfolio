@@ -3,478 +3,465 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marco Saldarriaga — AI Developer & Product Builder</title>
-  <meta name="description" content="AI Developer & Product Builder. Especialista en Vibe Coding con Claude Code, Gemini y ChatGPT. Desarrollo acelerado de MVPs y aplicaciones web en tiempo récord." />
+  <title>Marco Saldarriaga Medina — Project Manager · Analista Funcional · QA</title>
+  <meta name="description" content="Más de 28 años en TI. Project Manager, Analista de Sistemas, Analista Funcional, QA y Programador. Experiencia en banca, salud, educación y sector público. 27 certificados y constancias verificables." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Paleta inspirada en Claude Code */
-      --bg:           #0D0D0D;
-      --bg2:          #111111;
-      --surface:      #1C1C1C;
-      --surface2:     #252525;
-      --accent:       #CF7A54;
-      --accent-light: #E8A07A;
-      --accent2:      #7AB5A0;
-      --text:         #EDE8E3;
-      --muted:        #8A847E;
-      --border:       #262626;
-      --border2:      #383530;
-      --radius:       12px;
-      --radius-sm:    7px;
+      --ink:      #0A1628;
+      --ink2:     #12294A;
+      --bg:       #FFFFFF;
+      --bg2:      #F4F7FB;
+      --bg3:      #EAF0F8;
+      --surface:  #FFFFFF;
+      --line:     #DDE5EF;
+      --line2:    #C6D3E4;
+      --text:     #0D1B2E;
+      --muted:    #5A6B82;
+      --primary:  #1D4ED8;
+      --primary2: #3B82F6;
+      --primary3: #DBEAFE;
+      --accent:   #0D9488;
+      --accent2:  #CCFBF1;
+      --gold:     #B45309;
+      --gold2:    #FEF3C7;
+      --radius:   14px;
+      --radius-sm:9px;
+      --shadow:   0 1px 2px rgba(13,27,46,0.04), 0 8px 24px rgba(13,27,46,0.06);
+      --shadow-lg:0 24px 60px rgba(10,22,40,0.16);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg2);
-      color: var(--text);
-      line-height: 1.6;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.9rem 2rem;
-      background: rgba(13,13,13,0.96);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(207,122,84,0.12);
+      padding: 0.8rem 2rem;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
     }
-    .nav-logo { font-weight: 800; font-size: 1rem; color: var(--accent); letter-spacing: -0.5px; }
-    .nav-logo span { color: var(--text); }
-    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.84rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent-light); }
+    .nav-logo { font-weight: 800; font-size: 0.98rem; color: var(--text); letter-spacing: -0.4px; }
+    .nav-logo b { color: var(--primary); }
+    .nav-logo span { display: block; font-size: 0.66rem; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-top: -2px; }
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-links { display: flex; gap: 1.35rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a.hl {
+      color: var(--primary); background: var(--primary3);
+      padding: 0.3rem 0.7rem; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+    }
+    .nav-links a.hl:hover { background: #C7DDFD; }
+    .nav-links a.hl i { font-style: normal; font-size: 0.68rem; font-weight: 800; background: var(--primary); color: #fff; border-radius: 999px; padding: 0.02rem 0.36rem; }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      color: #0D0D0D; text-decoration: none; font-size: 0.82rem; font-weight: 700;
-      padding: 0.4rem 1rem; background: var(--accent);
+      color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700;
+      padding: 0.48rem 1rem; background: var(--ink);
       border-radius: 999px; transition: all 0.2s;
     }
-    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--primary); transform: translateY(-1px); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
     .mobile-drawer {
-      position: fixed; top: 0; right: 0; bottom: 0; width: 265px;
+      position: fixed; top: 0; right: 0; bottom: 0; width: 272px;
       background: var(--surface); z-index: 199;
-      flex-direction: column; padding: 5rem 1.5rem 2rem;
-      border-left: 1px solid var(--border2);
+      flex-direction: column; padding: 5rem 1.25rem 2rem;
+      border-left: 1px solid var(--line);
       transform: translateX(100%); transition: transform 0.3s ease;
-      display: flex;
+      display: flex; box-shadow: var(--shadow-lg);
     }
     .mobile-drawer.open { transform: translateX(0); }
-    .mobile-drawer ul { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
-    .mobile-drawer a { display: block; padding: 0.65rem 0.5rem; color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 500; border-radius: 8px; transition: all 0.15s; }
-    .mobile-drawer a:hover { background: var(--surface2); color: var(--accent-light); }
-    .mobile-drawer-divider { height: 1px; background: var(--border2); margin: 1rem 0; }
-    .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 198; }
+    .mobile-drawer ul { list-style: none; display: flex; flex-direction: column; gap: 0.15rem; }
+    .mobile-drawer a { display: block; padding: 0.7rem 0.6rem; color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 600; border-radius: 8px; transition: all 0.15s; }
+    .mobile-drawer a:hover { background: var(--bg2); color: var(--primary); }
+    .mobile-drawer a.hl { background: var(--primary3); color: var(--primary); }
+    .mobile-drawer-divider { height: 1px; background: var(--line); margin: 1rem 0; }
+    .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(10,22,40,0.4); z-index: 198; }
     .drawer-overlay.open { display: block; }
 
     /* ── SELECTOR DE IDIOMA ── */
     .lang-switch { position: relative; flex-shrink: 0; }
     .lang-btn {
       display: inline-flex; align-items: center; gap: 0.35rem;
-      padding: 0.36rem 0.6rem; border-radius: 999px;
-      background: var(--surface); border: 1px solid var(--border2);
+      padding: 0.4rem 0.62rem; border-radius: 999px;
+      background: var(--bg2); border: 1px solid var(--line);
       color: var(--text); font-family: inherit; font-size: 0.78rem; font-weight: 700;
       letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s;
     }
-    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
     .lang-btn .globe { width: 14px; height: 14px; flex-shrink: 0; }
-    .lang-btn .chev { width: 10px; height: 10px; opacity: 0.65; transition: transform 0.2s; }
-    .lang-switch.open .lang-btn { border-color: var(--accent); color: var(--accent); }
+    .lang-btn .chev { width: 10px; height: 10px; opacity: 0.6; transition: transform 0.2s; }
+    .lang-switch.open .lang-btn { border-color: var(--primary); color: var(--primary); }
     .lang-switch.open .lang-btn .chev { transform: rotate(180deg); }
     .lang-menu {
       position: absolute; top: calc(100% + 0.55rem); right: 0;
-      min-width: 172px; padding: 0.3rem;
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: 10px; box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+      min-width: 176px; padding: 0.3rem;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 11px; box-shadow: var(--shadow-lg);
       display: none; flex-direction: column; gap: 0.1rem;
     }
     .lang-switch.open .lang-menu { display: flex; }
     .lang-option {
       display: flex; align-items: center; gap: 0.6rem; width: 100%;
-      padding: 0.5rem 0.65rem; border-radius: 7px;
+      padding: 0.52rem 0.65rem; border-radius: 7px;
       background: none; border: none; cursor: pointer; text-align: left;
       color: var(--text); font-family: inherit; font-size: 0.85rem; font-weight: 500;
       transition: background 0.15s, color 0.15s;
     }
-    .lang-option:hover { background: var(--surface2); color: var(--accent-light); }
+    .lang-option:hover { background: var(--bg2); color: var(--primary); }
     .lang-option .flag { font-size: 1.05rem; line-height: 1; }
     .lang-option .code { margin-left: auto; font-size: 0.68rem; font-weight: 800; color: var(--muted); letter-spacing: 0.05em; }
-    .lang-option[aria-selected="true"] { background: rgba(207,122,84,0.1); color: var(--accent); }
-    .lang-option[aria-selected="true"] .code { color: var(--accent); }
-
-    /* ── CONTACT BANNER ── */
-    .contact-banner {
-      position: sticky; top: 57px; z-index: 150;
-      background: rgba(28,18,12,0.97);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(207,122,84,0.18);
-      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
-      padding: 0.6rem 2rem; flex-wrap: wrap;
-    }
-    .contact-banner p { font-size: 0.82rem; color: var(--muted); }
-    .contact-banner p strong { color: var(--text); }
-    .banner-btns { display: flex; gap: 0.65rem; flex-wrap: wrap; }
-    .banner-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.35rem 0.9rem; border-radius: 999px;
-      font-size: 0.78rem; font-weight: 700; text-decoration: none;
-      transition: all 0.2s; white-space: nowrap;
-    }
-    .banner-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
-    .banner-btn-primary { background: var(--accent); color: #0D0D0D; }
-    .banner-btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
-    .banner-btn-linkedin { background: #0A66C2; color: white; }
-    .banner-btn-linkedin:hover { background: #0856a5; transform: translateY(-1px); }
+    .lang-option[aria-selected="true"] { background: var(--primary3); color: var(--primary); }
+    .lang-option[aria-selected="true"] .code { color: var(--primary); }
 
     /* ── HERO ── */
     #hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 9rem 2rem 5rem;
       position: relative; overflow: hidden;
+      padding: 8.5rem 2rem 4.5rem;
       background:
-        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(207,122,84,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(122,181,160,0.05) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 60% 80%, rgba(207,122,84,0.04) 0%, transparent 70%);
+        radial-gradient(ellipse 70% 60% at 15% 10%, rgba(59,130,246,0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 90%, rgba(13,148,136,0.16) 0%, transparent 60%),
+        linear-gradient(160deg, #0A1628 0%, #12294A 55%, #0D2036 100%);
+      color: #fff;
     }
     #hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
-      background-image: radial-gradient(rgba(207,122,84,0.08) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 75% 75% at 50% 40%, black 0%, transparent 100%);
     }
-    .hero-inner { max-width: 800px; text-align: center; position: relative; z-index: 1; }
-
+    .hero-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 128px 1fr; gap: 2rem; align-items: start; }
     .avatar {
-      width: 112px; height: 112px; border-radius: 50%;
-      margin: 0 auto 1.5rem;
-      display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-      animation: avatar-pulse 3s ease-in-out infinite;
-      flex-shrink: 0; overflow: hidden;
+      width: 128px; height: 128px; border-radius: 20px;
+      overflow: hidden; flex-shrink: 0;
+      border: 3px solid rgba(255,255,255,0.18);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, var(--primary2), var(--accent));
     }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 50%; display: block; }
-    @keyframes avatar-pulse {
-      0%,100% { box-shadow: 0 0 0 5px rgba(207,122,84,0.2), 0 0 0 10px rgba(207,122,84,0.05), 0 0 30px rgba(207,122,84,0.1); }
-      50%      { box-shadow: 0 0 0 7px rgba(207,122,84,0.3), 0 0 0 16px rgba(207,122,84,0.08), 0 0 40px rgba(207,122,84,0.18); }
-    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.35rem 1rem; margin-bottom: 1.25rem;
-      background: rgba(122,181,160,0.08); border: 1px solid rgba(122,181,160,0.3);
-      border-radius: 999px; font-size: 0.77rem; font-weight: 600; color: var(--accent2);
-      letter-spacing: 0.04em;
+      padding: 0.34rem 0.9rem; margin-bottom: 1rem;
+      background: rgba(13,148,136,0.18); border: 1px solid rgba(45,212,191,0.45);
+      border-radius: 999px; font-size: 0.76rem; font-weight: 700; color: #5EEAD4;
+      letter-spacing: 0.03em;
     }
-    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); animation: blink 2s ease-in-out infinite; }
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #2DD4BF; animation: blink 2.4s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    h1 {
-      font-size: clamp(2rem, 5.5vw, 3.6rem);
-      font-weight: 900; letter-spacing: -2px; line-height: 1.06; margin-bottom: 0.6rem;
-      background: linear-gradient(135deg, var(--text) 10%, var(--accent) 55%, var(--accent-light) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .hero-role {
-      font-size: clamp(0.95rem, 2.2vw, 1.15rem); font-weight: 700;
-      color: var(--accent); margin-bottom: 1.25rem; letter-spacing: -0.2px;
-    }
-    .hero-subtitle {
-      font-size: 0.98rem; color: var(--muted);
-      max-width: 620px; margin: 0 auto 1.75rem; line-height: 1.8;
-    }
-    .hero-subtitle strong { color: var(--text); font-weight: 600; }
+    h1 { font-size: clamp(2rem, 5vw, 3.15rem); font-weight: 900; letter-spacing: -1.6px; line-height: 1.05; margin-bottom: 0.85rem; color: #fff; }
 
-    .hero-ai-pills {
-      display: flex; gap: 0.45rem; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 1.75rem;
+    .hero-roles { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.15rem; }
+    .role-tag {
+      font-size: 0.79rem; font-weight: 700; letter-spacing: 0.01em;
+      padding: 0.3rem 0.75rem; border-radius: 7px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #E8F0FB;
     }
-    .ai-pill {
-      display: inline-flex; align-items: center; gap: 0.32rem;
-      padding: 0.28rem 0.72rem;
-      background: rgba(207,122,84,0.08); border: 1px solid rgba(207,122,84,0.22);
-      border-radius: 999px; font-size: 0.77rem; font-weight: 600; color: var(--accent-light);
-      transition: all 0.2s; cursor: default;
-    }
-    .ai-pill:hover { background: rgba(207,122,84,0.14); border-color: rgba(207,122,84,0.4); }
+    .role-tag.lead { background: var(--primary); border-color: var(--primary2); color: #fff; }
 
-    .hero-stats { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .hero-subtitle { font-size: 0.97rem; color: #B9C9DE; max-width: 640px; margin-bottom: 1.6rem; line-height: 1.78; }
+    .hero-subtitle strong { color: #fff; font-weight: 600; }
+
+    .hero-stats { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
     .stat {
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: var(--radius-sm); padding: 0.65rem 1.2rem; text-align: center;
-      transition: border-color 0.2s;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-sm); padding: 0.7rem 1.1rem; min-width: 104px;
+      transition: all 0.2s;
     }
-    .stat:hover { border-color: rgba(207,122,84,0.4); }
-    .stat-value { font-size: 1.5rem; font-weight: 900; color: var(--accent); line-height: 1; }
-    .stat-label { font-size: 0.67rem; color: var(--muted); margin-top: 0.15rem; letter-spacing: 0.03em; }
+    .stat:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.28); }
+    .stat-value { font-size: 1.6rem; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -1px; }
+    .stat-value.tint { color: #5EEAD4; }
+    .stat-label { font-size: 0.68rem; color: #9FB3CC; margin-top: 0.25rem; font-weight: 600; letter-spacing: 0.02em; }
 
-    .hero-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.5rem; border-radius: 10px;
-      font-size: 0.9rem; font-weight: 700; text-decoration: none;
-      transition: all 0.2s; cursor: pointer; border: none;
+      padding: 0.78rem 1.4rem; border-radius: 10px;
+      font-size: 0.89rem; font-weight: 700; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none; font-family: inherit;
     }
     .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .btn-primary  { background: var(--accent); color: #0D0D0D; }
-    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(207,122,84,0.3); }
-    .btn-linkedin { background: #0A66C2; color: white; }
-    .btn-linkedin:hover { background: #0856a5; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(10,102,194,0.3); }
-    .btn-outline  { background: transparent; color: var(--text); border: 1px solid var(--border2); }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .btn-primary { background: #fff; color: var(--ink); }
+    .btn-primary:hover { background: #E8F0FB; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,0.3); }
+    .btn-accent { background: var(--primary); color: #fff; }
+    .btn-accent:hover { background: var(--primary2); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(29,78,216,0.45); }
+    .btn-ghost { background: rgba(255,255,255,0.09); color: #fff; border: 1px solid rgba(255,255,255,0.24); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.16); transform: translateY(-2px); }
+    .btn-lk { background: #0A66C2; color: #fff; }
+    .btn-lk:hover { background: #0856a5; transform: translateY(-2px); }
 
     /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 980px; margin: 0 auto; }
+    section { padding: 4.75rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
     .section-label {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.65rem;
-      padding: 0.22rem 0.75rem;
-      background: rgba(207,122,84,0.07); border: 1px solid rgba(207,122,84,0.18);
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 0.7rem;
+      padding: 0.26rem 0.8rem; background: var(--primary3);
       border-radius: 999px;
     }
-    h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 2.5rem; color: var(--text); }
+    .section-label.teal { color: #0F766E; background: var(--accent2); }
+    h2 { font-size: clamp(1.6rem, 3.6vw, 2.15rem); font-weight: 900; letter-spacing: -0.9px; margin-bottom: 0.7rem; color: var(--text); line-height: 1.2; }
+    .section-intro { color: var(--muted); max-width: 660px; font-size: 0.95rem; line-height: 1.8; margin-bottom: 2.4rem; }
+    .section-intro strong { color: var(--text); font-weight: 650; }
 
-    /* ── AI WORKFLOW ── */
-    #workflow { background: linear-gradient(180deg, var(--bg2) 0%, rgba(28,18,12,0.6) 100%); }
-    .workflow-intro { color: var(--muted); max-width: 600px; margin-bottom: 2.5rem; font-size: 0.94rem; line-height: 1.75; }
-    .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .workflow-card {
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: var(--radius); padding: 1.5rem;
+    /* ── PERFIL: 5 ROLES ── */
+    #perfil { background: var(--bg2); }
+    .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(292px, 1fr)); gap: 1.1rem; }
+    .role-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.5rem 1.4rem;
       position: relative; overflow: hidden;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .workflow-card:hover { transform: translateY(-4px); }
-    .workflow-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; }
-    .wc1::before { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
-    .wc1:hover { border-color: rgba(207,122,84,0.5); }
-    .wc2::before { background: linear-gradient(90deg, #4A90D9, var(--accent2)); }
-    .wc2:hover { border-color: rgba(74,144,217,0.5); }
-    .wc3::before { background: linear-gradient(90deg, var(--accent2), #5B9DBF); }
-    .wc3:hover { border-color: rgba(122,181,160,0.5); }
-    .workflow-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
-    .workflow-title { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 0.25rem; }
-    .workflow-sub { font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.06em; text-transform: uppercase; }
-    .workflow-desc { font-size: 0.83rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.65; }
-    .wchips { display: flex; flex-wrap: wrap; gap: 0.38rem; }
-    .wchip {
-      padding: 0.23rem 0.6rem;
-      background: rgba(13,13,13,0.85); border: 1px solid var(--border2);
-      border-radius: 6px; font-size: 0.76rem; color: var(--text); font-weight: 500;
-      transition: all 0.15s;
-    }
-    .wchip:hover { border-color: var(--accent); color: var(--accent); }
-    .wchip.hl { background: rgba(207,122,84,0.08); border-color: rgba(207,122,84,0.28); color: var(--accent-light); font-weight: 600; }
-
-    /* ── PROJECTS ── */
-    #projects { background: linear-gradient(180deg, rgba(28,18,12,0.4) 0%, var(--bg2) 100%); }
-    .projects-intro { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.92rem; }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border2);
-      border-radius: var(--radius); overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
       display: flex; flex-direction: column;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
-    .project-card:hover { border-color: rgba(207,122,84,0.5); transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.45); }
-    .project-visual {
-      height: 108px; position: relative;
-      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    .role-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--line2); }
+    .role-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--primary); }
+    .role-card.rc2::before { background: #4F46E5; }
+    .role-card.rc3::before { background: var(--accent); }
+    .role-card.rc4::before { background: #B45309; }
+    .role-card.rc5::before { background: #64748B; }
+    .role-num {
+      position: absolute; top: 1.1rem; right: 1.2rem;
+      font-size: 2.5rem; font-weight: 900; color: var(--bg3); line-height: 1; letter-spacing: -2px;
     }
-    .project-visual::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; }
-    .project-visual::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to bottom, transparent, rgba(28,28,28,0.65)); z-index: 1; }
-    .project-icon-big { font-size: 2.8rem; position: relative; z-index: 2; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); }
-    .vibe-badge {
-      position: absolute; top: 0.55rem; right: 0.55rem; z-index: 3;
-      display: inline-flex; align-items: center; gap: 0.28rem;
-      padding: 0.18rem 0.52rem;
-      background: rgba(13,13,13,0.7); border: 1px solid rgba(207,122,84,0.5);
-      border-radius: 999px; font-size: 0.63rem; font-weight: 700; color: var(--accent-light);
-      backdrop-filter: blur(8px);
+    .role-ico {
+      width: 42px; height: 42px; border-radius: 11px; margin-bottom: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--primary3); color: var(--primary);
     }
-    .project-body { padding: 1.15rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
-    .project-problem { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; letter-spacing: 0.04em; text-transform: uppercase; }
-    .project-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.45rem; color: var(--text); }
-    .project-card p { font-size: 0.81rem; color: var(--muted); flex: 1; margin-bottom: 1rem; line-height: 1.65; }
-    .project-footer { display: flex; flex-direction: column; gap: 0.65rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-    .project-tag { font-size: 0.67rem; padding: 0.16rem 0.46rem; background: rgba(13,13,13,0.9); border: 1px solid var(--border2); border-radius: 4px; color: var(--muted); }
-    .project-tag.accent { background: rgba(207,122,84,0.07); border-color: rgba(207,122,84,0.22); color: var(--accent); }
-    .project-link {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      font-size: 0.74rem; font-weight: 600; padding: 0.32rem 0.75rem;
-      border: 1px solid var(--border2); border-radius: 6px;
-      color: var(--muted); text-decoration: none; transition: all 0.15s; width: fit-content;
+    .rc2 .role-ico { background: #E0E7FF; color: #4F46E5; }
+    .rc3 .role-ico { background: var(--accent2); color: #0F766E; }
+    .rc4 .role-ico { background: var(--gold2); color: var(--gold); }
+    .rc5 .role-ico { background: #E2E8F0; color: #475569; }
+    .role-ico svg { width: 21px; height: 21px; }
+    .role-card h3 { font-size: 1.06rem; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
+    .role-sub { font-size: 0.72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0.18rem 0 0.75rem; }
+    .rc2 .role-sub { color: #4F46E5; } .rc3 .role-sub { color: #0F766E; }
+    .rc4 .role-sub { color: var(--gold); } .rc5 .role-sub { color: #475569; }
+    .role-desc { font-size: 0.855rem; color: var(--muted); line-height: 1.68; margin-bottom: 1rem; flex: 1; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.32rem; }
+    .chip {
+      font-size: 0.735rem; font-weight: 600; color: var(--text);
+      padding: 0.22rem 0.58rem; background: var(--bg2);
+      border: 1px solid var(--line); border-radius: 6px;
     }
-    .project-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(207,122,84,0.06); }
-    .project-link svg { width: 11px; height: 11px; flex-shrink: 0; }
-    .project-link.live { border-color: rgba(207,122,84,0.3); color: var(--accent); background: rgba(207,122,84,0.07); }
-    .project-link.live:hover { background: rgba(207,122,84,0.15); }
 
-    /* ── EXPERIENCE ── */
-    #experience { background: var(--bg2); }
-    .timeline { position: relative; padding-left: 1.5rem; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 0.6rem; bottom: 0.6rem; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), rgba(207,122,84,0.08)); }
-    .timeline-item { position: relative; margin-bottom: 1.75rem; padding-left: 1.5rem; }
-    .timeline-dot { position: absolute; left: -2.15rem; top: 1.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg2); box-shadow: 0 0 0 3px rgba(207,122,84,0.2); transition: box-shadow 0.2s; }
-    .timeline-item:hover .timeline-dot { box-shadow: 0 0 0 6px rgba(207,122,84,0.25); }
-    .timeline-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 1.1rem 1.4rem; transition: border-color 0.2s, transform 0.2s; }
-    .timeline-card:hover { border-color: rgba(207,122,84,0.3); transform: translateX(5px); }
-    .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
-    .timeline-header-left { display: flex; align-items: center; gap: 0.7rem; }
-    .company-badge { width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 900; color: white; letter-spacing: -0.3px; overflow: hidden; }
-    .company-badge img { width: 100%; height: 100%; object-fit: contain; padding: 3px; background: white; border-radius: 7px; }
-    .timeline-role { font-weight: 700; font-size: 0.95rem; color: var(--text); }
-    .timeline-company { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-top: 0.12rem; }
-    .timeline-sector { font-size: 0.65rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.1rem; }
-    .timeline-date { font-size: 0.72rem; color: var(--muted); background: var(--surface2); padding: 0.2rem 0.65rem; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
-    .timeline-desc { font-size: 0.82rem; color: var(--muted); }
-    .timeline-desc ul { padding-left: 1.1rem; margin-top: 0.3rem; }
-    .timeline-desc li { margin-bottom: 0.18rem; line-height: 1.55; }
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 1.4rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0.7rem; bottom: 0.7rem; width: 2px; background: linear-gradient(to bottom, var(--primary), var(--accent), var(--line)); border-radius: 2px; }
+    .timeline-item { position: relative; margin-bottom: 1.35rem; padding-left: 1.5rem; }
+    .timeline-dot { position: absolute; left: -2.03rem; top: 1.35rem; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 3px solid var(--primary); transition: box-shadow 0.2s; }
+    .timeline-item:hover .timeline-dot { box-shadow: 0 0 0 5px var(--primary3); }
+    .timeline-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.15rem 1.35rem; transition: all 0.2s; }
+    .timeline-card:hover { border-color: var(--line2); box-shadow: var(--shadow); transform: translateX(4px); }
+    .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+    .timeline-header-left { display: flex; align-items: center; gap: 0.75rem; }
+    .company-badge { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.66rem; font-weight: 900; color: #fff; letter-spacing: -0.3px; overflow: hidden; border: 1px solid var(--line); }
+    .company-badge img { width: 100%; height: 100%; object-fit: contain; padding: 3px; background: #fff; border-radius: 9px; }
+    .timeline-role { font-weight: 800; font-size: 0.96rem; color: var(--text); letter-spacing: -0.2px; }
+    .timeline-company { font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-top: 0.1rem; }
+    .timeline-sector { font-size: 0.66rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.12rem; }
+    .timeline-date { font-size: 0.73rem; color: var(--text); font-weight: 600; background: var(--bg2); border: 1px solid var(--line); padding: 0.24rem 0.7rem; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+    .timeline-desc { font-size: 0.855rem; color: var(--muted); line-height: 1.68; }
+    .timeline-desc ul { padding-left: 1.1rem; margin-top: 0.25rem; }
+    .timeline-desc li { margin-bottom: 0.2rem; }
 
-    /* ── EDUCATION ── */
-    #education { background: linear-gradient(180deg, var(--bg2), rgba(28,18,12,0.5)); }
-    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.15rem; }
-    .edu-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 0.22rem; transition: border-color 0.2s, transform 0.2s; }
-    .edu-card:hover { border-color: rgba(122,181,160,0.4); transform: translateY(-2px); }
-    .edu-card h3 { font-size: 0.93rem; font-weight: 700; color: var(--text); }
-    .edu-card .school { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
-    .edu-card .period { font-size: 0.72rem; color: var(--muted); }
-    .edu-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.74rem; font-weight: 600; color: var(--accent-light); text-decoration: none; margin-top: 0.4rem; transition: gap 0.15s, opacity 0.15s; }
-    .edu-link:hover { gap: 0.5rem; opacity: 0.8; }
+    /* ── EDUCACIÓN ── */
+    #education { background: var(--bg2); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); gap: 1rem; }
+    .edu-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.22rem; transition: all 0.2s; }
+    .edu-card:hover { border-color: var(--line2); box-shadow: var(--shadow); transform: translateY(-3px); }
+    .edu-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--text); }
+    .edu-card .school { font-size: 0.815rem; color: var(--primary); font-weight: 650; }
+    .edu-card .period { font-size: 0.75rem; color: var(--muted); }
+    .edu-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.76rem; font-weight: 700; color: var(--primary); text-decoration: none; margin-top: 0.5rem; transition: gap 0.15s; }
+    .edu-link:hover { gap: 0.5rem; }
     .edu-link svg { width: 11px; height: 11px; }
 
-    /* ── CONTACT ── */
-    #contact { background: linear-gradient(180deg, var(--bg2), rgba(207,122,84,0.03)); text-align: center; }
-    .contact-intro { color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; font-size: 0.95rem; line-height: 1.75; }
-    .contact-cta-grid { display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; margin-bottom: 2rem; }
-    .contact-big {
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      background: var(--surface); border: 1.5px solid var(--border2);
-      border-radius: var(--radius); padding: 1.5rem 2rem;
-      text-decoration: none; color: var(--text); min-width: 195px;
-      transition: all 0.25s;
+    /* ── DOCUMENTOS ── */
+    #docs { background: linear-gradient(180deg, #0A1628 0%, #12294A 100%); color: #fff; }
+    #docs h2 { color: #fff; }
+    #docs .section-intro { color: #B9C9DE; }
+    #docs .section-intro strong { color: #fff; }
+    .docs-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .docs-total { text-align: center; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius); padding: 1.15rem 1.6rem; flex-shrink: 0; }
+    .docs-total b { display: block; font-size: 2.5rem; font-weight: 900; color: #5EEAD4; line-height: 1; letter-spacing: -1.5px; }
+    .docs-total span { font-size: 0.72rem; color: #9FB3CC; font-weight: 600; }
+    .doc-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
+    .doc-tab {
+      display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.62rem 1.2rem;
+      border-radius: 9px; font-size: 0.86rem; font-weight: 700; cursor: pointer; font-family: inherit;
+      border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #C7D6EA; transition: all 0.2s;
     }
-    .contact-big:hover { transform: translateY(-4px); }
-    .contact-big.lk { border-color: rgba(10,102,194,0.25); }
-    .contact-big.lk:hover { border-color: #0A66C2; box-shadow: 0 16px 40px rgba(10,102,194,0.2); }
-    .contact-big.em { border-color: rgba(207,122,84,0.25); }
-    .contact-big.em:hover { border-color: var(--accent); box-shadow: 0 16px 40px rgba(207,122,84,0.2); }
-    .contact-big svg { width: 30px; height: 30px; }
-    .contact-big .clabel { font-size: 0.72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
-    .contact-big .cval { font-size: 0.9rem; font-weight: 700; }
-    .contact-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
-    .contact-item { display: flex; align-items: center; gap: 0.65rem; background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 0.75rem 1.2rem; font-size: 0.87rem; color: var(--text); text-decoration: none; transition: all 0.2s; }
-    .contact-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .contact-item svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
-
-    /* ── DOCS ── */
-    #docs { background: linear-gradient(180deg, var(--bg2) 0%, rgba(28,18,12,0.3) 100%); }
-    .doc-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .doc-tab { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1.3rem; border-radius: 10px; font-size: 0.88rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); transition: all 0.2s; }
-    .doc-tab:hover { border-color: var(--accent); color: var(--text); }
-    .doc-tab.active { background: rgba(207,122,84,0.1); border-color: var(--accent); color: var(--accent); }
-    .tab-count { background: rgba(207,122,84,0.15); color: var(--accent); font-size: 0.7rem; font-weight: 800; padding: 0.1rem 0.45rem; border-radius: 999px; }
-    .doc-list { display: none; flex-direction: column; gap: 0.6rem; }
+    .doc-tab:hover { background: rgba(255,255,255,0.12); color: #fff; }
+    .doc-tab.active { background: #fff; border-color: #fff; color: var(--ink); }
+    .tab-count { background: rgba(255,255,255,0.16); font-size: 0.7rem; font-weight: 800; padding: 0.1rem 0.45rem; border-radius: 999px; }
+    .doc-tab.active .tab-count { background: var(--primary3); color: var(--primary); }
+    .doc-list { display: none; flex-direction: column; gap: 0.45rem; }
     .doc-list.active { display: flex; }
-    .doc-item { display: flex; align-items: center; gap: 1rem; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius-sm); padding: 0.9rem 1.2rem; transition: border-color 0.2s, transform 0.15s; }
-    .doc-item:hover { border-color: rgba(207,122,84,0.3); transform: translateX(4px); }
-    .doc-year { font-size: 0.72rem; font-weight: 800; color: var(--accent); background: rgba(207,122,84,0.08); border: 1px solid rgba(207,122,84,0.18); padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap; min-width: 68px; text-align: center; }
-    .doc-icon-pdf { font-size: 1.3rem; flex-shrink: 0; }
+    .doc-item {
+      display: flex; align-items: center; gap: 0.9rem;
+      background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.11);
+      border-radius: var(--radius-sm); padding: 0.8rem 1.1rem; transition: all 0.18s;
+    }
+    .doc-item:hover { background: rgba(255,255,255,0.11); border-color: rgba(255,255,255,0.25); transform: translateX(4px); }
+    .doc-year { font-size: 0.71rem; font-weight: 800; color: #5EEAD4; background: rgba(13,148,136,0.2); border: 1px solid rgba(45,212,191,0.3); padding: 0.16rem 0.55rem; border-radius: 999px; white-space: nowrap; min-width: 70px; text-align: center; }
+    .doc-icon-pdf { font-size: 1.2rem; flex-shrink: 0; }
     .doc-info { flex: 1; min-width: 0; }
-    .doc-name { font-size: 0.88rem; font-weight: 600; color: var(--text); display: block; }
-    .doc-sub { font-size: 0.73rem; color: var(--muted); margin-top: 0.1rem; }
-    .doc-btn { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 700; padding: 0.38rem 0.9rem; border: 1px solid var(--border2); border-radius: 7px; color: var(--muted); text-decoration: none; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; }
-    .doc-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(207,122,84,0.05); }
+    .doc-name { font-size: 0.875rem; font-weight: 650; color: #fff; display: block; }
+    .doc-sub { font-size: 0.735rem; color: #9FB3CC; margin-top: 0.08rem; }
+    .doc-btn {
+      display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.755rem; font-weight: 700;
+      padding: 0.4rem 0.9rem; border: 1px solid rgba(255,255,255,0.24); border-radius: 7px;
+      color: #C7D6EA; text-decoration: none; transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+    }
+    .doc-btn:hover { background: #fff; border-color: #fff; color: var(--ink); }
     .doc-btn svg { width: 12px; height: 12px; }
 
+    /* ── PROYECTOS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.35rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: all 0.25s;
+    }
+    .project-card:hover { border-color: var(--line2); transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .project-visual { height: 158px; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .project-visual svg { width: 100%; height: 100%; display: block; }
+    .project-body { padding: 1.2rem 1.3rem; flex: 1; display: flex; flex-direction: column; }
+    .project-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.45rem; color: var(--text); letter-spacing: -0.3px; }
+    .project-card p { font-size: 0.845rem; color: var(--muted); flex: 1; margin-bottom: 1rem; line-height: 1.66; }
+    .phases { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.9rem; }
+    .phase {
+      font-size: 0.665rem; font-weight: 700; color: #0F766E;
+      background: var(--accent2); border-radius: 5px; padding: 0.16rem 0.44rem;
+      display: inline-flex; align-items: center; gap: 0.22rem;
+    }
+    .phase b { font-weight: 900; opacity: 0.55; }
+    .project-footer { display: flex; flex-direction: column; gap: 0.7rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.28rem; }
+    .project-tag { font-size: 0.685rem; font-weight: 600; padding: 0.16rem 0.48rem; background: var(--bg2); border: 1px solid var(--line); border-radius: 5px; color: var(--muted); }
+    .project-tag.accent { background: var(--primary3); border-color: #BFDBFE; color: var(--primary); }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.775rem; font-weight: 700; padding: 0.4rem 0.85rem;
+      border: 1px solid var(--line2); border-radius: 7px;
+      color: var(--text); text-decoration: none; transition: all 0.15s; width: fit-content;
+    }
+    .project-link:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .project-link svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    /* ── CONTACTO ── */
+    #contact { background: var(--bg2); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-big {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.35rem 1.5rem;
+      text-decoration: none; color: var(--text); transition: all 0.25s;
+    }
+    .contact-big:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--line2); }
+    .contact-ico { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-ico svg { width: 22px; height: 22px; }
+    .contact-big.lk .contact-ico { background: #E7F0FA; color: #0A66C2; }
+    .contact-big.em .contact-ico { background: var(--primary3); color: var(--primary); }
+    .contact-big.ph .contact-ico { background: var(--accent2); color: #0F766E; }
+    .contact-big.lo .contact-ico { background: var(--gold2); color: var(--gold); }
+    .clabel { font-size: 0.7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; display: block; }
+    .cval { font-size: 0.93rem; font-weight: 800; letter-spacing: -0.2px; }
+
     /* ── FOOTER ── */
-    footer { text-align: center; padding: 2.5rem 2rem; font-size: 0.77rem; color: var(--muted); border-top: 1px solid var(--border2); }
-    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
-    .footer-contact { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-    .back-top { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); text-decoration: none; font-size: 0.77rem; padding: 0.35rem 0.85rem; border: 1px solid var(--border2); border-radius: 999px; transition: all 0.2s; }
-    .back-top:hover { color: var(--accent); border-color: var(--accent); }
+    footer { background: var(--ink); color: #9FB3CC; text-align: center; padding: 2.5rem 2rem; font-size: 0.79rem; }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .footer-links { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+    .back-top { display: inline-flex; align-items: center; gap: 0.4rem; color: #C7D6EA; text-decoration: none; font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.95rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; transition: all 0.2s; }
+    .back-top:hover { background: rgba(255,255,255,0.1); color: #fff; }
     .back-top svg { width: 12px; height: 12px; }
 
-    /* ── ANIMATIONS ── */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.52s ease, transform 0.52s ease; }
+    /* ── ANIMACIONES ── */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 1.4rem; }
+      .avatar { width: 96px; height: 96px; }
+      .contact-wrap { grid-template-columns: 1fr; }
+    }
     @media (max-width: 768px) {
-      nav { padding: 0.75rem 1rem; }
+      nav { padding: 0.7rem 1rem; }
       .nav-links, .nav-cta { display: none; }
       .nav-right { gap: 0.8rem; }
       .hamburger { display: flex; }
-      section { padding: 3.5rem 1rem; }
-      .contact-banner { top: 52px; gap: 0.75rem; padding: 0.55rem 1rem; }
-      .timeline { padding-left: 1rem; }
-      .timeline-dot { left: -1.85rem; }
-      .hero-stats { gap: 0.5rem; }
-      .stat-value { font-size: 1.25rem; }
-      .contact-big { min-width: 155px; padding: 1.2rem 1.3rem; }
-    }
-    @media (max-width: 480px) {
-      .contact-banner p { display: none; }
+      section { padding: 3.25rem 1.1rem; }
+      #hero { padding: 7rem 1.1rem 3.5rem; }
+      .timeline { padding-left: 0.9rem; }
+      .timeline-dot { left: -1.72rem; }
+      .stat { min-width: 88px; padding: 0.6rem 0.9rem; }
+      .stat-value { font-size: 1.35rem; }
+      .docs-head { gap: 1.2rem; }
+      .doc-item { flex-wrap: wrap; gap: 0.6rem; }
+      .doc-btn { margin-left: auto; }
     }
   </style>
 </head>
 <body>
 
-<!-- DRAWER OVERLAY -->
 <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
 
-<!-- MOBILE DRAWER -->
+<!-- DRAWER MÓVIL -->
 <div class="mobile-drawer" id="drawer">
   <ul>
     <li><a href="#hero" onclick="closeDrawer()" data-i18n="nav.home">Inicio</a></li>
-    <li><a href="#workflow" onclick="closeDrawer()" data-i18n="nav.stack">AI Stack</a></li>
-    <li><a href="#projects" onclick="closeDrawer()" data-i18n="nav.projects">Proyectos</a></li>
+    <li><a href="#perfil" onclick="closeDrawer()" data-i18n="nav.profile">Perfil profesional</a></li>
     <li><a href="#experience" onclick="closeDrawer()" data-i18n="nav.experience">Experiencia</a></li>
     <li><a href="#education" onclick="closeDrawer()" data-i18n="nav.education">Educación</a></li>
+    <li><a href="#docs" onclick="closeDrawer()" class="hl" data-i18n="nav.documents">Documentos sustentatorios</a></li>
+    <li><a href="#projects" onclick="closeDrawer()" data-i18n="nav.projects">Proyectos</a></li>
     <li><a href="#contact" onclick="closeDrawer()" data-i18n="nav.contact">Contacto</a></li>
-    <li><a href="#docs" onclick="closeDrawer()" data-i18n="nav.documents">Documentos</a></li>
   </ul>
   <div class="mobile-drawer-divider"></div>
-  <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-linkedin" style="justify-content:center; font-size:0.85rem;">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-    LinkedIn
+  <a href="mailto:msmgxe@gmail.com" class="btn btn-accent" style="justify-content:center; font-size:0.85rem;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    <span data-i18n="cta.emailme">Escríbeme</span>
   </a>
-  <a href="mailto:msmgxe@gmail.com" class="btn btn-primary" style="justify-content:center; font-size:0.85rem; margin-top:0.5rem;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-    <span data-i18n="cta.contact">Contáctame</span>
+  <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-lk" style="justify-content:center; font-size:0.85rem; margin-top:0.5rem;">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    LinkedIn
   </a>
 </div>
 
 <!-- NAV -->
 <nav>
-  <span class="nav-logo">MSM <span>— AI Builder</span></span>
+  <span class="nav-logo">Marco <b>Saldarriaga</b><span data-i18n="nav.tagline">Project Manager · Analista Funcional</span></span>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#hero" data-i18n="nav.home">Inicio</a></li>
-      <li><a href="#workflow" data-i18n="nav.stack">AI Stack</a></li>
-      <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#perfil" data-i18n="nav.profile">Perfil</a></li>
       <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="#docs" class="hl"><span data-i18n="nav.docs">Documentos</span><i>27</i></a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
-      <li><a href="#docs" data-i18n="nav.docs">Docs</a></li>
     </ul>
 
-    <!-- SELECTOR DE IDIOMA -->
     <div class="lang-switch" id="langSwitch">
       <button class="lang-btn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false" aria-label="Cambiar idioma" data-i18n-aria="lang.aria">
         <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -488,318 +475,131 @@
       </div>
     </div>
 
-    <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="nav-cta">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      LinkedIn
+    <a href="#docs" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span data-i18n="nav.cta">Ver documentos</span>
     </a>
-    <div class="hamburger" id="hamburger" onclick="toggleDrawer()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleDrawer()"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
-<!-- CONTACT BANNER -->
-<div class="contact-banner">
-  <p data-i18n="banner.text"><strong>Disponible para proyectos y colaboraciones.</strong> Especialista en desarrollo acelerado con IA.</p>
-  <div class="banner-btns">
-    <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="banner-btn banner-btn-linkedin">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      <span data-i18n="cta.mylinkedin">Mi LinkedIn</span>
-    </a>
-    <a href="mailto:msmgxe@gmail.com" class="banner-btn banner-btn-primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      <span data-i18n="cta.emailme">Contáctame por Correo</span>
-    </a>
-  </div>
-</div>
-
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-inner fade-in">
+  <div class="hero-inner">
     <div class="avatar"><img src="assets/profile.png" alt="Marco Saldarriaga Medina"></div>
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      <span data-i18n="hero.badge">Disponible para nuevos proyectos</span>
-    </div>
-    <h1>Marco Saldarriaga<br>Medina</h1>
-    <p class="hero-role">AI Developer &amp; Product Builder | Vibe Coding Specialist</p>
-    <p class="hero-subtitle" data-i18n="hero.subtitle">
-      Combino una <strong>sólida lógica de programación</strong> y abstracción con herramientas avanzadas de IA
-      (<strong>Claude Code, Gemini, ChatGPT</strong>) para conceptualizar, estructurar y desplegar
-      aplicaciones web y prototipos funcionales (MVPs) <strong>en tiempo récord</strong>.<br>
-      Más de 28 años de experiencia en TI respaldan cada decisión de arquitectura.
-    </p>
-    <div class="hero-ai-pills">
-      <span class="ai-pill">⚡ Vibe Coding</span>
-      <span class="ai-pill">🤖 Claude Code</span>
-      <span class="ai-pill">✨ Gemini</span>
-      <span class="ai-pill">💬 ChatGPT</span>
-      <span class="ai-pill" data-i18n="pill.mvp">🚀 MVP Rápido</span>
-      <span class="ai-pill">☁️ Vercel Deploy</span>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-value">+28</div>
-        <div class="stat-label" data-i18n="stat.years">Años en TI</div>
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span data-i18n="hero.badge">Disponible para nuevos proyectos · Lima, Perú</span>
       </div>
-      <div class="stat">
-        <div class="stat-value">6</div>
-        <div class="stat-label" data-i18n="stat.apps">Apps desplegadas</div>
+      <h1>Marco Saldarriaga Medina</h1>
+      <div class="hero-roles">
+        <span class="role-tag lead" data-i18n="role.pm">Project Manager</span>
+        <span class="role-tag" data-i18n="role.sys">Analista de Sistemas</span>
+        <span class="role-tag" data-i18n="role.func">Analista Funcional</span>
+        <span class="role-tag" data-i18n="role.qa">QA / Analista de Calidad</span>
+        <span class="role-tag" data-i18n="role.dev">Programador</span>
       </div>
-      <div class="stat">
-        <div class="stat-value">3x</div>
-        <div class="stat-label" data-i18n="stat.speed">Velocidad con IA</div>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">
+        <strong>Más de 28 años en Tecnología de la Información</strong> cubriendo el ciclo completo de un proyecto:
+        levantamiento de requerimientos, análisis funcional, diseño, desarrollo, pruebas y pase a producción.
+        Experiencia comprobada en <strong>banca, finanzas, salud, educación y sector público</strong>,
+        con marcos ágiles (Scrum) y estándares PMI.
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-value">+28</div><div class="stat-label" data-i18n="stat.years">Años en TI</div></div>
+        <div class="stat"><div class="stat-value">5</div><div class="stat-label" data-i18n="stat.roles">Roles dominados</div></div>
+        <div class="stat"><div class="stat-value">+25</div><div class="stat-label" data-i18n="stat.projects">Proyectos liderados</div></div>
+        <div class="stat"><div class="stat-value tint">27</div><div class="stat-label" data-i18n="stat.docs">Documentos que lo sustentan</div></div>
       </div>
-      <div class="stat">
-        <div class="stat-value">100%</div>
-        <div class="stat-label" data-i18n="stat.prod">En producción</div>
+      <div class="hero-actions">
+        <a href="#docs" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span data-i18n="hero.cta.docs">Ver mis 27 documentos</span>
+        </a>
+        <a href="mailto:msmgxe@gmail.com" class="btn btn-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span data-i18n="cta.emailme">Escríbeme</span>
+        </a>
+        <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
       </div>
-    </div>
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4M12 17v4"/></svg>
-        <span data-i18n="hero.cta.projects">Ver mis proyectos</span>
-      </a>
-      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="btn btn-linkedin">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        <span data-i18n="cta.mylinkedin">Mi LinkedIn</span>
-      </a>
-      <a href="mailto:msmgxe@gmail.com" class="btn btn-outline">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        <span data-i18n="cta.contact">Contáctame</span>
-      </a>
     </div>
   </div>
 </section>
 
-<!-- AI WORKFLOW -->
-<section id="workflow">
+<!-- PERFIL: LOS 5 ROLES -->
+<section id="perfil">
   <div class="container">
-    <div class="section-label" data-i18n="wf.label">Mi Superpotencia</div>
-    <h2 data-i18n="wf.title">Mi Flujo de Trabajo (AI Stack)</h2>
-    <p class="workflow-intro" data-i18n="wf.intro">
-      No reemplazo la lógica — la <strong style="color:var(--text)">amplifico</strong>.
-      Combino experiencia sólida en arquitectura de software con las mejores herramientas de IA
-      para entregar soluciones funcionales que antes tomaban semanas, ahora en días.
+    <div class="section-label" data-i18n="pf.label">Perfil profesional</div>
+    <h2 data-i18n="pf.title">Cinco roles que domino de punta a punta</h2>
+    <p class="section-intro" data-i18n="pf.intro">
+      He ocupado <strong>cada asiento de la mesa</strong> en un proyecto de software. Eso me permite anticipar cómo
+      una decisión funcional impacta en el código, en las pruebas y en el cronograma — y traducir el lenguaje
+      del negocio al del equipo técnico, y al revés.
     </p>
-    <div class="workflow-grid">
+    <div class="roles-grid">
 
-      <div class="workflow-card wc1 fade-in">
-        <span class="workflow-icon">🧠</span>
-        <div class="workflow-title" data-i18n="wf1.title">Lógica de Programación</div>
-        <div class="workflow-sub" data-i18n="wf1.sub">Base sólida · Arquitectura</div>
-        <p class="workflow-desc" data-i18n="wf1.desc">28+ años de experiencia en análisis funcional, arquitectura multicapa y diseño de sistemas respaldan cada decisión de código.</p>
-        <div class="wchips">
-          <span class="wchip hl">C# / .NET</span>
-          <span class="wchip hl" data-i18n="wf1.chip.arch">Arquitectura Web</span>
-          <span class="wchip">SQL Server</span>
-          <span class="wchip" data-i18n="wf1.chip.patterns">Patrones de diseño</span>
-          <span class="wchip">APIs REST</span>
-          <span class="wchip">Scrum / Agile</span>
-        </div>
+      <div class="role-card rc1 fade-in">
+        <span class="role-num">01</span>
+        <div class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></div>
+        <h3 data-i18n="r1.title">Project Manager</h3>
+        <div class="role-sub" data-i18n="r1.sub">Gestión y liderazgo</div>
+        <p class="role-desc" data-i18n="r1.desc">Planificación y seguimiento de proyectos, gestión de cronograma y presupuesto CAPEX/OPEX, coordinación de stakeholders y reporte a comités. Scrum Master certificado (ISM) y formación PMP.</p>
+        <div class="chips" data-i18n="r1.chips"><span class="chip">Scrum</span><span class="chip">PMI</span><span class="chip">CAPEX / OPEX</span><span class="chip">Cronograma</span><span class="chip">Comité de proyecto</span><span class="chip">Stakeholders</span></div>
       </div>
 
-      <div class="workflow-card wc2 fade-in">
-        <span class="workflow-icon">🤖</span>
-        <div class="workflow-title" data-i18n="wf2.title">Herramientas de IA</div>
-        <div class="workflow-sub" data-i18n="wf2.sub">Aceleración · Vibe Coding</div>
-        <p class="workflow-desc" data-i18n="wf2.desc">Uso IA no como sustituto del pensamiento, sino como multiplicador. Prompt engineering preciso produce código funcional al primer intento.</p>
-        <div class="wchips">
-          <span class="wchip hl">Claude Code</span>
-          <span class="wchip hl">Gemini</span>
-          <span class="wchip hl">ChatGPT</span>
-          <span class="wchip">Prompt Engineering</span>
-          <span class="wchip">Vibe Coding</span>
-          <span class="wchip">Cursor / Copilot</span>
-        </div>
+      <div class="role-card rc2 fade-in">
+        <span class="role-num">02</span>
+        <div class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <h3 data-i18n="r2.title">Analista de Sistemas</h3>
+        <div class="role-sub" data-i18n="r2.sub">Arquitectura y modelado</div>
+        <p class="role-desc" data-i18n="r2.desc">Modelado de procesos y de datos, diagramas UML, arquitectura multicapa e integraciones entre sistemas. Metodología RUP y diseño de soluciones de punta a punta.</p>
+        <div class="chips" data-i18n="r2.chips"><span class="chip">UML</span><span class="chip">RUP</span><span class="chip">Arquitectura multicapa</span><span class="chip">Modelado de datos</span><span class="chip">Integraciones</span><span class="chip">SQL</span></div>
       </div>
 
-      <div class="workflow-card wc3 fade-in">
-        <span class="workflow-icon">🚀</span>
-        <div class="workflow-title" data-i18n="wf3.title">Frontend &amp; Despliegue</div>
-        <div class="workflow-sub" data-i18n="wf3.sub">Producción · Tiempo récord</div>
-        <p class="workflow-desc" data-i18n="wf3.desc">Del prototipo a producción en horas. Stack moderno enfocado en performance, experiencia de usuario y despliegue continuo.</p>
-        <div class="wchips">
-          <span class="wchip hl">React / Next.js</span>
-          <span class="wchip hl">Vercel</span>
-          <span class="wchip">TypeScript</span>
-          <span class="wchip">Tailwind CSS</span>
-          <span class="wchip">Supabase</span>
-          <span class="wchip">Git / GitHub</span>
-        </div>
+      <div class="role-card rc3 fade-in">
+        <span class="role-num">03</span>
+        <div class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3 data-i18n="r3.title">Analista Funcional</h3>
+        <div class="role-sub" data-i18n="r3.sub">Requerimientos y negocio</div>
+        <p class="role-desc" data-i18n="r3.desc">Levantamiento y documentación de requerimientos, análisis AS-IS / TO-BE, casos de uso, historias de usuario, prototipos de interfaz y definición de criterios de aceptación con el usuario.</p>
+        <div class="chips" data-i18n="r3.chips"><span class="chip">AS-IS / TO-BE</span><span class="chip">Casos de uso</span><span class="chip">Historias de usuario</span><span class="chip">Prototipos</span><span class="chip">Criterios de aceptación</span><span class="chip">Backlog</span></div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="section-label" data-i18n="pr.label">Portafolio</div>
-    <h2 data-i18n="pr.title">Proyectos desplegados en producción</h2>
-    <p class="projects-intro" data-i18n="pr.intro">Cada proyecto fue construido aplicando <strong style="color:var(--text)">Vibe Coding</strong>: IA + lógica sólida = resultados reales a velocidad de startup.</p>
-    <div class="projects-grid">
-
-      <!-- P1: Entrevistas técnicas -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #1A3A6B 0%, #2D5AA0 100%);">
-          <span class="project-icon-big">🎯</span>
-          <span class="vibe-badge">⚡ Vibe Coding</span>
-        </div>
-        <div class="project-body">
-          <div class="project-problem" data-i18n="p1.problem">Problema resuelto: Preparación técnica</div>
-          <h3 data-i18n="p1.title">Simulador de Entrevistas Técnicas</h3>
-          <p data-i18n="p1.desc">Herramienta de preparación para entrevistas técnicas de desarrollo. Simulaciones interactivas, banco de preguntas y feedback inmediato para candidatos dev.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">React</span>
-              <span class="project-tag accent">Next.js</span>
-              <span class="project-tag">Vercel</span>
-              <span class="project-tag" data-i18n="tag.ai">IA-asistido</span>
-            </div>
-            <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span data-i18n="link.view">Ver proyecto</span>
-            </a>
-          </div>
-        </div>
+      <div class="role-card rc4 fade-in">
+        <span class="role-num">04</span>
+        <div class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3 data-i18n="r4.title">QA / Analista de Calidad</h3>
+        <div class="role-sub" data-i18n="r4.sub">Pruebas y certificación</div>
+        <p class="role-desc" data-i18n="r4.desc">Diseño y ejecución de planes y casos de prueba, pruebas funcionales y de regresión, acompañamiento en UAT, gestión de defectos y certificación de pases a producción.</p>
+        <div class="chips" data-i18n="r4.chips"><span class="chip">Casos de prueba</span><span class="chip">UAT</span><span class="chip">Regresión</span><span class="chip">Gestión de defectos</span><span class="chip">Certificación de pases</span><span class="chip">PCI-DSS</span></div>
       </div>
 
-      <!-- P2: Cotizador construcción -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #3D2000 0%, #7A4A00 100%);">
-          <span class="project-icon-big">🏗️</span>
-          <span class="vibe-badge">⚡ Vibe Coding</span>
-        </div>
-        <div class="project-body">
-          <div class="project-problem" data-i18n="p2.problem">Problema resuelto: Optimización de presupuestos</div>
-          <h3 data-i18n="p2.title">Cotizador Inteligente de Construcción</h3>
-          <p data-i18n="p2.desc">Cotizador de servicios en construcción para optimización de presupuestos de negocio. Automatiza cálculos complejos y genera propuestas profesionales al instante.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">React</span>
-              <span class="project-tag accent">Next.js</span>
-              <span class="project-tag">Vercel</span>
-              <span class="project-tag">Business Tool</span>
-            </div>
-            <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span data-i18n="link.view">Ver proyecto</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- P3: Panel educativo -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #1A3A2A 0%, #2D7A50 100%);">
-          <span class="project-icon-big">📚</span>
-          <span class="vibe-badge">⚡ Vibe Coding</span>
-        </div>
-        <div class="project-body">
-          <div class="project-problem" data-i18n="p3.problem">Problema resuelto: Gestión educativa</div>
-          <h3 data-i18n="p3.title">Panel Admin para Plataformas Educativas</h3>
-          <p data-i18n="p3.desc">Dashboard de administración y gestión de usuarios para plataformas educativas. Control total de alumnos, contenidos y métricas en una sola interfaz.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">React</span>
-              <span class="project-tag accent">Supabase</span>
-              <span class="project-tag">Vercel</span>
-              <span class="project-tag">Dashboard</span>
-            </div>
-            <a href="https://vercel.app" target="_blank" rel="noopener" class="project-link live">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span data-i18n="link.view">Ver proyecto</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- P4: Codebit -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #1A1A3A 0%, #3A3A8A 100%);">
-          <span class="project-icon-big">💻</span>
-          <span class="vibe-badge">⚡ Vibe Coding</span>
-        </div>
-        <div class="project-body">
-          <div class="project-problem" data-i18n="p4.problem">Problema resuelto: Aprendizaje interactivo</div>
-          <h3 data-i18n="p4.title">CodeBit — App Web Interactiva</h3>
-          <p data-i18n="p4.desc">Aplicación funcional web interactiva construida y desplegada en producción. Demuestra la capacidad de llevar ideas complejas a producto funcional rápidamente.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">React</span>
-              <span class="project-tag accent">JavaScript</span>
-              <span class="project-tag">Vercel</span>
-              <span class="project-tag">Web App</span>
-            </div>
-            <a href="https://codebit-two.vercel.app/" target="_blank" rel="noopener" class="project-link live">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span data-i18n="link.live">Ver en vivo</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- P5: Mundial 2026 -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #1A2A10 0%, #3A6A20 60%, #5A9A30 100%);">
-          <span class="project-icon-big">⚽</span>
-          <span class="vibe-badge">⚡ Vibe Coding</span>
-        </div>
-        <div class="project-body">
-          <div class="project-problem" data-i18n="p5.problem">Problema resuelto: UX en tiempo real</div>
-          <h3 data-i18n="p5.title">Fixture Mundial 2026</h3>
-          <p data-i18n="p5.desc">Fixture dinámico e interactivo para el Mundial 2026. Enfocado en experiencia de usuario fluida y manejo de datos en tiempo real. Diseño responsive y visualmente atractivo.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">React</span>
-              <span class="project-tag accent">Next.js</span>
-              <span class="project-tag">Vercel</span>
-              <span class="project-tag">Real-time</span>
-            </div>
-            <a href="https://mundial-2026-fixture.vercel.app/" target="_blank" rel="noopener" class="project-link live">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span data-i18n="link.live">Ver en vivo</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- P6: Este portafolio -->
-      <div class="project-card fade-in">
-        <div class="project-visual" style="background: linear-gradient(135deg, #2A1000 0%, var(--accent) 100%);">
-          <span class="project-icon-big">🌐</span>
-          <span class="vibe-badge">⚡ Vibe Coding</span>
-        </div>
-        <div class="project-body">
-          <div class="project-problem" data-i18n="p6.problem">Problema resuelto: Presencia digital profesional</div>
-          <h3 data-i18n="p6.title">Este Portafolio — SPA Optimizada</h3>
-          <p data-i18n="p6.desc">SPA optimizada y desplegada en Vercel. Diseño moderno inspirado en Claude Code, responsive, con animaciones suaves y carga instantánea. 100% HTML/CSS/JS puro.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag accent">HTML / CSS</span>
-              <span class="project-tag accent">JavaScript</span>
-              <span class="project-tag">Vercel</span>
-              <span class="project-tag">SPA</span>
-            </div>
-            <a href="https://cvmsaldarriaga.vercel.app/" target="_blank" rel="noopener" class="project-link live">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span data-i18n="link.live">Ver en vivo</span>
-            </a>
-          </div>
-        </div>
+      <div class="role-card rc5 fade-in">
+        <span class="role-num">05</span>
+        <div class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3 data-i18n="r5.title">Programador</h3>
+        <div class="role-sub" data-i18n="r5.sub">Desarrollo</div>
+        <p class="role-desc" data-i18n="r5.desc">Desarrollo de aplicaciones web y módulos internos con C# / .NET, ASP.NET y SQL Server sobre arquitectura multicapa, además de reportería y consultas en Oracle PL/SQL.</p>
+        <div class="chips" data-i18n="r5.chips"><span class="chip">C# / .NET</span><span class="chip">ASP.NET</span><span class="chip">SQL Server</span><span class="chip">Oracle PL/SQL</span><span class="chip">APIs REST</span><span class="chip">Web</span></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- EXPERIENCIA -->
 <section id="experience">
   <div class="container">
     <div class="section-label" data-i18n="ex.label">Experiencia</div>
     <h2 data-i18n="ex.title">Trayectoria profesional</h2>
+    <p class="section-intro" data-i18n="ex.intro">
+      Banca, finanzas, salud, educación, turismo y sector público. Cada periodo declarado aquí
+      está respaldado por su <strong>constancia o certificado en PDF</strong>, con cargo y fechas de inicio y fin.
+    </p>
     <div class="timeline">
 
       <div class="timeline-item fade-in">
@@ -997,11 +797,15 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
+<!-- EDUCACIÓN -->
 <section id="education">
   <div class="container">
-    <div class="section-label" data-i18n="ed.label">Educación &amp; Certificaciones</div>
+    <div class="section-label teal" data-i18n="ed.label">Educación &amp; Certificaciones</div>
     <h2 data-i18n="ed.title">Formación académica</h2>
+    <p class="section-intro" data-i18n="ed.intro">
+      Bachiller en Ingeniería de Sistemas, título técnico en Computación e Informática y certificación
+      internacional en Scrum, con formación continua en gestión de proyectos.
+    </p>
     <div class="edu-grid fade-in">
       <div class="edu-card">
         <h3>Data Scientist</h3>
@@ -1040,51 +844,31 @@
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="section-label" data-i18n="ct.label">Contacto</div>
-    <h2 data-i18n="ct.title">Hablemos de tu proyecto</h2>
-    <p class="contact-intro" data-i18n="ct.intro">
-      ¿Tienes una idea o un problema por resolver? Puedo ayudarte a convertirlo en un producto funcional en tiempo récord usando IA + experiencia técnica sólida.
-    </p>
-    <div class="contact-cta-grid fade-in">
-      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="contact-big lk">
-        <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        <span class="clabel" data-i18n="ct.connect">Conectar en</span>
-        <span class="cval" data-i18n="cta.mylinkedin">Mi LinkedIn</span>
-      </a>
-      <a href="mailto:msmgxe@gmail.com" class="contact-big em">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        <span class="clabel" data-i18n="ct.write">Escríbeme a</span>
-        <span class="cval">msmgxe@gmail.com</span>
-      </a>
-    </div>
-    <div class="contact-row fade-in">
-      <a href="tel:+51984368710" class="contact-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.6 4.48 2 2 0 0 1 3.58 2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.82a16 16 0 0 0 6 6l1.92-1.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        +51 984 368 710
-      </a>
-      <span class="contact-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span data-i18n="ct.location">Lima, Perú</span>
-      </span>
-    </div>
-  </div>
-</section>
-
-<!-- DOCS -->
+<!-- DOCUMENTOS SUSTENTATORIOS -->
 <section id="docs">
   <div class="container">
-    <div class="section-label" data-i18n="dc.label">Documentación</div>
-    <h2 data-i18n="dc.title">Certificados y constancias</h2>
+    <div class="docs-head">
+      <div>
+        <div class="section-label teal" data-i18n="dc.label">Documentación verificable</div>
+        <h2 data-i18n="dc.title">Certificados y constancias, listos para descargar</h2>
+        <p class="section-intro" data-i18n="dc.intro">
+          Todo lo declarado en este CV está sustentado. Cada constancia indica el <strong>cargo y las fechas de
+          inicio y fin</strong>; cada certificado acredita los estudios y las certificaciones. Abre cualquiera en PDF.
+        </p>
+      </div>
+      <div class="docs-total">
+        <b>27</b>
+        <span data-i18n="dc.total">documentos en PDF</span>
+      </div>
+    </div>
+
     <div class="doc-tabs">
       <button class="doc-tab active" onclick="switchTab('trabajo', this)">
-        <span data-i18n="dc.tab.work">💼 Experiencia Laboral</span>
+        <span data-i18n="dc.tab.work">Experiencia laboral</span>
         <span class="tab-count" data-count-for="trabajo">16</span>
       </button>
       <button class="doc-tab" onclick="switchTab('estudios', this)">
-        <span data-i18n="dc.tab.edu">🎓 Estudios y Certificaciones</span>
+        <span data-i18n="dc.tab.edu">Estudios y certificaciones</span>
         <span class="tab-count" data-count-for="estudios">11</span>
       </button>
     </div>
@@ -1108,7 +892,7 @@
       <div class="doc-item"><span class="doc-year">Jul 1996</span><span class="doc-icon-pdf">📄</span><div class="doc-info"><span class="doc-name">Coordinador de Proyectos</span><span class="doc-sub">Constancia de trabajo</span></div><a href="assets/docs/trabajo/1996-07-22-CoordinadorProyectos.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
     </div>
 
-    <div class="doc-list" id="tab-estudios">
+    <div class="doc-list fade-in" id="tab-estudios">
       <div class="doc-item"><span class="doc-year">Abr 2024</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Curso Preparación PMP</span><span class="doc-sub">CGI — Gestión e Innovación · PMI</span></div><a href="assets/docs/estudios/2024-04-29-Curso-Preparacion-PMP.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
       <div class="doc-item"><span class="doc-year">2023</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">Bachiller en Ingeniería de Sistemas</span><span class="doc-sub">Universidad Peruana de Ciencias Aplicadas — UPC</span></div><a href="assets/docs/estudios/2023-BachillerIngenieriaSistemas-A.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
       <div class="doc-item"><span class="doc-year">Oct 2021</span><span class="doc-icon-pdf">🎓</span><div class="doc-info"><span class="doc-name">International Scrum Master (ISM)</span><span class="doc-sub">International Scrum Assembly</span></div><a href="assets/docs/estudios/2021-10-31-Certificado-Scrum-Master.pdf" target="_blank" class="doc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span data-i18n="dc.viewpdf">Ver PDF</span></a></div>
@@ -1124,23 +908,250 @@
   </div>
 </section>
 
+<!-- PROYECTOS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label" data-i18n="pr.label">Proyectos propios</div>
+    <h2 data-i18n="pr.title">Productos que definí, construí y puse en producción</h2>
+    <p class="section-intro" data-i18n="pr.intro">
+      En cada uno asumí <strong>el ciclo ágil completo</strong>, no solo el código: levantamiento de requerimientos,
+      definición del backlog, sprints de desarrollo, pruebas y despliegue en producción.
+    </p>
+    <div class="projects-grid">
+
+      <!-- P1 -->
+      <div class="project-card fade-in">
+        <div class="project-visual">
+          <svg viewBox="0 0 340 158" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interfaz de simulador de entrevistas">
+            <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1E3A8A"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs>
+            <rect width="340" height="158" fill="url(#pg1)"/>
+            <g opacity="0.14" stroke="#fff" stroke-width="1"><path d="M0 40h340M0 80h340M0 120h340M85 0v158M170 0v158M255 0v158"/></g>
+            <rect x="30" y="20" width="280" height="126" rx="10" fill="#FFFFFF"/>
+            <path d="M30 30a10 10 0 0 1 10-10h260a10 10 0 0 1 10 10v12H30z" fill="#F1F5F9"/>
+            <circle cx="43" cy="31" r="3.2" fill="#F87171"/><circle cx="53" cy="31" r="3.2" fill="#FBBF24"/><circle cx="63" cy="31" r="3.2" fill="#34D399"/>
+            <rect x="80" y="27.5" width="70" height="7" rx="3.5" fill="#CBD5E1"/>
+            <rect x="44" y="54" width="146" height="30" rx="8" fill="#EEF2FF"/>
+            <rect x="54" y="62" width="92" height="5" rx="2.5" fill="#818CF8"/>
+            <rect x="54" y="72" width="118" height="5" rx="2.5" fill="#C7D2FE"/>
+            <rect x="150" y="92" width="146" height="24" rx="8" fill="#1D4ED8"/>
+            <rect x="160" y="101" width="88" height="5" rx="2.5" fill="#93C5FD"/>
+            <rect x="44" y="126" width="170" height="6" rx="3" fill="#E2E8F0"/>
+            <rect x="44" y="126" width="106" height="6" rx="3" fill="#4F46E5"/>
+            <circle cx="285" cy="128" r="11" fill="#EEF2FF"/><path d="m280 128 4 4 7-8" stroke="#4F46E5" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <h3 data-i18n="p1.title">Simulador de Entrevistas Técnicas</h3>
+          <p data-i18n="p1.desc">Definí el alcance con candidatos reales, armé el banco de preguntas por nivel y construí el simulador con feedback inmediato y seguimiento de progreso.</p>
+          <div class="phases" data-i18n="pr.phases"><span class="phase"><b>1</b>Requerimientos</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Despliegue</span></div>
+          <div class="project-footer">
+            <div class="project-tags"><span class="project-tag accent">React</span><span class="project-tag accent">Next.js</span><span class="project-tag">Vercel</span><span class="project-tag" data-i18n="tag.ux">Diseño UX</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="project-card fade-in">
+        <div class="project-visual">
+          <svg viewBox="0 0 340 158" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interfaz de cotizador de construcción">
+            <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C2D12"/><stop offset="1" stop-color="#D97706"/></linearGradient></defs>
+            <rect width="340" height="158" fill="url(#pg2)"/>
+            <g opacity="0.16" stroke="#fff" stroke-width="1.2"><path d="M20 150v-40l30-18 30 18v40M240 150v-56l32-19 32 19v56"/></g>
+            <rect x="46" y="16" width="248" height="130" rx="9" fill="#FFFFFF"/>
+            <rect x="62" y="30" width="88" height="8" rx="4" fill="#92400E"/>
+            <rect x="62" y="43" width="52" height="5" rx="2.5" fill="#D6D3D1"/>
+            <g fill="#F5F5F4"><rect x="62" y="60" width="216" height="15" rx="4"/><rect x="62" y="79" width="216" height="15" rx="4"/><rect x="62" y="98" width="216" height="15" rx="4"/></g>
+            <g fill="#A8A29E"><rect x="70" y="65" width="72" height="5" rx="2.5"/><rect x="70" y="84" width="94" height="5" rx="2.5"/><rect x="70" y="103" width="60" height="5" rx="2.5"/></g>
+            <g fill="#D97706"><rect x="228" y="65" width="42" height="5" rx="2.5"/><rect x="228" y="84" width="42" height="5" rx="2.5"/><rect x="228" y="103" width="42" height="5" rx="2.5"/></g>
+            <rect x="62" y="120" width="216" height="18" rx="5" fill="#FEF3C7"/>
+            <rect x="70" y="126" width="56" height="6" rx="3" fill="#92400E"/>
+            <rect x="212" y="126" width="58" height="6" rx="3" fill="#B45309"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <h3 data-i18n="p2.title">Cotizador Inteligente de Construcción</h3>
+          <p data-i18n="p2.desc">Levanté el proceso de presupuestación AS-IS con el cliente, modelé el TO-BE y automaticé los cálculos. Reduce a minutos una cotización que antes tomaba horas.</p>
+          <div class="phases" data-i18n="pr.phases"><span class="phase"><b>1</b>Requerimientos</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Despliegue</span></div>
+          <div class="project-footer">
+            <div class="project-tags"><span class="project-tag accent">React</span><span class="project-tag accent">Next.js</span><span class="project-tag">Vercel</span><span class="project-tag" data-i18n="tag.biz">Herramienta de negocio</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3 -->
+      <div class="project-card fade-in">
+        <div class="project-visual">
+          <svg viewBox="0 0 340 158" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panel administrativo con métricas">
+            <defs><linearGradient id="pg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#065F46"/><stop offset="1" stop-color="#0D9488"/></linearGradient></defs>
+            <rect width="340" height="158" fill="url(#pg3)"/>
+            <g opacity="0.13" stroke="#fff" stroke-width="1"><path d="M0 52h340M0 105h340M113 0v158M226 0v158"/></g>
+            <rect x="26" y="18" width="288" height="126" rx="9" fill="#FFFFFF"/>
+            <path d="M26 27a9 9 0 0 1 9-9h51v126H35a9 9 0 0 1-9-9z" fill="#F0FDFA"/>
+            <g fill="#5EEAD4"><rect x="38" y="32" width="28" height="5" rx="2.5"/><rect x="38" y="46" width="36" height="5" rx="2.5"/><rect x="38" y="60" width="30" height="5" rx="2.5"/><rect x="38" y="74" width="34" height="5" rx="2.5"/></g>
+            <rect x="34" y="42" width="44" height="13" rx="4" fill="#0D9488" opacity="0.18"/>
+            <g><rect x="98" y="30" width="64" height="34" rx="6" fill="#F0FDFA"/><rect x="170" y="30" width="64" height="34" rx="6" fill="#F0FDFA"/><rect x="242" y="30" width="60" height="34" rx="6" fill="#F0FDFA"/></g>
+            <g fill="#0F766E"><rect x="106" y="39" width="26" height="8" rx="3"/><rect x="178" y="39" width="20" height="8" rx="3"/><rect x="250" y="39" width="24" height="8" rx="3"/></g>
+            <g fill="#99F6E4"><rect x="106" y="52" width="40" height="4" rx="2"/><rect x="178" y="52" width="34" height="4" rx="2"/><rect x="250" y="52" width="36" height="4" rx="2"/></g>
+            <rect x="98" y="76" width="204" height="56" rx="6" fill="#F8FAFC"/>
+            <g fill="#14B8A6"><rect x="112" y="106" width="16" height="18" rx="2"/><rect x="136" y="96" width="16" height="28" rx="2"/><rect x="160" y="86" width="16" height="38" rx="2"/><rect x="184" y="100" width="16" height="24" rx="2"/><rect x="208" y="90" width="16" height="34" rx="2"/><rect x="232" y="102" width="16" height="22" rx="2"/><rect x="256" y="94" width="16" height="30" rx="2"/></g>
+            <path d="M120 104 144 94 168 84 192 98 216 88 240 100 264 92" stroke="#0F766E" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <h3 data-i18n="p3.title">Panel Administrativo Educativo</h3>
+          <p data-i18n="p3.desc">Diseñé el modelo de datos y los casos de uso de gestión de alumnos, contenidos y métricas; luego lo construí y lo certifiqué antes del pase a producción.</p>
+          <div class="phases" data-i18n="pr.phases"><span class="phase"><b>1</b>Requerimientos</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Despliegue</span></div>
+          <div class="project-footer">
+            <div class="project-tags"><span class="project-tag accent">React</span><span class="project-tag accent">Supabase</span><span class="project-tag">Vercel</span><span class="project-tag" data-i18n="tag.dash">Dashboard</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P4 -->
+      <div class="project-card fade-in">
+        <div class="project-visual">
+          <svg viewBox="0 0 340 158" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Editor de código">
+            <defs><linearGradient id="pg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#312E81"/><stop offset="1" stop-color="#6D28D9"/></linearGradient></defs>
+            <rect width="340" height="158" fill="url(#pg4)"/>
+            <g opacity="0.14" fill="#fff" font-family="monospace" font-size="13"><text x="14" y="30">&lt;/&gt;</text><text x="292" y="140">{ }</text><text x="300" y="34">;</text></g>
+            <rect x="28" y="18" width="284" height="126" rx="9" fill="#0F172A"/>
+            <path d="M28 27a9 9 0 0 1 9-9h266a9 9 0 0 1 9 9v13H28z" fill="#1E293B"/>
+            <circle cx="42" cy="30" r="3.2" fill="#F87171"/><circle cx="52" cy="30" r="3.2" fill="#FBBF24"/><circle cx="62" cy="30" r="3.2" fill="#34D399"/>
+            <rect x="80" y="26" width="58" height="8" rx="4" fill="#334155"/>
+            <g fill="#475569" font-size="7"><rect x="40" y="54" width="6" height="4" rx="2"/><rect x="40" y="68" width="6" height="4" rx="2"/><rect x="40" y="82" width="6" height="4" rx="2"/><rect x="40" y="96" width="6" height="4" rx="2"/><rect x="40" y="110" width="6" height="4" rx="2"/><rect x="40" y="124" width="6" height="4" rx="2"/></g>
+            <g rx="2"><rect x="56" y="53" width="34" height="5" rx="2.5" fill="#C084FC"/><rect x="96" y="53" width="52" height="5" rx="2.5" fill="#38BDF8"/><rect x="154" y="53" width="28" height="5" rx="2.5" fill="#FBBF24"/>
+            <rect x="66" y="67" width="46" height="5" rx="2.5" fill="#34D399"/><rect x="118" y="67" width="72" height="5" rx="2.5" fill="#64748B"/>
+            <rect x="66" y="81" width="30" height="5" rx="2.5" fill="#38BDF8"/><rect x="102" y="81" width="88" height="5" rx="2.5" fill="#FDE68A"/>
+            <rect x="76" y="95" width="58" height="5" rx="2.5" fill="#F472B6"/><rect x="140" y="95" width="40" height="5" rx="2.5" fill="#64748B"/>
+            <rect x="66" y="109" width="66" height="5" rx="2.5" fill="#34D399"/><rect x="138" y="109" width="34" height="5" rx="2.5" fill="#C084FC"/>
+            <rect x="56" y="123" width="24" height="5" rx="2.5" fill="#C084FC"/></g>
+            <rect x="206" y="122" width="88" height="12" rx="6" fill="#4C1D95"/><rect x="214" y="126" width="48" height="4" rx="2" fill="#C4B5FD"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <h3 data-i18n="p4.title">CodeBit — Aplicación Web Interactiva</h3>
+          <p data-i18n="p4.desc">De la idea al producto en producción: definición funcional, prototipo navegable, desarrollo iterativo por sprints y pruebas antes de publicar.</p>
+          <div class="phases" data-i18n="pr.phases"><span class="phase"><b>1</b>Requerimientos</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Despliegue</span></div>
+          <div class="project-footer">
+            <div class="project-tags"><span class="project-tag accent">React</span><span class="project-tag accent">JavaScript</span><span class="project-tag">Vercel</span><span class="project-tag" data-i18n="tag.web">Aplicación web</span></div>
+            <a href="https://codebit-two.vercel.app/" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="link.live">Ver en vivo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- P5 -->
+      <div class="project-card fade-in">
+        <div class="project-visual">
+          <svg viewBox="0 0 340 158" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fixture de partidos">
+            <defs><linearGradient id="pg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14532D"/><stop offset="1" stop-color="#16A34A"/></linearGradient></defs>
+            <rect width="340" height="158" fill="url(#pg5)"/>
+            <g opacity="0.16" stroke="#fff" stroke-width="1.4" fill="none"><circle cx="170" cy="79" r="40"/><path d="M170 39v80M0 79h340"/><rect x="-2" y="49" width="40" height="60"/><rect x="302" y="49" width="40" height="60"/></g>
+            <rect x="30" y="20" width="200" height="122" rx="9" fill="#FFFFFF"/>
+            <rect x="44" y="32" width="66" height="7" rx="3.5" fill="#166534"/>
+            <g><rect x="44" y="48" width="172" height="24" rx="6" fill="#F0FDF4"/><rect x="44" y="78" width="172" height="24" rx="6" fill="#F8FAFC"/><rect x="44" y="108" width="172" height="24" rx="6" fill="#F8FAFC"/></g>
+            <g><circle cx="58" cy="60" r="6" fill="#DC2626"/><circle cx="58" cy="90" r="6" fill="#2563EB"/><circle cx="58" cy="120" r="6" fill="#EAB308"/></g>
+            <g fill="#94A3B8"><rect x="70" y="57" width="52" height="5" rx="2.5"/><rect x="70" y="87" width="44" height="5" rx="2.5"/><rect x="70" y="117" width="58" height="5" rx="2.5"/></g>
+            <g fill="#16A34A"><rect x="176" y="55" width="30" height="10" rx="4"/><rect x="176" y="85" width="30" height="10" rx="4" opacity="0.35"/><rect x="176" y="115" width="30" height="10" rx="4" opacity="0.35"/></g>
+            <g stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.9"><path d="M244 60h20v40h20M244 120h20"/></g>
+            <rect x="284" y="88" width="26" height="24" rx="5" fill="#FFFFFF"/><rect x="290" y="97" width="14" height="6" rx="3" fill="#16A34A"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <h3 data-i18n="p5.title">Fixture Mundial 2026</h3>
+          <p data-i18n="p5.desc">Requerimiento centrado en experiencia de usuario y datos en tiempo real. Prototipé, desarrollé y desplegué con diseño responsive para móvil y escritorio.</p>
+          <div class="phases" data-i18n="pr.phases"><span class="phase"><b>1</b>Requerimientos</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Despliegue</span></div>
+          <div class="project-footer">
+            <div class="project-tags"><span class="project-tag accent">React</span><span class="project-tag accent">Next.js</span><span class="project-tag">Vercel</span><span class="project-tag" data-i18n="tag.rt">Tiempo real</span></div>
+            <a href="https://mundial-2026-fixture.vercel.app/" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="link.live">Ver en vivo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- P6 -->
+      <div class="project-card fade-in">
+        <div class="project-visual">
+          <svg viewBox="0 0 340 158" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sitio web de portafolio">
+            <defs><linearGradient id="pg6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A1628"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient></defs>
+            <rect width="340" height="158" fill="url(#pg6)"/>
+            <g opacity="0.13" stroke="#fff" stroke-width="1"><path d="M0 39h340M0 79h340M0 119h340M68 0v158M136 0v158M204 0v158M272 0v158"/></g>
+            <rect x="30" y="16" width="280" height="130" rx="9" fill="#FFFFFF"/>
+            <path d="M30 25a9 9 0 0 1 9-9h262a9 9 0 0 1 9 9v13H30z" fill="#F1F5F9"/>
+            <circle cx="44" cy="28" r="3.2" fill="#CBD5E1"/><circle cx="54" cy="28" r="3.2" fill="#CBD5E1"/><circle cx="64" cy="28" r="3.2" fill="#CBD5E1"/>
+            <rect x="80" y="24" width="120" height="8" rx="4" fill="#E2E8F0"/>
+            <rect x="262" y="23" width="34" height="10" rx="5" fill="#DBEAFE"/>
+            <rect x="46" y="52" width="46" height="46" rx="10" fill="#1D4ED8"/>
+            <circle cx="69" cy="68" r="8" fill="#93C5FD"/><path d="M55 92a14 14 0 0 1 28 0z" fill="#93C5FD"/>
+            <rect x="104" y="54" width="132" height="10" rx="5" fill="#0F1B2E"/>
+            <g fill="#BFDBFE"><rect x="104" y="70" width="42" height="7" rx="3.5"/><rect x="150" y="70" width="52" height="7" rx="3.5"/><rect x="206" y="70" width="34" height="7" rx="3.5"/></g>
+            <g fill="#E2E8F0"><rect x="104" y="84" width="180" height="5" rx="2.5"/><rect x="104" y="93" width="150" height="5" rx="2.5"/></g>
+            <g><rect x="46" y="110" width="74" height="24" rx="6" fill="#F1F5F9"/><rect x="128" y="110" width="74" height="24" rx="6" fill="#F1F5F9"/><rect x="210" y="110" width="74" height="24" rx="6" fill="#F1F5F9"/></g>
+            <g fill="#1D4ED8"><rect x="56" y="119" width="24" height="6" rx="3"/><rect x="138" y="119" width="30" height="6" rx="3"/><rect x="220" y="119" width="20" height="6" rx="3"/></g>
+          </svg>
+        </div>
+        <div class="project-body">
+          <h3 data-i18n="p6.title">Este portafolio profesional</h3>
+          <p data-i18n="p6.desc">Especificación, diseño, desarrollo y despliegue continuo en Vercel. Sitio multiidioma (ES / EN / PT), responsive y con los documentos sustentatorios integrados.</p>
+          <div class="phases" data-i18n="pr.phases"><span class="phase"><b>1</b>Requerimientos</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Despliegue</span></div>
+          <div class="project-footer">
+            <div class="project-tags"><span class="project-tag accent">HTML / CSS</span><span class="project-tag accent">JavaScript</span><span class="project-tag">Vercel</span><span class="project-tag" data-i18n="tag.i18n">Multiidioma</span></div>
+            <a href="https://cvmsaldarriaga.vercel.app/" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="link.live">Ver en vivo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label" data-i18n="ct.label">Contacto</div>
+    <h2 data-i18n="ct.title">Conversemos sobre la posición</h2>
+    <p class="section-intro" data-i18n="ct.intro">
+      Estoy disponible para entrevistas y para enviar cualquier documentación adicional que requiera el proceso.
+      La vía más rápida es el correo o el teléfono.
+    </p>
+    <div class="contact-wrap fade-in">
+      <a href="mailto:msmgxe@gmail.com" class="contact-big em">
+        <span class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+        <span><span class="clabel" data-i18n="ct.write">Correo</span><span class="cval">msmgxe@gmail.com</span></span>
+      </a>
+      <a href="tel:+51984368710" class="contact-big ph">
+        <span class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.6 4.48 2 2 0 0 1 3.58 2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.82a16 16 0 0 0 6 6l1.92-1.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <span><span class="clabel" data-i18n="ct.phone">Teléfono</span><span class="cval">+51 984 368 710</span></span>
+      </a>
+      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="contact-big lk">
+        <span class="contact-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+        <span><span class="clabel" data-i18n="ct.connect">Perfil profesional</span><span class="cval">LinkedIn</span></span>
+      </a>
+      <span class="contact-big lo">
+        <span class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span><span class="clabel" data-i18n="ct.loclabel">Ubicación</span><span class="cval" data-i18n="ct.location">Lima, Perú</span></span>
+      </span>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-inner">
-    <div class="footer-contact">
-      <a href="https://www.linkedin.com/in/marco-saldarriaga-45a3053/?locale=es" target="_blank" rel="noopener" class="banner-btn banner-btn-linkedin">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        <span data-i18n="cta.mylinkedin">Mi LinkedIn</span>
-      </a>
-      <a href="mailto:msmgxe@gmail.com" class="banner-btn banner-btn-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        <span data-i18n="cta.emailme">Contáctame por Correo</span>
+    <div class="footer-links">
+      <a href="#docs" class="back-top"><span data-i18n="ft.docs">Documentos sustentatorios</span></a>
+      <a href="#hero" class="back-top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+        <span data-i18n="ft.backtop">Volver arriba</span>
       </a>
     </div>
-    <a href="#hero" class="back-top">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-      <span data-i18n="ft.backtop">Volver arriba</span>
-    </a>
-    <p data-i18n="ft.copy">© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Desplegado en Vercel</p>
+    <p data-i18n="ft.copy">© 2026 Marco Saldarriaga Medina · Project Manager · Analista de Sistemas · Analista Funcional · QA · Programador</p>
   </div>
 </footer>
 
@@ -1163,8 +1174,7 @@
     btn.classList.add('active');
   }
 
-  // Los contadores de las pestañas se derivan de los documentos reales,
-  // así no quedan desfasados al añadir o quitar una entrada.
+  // Los contadores de las pestañas se derivan de los documentos reales.
   document.querySelectorAll('.tab-count[data-count-for]').forEach(el => {
     const list = document.getElementById('tab-' + el.dataset.countFor);
     if (list) el.textContent = list.querySelectorAll('.doc-item').length;
@@ -1186,16 +1196,16 @@
 
   const META = {
     es: {
-      title: 'Marco Saldarriaga — AI Developer & Product Builder',
-      desc: 'AI Developer & Product Builder. Especialista en Vibe Coding con Claude Code, Gemini y ChatGPT. Desarrollo acelerado de MVPs y aplicaciones web en tiempo récord.'
+      title: 'Marco Saldarriaga Medina — Project Manager · Analista Funcional · QA',
+      desc: 'Más de 28 años en TI. Project Manager, Analista de Sistemas, Analista Funcional, QA y Programador. Experiencia en banca, salud, educación y sector público. 27 certificados y constancias verificables.'
     },
     en: {
-      title: 'Marco Saldarriaga — AI Developer & Product Builder',
-      desc: 'AI Developer & Product Builder. Vibe Coding specialist with Claude Code, Gemini and ChatGPT. Accelerated development of MVPs and web applications in record time.'
+      title: 'Marco Saldarriaga Medina — Project Manager · Functional Analyst · QA',
+      desc: 'More than 28 years in IT. Project Manager, Systems Analyst, Functional Analyst, QA and Developer. Experience in banking, healthcare, education and the public sector. 27 verifiable certificates and records.'
     },
     pt: {
-      title: 'Marco Saldarriaga — AI Developer & Product Builder',
-      desc: 'AI Developer & Product Builder. Especialista em Vibe Coding com Claude Code, Gemini e ChatGPT. Desenvolvimento acelerado de MVPs e aplicações web em tempo recorde.'
+      title: 'Marco Saldarriaga Medina — Project Manager · Analista Funcional · QA',
+      desc: 'Mais de 28 anos em TI. Project Manager, Analista de Sistemas, Analista Funcional, QA e Programador. Experiência em bancos, saúde, educação e setor público. 27 certificados e comprovantes verificáveis.'
     }
   };
 
@@ -1203,65 +1213,96 @@
     en: {
       'lang.aria': 'Change language',
       'nav.home': 'Home',
-      'nav.stack': 'AI Stack',
-      'nav.projects': 'Projects',
+      'nav.profile': 'Profile',
       'nav.experience': 'Experience',
       'nav.education': 'Education',
+      'nav.documents': 'Supporting documents',
+      'nav.projects': 'Projects',
       'nav.contact': 'Contact',
-      'nav.docs': 'Docs',
-      'nav.documents': 'Documents',
-      'cta.contact': 'Contact me',
-      'cta.mylinkedin': 'My LinkedIn',
+      'nav.tagline': 'Project Manager · Functional Analyst',
+      'nav.docs': 'Documents',
+      'nav.cta': 'View documents',
       'cta.emailme': 'Email me',
-      'banner.text': '<strong>Available for projects and collaborations.</strong> Specialist in AI-accelerated development.',
-      'hero.badge': 'Available for new projects',
-      'hero.subtitle': 'I combine <strong>solid programming logic</strong> and abstraction with advanced AI tools (<strong>Claude Code, Gemini, ChatGPT</strong>) to conceptualize, structure and deploy web applications and functional prototypes (MVPs) <strong>in record time</strong>.<br>More than 28 years of IT experience back every architecture decision.',
-      'pill.mvp': '🚀 Fast MVP',
+      'hero.badge': 'Available for new projects · Lima, Peru',
+      'role.pm': 'Project Manager',
+      'role.sys': 'Systems Analyst',
+      'role.func': 'Functional Analyst',
+      'role.qa': 'QA / Quality Analyst',
+      'role.dev': 'Developer',
+      'hero.subtitle': '<strong>More than 28 years in Information Technology</strong> covering the full project lifecycle: requirements gathering, functional analysis, design, development, testing and release to production. Proven experience in <strong>banking, finance, healthcare, education and the public sector</strong>, with agile frameworks (Scrum) and PMI standards.',
       'stat.years': 'Years in IT',
-      'stat.apps': 'Apps deployed',
-      'stat.speed': 'Speed with AI',
-      'stat.prod': 'In production',
-      'hero.cta.projects': 'View my projects',
-      'wf.label': 'My Superpower',
-      'wf.title': 'My Workflow (AI Stack)',
-      'wf.intro': `I do not replace logic — I <strong style="color:var(--text)">amplify</strong> it. I combine solid software architecture experience with the best AI tools to deliver working solutions that used to take weeks, now in days.`,
-      'wf1.title': 'Programming Logic',
-      'wf1.sub': 'Solid foundation · Architecture',
-      'wf1.desc': '28+ years of experience in functional analysis, multi-layer architecture and systems design back every coding decision.',
-      'wf1.chip.arch': 'Web Architecture',
-      'wf1.chip.patterns': 'Design Patterns',
-      'wf2.title': 'AI Tools',
-      'wf2.sub': 'Acceleration · Vibe Coding',
-      'wf2.desc': 'I use AI not as a substitute for thinking, but as a multiplier. Precise prompt engineering produces working code on the first attempt.',
-      'wf3.title': 'Frontend &amp; Deployment',
-      'wf3.sub': 'Production · Record time',
-      'wf3.desc': 'From prototype to production in hours. Modern stack focused on performance, user experience and continuous deployment.',
-      'pr.label': 'Portfolio',
-      'pr.title': 'Projects deployed to production',
-      'pr.intro': `Every project was built applying <strong style="color:var(--text)">Vibe Coding</strong>: AI + solid logic = real results at startup speed.`,
-      'p1.problem': 'Problem solved: Technical preparation',
-      'p1.title': 'Technical Interview Simulator',
-      'p1.desc': 'Preparation tool for technical development interviews. Interactive simulations, question bank and instant feedback for dev candidates.',
-      'p2.problem': 'Problem solved: Budget optimization',
-      'p2.title': 'Smart Construction Quoting Tool',
-      'p2.desc': 'Construction services quoting tool for business budget optimization. Automates complex calculations and generates professional proposals instantly.',
-      'p3.problem': 'Problem solved: Education management',
-      'p3.title': 'Admin Panel for Education Platforms',
-      'p3.desc': 'Administration and user management dashboard for education platforms. Full control of students, content and metrics in a single interface.',
-      'p4.problem': 'Problem solved: Interactive learning',
-      'p4.title': 'CodeBit — Interactive Web App',
-      'p4.desc': 'Interactive web application built and deployed to production. Demonstrates the ability to turn complex ideas into a working product quickly.',
-      'p5.problem': 'Problem solved: Real-time UX',
-      'p5.title': '2026 World Cup Fixture',
-      'p5.desc': 'Dynamic and interactive fixture for the 2026 World Cup. Focused on smooth user experience and real-time data handling. Responsive and visually appealing design.',
-      'p6.problem': 'Problem solved: Professional digital presence',
-      'p6.title': 'This Portfolio — Optimized SPA',
-      'p6.desc': 'Optimized SPA deployed on Vercel. Modern design inspired by Claude Code, responsive, with smooth animations and instant loading. 100% pure HTML/CSS/JS.',
-      'link.view': 'View project',
-      'link.live': 'View live',
-      'tag.ai': 'AI-assisted',
+      'stat.roles': 'Roles mastered',
+      'stat.projects': 'Projects led',
+      'stat.docs': 'Documents that back it up',
+      'hero.cta.docs': 'View my 27 documents',
+      'pf.label': 'Professional profile',
+      'pf.title': 'Five roles I master end to end',
+      'pf.intro': 'I have sat in <strong>every seat at the table</strong> on a software project. That lets me anticipate how a functional decision hits the code, the testing and the schedule — and translate business language into technical language, and back.',
+      'r1.title': 'Project Manager',
+      'r1.sub': 'Management and leadership',
+      'r1.desc': 'Project planning and tracking, schedule and CAPEX/OPEX budget management, stakeholder coordination and reporting to steering committees. Certified Scrum Master (ISM) and PMP training.',
+      'r1.chips': '<span class="chip">Scrum</span><span class="chip">PMI</span><span class="chip">CAPEX / OPEX</span><span class="chip">Scheduling</span><span class="chip">Steering committee</span><span class="chip">Stakeholders</span>',
+      'r2.title': 'Systems Analyst',
+      'r2.sub': 'Architecture and modeling',
+      'r2.desc': 'Process and data modeling, UML diagrams, multi-layer architecture and integrations between systems. RUP methodology and end-to-end solution design.',
+      'r2.chips': '<span class="chip">UML</span><span class="chip">RUP</span><span class="chip">Multi-layer architecture</span><span class="chip">Data modeling</span><span class="chip">Integrations</span><span class="chip">SQL</span>',
+      'r3.title': 'Functional Analyst',
+      'r3.sub': 'Requirements and business',
+      'r3.desc': 'Requirements gathering and documentation, AS-IS / TO-BE analysis, use cases, user stories, interface prototypes and definition of acceptance criteria with the user.',
+      'r3.chips': '<span class="chip">AS-IS / TO-BE</span><span class="chip">Use cases</span><span class="chip">User stories</span><span class="chip">Prototypes</span><span class="chip">Acceptance criteria</span><span class="chip">Backlog</span>',
+      'r4.title': 'QA / Quality Analyst',
+      'r4.sub': 'Testing and certification',
+      'r4.desc': 'Design and execution of test plans and test cases, functional and regression testing, UAT support, defect management and sign-off of production releases.',
+      'r4.chips': '<span class="chip">Test cases</span><span class="chip">UAT</span><span class="chip">Regression</span><span class="chip">Defect management</span><span class="chip">Release sign-off</span><span class="chip">PCI-DSS</span>',
+      'r5.title': 'Developer',
+      'r5.sub': 'Development',
+      'r5.desc': 'Development of web applications and internal modules with C# / .NET, ASP.NET and SQL Server on multi-layer architecture, plus reporting and queries in Oracle PL/SQL.',
+      'r5.chips': '<span class="chip">C# / .NET</span><span class="chip">ASP.NET</span><span class="chip">SQL Server</span><span class="chip">Oracle PL/SQL</span><span class="chip">REST APIs</span><span class="chip">Web</span>',
       'ex.label': 'Experience',
       'ex.title': 'Professional background',
+      'ex.intro': 'Banking, finance, healthcare, education, tourism and the public sector. Every period declared here is backed by its <strong>certificate or employment letter in PDF</strong>, with job title and start and end dates.',
+      'ed.intro': 'Bachelor of Systems Engineering, technical degree in Computing &amp; IT and international Scrum certification, with continuous training in project management.',
+      'dc.label': 'Verifiable documentation',
+      'dc.title': 'Certificates and records, ready to download',
+      'dc.intro': 'Everything declared in this CV is backed up. Each employment letter states the <strong>job title and the start and end dates</strong>; each certificate accredits the studies and certifications. Open any of them as a PDF.',
+      'dc.total': 'PDF documents',
+      'dc.tab.work': 'Work experience',
+      'dc.tab.edu': 'Education and certifications',
+      'dc.viewpdf': 'View PDF',
+      'pr.label': 'Personal projects',
+      'pr.title': 'Products I defined, built and shipped to production',
+      'pr.intro': 'On each one I owned <strong>the full agile cycle</strong>, not just the code: requirements gathering, backlog definition, development sprints, testing and deployment to production.',
+      'pr.phases': '<span class="phase"><b>1</b>Requirements</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Deployment</span>',
+      'p1.title': 'Technical Interview Simulator',
+      'p1.desc': 'I defined the scope with real candidates, built the question bank by level and developed the simulator with instant feedback and progress tracking.',
+      'p2.title': 'Smart Construction Quoting Tool',
+      'p2.desc': 'I mapped the AS-IS quoting process with the client, modeled the TO-BE and automated the calculations. It cuts a quote that used to take hours down to minutes.',
+      'p3.title': 'Education Admin Panel',
+      'p3.desc': 'I designed the data model and the use cases for managing students, content and metrics; then built it and signed it off before the production release.',
+      'p4.title': 'CodeBit — Interactive Web App',
+      'p4.desc': 'From idea to production: functional definition, navigable prototype, iterative development in sprints and testing before publishing.',
+      'p5.title': '2026 World Cup Fixture',
+      'p5.desc': 'A requirement centred on user experience and real-time data. I prototyped, developed and deployed it with a responsive design for mobile and desktop.',
+      'p6.title': 'This professional portfolio',
+      'p6.desc': 'Specification, design, development and continuous deployment on Vercel. Multilingual site (ES / EN / PT), responsive and with the supporting documents built in.',
+      'tag.ux': 'UX design',
+      'tag.biz': 'Business tool',
+      'tag.dash': 'Dashboard',
+      'tag.web': 'Web application',
+      'tag.rt': 'Real time',
+      'tag.i18n': 'Multilingual',
+      'link.live': 'View live',
+      'ct.label': 'Contact',
+      'ct.title': `Let's talk about the role`,
+      'ct.intro': 'I am available for interviews and to send any additional documentation the process requires. The fastest route is email or phone.',
+      'ct.write': 'Email',
+      'ct.phone': 'Phone',
+      'ct.connect': 'Professional profile',
+      'ct.loclabel': 'Location',
+      'ct.location': 'Lima, Peru',
+      'ft.docs': 'Supporting documents',
+      'ft.backtop': 'Back to top',
+      'ft.copy': '© 2026 Marco Saldarriaga Medina · Project Manager · Systems Analyst · Functional Analyst · QA · Developer',
       'e1.role': 'Project Analyst',
       'e1.sector': 'Commercial / Administration',
       'e1.desc': '<ul><li>Overall project coordination — requirements from the Administration area.</li><li>Supervision of functional and technical analysis, implementation and development.</li><li>Troubleshooting and quality assurance of the delivered software.</li></ul>',
@@ -1300,83 +1341,101 @@
       'ed5.period': 'Mar 2024 — Apr 2024',
       'ed.cert': 'View certificate →',
       'ed.inst': 'View institution →',
-      'ct.label': 'Contact',
-      'ct.title': `Let's talk about your project`,
-      'ct.intro': 'Do you have an idea or a problem to solve? I can help you turn it into a working product in record time using AI + solid technical experience.',
-      'ct.connect': 'Connect on',
-      'ct.write': 'Email me at',
-      'ct.location': 'Lima, Peru',
-      'dc.label': 'Documentation',
-      'dc.title': 'Certificates and records',
-      'dc.tab.work': '💼 Work Experience',
-      'dc.tab.edu': '🎓 Education &amp; Certifications',
-      'dc.viewpdf': 'View PDF',
-      'ft.backtop': 'Back to top',
-      'ft.copy': '© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Deployed on Vercel'
     },
 
     pt: {
       'lang.aria': 'Mudar idioma',
       'nav.home': 'Início',
-      'nav.stack': 'AI Stack',
-      'nav.projects': 'Projetos',
+      'nav.profile': 'Perfil',
       'nav.experience': 'Experiência',
       'nav.education': 'Educação',
+      'nav.documents': 'Documentos comprobatórios',
+      'nav.projects': 'Projetos',
       'nav.contact': 'Contato',
-      'nav.docs': 'Docs',
-      'nav.documents': 'Documentos',
-      'cta.contact': 'Fale comigo',
-      'cta.mylinkedin': 'Meu LinkedIn',
-      'cta.emailme': 'Fale comigo por e-mail',
-      'banner.text': '<strong>Disponível para projetos e colaborações.</strong> Especialista em desenvolvimento acelerado com IA.',
-      'hero.badge': 'Disponível para novos projetos',
-      'hero.subtitle': 'Combino uma <strong>sólida lógica de programação</strong> e abstração com ferramentas avançadas de IA (<strong>Claude Code, Gemini, ChatGPT</strong>) para conceituar, estruturar e publicar aplicações web e protótipos funcionais (MVPs) <strong>em tempo recorde</strong>.<br>Mais de 28 anos de experiência em TI respaldam cada decisão de arquitetura.',
-      'pill.mvp': '🚀 MVP Rápido',
+      'nav.tagline': 'Project Manager · Analista Funcional',
+      'nav.docs': 'Documentos',
+      'nav.cta': 'Ver documentos',
+      'cta.emailme': 'Escreva-me',
+      'hero.badge': 'Disponível para novos projetos · Lima, Peru',
+      'role.pm': 'Project Manager',
+      'role.sys': 'Analista de Sistemas',
+      'role.func': 'Analista Funcional',
+      'role.qa': 'QA / Analista de Qualidade',
+      'role.dev': 'Programador',
+      'hero.subtitle': '<strong>Mais de 28 anos em Tecnologia da Informação</strong> cobrindo o ciclo completo de um projeto: levantamento de requisitos, análise funcional, design, desenvolvimento, testes e entrada em produção. Experiência comprovada em <strong>bancos, finanças, saúde, educação e setor público</strong>, com frameworks ágeis (Scrum) e padrões PMI.',
       'stat.years': 'Anos em TI',
-      'stat.apps': 'Apps publicados',
-      'stat.speed': 'Velocidade com IA',
-      'stat.prod': 'Em produção',
-      'hero.cta.projects': 'Ver meus projetos',
-      'wf.label': 'Meu Superpoder',
-      'wf.title': 'Meu Fluxo de Trabalho (AI Stack)',
-      'wf.intro': `Não substituo a lógica — eu a <strong style="color:var(--text)">amplifico</strong>. Combino sólida experiência em arquitetura de software com as melhores ferramentas de IA para entregar soluções funcionais que antes levavam semanas, agora em dias.`,
-      'wf1.title': 'Lógica de Programação',
-      'wf1.sub': 'Base sólida · Arquitetura',
-      'wf1.desc': 'Mais de 28 anos de experiência em análise funcional, arquitetura multicamadas e design de sistemas respaldam cada decisão de código.',
-      'wf1.chip.arch': 'Arquitetura Web',
-      'wf1.chip.patterns': 'Padrões de Projeto',
-      'wf2.title': 'Ferramentas de IA',
-      'wf2.sub': 'Aceleração · Vibe Coding',
-      'wf2.desc': 'Uso IA não como substituto do pensamento, mas como multiplicador. Prompt engineering preciso produz código funcional na primeira tentativa.',
-      'wf3.title': 'Frontend &amp; Implantação',
-      'wf3.sub': 'Produção · Tempo recorde',
-      'wf3.desc': 'Do protótipo à produção em horas. Stack moderna focada em performance, experiência do usuário e implantação contínua.',
-      'pr.label': 'Portfólio',
-      'pr.title': 'Projetos publicados em produção',
-      'pr.intro': `Cada projeto foi construído aplicando <strong style="color:var(--text)">Vibe Coding</strong>: IA + lógica sólida = resultados reais na velocidade de uma startup.`,
-      'p1.problem': 'Problema resolvido: Preparação técnica',
-      'p1.title': 'Simulador de Entrevistas Técnicas',
-      'p1.desc': 'Ferramenta de preparação para entrevistas técnicas de desenvolvimento. Simulações interativas, banco de perguntas e feedback imediato para candidatos dev.',
-      'p2.problem': 'Problema resolvido: Otimização de orçamentos',
-      'p2.title': 'Orçamentador Inteligente de Construção',
-      'p2.desc': 'Orçamentador de serviços de construção para otimização de orçamentos de negócio. Automatiza cálculos complexos e gera propostas profissionais na hora.',
-      'p3.problem': 'Problema resolvido: Gestão educacional',
-      'p3.title': 'Painel Admin para Plataformas Educacionais',
-      'p3.desc': 'Dashboard de administração e gestão de usuários para plataformas educacionais. Controle total de alunos, conteúdos e métricas em uma única interface.',
-      'p4.problem': 'Problema resolvido: Aprendizagem interativa',
-      'p4.title': 'CodeBit — App Web Interativo',
-      'p4.desc': 'Aplicação web interativa construída e publicada em produção. Demonstra a capacidade de transformar ideias complexas em produto funcional rapidamente.',
-      'p5.problem': 'Problema resolvido: UX em tempo real',
-      'p5.title': 'Tabela da Copa do Mundo 2026',
-      'p5.desc': 'Tabela dinâmica e interativa para a Copa do Mundo 2026. Focada em experiência de usuário fluida e manipulação de dados em tempo real. Design responsivo e visualmente atraente.',
-      'p6.problem': 'Problema resolvido: Presença digital profissional',
-      'p6.title': 'Este Portfólio — SPA Otimizada',
-      'p6.desc': 'SPA otimizada e publicada na Vercel. Design moderno inspirado no Claude Code, responsivo, com animações suaves e carregamento instantâneo. 100% HTML/CSS/JS puro.',
-      'link.view': 'Ver projeto',
-      'link.live': 'Ver ao vivo',
-      'tag.ai': 'Assistido por IA',
+      'stat.roles': 'Funções dominadas',
+      'stat.projects': 'Projetos liderados',
+      'stat.docs': 'Documentos que comprovam',
+      'hero.cta.docs': 'Ver meus 27 documentos',
+      'pf.label': 'Perfil profissional',
+      'pf.title': 'Cinco funções que domino de ponta a ponta',
+      'pf.intro': 'Já ocupei <strong>cada cadeira da mesa</strong> em um projeto de software. Isso me permite antecipar como uma decisão funcional impacta o código, os testes e o cronograma — e traduzir a linguagem do negócio para a da equipe técnica, e vice-versa.',
+      'r1.title': 'Project Manager',
+      'r1.sub': 'Gestão e liderança',
+      'r1.desc': 'Planejamento e acompanhamento de projetos, gestão de cronograma e orçamento CAPEX/OPEX, coordenação de stakeholders e reporte a comitês. Scrum Master certificado (ISM) e formação PMP.',
+      'r1.chips': '<span class="chip">Scrum</span><span class="chip">PMI</span><span class="chip">CAPEX / OPEX</span><span class="chip">Cronograma</span><span class="chip">Comitê de projeto</span><span class="chip">Stakeholders</span>',
+      'r2.title': 'Analista de Sistemas',
+      'r2.sub': 'Arquitetura e modelagem',
+      'r2.desc': 'Modelagem de processos e de dados, diagramas UML, arquitetura multicamadas e integrações entre sistemas. Metodologia RUP e design de soluções de ponta a ponta.',
+      'r2.chips': '<span class="chip">UML</span><span class="chip">RUP</span><span class="chip">Arquitetura multicamadas</span><span class="chip">Modelagem de dados</span><span class="chip">Integrações</span><span class="chip">SQL</span>',
+      'r3.title': 'Analista Funcional',
+      'r3.sub': 'Requisitos e negócio',
+      'r3.desc': 'Levantamento e documentação de requisitos, análise AS-IS / TO-BE, casos de uso, histórias de usuário, protótipos de interface e definição de critérios de aceitação com o usuário.',
+      'r3.chips': '<span class="chip">AS-IS / TO-BE</span><span class="chip">Casos de uso</span><span class="chip">Histórias de usuário</span><span class="chip">Protótipos</span><span class="chip">Critérios de aceitação</span><span class="chip">Backlog</span>',
+      'r4.title': 'QA / Analista de Qualidade',
+      'r4.sub': 'Testes e certificação',
+      'r4.desc': 'Desenho e execução de planos e casos de teste, testes funcionais e de regressão, acompanhamento de UAT, gestão de defeitos e certificação de entradas em produção.',
+      'r4.chips': '<span class="chip">Casos de teste</span><span class="chip">UAT</span><span class="chip">Regressão</span><span class="chip">Gestão de defeitos</span><span class="chip">Certificação de releases</span><span class="chip">PCI-DSS</span>',
+      'r5.title': 'Programador',
+      'r5.sub': 'Desenvolvimento',
+      'r5.desc': 'Desenvolvimento de aplicações web e módulos internos com C# / .NET, ASP.NET e SQL Server sobre arquitetura multicamadas, além de relatórios e consultas em Oracle PL/SQL.',
+      'r5.chips': '<span class="chip">C# / .NET</span><span class="chip">ASP.NET</span><span class="chip">SQL Server</span><span class="chip">Oracle PL/SQL</span><span class="chip">APIs REST</span><span class="chip">Web</span>',
       'ex.label': 'Experiência',
       'ex.title': 'Trajetória profissional',
+      'ex.intro': 'Bancos, finanças, saúde, educação, turismo e setor público. Cada período declarado aqui está respaldado por seu <strong>comprovante ou certificado em PDF</strong>, com cargo e datas de início e fim.',
+      'ed.intro': 'Bacharelado em Engenharia de Sistemas, título técnico em Computação e Informática e certificação internacional em Scrum, com formação contínua em gestão de projetos.',
+      'dc.label': 'Documentação verificável',
+      'dc.title': 'Certificados e comprovantes, prontos para baixar',
+      'dc.intro': 'Tudo o que está declarado neste CV é comprovado. Cada comprovante indica o <strong>cargo e as datas de início e fim</strong>; cada certificado atesta os estudos e as certificações. Abra qualquer um em PDF.',
+      'dc.total': 'documentos em PDF',
+      'dc.tab.work': 'Experiência profissional',
+      'dc.tab.edu': 'Estudos e certificações',
+      'dc.viewpdf': 'Ver PDF',
+      'pr.label': 'Projetos próprios',
+      'pr.title': 'Produtos que defini, construí e coloquei em produção',
+      'pr.intro': 'Em cada um assumi <strong>o ciclo ágil completo</strong>, não apenas o código: levantamento de requisitos, definição do backlog, sprints de desenvolvimento, testes e implantação em produção.',
+      'pr.phases': '<span class="phase"><b>1</b>Requisitos</span><span class="phase"><b>2</b>Backlog</span><span class="phase"><b>3</b>Sprints</span><span class="phase"><b>4</b>QA</span><span class="phase"><b>5</b>Implantação</span>',
+      'p1.title': 'Simulador de Entrevistas Técnicas',
+      'p1.desc': 'Defini o escopo com candidatos reais, montei o banco de perguntas por nível e construí o simulador com feedback imediato e acompanhamento de progresso.',
+      'p2.title': 'Orçamentador Inteligente de Construção',
+      'p2.desc': 'Levantei o processo de orçamentação AS-IS com o cliente, modelei o TO-BE e automatizei os cálculos. Reduz a minutos um orçamento que antes levava horas.',
+      'p3.title': 'Painel Administrativo Educacional',
+      'p3.desc': 'Desenhei o modelo de dados e os casos de uso de gestão de alunos, conteúdos e métricas; depois construí e certifiquei antes da entrada em produção.',
+      'p4.title': 'CodeBit — Aplicação Web Interativa',
+      'p4.desc': 'Da ideia ao produto em produção: definição funcional, protótipo navegável, desenvolvimento iterativo por sprints e testes antes de publicar.',
+      'p5.title': 'Tabela da Copa do Mundo 2026',
+      'p5.desc': 'Requisito centrado em experiência de usuário e dados em tempo real. Prototipei, desenvolvi e implantei com design responsivo para celular e desktop.',
+      'p6.title': 'Este portfólio profissional',
+      'p6.desc': 'Especificação, design, desenvolvimento e implantação contínua na Vercel. Site multilíngue (ES / EN / PT), responsivo e com os documentos comprobatórios integrados.',
+      'tag.ux': 'Design UX',
+      'tag.biz': 'Ferramenta de negócio',
+      'tag.dash': 'Dashboard',
+      'tag.web': 'Aplicação web',
+      'tag.rt': 'Tempo real',
+      'tag.i18n': 'Multilíngue',
+      'link.live': 'Ver ao vivo',
+      'ct.label': 'Contato',
+      'ct.title': 'Vamos conversar sobre a vaga',
+      'ct.intro': 'Estou disponível para entrevistas e para enviar qualquer documentação adicional que o processo exija. A via mais rápida é o e-mail ou o telefone.',
+      'ct.write': 'E-mail',
+      'ct.phone': 'Telefone',
+      'ct.connect': 'Perfil profissional',
+      'ct.loclabel': 'Localização',
+      'ct.location': 'Lima, Peru',
+      'ft.docs': 'Documentos comprobatórios',
+      'ft.backtop': 'Voltar ao topo',
+      'ft.copy': '© 2026 Marco Saldarriaga Medina · Project Manager · Analista de Sistemas · Analista Funcional · QA · Programador',
       'e1.role': 'Analista de Projetos',
       'e1.sector': 'Comercial / Administração',
       'e1.desc': '<ul><li>Coordenação global do projeto — requisitos da área de Administração.</li><li>Supervisão da análise funcional e orgânica, implementação e desenvolvimento.</li><li>Resolução de problemas técnicos e garantia de qualidade do software entregue.</li></ul>',
@@ -1415,24 +1474,9 @@
       'ed5.period': 'Mar 2024 — Abr 2024',
       'ed.cert': 'Ver certificado →',
       'ed.inst': 'Ver instituição →',
-      'ct.label': 'Contato',
-      'ct.title': 'Vamos falar do seu projeto',
-      'ct.intro': 'Tem uma ideia ou um problema para resolver? Posso ajudá-lo a transformá-la em um produto funcional em tempo recorde usando IA + sólida experiência técnica.',
-      'ct.connect': 'Conectar no',
-      'ct.write': 'Escreva para',
-      'ct.location': 'Lima, Peru',
-      'dc.label': 'Documentação',
-      'dc.title': 'Certificados e comprovantes',
-      'dc.tab.work': '💼 Experiência Profissional',
-      'dc.tab.edu': '🎓 Estudos e Certificações',
-      'dc.viewpdf': 'Ver PDF',
-      'ft.backtop': 'Voltar ao topo',
-      'ft.copy': '© 2026 Marco Saldarriaga Medina · AI Developer &amp; Product Builder · Publicado na Vercel'
     }
   };
 
-  /* Textos repetidos de la sección Documentos — clave = texto original en español.
-     Lo que no está aquí (nombres propios de instituciones) se deja tal cual. */
   const DOC_TEXT = {
     en: {
       'Certificado Único Laboral': 'Official Employment Certificate (CUL)',
@@ -1482,6 +1526,7 @@
           Ago:'Ago', Sep:'Set', Set:'Set', Oct:'Out', Nov:'Nov', Dic:'Dez', Actualidad:'Atual' }
   };
 
+
   const i18nNodes = Array.from(document.querySelectorAll('[data-i18n]'));
   const ariaNodes = Array.from(document.querySelectorAll('[data-i18n-aria]'));
   const docNodes  = Array.from(document.querySelectorAll('.doc-name, .doc-sub'));
@@ -1494,9 +1539,9 @@
   dateNodes.forEach(el => el.dataset.esBase = el.textContent.trim());
 
   function applyLang(lang) {
-    const dict     = I18N[lang];
-    const docDict  = DOC_TEXT[lang];
-    const months   = MONTHS[lang];
+    const dict    = I18N[lang];
+    const docDict = DOC_TEXT[lang];
+    const months  = MONTHS[lang];
 
     i18nNodes.forEach(el => {
       const t = dict && dict[el.dataset.i18n];
@@ -1531,13 +1576,11 @@
     document.getElementById('langSwitch').classList.remove('open');
     document.getElementById('langBtn').setAttribute('aria-expanded', 'false');
   }
-
   function toggleLangMenu(e) {
     e.stopPropagation();
     const open = document.getElementById('langSwitch').classList.toggle('open');
     document.getElementById('langBtn').setAttribute('aria-expanded', String(open));
   }
-
   function setLang(lang) {
     applyLang(lang);
     closeLangMenu();
@@ -1546,9 +1589,7 @@
   document.addEventListener('click', e => {
     if (!document.getElementById('langSwitch').contains(e.target)) closeLangMenu();
   });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLangMenu();
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLangMenu(); });
 
   // Idioma inicial: preferencia guardada → idioma del navegador → español
   (function initLang() {
@@ -1558,6 +1599,5 @@
     applyLang(LANG_CODES[saved] ? saved : (LANG_CODES[browser] ? browser : 'es'));
   })();
 </script>
-
 </body>
 </html>
